@@ -1,0 +1,49 @@
+<% content_for :title, "Log in" -%>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <div class="page-header">
+        <h1>Log in</h1>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal', role: 'form'}) do |f| %>
+        <div class="form-group">
+          <%= f.label :login, class: 'control-label' %>
+          <div>
+            <%= f.text_field :login, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, class: 'control-label' %>
+          <div>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <% if devise_mapping.rememberable? -%>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                </label>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <%= f.submit "Log in", class: "btn btn-primary btn-sm" %>
+          </div>
+        </div>
+      <% end %>
+
+      <hr>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

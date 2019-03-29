@@ -1,0 +1,33 @@
+<div id="enable-disable-agents" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="enableAgentLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm</h4>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body-action">
+        </div>
+        <% shared_agents = workflow.shared_agents %>
+        <% unless shared_agents.empty? %>
+          <% shared_agent_count = shared_agents.size.size # group statement %>
+          <div class="text-danger">
+            <%= t 'Agent', count: shared_agent_count %>
+            <%= shared_agents.map { |agent| link_to(agent.name, agent_path(agent)) }.to_sentence.html_safe %>
+            <%= t 'is', count: shared_agent_count %>
+            shared with other workflows.
+            Enabling or disabling <%= t 'it', count: shared_agent_count %>
+            may disrupt other workflows.
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <%= form_for(workflow, as: :workflow, url: enable_or_disable_all_agents_workflow_path(workflow), method: 'PUT') do |f| %>
+          <%= f.hidden_field :disabled, value: '', id: "workflow-disabled-value" %>
+          <%= f.button 'No', class: 'btn btn-primary btn-sm', 'data-dismiss' => 'modal' %>
+          <%= f.submit 'Yes', class: 'btn btn-primary btn-sm' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

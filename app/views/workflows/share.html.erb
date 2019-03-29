@@ -1,0 +1,23 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="page-header">
+        <h1>Export <%= workflow_label(@workflow) %></h1>
+      </div>
+
+      <p>
+        <strong>Please be sure that none of the Agents in this Workflow have sensitive data in their settings before sharing!</strong>
+      </p>
+
+      You can share this workflow by <%= link_to "downloading and sharing your export file", export_workflow_path(@workflow, :format => :json) %>.
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to icon_tag('fa-chevron-left') + ' Show Worfklow'.html_safe, workflow_path(@workflow), class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

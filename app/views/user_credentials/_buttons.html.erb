@@ -1,0 +1,6 @@
+<div class="d-flex justify-content-end">
+  <%= link_to new_user_credential_path, class: "btn btn-primary btn-sm" do %><%= icon_tag('fa-plus') %> New Credential<% end %>
+  <%= link_to user_credentials_path(format: :json), class: "btn btn-primary btn-sm" do %><%= icon_tag('fa-cloud-download-alt') %> Download Credentials<% end %>
+  <%= link_to '#', data: { toggle: 'modal', target: '#credentials-upload' }, class: "btn btn-primary btn-sm credentials-upload-button" do %><%= icon_tag('fa-cloud-upload-alt') %> Upload Credentials<% end %>
+</div>
+

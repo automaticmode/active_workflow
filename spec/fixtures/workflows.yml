@@ -1,0 +1,16 @@
+jane_status:
+  name: Jane's status alert Workflow
+  user: jane
+  description: Jane's status alert system
+  guid: random-guid-generated-by-bob
+
+jane_status_duplicate:
+  name: Jane's duplicated, incomplete status alert Workflow
+  user: jane
+  guid: random-guid-generated-by-jane2
+
+bob_status:
+  name: Bob's status alert Workflow
+  user: bob
+  description: Bob's status alert system
+  guid: random-guid-generated-by-jane

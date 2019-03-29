@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-end">
+  <%= link_to destroy_failed_jobs_path, class: "btn btn-primary btn-sm", method: :delete do %>
+    <%= icon_tag('fa-trash') %> Remove failed jobs
+  <% end %>
+
+  <%= link_to retry_queued_jobs_path, class: "btn btn-primary btn-sm", method: :post do %>
+    <%= icon_tag('fa-sync-alt') %> Retry queued jobs
+  <% end %>
+
+  <%= link_to destroy_all_jobs_path, class: "btn btn-primary btn-sm", method: :delete, data: { confirm: "Are you sure you want to delete ALL pending jobs for all ActiveWorkflow users?" } do %>
+    <%= icon_tag('fa-times') %> Remove all jobs
+  <% end %>
+</div>

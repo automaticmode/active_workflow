@@ -1,0 +1,30 @@
+version: '3'
+
+volumes:
+  postgresdata:
+
+services:
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: myactiveworkflowpassword
+      POSTGRES_USER: active_workflow
+
+  active_workflow:
+    image: local/active_workflow
+    restart: always
+    env_file:
+      - .env
+    environment:
+      DATABASE_ADAPTER: postgresql
+      DATABASE_HOST: postgres
+      DATABASE_NAME: active_workflow
+      DATABASE_USERNAME: active_workflow
+      DATABASE_PASSWORD: myactiveworkflowpassword
+      INTENTIONALLY_SLEEP: 2
+    ports:
+      - 3000:3000
+    links:
+      - postgres

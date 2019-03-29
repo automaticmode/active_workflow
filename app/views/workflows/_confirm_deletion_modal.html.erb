@@ -1,0 +1,46 @@
+<div id="confirm-workflow-deletion-<%= workflow.id %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_for(workflow, url: workflow_path(workflow), method: :delete) do |f| %>
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <% if @workflow && @workflow == workflow %>
+              How do you want to delete this Workflow?
+            <% else %>
+              How do you want to delete the Workflow '<%= workflow.name %>'?
+            <% end %>
+          </h4>
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="radio">
+            <%= label_tag do %>
+              <%= radio_button_tag :mode, '', true %>
+              <h4><span class="label label-success">Workflow only</span></h4>
+              Only delete the Workflow, keep the Agents.
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= label_tag do %>
+              <%= radio_button_tag :mode, :unique_agents %>
+              <h4><span class="label label-warning">Workflow and unique Agents</span></h4>
+              Also deletes Agents that are used in this Workflow only.
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= label_tag do %>
+              <%= radio_button_tag :mode, :all_agents %>
+              <h4><span class="label label-danger">Workflow and all included Agents</span></h4>
+              Deletes Workflow and all included Agents, even if they are used in different Workflows.
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.button 'Cancel', class: 'btn btn-primary btn-sm', 'data-dismiss' => 'modal' %>
+          <%= f.submit 'Delete', class: 'btn btn-danger btn-sm' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

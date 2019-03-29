@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+bob:
+  email: "bob@example.com"
+  username: bob
+  workflow_count: 1
+
+jane:
+  email: "jane@example.com"
+  username: jane
+  workflow_count: 1
+  admin: true

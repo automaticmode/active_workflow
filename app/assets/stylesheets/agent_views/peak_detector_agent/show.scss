@@ -1,0 +1,53 @@
+.show-view.peak-detector-agent,
+.show-view.twitter-stream-agent {
+  .rickshaw_annotation_timeline {
+    left: 60px;
+    width: 700px;
+  }
+
+  .filter-group {
+    margin-bottom: 20px;
+
+    .chart-container {
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+
+      .chart {
+        position: relative;
+        left: 60px;
+        overflow: hidden;
+        width: 700px;
+      }
+
+      .summary-statistic {
+        stroke-width: 2;
+        stroke: #000;
+        stroke-dasharray: 9, 5;
+
+        &.mean {
+          stroke-opacity: 0.4;
+          stroke-dasharray: none;
+        }
+
+        &.one-std {
+          stroke-opacity: 0.3;
+        }
+
+        &.two-std {
+          stroke-opacity: 0.2;
+        }
+
+        &.three-std {
+          stroke-opacity: 0.1;
+        }
+      }
+
+      .y-axis {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 60px;
+      }
+    }
+  }
+}

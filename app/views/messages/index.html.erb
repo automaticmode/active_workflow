@@ -1,0 +1,32 @@
+<div>
+  <% if @messages.empty? %>
+    <p>No Messages emitted</p>
+  <% else %>
+    <table id="messages-table" class='table table-striped table-hover table-sm messages table-responsive'>
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>Payload</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      <% @messages.each do |message| %>
+        <% next unless message.agent %>
+        <%= content_tag :tr, class: (highlighted?(message.id) ? 'hl' : nil) do %>
+          <td data-order='<%= relative_time(message.created_at, true) %>' title='<%= message.created_at %>'><%= time_ago_in_words message.created_at %> ago</td>
+          <td><div class="message-payload truncated"><%= truncate message.payload.to_json, :length => 200, :omission => "" %></div></td>
+          <td>
+            <div class="btn-group btn-group-sm">
+              <%= link_to 'Show', '#', class: 'btn btn-primary message-show', data: { url: agent_message_path(@agent, message) }%>
+              <%= link_to 'Re-emit', '#', data: { url: reemit_agent_message_path(@agent, message) }, class: 'btn btn-primary message-reemit' %>
+              <%= link_to 'Delete', '#', data: { url: agent_message_path(@agent, message) }, class: "btn btn-primary message-delete" %>
+            </div>
+          </td>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

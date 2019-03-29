@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) + " - ActiveWorkflow" : "ActiveWorkflow" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <%= yield(:ace_editor_script) %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <nav class="navbar navbar-full navbar-static-top navbar-expand-lg navbar-dark bg-primary" role="navigation">
+      <div class="container">
+        <%= render 'layouts/navigation' %>
+      </div>
+    </nav>
+
+    <div id="main" role="main">
+      <div class="container">
+        <div class="row">
+          <div class='col-md-12'>
+            <%= render 'layouts/messages' %>
+          </div>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <%= render "upgrade_warning" %>
+      <% end %>
+
+      <div id="main-content">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

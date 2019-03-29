@@ -1,0 +1,4 @@
+require 'active_workflow_agent'
+
+#ActiveWorkflowAgent.load '<%= config[:gem_name] %>/concerns/my_agent_concern'
+ActiveWorkflowAgent.register '<%= config[:gem_name] %>/<%= config[:agent_file_name] %>'

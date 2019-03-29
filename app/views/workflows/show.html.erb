@@ -1,0 +1,30 @@
+<% content_for :title, @workflow.name -%>
+
+<% content_for :head do %>
+  <%= javascript_include_tag "diagram" %>
+<% end %>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="page-header">
+        <h1><%= workflow_label(@workflow) %> Workflow</h1>
+        <% if @workflow.description.present? %>
+          <%= markdown(@workflow.description) %>
+        <% end %>
+      </div>
+
+
+      <%= render 'diagrams/diagram' %>
+
+      <%= render 'workflows/buttons' %>
+      <br/>
+      <%= render 'agents/table' %>
+      <br/>
+      <%= render 'workflows/buttons' %>
+
+    </div>
+  </div>
+</div>
+<%= render 'workflows/confirm_deletion_modal', workflow: @workflow %>
+<%= render 'workflows/enable_agents_modal', workflow: @workflow %>

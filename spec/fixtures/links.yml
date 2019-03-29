@@ -1,0 +1,7 @@
+jane_notifier_agent_link:
+  receiver: jane_notifier_agent
+  source: jane_status_agent
+
+bob_notifier_agent_link:
+  receiver: bob_notifier_agent
+  source: bob_status_agent

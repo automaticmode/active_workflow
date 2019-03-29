@@ -1,0 +1,28 @@
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+Gem::Specification.new do |spec|
+  spec.name          = <%= config[:gem_name].inspect %>
+  spec.version       = '0.1'
+  spec.authors       = [<%= config[:author].inspect %>]
+  spec.email         = [<%= config[:email].inspect %>]
+
+  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
+  spec.description   = %q{Write a longer description or delete this line.}
+
+  spec.homepage      = "https://github.com/[my-github-username]/<%=config[:gem_name]%>"
+<% if config[:mit] %>
+  spec.license       = "MIT"
+<% end %>
+
+  spec.files         = Dir['LICENSE.txt', 'lib/**/*']
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = Dir['spec/**/*.rb'].reject { |f| f[%r{^spec/active_workflow}] }
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.7"
+  spec.add_development_dependency "rake", "~> 10.0"
+
+  spec.add_runtime_dependency "active_workflow_agent"
+end

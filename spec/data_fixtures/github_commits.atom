@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/rails/rails/commits/master</id>
+  <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commits/master"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/rails/rails/commits/master.atom"/>
+  <title>Recent Commits to rails:master</title>
+  <updated>2019-05-02T11:45:56Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/b343beba03722672b9bb827f8ce29c7c1c216406</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/b343beba03722672b9bb827f8ce29c7c1c216406"/>
+    <title>
+        Merge pull request #36131 from Shopify/fix-association-extension-modu…
+    </title>
+    <updated>2019-05-02T11:45:56Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/3387?s=30&amp;v=4"/>
+    <author>
+      <name>fxn</name>
+      <uri>https://github.com/fxn</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36131 from Shopify/fix-association-extension-module-namespace
+
+Namespace association extension modules under the owner model&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/cce26c36cae49f0143ce2305dbf5b00cca0e53c1</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/cce26c36cae49f0143ce2305dbf5b00cca0e53c1"/>
+    <title>
+        Namespace association extension modules under the owner model
+    </title>
+    <updated>2019-05-02T11:25:18Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/44640?s=30&amp;v=4"/>
+    <author>
+      <name>byroot</name>
+      <uri>https://github.com/byroot</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Namespace association extension modules under the owner model&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/730a7a1b7909095dd48b9f32bbae5fd5a023fa60</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/730a7a1b7909095dd48b9f32bbae5fd5a023fa60"/>
+    <title>
+        Merge pull request #36152 from prathamesh-sonpatki/active-support-notes
+    </title>
+    <updated>2019-05-02T04:04:23Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/621238?s=30&amp;v=4"/>
+    <author>
+      <name>prathamesh-sonpatki</name>
+      <uri>https://github.com/prathamesh-sonpatki</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36152 from prathamesh-sonpatki/active-support-notes
+
+Active Support release notes [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/6b86bbea1f5d81ea8170ddefa73c5f42e9c59bb3</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/6b86bbea1f5d81ea8170ddefa73c5f42e9c59bb3"/>
+    <title>
+        Update guides/source/6_0_release_notes.md
+    </title>
+    <updated>2019-05-02T03:49:07Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars1.githubusercontent.com/u/2977353?s=30&amp;v=4"/>
+    <author>
+      <name>connorshea</name>
+      <uri>https://github.com/connorshea</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Update guides/source/6_0_release_notes.md
+
+Co-Authored-By: prathamesh-sonpatki &amp;lt;csonpatki@gmail.com&amp;gt;&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/00edb8c91145729b3d9aeff1a540bdede0a9794e</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/00edb8c91145729b3d9aeff1a540bdede0a9794e"/>
+    <title>
+        Added release notes for Active Support [ci skip]
+    </title>
+    <updated>2019-05-02T03:32:33Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/621238?s=30&amp;v=4"/>
+    <author>
+      <name>prathamesh-sonpatki</name>
+      <uri>https://github.com/prathamesh-sonpatki</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Added release notes for Active Support [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/f60a0b43f9cc03e1588767116a35679d8f8d9a94</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/f60a0b43f9cc03e1588767116a35679d8f8d9a94"/>
+    <title>
+        Merge pull request #36159 from sharang-d/update-getting-started
+    </title>
+    <updated>2019-05-01T21:44:01Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/12642?s=30&amp;v=4"/>
+    <author>
+      <name>kamipo</name>
+      <uri>https://github.com/kamipo</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36159 from sharang-d/update-getting-started
+
+Update asset compression text [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/ec3314f6af69d3d34f549a71ee49428d6e44b9b9</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/ec3314f6af69d3d34f549a71ee49428d6e44b9b9"/>
+    <title>
+        Update asset compression text [ci skip]
+    </title>
+    <updated>2019-05-01T21:23:09Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/1948197?s=30&amp;v=4"/>
+    <author>
+      <name>sharang-d</name>
+      <uri>https://github.com/sharang-d</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Update asset compression text [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/f4fd7d1d20dfbc4389435a8f0f153f7960bb1544</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/f4fd7d1d20dfbc4389435a8f0f153f7960bb1544"/>
+    <title>
+        Make scope arity check consistent (#36134)
+    </title>
+    <updated>2019-05-01T20:53:35Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars0.githubusercontent.com/u/3004637?s=30&amp;v=4"/>
+    <author>
+      <name>Redapted</name>
+      <uri>https://github.com/Redapted</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Make scope arity check consistent (#36134)
+
+* Make scope arity check consistent
+
+* Add test for arity change
+
+[Rob Trame + Rafael Mendonça França]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/f8243f81ffc561420c2404cb344f9d9b85b818d7</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/f8243f81ffc561420c2404cb344f9d9b85b818d7"/>
+    <title>
+        Merge pull request #36149 from alexcameron89/add_active_storage_rn
+    </title>
+    <updated>2019-05-01T20:48:44Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/47848?s=30&amp;v=4"/>
+    <author>
+      <name>rafaelfranca</name>
+      <uri>https://github.com/rafaelfranca</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36149 from alexcameron89/add_active_storage_rn
+
+Add Release Notes for Active Storage&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/a0434ce37f7e889b6b9a07922a31edd25993de3d</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/a0434ce37f7e889b6b9a07922a31edd25993de3d"/>
+    <title>
+        Merge pull request #35337 from abhaynikam/35265-remove-unused-argumen…
+    </title>
+    <updated>2019-05-01T20:45:06Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/47848?s=30&amp;v=4"/>
+    <author>
+      <name>rafaelfranca</name>
+      <uri>https://github.com/rafaelfranca</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #35337 from abhaynikam/35265-remove-unused-argument-layout-from-rendered-template
+
+Removed unused layout attribute from RenderedTemplate&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/51a481fa7400772ca23c0e8e658523d78f8d8305</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/51a481fa7400772ca23c0e8e658523d78f8d8305"/>
+    <title>
+        Merge pull request #36155 from prathamesh-sonpatki/am-release-notes
+    </title>
+    <updated>2019-05-01T20:37:43Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/47848?s=30&amp;v=4"/>
+    <author>
+      <name>rafaelfranca</name>
+      <uri>https://github.com/rafaelfranca</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36155 from prathamesh-sonpatki/am-release-notes
+
+Active Model release notes [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/b8f88b961092b6b289d18017ab72f3958a315b1d</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/b8f88b961092b6b289d18017ab72f3958a315b1d"/>
+    <title>
+        Merge pull request #34642 from azimux/improve-hwia-initialize-by-skip…
+    </title>
+    <updated>2019-05-01T20:36:49Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/47848?s=30&amp;v=4"/>
+    <author>
+      <name>rafaelfranca</name>
+      <uri>https://github.com/rafaelfranca</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #34642 from azimux/improve-hwia-initialize-by-skipping-to_h-if-already-a-hash
+
+HashWithIndifferentAccess#initialize performance improvement&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/cc760e9106404f73ae682f67806e23f36d22add3</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/cc760e9106404f73ae682f67806e23f36d22add3"/>
+    <title>
+        Merge pull request #36157 from prathamesh-sonpatki/getting-started-up…
+    </title>
+    <updated>2019-05-01T20:31:40Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/47848?s=30&amp;v=4"/>
+    <author>
+      <name>rafaelfranca</name>
+      <uri>https://github.com/rafaelfranca</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36157 from prathamesh-sonpatki/getting-started-updates
+
+Updates to getting started per Rails 6.0 changes [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/370237ce9055fb2589c1d3f919e16e9001562d8c</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/370237ce9055fb2589c1d3f919e16e9001562d8c"/>
+    <title>
+        Updates to getting started per Rails 6.0 changes [ci skip]
+    </title>
+    <updated>2019-05-01T15:17:41Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/621238?s=30&amp;v=4"/>
+    <author>
+      <name>prathamesh-sonpatki</name>
+      <uri>https://github.com/prathamesh-sonpatki</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Updates to getting started per Rails 6.0 changes [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/21e0c88fc630467905781b5ddefe28a22d476f68</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/21e0c88fc630467905781b5ddefe28a22d476f68"/>
+    <title>
+        Active Model release notes [ci skip]
+    </title>
+    <updated>2019-05-01T14:50:53Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/621238?s=30&amp;v=4"/>
+    <author>
+      <name>prathamesh-sonpatki</name>
+      <uri>https://github.com/prathamesh-sonpatki</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Active Model release notes [ci skip]&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/47aee9af25a155d86676086eb98ba96a80da259e</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/47aee9af25a155d86676086eb98ba96a80da259e"/>
+    <title>
+        Add Release Notes for Active Storage [ci skip]
+    </title>
+    <updated>2019-05-01T14:25:52Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/5634381?s=30&amp;v=4"/>
+    <author>
+      <name>alexcameron89</name>
+      <uri>https://github.com/alexcameron89</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Add Release Notes for Active Storage [ci skip]
+
+Co-authored-by: Abhay Nikam &amp;lt;nikam.abhay1@gmail.com&amp;gt;&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/d09a7c1366f0ea2cee1ac107523417fdb77a3120</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/d09a7c1366f0ea2cee1ac107523417fdb77a3120"/>
+    <title>
+        Merge pull request #36153 from yahonda/use_schema_to_ignore
+    </title>
+    <updated>2019-05-01T13:41:35Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/12642?s=30&amp;v=4"/>
+    <author>
+      <name>kamipo</name>
+      <uri>https://github.com/kamipo</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36153 from yahonda/use_schema_to_ignore
+
+Remove database specific sql statements from SQLCounter&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/6030110f56229a123b9ba3219879cc5a544739d2</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/6030110f56229a123b9ba3219879cc5a544739d2"/>
+    <title>
+        Remove database specific sql statements from SQLCounter
+    </title>
+    <updated>2019-05-01T13:30:11Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars0.githubusercontent.com/u/73684?s=30&amp;v=4"/>
+    <author>
+      <name>yahonda</name>
+      <uri>https://github.com/yahonda</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Remove database specific sql statements from SQLCounter
+
+Every database executes different type of sql statement to get metadata then `ActiveRecord::TestCase` ignores these database specific sql statements to make `assert_queries` or `assert_no_queries` work consistently.
+
+Connection adapter already labels these statement by setting &amp;quot;SCHEMA&amp;quot; argument, this pull request makes use of &amp;quot;SCHEMA&amp;quot; argument to ignore metadata queries.
+
+Here are the details of these changes:
+
+* PostgresqlConnectionTest
+
+Each of PostgresqlConnectionTest modified just executes corresponding methods
+
+https://github.com/rails/rails/blob/fef174f5c524edacbcad846d68400e7fe114a15a/activerecord/lib/active_record/connection_adapters/postgresql/schema_statements.rb#L182-L195
+
+```ruby
+        # Returns the current database encoding format.
+        def encoding
+          query_value(&amp;quot;SELECT pg_encoding_to_char(encoding) FROM pg_database WHERE datname = current_database()&amp;quot;, &amp;quot;SCHEMA&amp;quot;)
+        end
+
+        # Returns the current database collation.
+        def collation
+          query_value(&amp;quot;SELECT datcollate FROM pg_database WHERE datname = current_database()&amp;quot;, &amp;quot;SCHEMA&amp;quot;)
+        end
+
+        # Returns the current database ctype.
+        def ctype
+          query_value(&amp;quot;SELECT datctype FROM pg_database WHERE datname = current_database()&amp;quot;, &amp;quot;SCHEMA&amp;quot;)
+        end
+```
+
+* BulkAlterTableMigrationsTest
+
+mysql2 adapter executes `SHOW KEYS FROM ...` to see if there is an index already created as below. I think the main concerns of these tests are how each database adapter creates or drops indexes then ignoring  `SHOW KEYS FROM` statement makes sense.
+
+https://github.com/rails/rails/blob/fef174f5c524edacbcad846d68400e7fe114a15a/activerecord/lib/active_record/connection_adapters/mysql/schema_statements.rb#L11
+
+```ruby
+          execute_and_free(&amp;quot;SHOW KEYS FROM #{quote_table_name(table_name)}&amp;quot;, &amp;quot;SCHEMA&amp;quot;) do |result|
+```
+
+* Temporary change not included in this commit to show which statements executed
+
+```diff
+$ git diff
+diff --git a/activerecord/test/cases/migration_test.rb b/activerecord/test/cases/migration_test.rb
+index 8e8ed494d9..df05f9bd16 100644
+--- a/activerecord/test/cases/migration_test.rb
++++ b/activerecord/test/cases/migration_test.rb
+@@ -854,7 +854,7 @@ def test_adding_indexes
+
+       classname = ActiveRecord::Base.connection.class.name[/[^:]*$/]
+       expected_query_count = {
+-        &amp;quot;Mysql2Adapter&amp;quot;     =&amp;gt; 3, # Adding an index fires a query every time to check if an index already exists or not
++        &amp;quot;Mysql2Adapter&amp;quot;     =&amp;gt; 1, # Adding an index fires a query every time to check if an index already exists or not
+         &amp;quot;PostgreSQLAdapter&amp;quot; =&amp;gt; 2,
+       }.fetch(classname) {
+         raise &amp;quot;need an expected query count for #{classname}&amp;quot;
+@@ -886,7 +886,7 @@ def test_removing_index
+
+       classname = ActiveRecord::Base.connection.class.name[/[^:]*$/]
+       expected_query_count = {
+-        &amp;quot;Mysql2Adapter&amp;quot;     =&amp;gt; 3, # Adding an index fires a query every time to check if an index already exists or not
++        &amp;quot;Mysql2Adapter&amp;quot;     =&amp;gt; 1, # Adding an index fires a query every time to check if an index already exists or not
+         &amp;quot;PostgreSQLAdapter&amp;quot; =&amp;gt; 2,
+       }.fetch(classname) {
+         raise &amp;quot;need an expected query count for #{classname}&amp;quot;
+$
+```
+
+* Executed these modified tests
+
+```ruby
+$ ARCONN=mysql2 bin/test test/cases/migration_test.rb -n /index/
+Using mysql2
+Run options: -n /index/ --seed 8462
+
+F
+
+Failure:
+BulkAlterTableMigrationsTest#test_adding_indexes [/home/yahonda/git/rails/activerecord/test/cases/migration_test.rb:863]:
+3 instead of 1 queries were executed.
+Queries:
+SHOW KEYS FROM `delete_me`
+SHOW KEYS FROM `delete_me`
+ALTER TABLE `delete_me` ADD UNIQUE INDEX `awesome_username_index`  (`username`), ADD  INDEX `index_delete_me_on_name_and_age`  (`name`, `age`).
+Expected: 1
+  Actual: 3
+
+bin/test test/cases/migration_test.rb:848
+
+F
+
+Failure:
+BulkAlterTableMigrationsTest#test_removing_index [/home/yahonda/git/rails/activerecord/test/cases/migration_test.rb:895]:
+3 instead of 1 queries were executed.
+Queries:
+SHOW KEYS FROM `delete_me`
+SHOW KEYS FROM `delete_me`
+ALTER TABLE `delete_me` DROP INDEX `index_delete_me_on_name`, ADD UNIQUE INDEX `new_name_index`  (`name`).
+Expected: 1
+  Actual: 3
+
+bin/test test/cases/migration_test.rb:879
+
+..
+
+Finished in 0.379245s, 10.5473 runs/s, 7.9105 assertions/s.
+4 runs, 3 assertions, 2 failures, 0 errors, 0 skips
+$
+```
+
+* ActiveRecord::ConnectionAdapters::Savepoints
+
+Left `self.ignored_sql` to ignore savepoint related statements because these SQL statements are not related &amp;quot;SCHEMA&amp;quot;
+
+```
+self.ignored_sql = [/^SAVEPOINT/, /^ROLLBACK TO SAVEPOINT/, /^RELEASE SAVEPOINT/]
+```
+
+https://github.com/rails/rails/blob/fef174f5c524edacbcad846d68400e7fe114a15a/activerecord/lib/active_record/connection_adapters/abstract/savepoints.rb#L10-L20
+
+```ruby
+      def create_savepoint(name = current_savepoint_name)
+        execute(&amp;quot;SAVEPOINT #{name}&amp;quot;)
+      end
+
+      def exec_rollback_to_savepoint(name = current_savepoint_name)
+        execute(&amp;quot;ROLLBACK TO SAVEPOINT #{name}&amp;quot;)
+      end
+
+      def release_savepoint(name = current_savepoint_name)
+        execute(&amp;quot;RELEASE SAVEPOINT #{name}&amp;quot;)
+      end
+```&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/fef174f5c524edacbcad846d68400e7fe114a15a</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/fef174f5c524edacbcad846d68400e7fe114a15a"/>
+    <title>
+        `@controller` may not be defined here, and if so, it causes a Ruby wa…
+    </title>
+    <updated>2019-05-01T04:33:38Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars3.githubusercontent.com/u/11493?s=30&amp;v=4"/>
+    <author>
+      <name>amatsuda</name>
+      <uri>https://github.com/amatsuda</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;`@controller` may not be defined here, and if so, it causes a Ruby warning
+
+e.g. via test-unit-rails&amp;#39; `run_setup`&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/0c152f2eb419306578115da2c9fa10af575bede7</id>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/commit/0c152f2eb419306578115da2c9fa10af575bede7"/>
+    <title>
+        Merge pull request #36150 from rails/error-any-delegation
+    </title>
+    <updated>2019-04-30T22:25:49Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars2.githubusercontent.com/u/3124?s=30&amp;v=4"/>
+    <author>
+      <name>tenderlove</name>
+      <uri>https://github.com/tenderlove</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #36150 from rails/error-any-delegation
+
+any? should be delegated to the errors list&lt;/pre&gt;
+    </content>
+  </entry>
+</feed>

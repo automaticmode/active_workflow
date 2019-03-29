@@ -1,0 +1,208 @@
+<% content_for :title, @agent.name -%>
+
+<div class='container agent-show'>
+  <div class='row'>
+    <div class='col-md-2'>
+        <ul class="nav nav-pills flex-column" id="show-tabs">
+          <li class="nav-item"><%= link_to icon_tag('fa-chevron-left') + ' All Agents'.html_safe, agents_path, class: 'nav-link' %></li>
+
+          <% if agent_show_view(@agent).present? %>
+            <li class='nav-item active'><a href="#summary" class="nav-link" data-toggle="tab"><%= icon_tag('fa-image') %> Summary</a></li>
+            <li class="nav-item"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
+          <% else %>
+            <li class='nav-item disabled'><a class="nav-link"><%= icon_tag('fa-image') %> Summary</a></li>
+            <li class='nav-item active'><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
+          <% end %>
+
+          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class='nav-link <%= @agent.recent_error_logs? ? 'recent-errors' : '' %>'><%= icon_tag('fa-list-alt') %> Logs</a></li>
+
+          <% if @agent.can_create_messages? %>
+            <li class="nav-item"><a href="#messages" data-toggle="tab" data-agent-id="<%= @agent.id %>" class='nav-link'><%= icon_tag('fa-random') %> Messages</a></li>
+          <% else %>
+            <li class='nav-item disabled'><a class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
+          <% end %>
+
+          <li class="nav-item">
+            <%= link_to icon_tag('fa-edit') + ' Edit'.html_safe, edit_agent_path(@agent, params: { workflow_id: @workflow }), class: 'nav-link' %>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%= icon_tag('fa-th-list') %> Actions <span class="caret"></span></a>
+            <%= render 'agents/action_menu', agent: @agent, workflow: @workflow %>
+          </li>
+        </ul>
+      </div>
+
+      <div class='col-md-10'>
+        <div class="tab-content">
+          <div class="tab-pane <%= agent_show_view(@agent).present? ? "active" : "disabled" %>" id="summary">
+            <h2><%= @agent.name %> Summary</h2>
+
+            <% if agent_show_view(@agent).present? %>
+              <div class="show-view <%= agent_show_class(@agent) %>">
+                <%= render agent_show_view(@agent) %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="tab-pane" id="logs" data-agent-id="<%= @agent.id %>">
+            <div class='row'>
+              <div class='col-md-12'>
+                <h2>
+                  <%= @agent.name %> Logs
+                  <small>
+                    <i class="fa fa-spinner fa-pulse spinner"></i>
+                    <%= icon_tag('fa-sync-alt', class: 'refresh btn btn-sm btn-primary') %>
+                    <%= icon_tag('fa-trash-alt', class: 'clear btn btn-sm btn-primary') %>
+                  </small>
+                </h2>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-md-12'>
+                <div class='logs'>
+                  Just a moment...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="messages" data-agent-id="<%= @agent.id %>">
+            <div class='row'>
+              <div class='col-md-12'>
+                <h2>
+                  <%= @agent.name %> Messages
+                  <small>
+                    <i class="fa fa-spinner fa-pulse spinner"></i>
+                    <%= icon_tag('fa-sync-alt', class: 'refresh btn btn-sm btn-primary') %>
+                    <%= icon_tag('fa-trash-alt', class: 'clear btn btn-sm btn-primary') %>
+                  </small>
+                </h2>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-md-12'>
+                <div class='messages'>
+                  Just a moment...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane <%= agent_show_view(@agent).present? ? "" : "active" %>" id="details">
+            <h2><%= @agent.name %> Details</h2>
+
+
+            <div class="row">
+            <div class="col-md-12 col-lg-6">
+              <p>
+                <b>Options:</b>
+                <pre><%= Utils.pretty_jsonify @agent.options || {} %></pre>
+              </p>
+              <% if @agent.memory.present? %>
+                <p id="memory" data-agent-id="<%= @agent.id %>">
+                  <b>Memory:</b>
+                  <small>
+                    <%= icon_tag('fa-trash-alt', class: 'clear btn btn-sm btn-primary') %>
+                  <a id="toggle-memory" href="#">Show</a>
+                  </small>
+                  <pre class="memory hidden"><%= Utils.pretty_jsonify @agent.memory || {} %></pre>
+                </p>
+              <% end %>
+            </div>
+            <div class="col-md-12 col-lg-6">
+              <p>
+                <b>Type:</b>
+                <%= @agent.short_type.titleize %>
+              </p>
+
+              <% if @agent.can_be_scheduled? %>
+                <p>
+                  <b>Schedule:</b>
+                  <%= agent_schedule(@agent) %>
+                </p>
+
+                <p>
+                  <b>Last checked:</b>
+                  <%= @agent.last_check_at ? time_ago_in_words(@agent.last_check_at) + " ago" : "never" %>
+                </p>
+              <% end %>
+
+              <% if @agent.can_create_messages? %>
+                <p>
+                  <b>Keep messages:</b>
+                  <%= (Agent::MESSAGE_RETENTION_SCHEDULES.detect {|s| s.last == @agent.keep_messages_for } || [@agent.keep_messages_for]).first %>
+                </p>
+
+                <p>
+                  <b>Last message created:</b>
+                  <%= @agent.last_message_at ? time_ago_in_words(@agent.last_message_at) + " ago" : "never" %>
+                </p>
+              <% end %>
+
+              <% if @agent.can_receive_messages? %>
+                <p>
+                  <b>Last received message:</b>
+                  <%= @agent.last_receive_at ? time_ago_in_words(@agent.last_receive_at) + " ago" : "never" %>
+                </p>
+              <% end %>
+
+              <% if @agent.can_create_messages? %>
+                <p>
+                  <b>Messages created:</b>
+                  <%= link_to @agent.messages_count, agent_path(@agent, params: { tab: 'messages' }) %>
+                </p>
+              <% end %>
+
+              <% if @agent.try(:oauthable?) %>
+                <p>
+                  <b>Service:</b>
+                  <%= service_label(@agent.service) %>
+                </p>
+              <% end %>
+
+              <% if @agent.can_receive_messages? %>
+                <p>
+                  <b>Message sources:</b>
+                  <% if (agents = @agent.sources).length > 0 %>
+                    <%= agents.map { |agent| link_to(agent.name, agent_path(agent)) }.to_sentence.html_safe %>
+                  <% else %>
+                    None
+                  <% end %>
+                </p>
+              <% end %>
+
+              <% if @agent.can_create_messages? %>
+                <p>
+                  <b>Message receivers:</b>
+                  <% if (agents = @agent.receivers).length > 0 %>
+                    <%= agents.map { |agent| link_to(agent.name, agent_path(agent)) }.to_sentence.html_safe %>
+                  <% else %>
+                    None
+                  <% end %>
+                </p>
+              <% end %>
+
+              <% if @agent.can_control_other_agents? %>
+                <p>
+                  <b>Control Targets:</b>
+                  <% if (agents = @agent.control_targets).length > 0 %>
+                    <%= agents.map { |agent| link_to(agent.name, agent_path(agent)) }.to_sentence.html_safe %>
+                  <% else %>
+                    None
+                  <% end %>
+                </p>
+              <% end %>
+
+              <p>
+                <b>Working:</b>
+                <%= working @agent %>
+              </p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+

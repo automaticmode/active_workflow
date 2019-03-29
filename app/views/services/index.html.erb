@@ -1,0 +1,59 @@
+<% content_for :title, "Services" -%>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="page-header">
+        <h1>Services</h1>
+      </div>
+      <p>
+      Before you can authenticate with a service, you need to set it up. Consult respective services documentation on obtaining OAUTH keys and secrets. Once you have OAUTH keys and secrets, please set them as environment variables:
+      <ul>
+        <li>Basecamp (37signals) - <b>THIRTY_SEVEN_SIGNALS_OAUTH_KEY</b> and <b>THIRTY_SEVEN_SIGNALS_OAUTH_SECRET</b></li>
+        <li>Wunderlist - <b>WUNDERLIST_OAUTH_KEY</b> and <b>WUNDERLIST_OAUTH_SECRET</b></li>
+        <li>Evernote - <b>EVERNOTE_OAUTH_KEY</b> and <b>EVERNOTE_OAUTH_SECRET</b></li>
+      </ul>
+      </p>
+      <%- Devise.omniauth_providers.each { |provider| -%>
+        <p><%= omniauth_button(provider) %></p>
+      <%- } -%>
+
+      <div>
+        <% if @services.empty? %>
+          <p>No Services Configured</p>
+        <% else %>
+          <table id="services-table" class='table table-striped messages'>
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Name</th>
+                <th>Global</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @services.each do |service| %>
+                <tr>
+                  <td><%= omniauth_provider_name(service.provider) %></td>
+                  <td><%= service.name %></td>
+                  <td><%= yes_no(service.global) %></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <% if service.global %>
+                        <%= link_to 'Make private', toggle_availability_service_path(service), method: :post, data: { confirm: 'Are you sure you want to remove access to your data on this service for other users?'}, class: "btn btn-primary" %>
+                      <% else %>
+                         <%= link_to 'Make global', toggle_availability_service_path(service), method: :post, data: { confirm: 'Are you sure you want to grant every user on this system access to your data on this service?'}, class: "btn btn-primary" %>
+                      <% end %>
+                      <%= link_to 'Delete', service_path(service), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

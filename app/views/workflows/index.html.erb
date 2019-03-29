@@ -1,0 +1,25 @@
+<% content_for :title, "Workflows" -%>
+
+<% content_for :head do %>
+  <%= javascript_include_tag "diagram" %>
+<% end %>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="page-header">
+        <h1>Workflows</h1>
+        <p>Workflows are named groups of agents.  Workflows allow you to organize your agents, and to import and export sets of agents to share.</p>
+      </div>
+
+      <%= render 'diagrams/diagram' %>
+
+      <%= render 'workflows/index-buttons' %>
+      <br/>
+      <%= render 'workflows/index-table' %>
+      <br/>
+      <%= render 'workflows/index-buttons' %>
+
+    </div>
+  </div>
+</div>

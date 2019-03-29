@@ -1,0 +1,63 @@
+<p>
+  Use this form to manually emit Messages from this Agent (usually for testing).
+</p>
+
+<p>
+  If you add a top-level key called <code>payloads</code> that points to an array of objects, they will be emitted as a series
+  of Messages.  Otherwise, everything entered will be emitted as a single Message.
+</p>
+
+<p>
+  Liquid formatting is supported.
+</p>
+
+<h4 id='message-creation-status'></h4>
+
+<%= form_tag handle_details_post_agent_path(@agent), :id => "create-message-form" do %>
+  <div class="form-group">
+    <div id="ace-payload-editor">{
+}</div>
+  </div>
+
+  <%= submit_tag "Submit", :class => "btn btn-primary btn-sm" %>
+<% end %>
+
+<script>
+  $(function () {
+    var editor = ace.edit("ace-payload-editor")
+    editor.session.setTabSize(2)
+    editor.session.setUseSoftTabs(true)
+    editor.session.setUseWrapMode(false)
+    editor.session.setMode("ace/mode/json")
+    $("#create-message-form").submit(function (e) {
+      e.preventDefault();
+      var $form = $("#create-message-form");
+      var $status = $("#message-creation-status");
+      $status.text("...");
+      try{
+        JSON.parse(editor.session.getValue());
+      }
+      catch(err){
+        alert ('Sorry, there appears to be an error in your JSON input. Please fix it before continuing.');
+        return false;
+      }
+      $.ajax({
+        url: $form.attr('action'),
+        method: "post",
+        data: { payload: editor.session.getValue() },
+        dataType: "JSON",
+        success: function(json) {
+          if (json.success) {
+            $status.text("Success!");
+          } else {
+            $status.text("An error occurred: " + json.error);
+          }
+        },
+        error: function(response) {
+          $status.text("An error occurred: " + response.responseText)
+        }
+      });
+      return false;
+    });
+  });
+</script>

@@ -1,0 +1,23 @@
+<% if @messages && @messages.length > 0 %>
+  <h5>Recently received messages: </h5>
+  <% @messages.each do |message| %>
+    <%= link_to '#', class: 'dry-run-message-sample' do %>
+      <pre><%= truncate message.payload.to_json, :length => 90, :omission => "" %></pre>
+      <div class="sample-payload"><%= JSON.pretty_generate(message.payload) %></div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h5>Message to send<%= params[:with_message_mode] == 'maybe' ? ' (Optional)' : '' %></h5>
+<form class="dry-run-form" method="post">
+  <div class="form-group">
+    <textarea rows="10" name="message" id="payload_editor" class="payload-editor" data-height="200">
+{
+
+}</textarea>
+    <div id="ace-payload-editor" class="ace-editor" data-source="#payload_editor" data-mode="ace/mode/json"></div>
+  </div>
+  <div class="form-group">
+    <input value="Dry Run" class="btn btn-primary btn-sm" type="submit" />
+  </div>
+</form>

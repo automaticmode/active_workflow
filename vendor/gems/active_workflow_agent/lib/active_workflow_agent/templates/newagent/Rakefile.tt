@@ -1,0 +1,5 @@
+#!/usr/bin/env rake
+
+require 'active_workflow_agent'
+
+ActiveWorkflowAgent.load_tasks(branch: 'master', remote: 'https://github.com/automaticmode/active_workflow.git')

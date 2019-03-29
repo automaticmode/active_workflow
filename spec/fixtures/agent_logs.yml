@@ -1,0 +1,17 @@
+log_for_jane_website_agent:
+  agent: jane_website_agent
+  outbound_message: jane_website_agent_message
+  message: "fetching some website data"
+
+log_for_bob_website_agent:
+  agent: bob_website_agent
+  outbound_message: bob_website_agent_message
+  message: "fetching some other website data"
+
+first_log_for_bob_status_agent:
+  agent: bob_status_agent
+  message: "checking the status"
+
+second_log_for_bob_status_agent:
+  agent: bob_status_agent
+  message: "checking the status again"

@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require "bundler/setup"
+
+load Gem.bin_path("parallel_split_test", "parallel_split_test")

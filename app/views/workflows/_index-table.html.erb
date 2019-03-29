@@ -1,0 +1,38 @@
+<div>
+  <% if @workflows.empty? %>
+    <tr><td>No Workflows</td></tr>
+  <% else %>
+    <table id="workflows-table" class='table table-striped table-hover table-sm'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Agents</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @workflows.each do |workflow| %>
+          <tr class="has-agents" data-bgcolor="<%= workflow.tag_bg_color %>" data-fgcolor="<%= workflow.tag_fg_color %>" data-agents="<%= workflow.agents.pluck(:id).to_json %>">
+            <td>
+              <% if workflow.icon.blank? %>
+                <%= workflow_label(workflow, icon('fa', 'cog'))%>
+              <% else %>
+                <%= workflow_label(workflow, icon('fa', workflow.icon))%>
+              <% end %>
+              <%= link_to(workflow.name, workflow) %>
+            </td>
+            <td><%= link_to pluralize(workflow.agents.count, "agent"), workflow %></td>
+            <td>
+              <div class="btn-group btn-group-sm float-right">
+                <%= link_to 'Show', workflow, class: "btn btn-primary" %>
+                <%= link_to 'Edit', edit_workflow_path(workflow), class: "btn btn-primary" %>
+                <%= link_to 'Delete', '#', data: { toggle: 'modal', target: "#confirm-workflow-deletion-#{workflow.id}"}, class: "btn btn-primary" %>
+              </div>
+              <%= render 'workflows/confirm_deletion_modal', workflow: workflow %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

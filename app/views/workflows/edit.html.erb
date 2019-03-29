@@ -1,0 +1,21 @@
+<% content_for :title, "Edit " + @workflow.name -%>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="page-header">
+        <h1>Edit Workflow</h1>
+      </div>
+
+      <%= render 'form' %>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to icon_tag('fa-chevron-left') + ' All Workflows'.html_safe, workflows_path, class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

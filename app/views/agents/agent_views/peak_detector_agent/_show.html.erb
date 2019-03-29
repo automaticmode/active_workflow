@@ -1,0 +1,30 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "graphing" %>
+<% end %>
+<% if @agent.memory[:data] && @agent.memory[:data].length > 0 %>
+  <h3>Recent Trends</h3>
+  <% @agent.memory[:data].each.with_index do |(group_name, data), index| %>
+    <div class="filter-group counts">
+      <div class="chart-container group-<%= index.to_s %>">
+        <div class="y-axis"></div>
+        <div class="chart"></div>
+        <div class="timeline"></div>
+      </div>
+
+      <script>
+        $(function() {
+          var $chart = $(".chart-container.group-<%= index.to_s %>").last();
+          var data = <%= Utils.jsonify(data.select {|c, _t| !c.nil? }.map {|count, time| { :x => time.to_i, :y => count.to_f } }) %>;
+          var peaks = <%= Utils.jsonify((@agent.memory[:peaks] && @agent.memory[:peaks][group_name]) || []) %>;
+          var name = <%= Utils.jsonify(group_name) %>;
+
+          renderGraph($chart, data, peaks, name);
+        });
+      </script>
+    </div>
+  <% end %>
+<% else %>
+  <p>
+    No data has been received.
+  </p>
+<% end %>

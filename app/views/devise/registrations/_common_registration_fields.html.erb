@@ -1,0 +1,28 @@
+<div class="form-group">
+  <%= f.label :email, class: 'control-label' %>
+  <div>
+    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :username, class: 'control-label' %>
+  <div>
+    <%= f.text_field :username, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :password, class: 'control-label' %>
+  <div>
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    <% if @validatable %><span class="help-inline"><%= @minimum_password_length %> characters minimum.</span><% end %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :password_confirmation, class: 'control-label' %>
+  <div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+  </div>
+</div>

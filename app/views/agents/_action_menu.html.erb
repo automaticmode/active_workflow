@@ -1,0 +1,70 @@
+<div class="dropdown-menu <%= local_assigns[:right] ? 'dropdown-menu-right' : '' %> dropdown-sm" role="menu">
+  <% if agent.can_be_scheduled? %>
+    <%= link_to icon_tag('fa-sync-alt', class: 'color-success') + ' Run', run_agent_path(agent, params: { workflow_id: @workflow}), method: :post, tabindex: "-1", class: 'dropdown-item' %>
+  <% end %>
+
+  <% if agent.can_dry_run? %>
+    <%= link_to icon_tag('fa-sync-alt') + ' Dry Run', '#', 'data-action-url' => agent_dry_runs_path(agent, params: { workflow_id: @workflow }), 'data-with-message-mode' => agent_dry_run_with_message_mode(agent), tabindex: "-1", onclick: "Utils.handleDryRunButton(this)", class: 'dropdown-item' %>
+  <% end %>
+
+  <%= link_to icon_tag('fa-eye') + ' Show'.html_safe, agent_path(agent, params: { workflow_id: @workflow }), class: 'dropdown-item' %>
+
+  <div class="dropdown-divider"></div>
+
+  <%= link_to icon_tag('fa-edit') + ' Edit agent'.html_safe, edit_agent_path(agent, params: { workflow_id: @workflow }), class: 'dropdown-item' %>
+
+  <%= link_to icon_tag('fa-copy') + ' Clone agent'.html_safe, new_agent_path(id: agent, params: { workflow_id: @workflow }), tabindex: "-1", class: 'dropdown-item' %>
+
+  <%= link_to '#', 'data-toggle' => 'modal', 'data-target' => "#confirm-agent#{agent.id}", class: 'dropdown-item' do %>
+    <% if agent.disabled? %>
+      <%= icon_tag('fa-play') %> Enable agent
+    <% else %>
+      <%= icon_tag('fa-pause') %> Disable agent
+    <% end %>
+  <% end %>
+
+  <% if agent.workflows.length > 0 %>
+    <div class="dropdown-divider"></div>
+
+    <% agent.workflows.each do |workflow| %>
+      <%= link_to icon_tag('fa-times-circle') + " Remove from #{workflow_label(workflow)}".html_safe, leave_workflow_agent_path(agent, workflow_id: workflow.to_param), method: :put, tabindex: "-1", class: 'dropdown-item' %>
+    <% end %>
+  <% end %>
+
+  <div class="dropdown-divider"></div>
+
+  <% if agent.can_create_messages? && agent.messages_count > 0 %>
+    <%= link_to icon_tag('fa-trash-alt') + ' Delete all messages', remove_messages_agent_path(agent, params: { workflow_id: @workflow }), method: :delete, data: {confirm: 'Are you sure you want to delete ALL emitted messages for this Agent?'}, tabindex: "-1", class: 'dropdown-item' %>
+  <% end %>
+
+  <%= link_to icon_tag('fa-times') + ' Delete agent', agent_path(agent, params: { workflow_id: @workflow }), method: :delete, data: { confirm: 'Are you sure that you want to permanently delete this Agent?' }, tabindex: "-1", class: 'dropdown-item' %>
+</div>
+
+<div id="confirm-agent<%= agent.id %>" class="confirm-agent modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmAgentLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm</h4>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <p><% if agent.disabled? %>Enable<% else %>Disable<% end %> &quot;<%= agent.name %>&quot;?</p>
+      </div>
+      <div class="modal-footer">
+        <%= form_for(agent, as: :agent, url: agent_path(agent, params: { workflow_id: @workflow }), method: 'PUT') do |f| %>
+          <% if agent.disabled && agent.can_receive_messages? %>
+            <div class="form-group">
+              <%= f.check_box :drop_pending_messages %>
+              <%= f.label :drop_pending_messages, 'Drop pending messages' %>
+              <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' =>"As soon as you enable this agent, it starts to receive pending messages that have not been processed while it was disabled.  To prevent that from happening, you can check this option.") %>
+            </div>
+          <% end %>
+          <%= f.hidden_field :disabled, value: (!agent.disabled).to_s %>
+          <%= f.button 'No', class: 'btn btn-secondary btn-sm', 'data-dismiss' => 'modal' %>
+          <%= f.submit 'Yes', class: 'btn btn-primary btn-sm' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

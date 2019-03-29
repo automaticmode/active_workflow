@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "active_workflow_agent/cli"
+
+ActiveWorkflowAgent::CLI.start

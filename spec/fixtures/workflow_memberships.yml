@@ -1,0 +1,19 @@
+jane_status_agent_workflow_membership:
+  agent: jane_status_agent
+  workflow: jane_status
+
+jane_notifier_agent_workflow_membership:
+  agent: jane_notifier_agent
+  workflow: jane_status
+
+jane_notifier_agent_workflow_membership_duplicate:
+  agent: jane_status_agent
+  workflow: jane_status_duplicate
+
+bob_status_agent_workflow_membership:
+  agent: bob_status_agent
+  workflow: bob_status
+
+bob_notifier_agent_workflow_membership:
+  agent: bob_notifier_agent
+  workflow: bob_status

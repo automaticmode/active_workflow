@@ -1,0 +1,25 @@
+<% content_for :title, "Agents" -%>
+
+<% content_for :head do %>
+  <%= javascript_include_tag "diagram" %>
+<% end %>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="page-header">
+        <h1><%= session[:original_admin_user_id].present? ? "#{current_user.username}’s Agents" : 'Agents' %></h1>
+        <p><a href="https://en.wikipedia.org/wiki/Software_agent">Agents</a> are independent programs that perform work. They communicate by emiting and receiving messages.</p>
+      </div>
+
+      <%= render 'diagrams/diagram' %>
+
+      <%= render 'agents/buttons' %>
+      <br/>
+      <%= render 'agents/table' %>
+      <br/>
+      <%= render 'agents/buttons' %>
+
+    </div>
+  </div>
+</div>

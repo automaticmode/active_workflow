@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-end">
+  <%= link_to icon_tag('fa-chevron-left') + ' All Workflows', workflows_path, class: "btn btn-primary btn-sm" %>
+  <%= link_to icon_tag('fa-plus') + ' New Agent', new_agent_path(workflow_id: @workflow.id), class: "btn btn-primary btn-sm" %>
+  <%= link_to icon_tag('fa-edit') + ' Edit', edit_workflow_path(@workflow), class: "btn btn-primary btn-sm" %>
+  <%= link_to icon_tag('fa-cloud-download-alt') + ' Export', share_workflow_path(@workflow), class: "btn btn-primary btn-sm" %>
+  <%= link_to icon_tag('fa-trash-alt') + ' Delete', '#', data: { toggle: 'modal', target: "#confirm-workflow-deletion-#{@workflow.id}"}, class: "btn btn-primary btn-sm" %>
+  <%= link_to icon_tag('fa-play') + ' Enable all Agents', '#', data: { toggle: 'modal', target: "#enable-disable-agents"}, class: "btn btn-primary enable-all-agents btn-sm" %>
+  <%= link_to icon_tag('fa-pause') + ' Disable all Agents', '#', data: { toggle: 'modal', target: "#enable-disable-agents"}, class: "btn btn-primary disable-all-agents btn-sm" %>
+</div>

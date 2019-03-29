@@ -1,0 +1,45 @@
+version: '3'
+
+volumes:
+  postgresdata:
+
+services:
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: myactiveworkflowpassword
+      POSTGRES_USER: active_workflow
+
+  active_workflow_test:
+    user: $UID
+    build:
+      context: ../../
+      dockerfile: docker/test/Dockerfile
+    restart: 'no'
+    environment:
+      DATABASE_ADAPTER: sqlite3
+      DATABASE_NAME: db/development.sqlite3
+    volumes:
+      - ../../:/app
+      - /app/vendor/bundle
+
+  active_workflow_test_postgres:
+    user: $UID
+    build:
+      context: ../../
+      dockerfile: docker/test/Dockerfile
+    restart: 'no'
+    environment:
+      DATABASE_ADAPTER: postgresql
+      TEST_DATABASE_NAME: active_workflow
+      DATABASE_NAME: active_workflow
+      DATABASE_USERNAME: active_workflow
+      DATABASE_PASSWORD: myactiveworkflowpassword
+      DATABASE_HOST: postgres
+    links:
+      - postgres
+    volumes:
+      - ../../:/app
+      - /app/vendor/bundle

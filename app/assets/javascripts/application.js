@@ -1,0 +1,13 @@
+//= require jquery3
+//= require popper
+//= require rails-ujs
+//= require bootstrap
+//= require datatables
+//= require select2
+//= require json2
+//= require jquery.serializeObject
+//= require spectrum
+//= require ace-rails-ap
+//= require_tree ./components
+//= require_tree ./pages
+//= require_self

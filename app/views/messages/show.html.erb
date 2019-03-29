@@ -1,0 +1,8 @@
+<p>
+  <b>Created:</b> <%= (time_ago_in_words @message.created_at) %> ago
+</p>
+<p>
+  <b>Payload:</b>
+  <textarea rows="15" id="message_payload" class="form-control"><%= Utils.pretty_jsonify @message.payload || {} %></textarea>
+  <div id="message_payload_editor" class="ace-editor"></div>
+</p>

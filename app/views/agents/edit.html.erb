@@ -1,0 +1,28 @@
+<% content_for :title, "Edit " + @agent.name -%>
+
+<div class='container'>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1>
+          Editing your <%= @agent.short_type %>
+          <i id="agent-spinner" class="fa fa-spinner fa-pulse spinner"></i>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div id="agent-form">
+    <%= render 'form' %>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <%= link_to icon_tag('fa-chevron-left') + ' All Agents'.html_safe, agents_path, class: "btn btn-primary btn-sm" %>
+        <%= link_to icon_tag('fa-asterisk') + ' Show', agent_path(@agent), class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

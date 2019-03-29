@@ -1,0 +1,27 @@
+{
+    "name": "ActiveWorkflow",
+    "description": "Business process automation platform.",
+    "website": "https://github.com/automaticmode/active_workflow",
+    "repository": "https://github.com/automaticmode/active_workflow",
+    "buildpacks": [
+      {
+        "url": "heroku/ruby"
+      },
+      {
+        "url": "https://github.com/weibeld/heroku-buildpack-graphviz.git"
+      }
+    ],
+    "env": {
+        "SEED_USERNAME": "admin",
+        "SEED_PASSWORD": "password",
+        "SEED_EMAIL": "admin@example.com",
+        "SECRET_KEY_BASE": {
+            "generator": "secret"
+        }
+    },
+    "scripts": {
+      "postdeploy": "bundle exec rake db:migrate db:seed"
+    },
+    "addons": ["heroku-postgresql"],
+    "success_url": "/"
+}
