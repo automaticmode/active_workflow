@@ -18,24 +18,14 @@ export DEBIAN_FRONTEND=noninteractive
 minimal_apt_get_install='apt-get install -y --no-install-recommends'
 
 apt-get update
-apt-get dist-upgrade -y --no-install-recommends
-$minimal_apt_get_install software-properties-common
-add-apt-repository -y ppa:brightbox/ruby-ng
-apt-get update
 $minimal_apt_get_install build-essential checkinstall git-core \
   zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev \
   libncurses5-dev libffi-dev libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev \
   graphviz libgraphviz-dev \
-  libpq-dev libsqlite3-dev \
-  ruby2.5 ruby2.5-dev locales tzdata \
-  python2.7 python-docutils supervisor python-pip python-setuptools python-wheel
-locale-gen en_US.UTF-8
-update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
-gem install --no-ri --no-rdoc bundler
-
-pip install supervisor-stdout
+  libpq-dev libsqlite3-dev tzdata
 
 apt-get purge -y python3* rsyslog rsync manpages
+apt -y autoremove
 apt-get -y clean
 
 mkdir -p /app
@@ -46,7 +36,3 @@ rm -rf /usr/share/doc/
 rm -rf /usr/share/man/
 rm -rf /usr/share/locale/
 rm -rf /var/log/*
-
-mkdir -p /var/log/supervisor
-chgrp -R 0 /etc/supervisor /var/log/supervisor
-chmod -R g=u /etc/supervisor /var/log/supervisor

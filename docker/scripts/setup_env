@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-export LC_ALL=en_US.UTF-8
-
 cd /app
 
 export HOME=/app

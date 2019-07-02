@@ -47,7 +47,7 @@ ActiveWorkflow::Application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = true unless ENV['DISABLE_SSL'] == 'true'
 
   # See everything in the log (default is will be :debug in Rails 5.0)
   config.log_level = :info

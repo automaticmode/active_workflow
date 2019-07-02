@@ -18,6 +18,7 @@ services:
     env_file:
       - .env
     environment:
+      DISABLE_SSL: 'true'
       DATABASE_ADAPTER: postgresql
       DATABASE_HOST: postgres
       DATABASE_NAME: active_workflow
