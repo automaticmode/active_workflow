@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.2] - 2019-08-07
+### Fixed
+- Docker compose doesn't restart container anymore.
+- Updated dependencies.
+
+
 ## [0.9.1] - 2019-07-02
 ### Added
 - Simple change log file.
@@ -16,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed deprecated devise error messages.
 - Updated dependencies.
-
+za
 ## [0.9.0] - 2019-03-29
 ### Added
 - Initial public release
