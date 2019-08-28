@@ -1,11 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-if ENV['COVERAGE']
+if ENV['CI'] == 'true'
   require 'simplecov'
   SimpleCov.start 'rails'
-else
-  require 'coveralls'
-  Coveralls.wear!('rails')
+
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
 require File.expand_path('../../config/environment', __FILE__)

@@ -119,7 +119,7 @@ group :development do
     gem 'capybara', '~> 3.15.0'
     gem 'capybara-screenshot', '~> 1.0.22'
     gem 'capybara-select2', require: false
-    gem 'coveralls', '~> 0.8.22', require: false
+    gem 'codecov', '~> 0.1.14', require: false
     gem 'delorean', '~> 2.1.0'
     gem 'parallel_split_test', '~> 0.7.0'
     gem 'pry-byebug', '~> 3.6.0'
