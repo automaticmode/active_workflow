@@ -1,3 +1,5 @@
+<a href="https://www.automaticmode.com"><img src="media/AML-logo.svg" width="125" height="125" align="right" /></a>
+
 # ActiveWorkflow
 
 [![CircleCI](https://img.shields.io/circleci/project/github/automaticmode/active_workflow/master.svg?style=flat-square)](https://circleci.com/gh/automaticmode/active_workflow)
