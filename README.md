@@ -2,9 +2,10 @@
 
 # ActiveWorkflow
 
-[![CircleCI](https://img.shields.io/circleci/project/github/automaticmode/active_workflow/master.svg?style=flat-square)](https://circleci.com/gh/automaticmode/active_workflow)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
-[![Codecov](https://img.shields.io/codecov/c/gh/automaticmode/active_workflow.svg?style=flat-square)](https://codecov.io/gh/automaticmode/active_workflow)
+[![CircleCI](https://circleci.com/gh/automaticmode/active_workflow.svg?style=shield)](https://circleci.com/gh/automaticmode/active_workflow)
+[![Codecov](https://codecov.io/gh/automaticmode/active_workflow/branch/master/graph/badge.svg)](https://codecov.io/gh/automaticmode/active_workflow)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 
 ActiveWorkflow is an intelligent process automation platform that uses
 [software agents](https://en.wikipedia.org/wiki/Software_agent); autonomous
