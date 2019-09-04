@@ -162,11 +162,6 @@ These agents use third party services to provide functionality. They also requir
 
 - **Slack Agent**: lets you receive messages and send notifications to Slack.
 
-## Acknowledgements
-
-ActiveWorkflow started as a fork of [Huginn](https://github.com/huginn/huginn) with the
-goal of solely targeting business use. ActiveWorkflow is incompatible with Huginn.
-
 ## Deployment
 
 ### One Click Heroku Deployment
@@ -314,6 +309,7 @@ tweak it or use it as guidance when configuring your deployment target.
 
 Tests can be run with `make test`.
 
+
 ### Running Locally with Docker
 
 You can test the docker container you just built locally. Run it (with
@@ -332,6 +328,13 @@ Stop containers with:
 ```sh
 docker-compose down
 ```
+
+
+## Acknowledgements
+
+ActiveWorkflow started as a fork of [Huginn](https://github.com/huginn/huginn) with the
+goal of solely targeting business use. ActiveWorkflow is incompatible with Huginn.
+
 
 ## License
 
