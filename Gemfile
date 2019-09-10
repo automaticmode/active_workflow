@@ -47,7 +47,6 @@ gem 'omniauth-37signals' # BasecampAgent
 gem 'omniauth-wunderlist'
 
 gem 'ace-rails-ap', '~> 4.2'
-gem 'active_workflow_agent', path: './vendor/gems/active_workflow_agent'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'execjs', '~> 2.7.0'
 gem 'mini_racer', '~> 0.2.6'
