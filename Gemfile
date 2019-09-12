@@ -56,7 +56,7 @@ gem 'bootstrap-kaminari-views', '~> 0.0.5'
 gem 'daemons', '~> 1.2.6'
 gem 'delayed_job', '~> 4.1.7'
 gem 'delayed_job_active_record', github: 'automaticmode/delayed_job_active_record'
-gem 'devise', '~> 4.6.2'
+gem 'devise', '~> 4.7.1'
 gem 'dotenv', '~> 2.5.0'
 # TODO: update
 gem 'faraday', '~> 0.9'
