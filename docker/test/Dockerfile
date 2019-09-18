@@ -1,7 +1,5 @@
 FROM local/active_workflow
 
-ENV GECKODRIVER_URL "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz"
-
 USER 0
 
 RUN apt-get update && \
@@ -11,16 +9,14 @@ RUN apt-get update && \
       libgtk-3-0 \
       libdbus-glib-1-2 \
       xvfb \
-      firefox \
+      chromium chromium-driver \
       libssl-dev \
       libxft-dev \
       libfreetype6 \
       libfreetype6-dev \
       libfontconfig1 \
       libfontconfig1-dev curl && \
-    apt-get -y clean && \
-    curl -Ls ${GECKODRIVER_URL} \
-      | tar zxvf - -C /usr/local/bin/ geckodriver
+    apt-get -y clean
 
 RUN LC_ALL=en_US.UTF-8 bundle install --with test development --path vendor/bundle -j 4
 

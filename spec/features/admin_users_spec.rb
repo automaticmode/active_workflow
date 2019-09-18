@@ -21,6 +21,7 @@ describe Admin::UsersController do
     it 'allows to delete a user' do
       visit admin_users_path
       find(:css, "a[href='/admin/users/#{users(:bob).id}']").click
+      accept_alert
       expect(page).to have_text("User 'bob' was deleted.")
       expect(page).to have_no_text('bob@example.com')
     end

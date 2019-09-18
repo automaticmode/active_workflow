@@ -115,7 +115,7 @@ group :development do
   end
 
   group :test do
-    gem 'capybara', '~> 3.15.0'
+    gem 'capybara', '~> 3.29.0'
     gem 'capybara-screenshot', '~> 1.0.22'
     gem 'capybara-select2', require: false
     gem 'codecov', '~> 0.1.14', require: false

@@ -16,6 +16,7 @@ describe 'handling undefined agents' do
   it 'deletes all undefined agents' do
     visit agents_path
     click_on('Delete Missing Agents')
+    accept_alert
     expect(page).to have_text('Agents')
   end
 end

@@ -44,10 +44,7 @@ describe 'Dry running an Agent', js: true do
 
       open_dry_run_modal(agent)
 
-      # find('a.dry-run-message-sample').click
-      # TODO: Some browser bug prevents `a.dry-run-message-sample` from being
-      # interactable, although it definitely is.
-      execute_script("$('.dry-run-message-sample').click()")
+      find('a.dry-run-message-sample').click
 
       expect(editor_value('payload_editor')).to include('http://xkcd.com/')
       click_on('Dry Run')
@@ -63,14 +60,12 @@ describe 'Dry running an Agent', js: true do
 
       open_dry_run_modal(formatting_agent)
 
-      # find('a.dry-run-message-sample').click
-      # TODO: Some browser bug prevents `a.dry-run-message-sample` from being
-      # interactable, although it definitely is.
-      execute_script("$('.dry-run-message-sample').click()")
+      find('a.dry-run-message-sample').click
 
       expect(editor_value('payload_editor')).to include('Line 1\nLine 2\nLine 3')
 
       click_on('Dry Run')
+      expect(page).to have_text('Dry Run Results')
       expect(page).to have_text('Line 1,Line 2,Line 3')
       expect(page).to have_selector(:css, 'li[role="presentation"].active a[href="#tabMessages"]')
     end
