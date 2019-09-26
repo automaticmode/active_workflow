@@ -137,7 +137,7 @@ describe 'Creating a new agent', js: true do
     select_agent_type('Website Agent scrapes')
     select2('Site status', from: 'Sources')
     click_on 'Site status'
-    expect(page).to have_content 'Editing your HttpStatusAgent'
+    expect(page).to have_content 'Editing your HTTP Status Agent'
   end
 
   context 'clearing unsupported fields of agents' do

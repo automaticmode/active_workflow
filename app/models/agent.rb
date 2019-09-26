@@ -82,6 +82,10 @@ class Agent < ApplicationRecord
     type.demodulize
   end
 
+  def human_type
+    display_name || short_type
+  end
+
   def check
     # Implement me in your subclass of Agent.
   end

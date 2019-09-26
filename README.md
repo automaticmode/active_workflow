@@ -163,6 +163,13 @@ These agents use third party services to provide functionality. They also requir
 
 - **Slack Agent**: lets you receive messages and send notifications to Slack.
 
+### Custom Agents
+
+You can create your own custom agents using the [custom agent
+API](docs/custom_agent_api.md). Currently this is only available in Ruby, but we
+are working on providing a custom agent API for multiple languages, beginning
+with Python.
+
 ## Deployment
 
 ### One Click Heroku Deployment
@@ -329,7 +336,6 @@ Stop containers with:
 ```sh
 docker-compose down
 ```
-
 
 ## Acknowledgements
 

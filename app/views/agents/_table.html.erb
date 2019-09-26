@@ -26,7 +26,7 @@
             <td class='<%= "agent-unavailable" if agent.unavailable? %>'>
               <%= link_to agent.name, agent_path(agent, params: { workflow_id: @workflow }) %>
               <br/>
-              <span class='text-muted'><%= agent.short_type.titleize %></span>
+              <span class='text-muted'><%= agent.human_type %></span>
               <% if agent.workflows.present? %>
                 <span>
                   <%= workflow_links(agent) %>
