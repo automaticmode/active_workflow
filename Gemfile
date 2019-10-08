@@ -131,7 +131,7 @@ group :development do
     gem 'rspec-collection_matchers', '~> 1.1.3'
     gem 'rspec-html-matchers', '~> 0.9.1'
     gem 'rspec_junit_formatter', '~> 0.4.1'
-    gem 'selenium-webdriver', '~> 3.141.0'
+    gem 'selenium-webdriver', '~> 3.142.0'
     gem 'shoulda-matchers', '~> 4.0.1'
     gem 'vcr', '~> 4.0.0'
     gem 'webmock', '~> 3.5'
