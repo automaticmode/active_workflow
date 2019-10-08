@@ -47,9 +47,9 @@ to communicate with the system. It has the following methods and properties:
   - `emit_message(payload)`: emits a message with the provided payload.
   - `credential(name)`: reads credential configured by a user.
 
-## Deploying the custom agent
+## Deploying the Custom Agent
 
-To use your custom agent it has to be packaged as a gem. Fork the
+To use your custom agent it has to be packaged as a Ruby gem. Fork the
 ActiveWorkflow repository and add your gem to the `Gemfile`. Register your
 agent's class by adding the following to the
 `config/initializers/custom_agents.rb`:

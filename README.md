@@ -13,6 +13,30 @@ entities that act on schedule or react to external triggers. These unsupervised
 agents connect to APIs, process information, perform routine tasks, and enable
 you to automate internal or external workflows.
 
+<div align="center"><a name="menu"></a>
+  <h3>
+    <a href="#overview">
+      Overview
+    </a>
+    <span> • </span>
+    <a href="#list-of-built-in-agents">
+      List of Built-in Agents
+    </a>
+    <span> • </span>
+    <a href="#custom-agents">
+      Custom Agents
+    </a>
+    <span> • </span>
+    <a href="#deployment">
+      Deployment
+    </a>
+    <span> • </span>
+    <a href="#development">
+      Development
+    </a>
+  </h4>
+</div>
+
 <img src="media/workflows_screenshot.png"
      srcset="media/workflows_screenshot@2x.png 2x"
      alt="Main view">
@@ -107,7 +131,7 @@ These are the agents that control the workflow and perform common and simple dat
 
 - **Post Agent**: receives messages from other agents (or runs periodically), merges those messages with the Liquid-interpolated contents of payload, and sends the results as POST (or GET) requests to a specified URL.
 
-- **De-duplication Agent**: receives a stream of messages and reemits the message if it is not a duplicate.
+- **De-duplication Agent**: receives a stream of messages and re-emits the message if it is not a duplicate.
 
 - **Manual Message Agent**: is used to manually create Messages for testing or other purposes.
 
@@ -163,11 +187,11 @@ These agents use third party services to provide functionality. They also requir
 
 - **Slack Agent**: lets you receive messages and send notifications to Slack.
 
-### Custom Agents
+## Custom Agents
 
 You can create your own custom agents using the [custom agent
-API](docs/custom_agent_api.md). Currently this is only available in Ruby, but we
-are working on providing a custom agent API for multiple languages, beginning
+API](docs/custom_agent_api.md). Currently agents written in Ruby are supported,
+but we are working on providing support for multiple languages, beginning
 with Python.
 
 ## Deployment
