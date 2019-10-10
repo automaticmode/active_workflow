@@ -30,10 +30,6 @@ gem 'erector', git: 'https://github.com/erector/erector', ref: '59754211101b2c50
 # TODO: update
 gem 'slack-notifier', '~> 1.0.0'  # SlackAgent
 
-# GoogleCalendarPublishAgent
-# TODO: update
-gem 'google-api-client', '~> 0.13'
-
 # EvernoteAgent
 gem 'omniauth-evernote'
 gem 'evernote_oauth'
@@ -90,6 +86,9 @@ gem 'sprockets', '~> 3.7.2'
 gem 'typhoeus', '~> 0.6.3'
 gem 'uglifier', '~> 4.1.18'
 gem 'jquery-datatables', '~> 1.10.19'
+gem 'grape', '~> 1.2.4'
+gem 'grape-entity', '~> 0.7.1'
+gem 'jwt', '~> 2.2.1'
 
 group :development do
   gem 'foreman', '~> 0.85.0'

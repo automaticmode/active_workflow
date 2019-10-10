@@ -383,6 +383,13 @@ reset Heroku stack to `heroku-18` like this:
 heroku stack:set heroku-18
 ```
 
+## REST API
+
+ActiveWorkflow provides a REST API to allow you to query and control your
+agents and workflows programatically from your own code.  We plan to provide
+ActiveWorkflow API clients in multiple languages starting with Ruby and Python.
+You can read more details in the [REST API documentation](docs/rest_api.md).
+
 
 ## Development
 

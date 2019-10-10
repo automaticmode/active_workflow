@@ -103,6 +103,8 @@ ActiveWorkflow::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end
 
+  mount API::V1::Root => '/api'
+
   get '/about' => 'home#about'
   root to: 'home#index'
 end

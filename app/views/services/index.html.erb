@@ -6,6 +6,7 @@
       <div class="page-header">
         <h1>Services</h1>
       </div>
+      <p>If you want to control ActiveWorkflow via REST API programmatically, the token for your user is: <b><%= JsonWebToken.encode(user_id: current_user.id) %></b></p>
       <p>
       Before you can authenticate with a service, you need to set it up. Consult respective services documentation on obtaining OAUTH keys and secrets. Once you have OAUTH keys and secrets, please set them as environment variables:
       <ul>
