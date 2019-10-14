@@ -19,8 +19,8 @@ you to automate internal or external workflows.
       Overview
     </a>
     <span> • </span>
-    <a href="#list-of-built-in-agents">
-      List of Built-in Agents
+    <a href="#built-in-agents">
+      Built-in Agents
     </a>
     <span> • </span>
     <a href="#custom-agents">
@@ -43,7 +43,7 @@ you to automate internal or external workflows.
 
 ## Overview
 
-The basic concepts in ActiveWorkflow are *agents* and *workflows*.
+ActiveWorkflow is an intelligent process automation platform that uses software agents. A key objective when using ActiveWorkflow is to automate and orchestrate activities that would typically require human time and involvement. Thus, think more along the lines of replacing manual checking of websites, APIs, emails, and calendars rather than building low-level data pipelines (though that's also certainly possible). The basic concepts in ActiveWorkflow are **agents** and **workflows**. An overview of each follows below.
 
 ### Agents
 
@@ -57,11 +57,11 @@ of agents designated as message sources and message targets forms a network. Thi
 is what allows a group of agents to coordinate themselves and transform a
 collection of simple tasks into sophisticated and complex behaviour.
 
-Some agents are self contained, like the Trigger Agent, which watches for
+Some agents are self-contained, like the Trigger Agent that watches for
 specific values in the messages it receives. Others depend on complex third
 party services, like the aforementioned Twilio Agent.
 
-Agents perform actions either on schedule, or when they receive a message. There
+Agents perform actions either on schedule or when they receive a message. There
 are also agents that can be triggered by external events. Agents are generally
 stateful and can have memory. For example, the IMAP Folder Agent remembers the
 last email it retrieved.
@@ -97,95 +97,184 @@ also be exported and imported, so you can share automation solutions as a unit.
      srcset="media/workflow_diagram_screenshot@2x.png 2x"
      alt="Workflow diagram">
 
-## List of Built-in Agents
+## Built-in Agents
+
+Below is a list of 30+ agents that come with ActiveWorkflow. These cover a wide spectrum of functionality and can be extensively configured and composed in workflows. Each agent comes with inline documentation within the web interface.
+
+For writing your own custom agents see <a href="#custom-agents">Custom Agents</a>.
 
 ### Input/Output Agents
 
-Agents that connect your workflows to the outside world. Some of them can be used to interface with third party services when a dedicated agent is not (yet) available.
+These are agents that connect your workflows to the outside world. Some of them can be used to interface with third party services when a dedicated agent is not (yet) available.
 
-- **Webhook Agent**: creates messages by receiving webhooks from any source.
-
-- **Data Output Agent**: outputs received messages as either RSS or JSON. Use it to output a public or private stream of ActiveWorkflow data.
-
-- **HTTP Status Agent**: will check a URL and emit the resulting HTTP status code with the time that it waited for a reply. Additionally, it will optionally emit the value of one or more specified headers.
-
-- **FTP Site Agent**: checks an FTP site and creates messages based on newly uploaded files in a directory. When receiving messages it creates files on the configured FTP server.
-
-- **Website Agent**: scrapes a website, XML document, or JSON feed and creates Messages based on the results.
-
-- **RSS Agent**: consumes RSS feeds and emits messages when they change.
-
-- **Email Agent**: sends any messages it receives via email immediately.
-
-- **Email Digest Agent**: collects any messages sent to it and sends them all via email when scheduled.
-
-- **IMAP Folder Agent**: checks an IMAP server in specified folders and creates messages based on new mails found since the last run.
+<table>
+ <tr>
+ 	<td><strong>Webhook&nbsp;Agent</strong></td>
+ 	<td>Creates messages by receiving webhooks from any source.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Data&nbsp;Output&nbsp;Agent</strong>
+ 	<td>Outputs received messages as either RSS or JSON. Use it to output a public or private stream of ActiveWorkflow data.</td>
+ </tr>
+ <tr>
+ 	<td><strong>HTTP&nbsp;Status&nbsp;Agent</strong></td>
+ 	<td>Will check a URL and emit the resulting HTTP status code with the time that it waited for a reply. Additionally, it will optionally emit the value of one or more specified headers.</td>
+ </tr>
+  <tr>
+ 	<td><strong>FTP Site Agent</strong></td>
+ 	<td>Checks an FTP site and creates messages based on newly uploaded files in a directory. When receiving messages it creates files on the configured FTP server.</td>
+ </tr>
+  <tr>
+ 	<td><strong>Website Agent</strong></td>
+ 	<td>Scrapes a website, XML document, or JSON feed and creates Messages based on the results.</td>
+ </tr>
+  <tr>
+ 	<td><strong>RSS Agent</strong></td>
+ 	<td>Consumes RSS feeds and emits messages when they change.</td>
+ </tr>
+  <tr>
+ 	<td><strong>Email Agent</strong></td>
+ 	<td>Sends any messages it receives via email immediately.</td>
+ </tr>
+  <tr>
+ 	<td><strong>Email&nbsp;Digest&nbsp;Agent</strong></td>
+ 	<td>Collects any messages sent to it and sends them all via email when scheduled.</td>
+ </tr>
+  <tr>
+ 	<td><strong>IMAP Folder Agent</strong></td>
+ 	<td>Checks an IMAP server in specified folders and creates messages based on new mails found since the last run.</td>
+ </tr>
+</table>
 
 ### Workflow and Data Processing Agents
 
-These are the agents that control the workflow and perform common and simple data processing operations.
+These are agents that control the workflow and perform common and simple data processing operations.
 
-- **Commander Agent**: gets invoked on schedule or an incoming message, and commands other agents to run, disable, configure, or enable themselves.
-
-- **Buffer Agent**: stores received messages and emits copies of them on schedule. Use this as a buffer/queue of messages.
-
-- **Post Agent**: receives messages from other agents (or runs periodically), merges those messages with the Liquid-interpolated contents of payload, and sends the results as POST (or GET) requests to a specified URL.
-
-- **De-duplication Agent**: receives a stream of messages and re-emits the message if it is not a duplicate.
-
-- **Manual Message Agent**: is used to manually create Messages for testing or other purposes.
-
-- **Liquid Output Agent**: outputs messages through a Liquid template you provide. Use it to create a HTML page, or a JSON feed, or anything else that can be rendered as a string from your stream of ActiveWorkflow data.
-
-- **JavaScript Agent**: allows you to write JavaScript code that can create and receive messages. If other agents aren’t meeting your needs, try this one!
-
-- **Scheduler Agent**: periodically takes an action on target agents according to a user-defined schedule.
-
-- **Attribute Difference Agent**: receives messages and emits a new message with the difference or change of a specific attribute in comparison to the message received.
-
-- **Change Detector Agent**: receives a stream of messages and emits a new message when a property of the received message changes.
-
-- **CSV Agent**: parses or serializes CSV data. When parsing, messages can either be emitted for the entire CSV, or one per row.
-
-- **Gap Detector Agent**: will watch for holes or gaps in a stream of incoming Messages and generate “no data alerts”.
-
-- **Read File Agent**: takes messages from File Handling agents, reads the file, and emits the contents as a string.
-
-- **Trigger Agent**: will watch for a specific value in an message payload.
-
-- **Message Formatting Agent**: allows you to format incoming messages, adding new fields as needed.
-
-- **Digest Agent**: collects any messages sent to it and emits them as a single message.
-
-- **Peak Detector Agent**: will watch for peaks in a message stream.
-
-- **JSON Parse Agent**: parses a JSON string and emits the data in a new message.
+<table>
+ <tr>
+ 	<td><strong>Commander&nbsp;Agent</strong></td>
+ 	<td>Gets invoked on schedule or an incoming message, and commands other agents to run, disable, configure, or enable themselves.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Buffer Agent</strong></td>
+ 	<td>Stores received messages and emits copies of them on schedule. Use this as a buffer/queue of messages.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Post Agent</strong></td>
+ 	<td>Receives messages from other agents (or runs periodically), merges those messages with the Liquid-interpolated contents of payload, and sends the results as POST (or GET) requests to a specified URL.</td>
+ </tr>
+ <tr>
+ 	<td><strong>De-duplication Agent</strong></td>
+ 	<td>Receives a stream of messages and re-emits the message if it is not a duplicate.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Manual&nbsp;Message&nbsp;Agent</strong></td>
+ 	<td>It is used to manually create Messages for testing or other purposes.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Liquid&nbsp;Output&nbsp;Agent</strong></td>
+ 	<td>Outputs messages through a Liquid template you provide. Use it to create a HTML page, or a JSON feed, or anything else that can be rendered as a string from your stream of ActiveWorkflow data.</td>
+ </tr>
+ <tr>
+ 	<td><strong>JavaScript Agent</strong></td>
+ 	<td>Allows you to write JavaScript code that can create and receive messages. If other agents aren’t meeting your needs, try this one!</td>
+ </tr>
+ <tr>
+ 	<td><strong>Scheduler Agent</strong></td>
+ 	<td>Periodically takes an action on target agents according to a user-defined schedule.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Attribute&nbsp;Difference&nbsp;Agent</strong></td>
+ 	<td>Receives messages and emits a new message with the difference or change of a specific attribute in comparison to the message received.</td>
+ </tr>
+  <tr>
+ 	<td><strong>Change Detector Agent</strong></td>
+ 	<td>Receives a stream of messages and emits a new message when a property of the received message changes.</td>
+ </tr>
+ <tr>
+ 	<td><strong>CSV Agent</strong></td>
+ 	<td>Parses or serializes CSV data. When parsing, messages can either be emitted for the entire CSV, or one per row.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Gap Detector Agent</strong></td>
+ 	<td>Watches for "holes" or gaps in a stream of incoming Messages and generates "no data alerts".</td>
+ </tr>
+ <tr>
+ 	<td><strong>Read File Agent</strong></td>
+ 	<td>Takes messages from File Handling agents, reads the file, and emits the contents as a string.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Trigger Agent</strong></td>
+ 	<td>Watches for a specific value in a message payload.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Message&nbsp;Formatting&nbsp;Agent</strong></td>
+ 	<td>Allows you to format incoming messages, adding new fields as needed.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Digest Agent</strong></td>
+ 	<td>Collects any messages sent to it and emits them as a single message.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Peak Detector Agent</strong></td>
+ 	<td>Watches for peaks in a message stream.</td>
+ </tr>
+  <tr>
+ 	<td><strong>JSON Parse Agent</strong></td>
+ 	<td>Parses a JSON string and emits the data in a new message.</td>
+ </tr>
+</table>
 
 ### Third Party Service Agents
 
-These agents use third party services to provide functionality. They also require an account with these services.
+These agents use third party services to provide functionality. They typically require an account with these services.
 
-- **Evernote Agent**: connects with a user’s Evernote note store.
-
-- **Basecamp Agent**: checks a Basecamp project for new messages.
-
-- **Human Task Agent**: is used to create Human Intelligence Tasks on Mechanical Turk.
-
-- **S3Agent**: can watch a bucket for changes or emit an message for every file in that bucket. When receiving messages, it writes the data into a file on S3.
-
-- **Jira Agent**: subscribes to Jira issue updates.
-
-- **Twilio Agent**: receives and collects messages, and sends them via text message or calls when scheduled.
-
-- **Twilio Receive Text Agent**: receives text messages from Twilio and emits them as messages.
-
-- **Aftership Agent**: allows you to track your shipments from Aftership and emit tracking status into messages.
-
-- **Google Calendar Publish Agent**: creates events on your Google Calendar.
-
-- **Wunderlist Agent**: creates new Wunderlist tasks based on incoming messages.
-
-- **Slack Agent**: lets you receive messages and send notifications to Slack.
+<table>
+ <tr>
+ 	<td><strong>Evernote&nbsp;Agent</strong></td>
+ 	<td>Connects with a user’s Evernote note store.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Basecamp Agent</strong></td>
+ 	<td>Checks a Basecamp project for new messages.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Human Task Agent</strong></td>
+ 	<td>It is used to create Human Intelligence Tasks on Mechanical Turk.</td>
+ </tr>
+ <tr>
+ 	<td><strong>S3Agent</strong></td>
+ 	<td>It can watch a bucket for changes or emit a message for every file in that bucket. When receiving messages, it writes the data into a file on S3.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Jira Agent</strong></td>
+ 	<td>Subscribes to Jira issue updates.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Twilio Agent</strong></td>
+ 	<td>Receives and collects messages, and sends them via text message or calls when scheduled.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Twilio Receive Text Agent</strong></td>
+ 	<td>Receives text messages from Twilio and emits them as messages.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Aftership Agent</strong></td>
+ 	<td>Allows you to track your shipments from Aftership and emit tracking status into messages.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Google&nbsp;Calendar&nbsp;Publish&nbsp;Agent</strong></td>
+ 	<td>Creates events on your Google Calendar.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Wunderlist Agent</strong></td>
+ 	<td>Creates new Wunderlist tasks based on incoming messages.</td>
+ </tr>
+ <tr>
+ 	<td><strong>Slack Agent</strong></td>
+ 	<td>Lets you receive messages and send notifications to Slack.</td>
+ </tr>
+</table>
 
 ## Custom Agents
 
@@ -196,7 +285,7 @@ with Python.
 
 ## Deployment
 
-### One Click Heroku Deployment
+### One-Click Heroku Deployment
 
 The easiest way to start using ActiveWorkflow is by deploying it to
 [Heroku](https://www.heroku.com/).
@@ -211,7 +300,7 @@ A free Heroku plan could be used to try out ActiveWorkflow, but it wouldn't be
 enough for real use. That's because the limited run time and automatic turning
 off of unused workers inhibits ActiveWorkflow from running scheduled tasks.
 
-### Deployment to Heroku
+### Manual Heroku Deployment
 
 If you would like more control or intend to deploy ActiveWorkflow from a modified
 source tree, you could do that using Heroku's command line interface.
@@ -266,7 +355,7 @@ make build-image
 This creates an image named `local/active_workflow`.
 
 
-#### Deployment to Heroku with Docker
+#### Deployment with Docker to Heroku
 
 You may prefer to use Heroku in a container mode (instead of deploying via
 GitHub). Please be sure to login to Heroku docker registry before doing that:
@@ -315,7 +404,7 @@ Diagrams are rendered using the `dot` tool from `Graphviz`. On a Mac install
 brew install graphviz
 ```
 
-### Running Locally
+### Running Locally without Docker
 
 If you want to test out ActiveWorkflow locally you can start a demo instance
 using a local sqlite database. First prepare the database with:
@@ -344,8 +433,7 @@ Tests can be run with `make test`.
 
 ### Running Locally with Docker
 
-You can test the docker container you just built locally. Run it (with
-postgres database in a separate container):
+You can test the docker container you just built locally. Run it (with a PostgreSQL database in a separate container):
 
 ```sh
 docker-compose up
