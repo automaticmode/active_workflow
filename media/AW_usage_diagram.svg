@@ -8,9 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    id="svg1541"
    version="1.1"
-   viewBox="0 0 607.78906 450.55857"
-   height="600.74475"
-   width="810.38538">
+   viewBox="0 0 487.78905 330.55859"
+   height="440.74478"
+   width="650.38538">
   <metadata
      id="metadata1545">
     <rdf:RDF>
@@ -426,6 +426,7 @@
     </g>
   </defs>
   <g
+     transform="translate(-60.000002,-60.000002)"
      id="g1736">
     <path
        id="path1352"
