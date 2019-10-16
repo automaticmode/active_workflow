@@ -19,6 +19,10 @@ you to automate internal or external workflows.
       Overview
     </a>
     <span> • </span>
+    <a href="#Usage">
+      Usage
+    </a>
+    <span> • </span>
     <a href="#built-in-agents">
       Built-in Agents
     </a>
@@ -95,7 +99,29 @@ also be exported and imported, so you can share automation solutions as a unit.
 
 <img src="media/workflow_diagram_screenshot.png"
      srcset="media/workflow_diagram_screenshot@2x.png 2x"
-     alt="Workflow diagram">
+     alt="ActiveWorkflow workflow diagram" />
+
+## Usage
+
+Once you have ActiveWorkflow up and running you will want to create some agents and most probably to arrange them in one or more workflows. You can use ActiveWorkflow via its web interface and its <a href="#rest-api">REST API</a> as illustrated in the diagram below where a1-a6 are six agents and w1-w3 are three workflows these agents participate in.
+
+<img src="media/AW_usage_diagram.svg" alt="ActiveWorkflow system overview diagram" />
+
+### Creating Agents
+
+There are currently three ways to create agents, listed below in order of ease:
+
+1. You can create a new instance of a built-in agent type and configure it via the web interface following the agent's configuration options and inline documentation. With 30+ built-in agents you have the ability to address many common business workflows.
+2. If the functionality you wish to achieve isn't directly possible with any of the built-in agents then you can use the (built-in) JavaScript agent which let's you write custom JavaScript code that can send and receive messages.
+3. Finally, if none of the above offers you the flexibility or the functionality you wish to achieve you can code and plug-in your own ActiveWorkflow agent. This is currently possible in Ruby and we are working on providing the functionality to code first-class custom agents in other programming languages (Python, JavaScript, Clojure, etc.).
+
+In the near future you'll also be able to programatically create agents via the REST API. 
+
+### Creating Workflows
+
+To create a workflow you simply use the web interface (the "New Workflow" button) to enter a name, description, select an icon for your workflow, and then link to it the agents that participate in it. As we have already mentioned agents can participate in multiple workflows and exist independently of them. In this respect a workflow is more like a "tag" or a "label", rather than a "container".
+
+In the near future you'll also be able to programatically create workflows via the REST API.
 
 ## Built-in Agents
 
@@ -283,6 +309,14 @@ API](docs/custom_agent_api.md). Currently agents written in Ruby are supported,
 but we are working on providing support for multiple languages, beginning
 with Python.
 
+## REST API
+
+ActiveWorkflow provides a REST API to allow you to query and control your
+agents and workflows programatically from your own code.  We plan to provide
+ActiveWorkflow API clients in multiple languages starting with Ruby and Python.
+
+You can read more details about interfacing with ActiveWorkflow programatically in the [REST API documentation](docs/rest_api.md).
+
 ## Deployment
 
 ### One-Click Heroku Deployment
@@ -292,7 +326,7 @@ The easiest way to start using ActiveWorkflow is by deploying it to
 
 If you are reading this document in a browser all you need to do is click the
 button bellow and fill in the environment variables for your seed user (admin):
-`SEED_USERNAME`, `SEED_PASSWORD` and `SEED_EMAIL`.
+`SEED_USERNAME`, `SEED_PASSWORD` and `SEED_EMAIL`. Please note that `SEED_PASSWORD` must be at least 8 characters long. 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow)
 
@@ -382,14 +416,6 @@ reset Heroku stack to `heroku-18` like this:
 ```sh
 heroku stack:set heroku-18
 ```
-
-## REST API
-
-ActiveWorkflow provides a REST API to allow you to query and control your
-agents and workflows programatically from your own code.  We plan to provide
-ActiveWorkflow API clients in multiple languages starting with Ruby and Python.
-You can read more details in the [REST API documentation](docs/rest_api.md).
-
 
 ## Development
 
