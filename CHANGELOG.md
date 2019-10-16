@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 
+## [0.9.5] - 2019-10-16
+### Added
+- Basic REST API to query state of the system.
+
+### Removed
+- Google Calendar Publishing Agent. This removal is temporary (conflicting
+  dependencies), the agent will return soon. If you are using this agent please
+  skip this version.
+
 ## [0.9.4] - 2019-10-09
 ### Added
 - Support writing custom agent in ruby using custom agent API
@@ -54,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.4...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.5...HEAD
+[0.9.5]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.5
 [0.9.4]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.4
 [0.9.3]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.3
 [0.9.2]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.2
