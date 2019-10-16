@@ -115,13 +115,13 @@ There are currently three ways to create agents, listed below in order of ease:
 2. If the functionality you wish to achieve isn't directly possible with any of the built-in agents then you can use the (built-in) JavaScript agent which let's you write custom JavaScript code that can send and receive messages.
 3. Finally, if none of the above offers you the flexibility or the functionality you wish to achieve you can code and plug-in your own ActiveWorkflow agent. This is currently possible in Ruby and we are working on providing the functionality to code first-class custom agents in other programming languages (Python, JavaScript, Clojure, etc.).
 
-In the near future you'll also be able to programatically create agents via the REST API. 
+In the near future you'll also be able to programmatically create agents via the REST API. 
 
 ### Creating Workflows
 
 To create a workflow you simply use the web interface (the "New Workflow" button) to enter a name, description, select an icon for your workflow, and then link to it the agents that participate in it. As we have already mentioned agents can participate in multiple workflows and exist independently of them. In this respect a workflow is more like a "tag" or a "label", rather than a "container".
 
-In the near future you'll also be able to programatically create workflows via the REST API.
+In the near future you'll also be able to programmatically create workflows via the REST API.
 
 ## Built-in Agents
 
@@ -312,10 +312,10 @@ with Python.
 ## REST API
 
 ActiveWorkflow provides a REST API to allow you to query and control your
-agents and workflows programatically from your own code.  We plan to provide
+agents and workflows programmatically from your own code.  We plan to provide
 ActiveWorkflow API clients in multiple languages starting with Ruby and Python.
 
-You can read more details about interfacing with ActiveWorkflow programatically in the [REST API documentation](docs/rest_api.md).
+You can read more details about interfacing with ActiveWorkflow programmatically in the [REST API documentation](docs/rest_api.md).
 
 ## Deployment
 

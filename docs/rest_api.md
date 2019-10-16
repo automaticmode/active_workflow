@@ -1,6 +1,6 @@
-# REST API to the ActiveWorkflow
+# ActiveWorkflow REST API
 
-ActiveWorkflow provides a REST API to allow you to query and control your agents and workflows programatically. 
+ActiveWorkflow provides a REST API to allow you to query and control your agents and workflows programmatically. 
 
 All responses returned by ActiveWorkflow's API are in JSON format.
 
