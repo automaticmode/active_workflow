@@ -26,6 +26,16 @@ describe AgentsController do
     end
   end
 
+  describe 'GET status' do
+    it 'returns message counts for users agents' do
+      sign_in users(:bob)
+      get :status
+      JSON.parse(response.body).each do |status|
+        expect(status['messages_count']).to eq Agent.find(status['id']).messages_count
+      end
+    end
+  end
+
   describe 'POST handle_details_post' do
     it 'passes control to handle_details_post on the agent' do
       sign_in users(:bob)

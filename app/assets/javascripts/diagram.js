@@ -26,12 +26,33 @@ window.updateDiagram = function(options){
       badge.css({
         left: tl.x - (badge.outerWidth()  * (2/3)),
         top:  tl.y - (badge.outerHeight() * (1/3)),
-        'background-color': badge.find('.badge').css('background-color')}).show();
+        'background-color': badge.find('.badge').css('background-color')});
     });
   });
 };
 
 window.setupDiagram = function() {
+  var setBadge = function(agent_id, count) {
+    var selector = `#b${agent_id}`;
+    if (count > 0) {
+      $(selector).show();
+      $(`${selector} span.count`).text(count);
+    } else {
+      $(selector).hide();
+    }
+  };
+  var fetchStatus = function() {
+    $.getJSON('/agents', function(json) {
+      for(const agent_status of json) {
+        let agent_id = agent_status.id;
+        let messages_count = agent_status.messages_count;
+        setBadge(agent_id, messages_count);
+      }
+    });
+    setTimeout(fetchStatus, 2000);
+  };
+  fetchStatus();
+
   let updateVisibility = (show) => {
     const $toggle = $('#show-diagram-toggle');
     const $diagram = $('.overview-diagram');

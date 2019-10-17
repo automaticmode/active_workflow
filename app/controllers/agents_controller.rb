@@ -15,6 +15,19 @@ class AgentsController < ApplicationController
     end
   end
 
+  def status
+    agents = current_user.agents
+
+    statuses = agents.pluck(:id, :messages_count).map do |props|
+      {
+        id: props[0],
+        messages_count: props[1]
+      }
+    end
+
+    render json: statuses
+  end
+
   def toggle_visibility
     if show_only_enabled_agents?
       mark_all_agents_viewable

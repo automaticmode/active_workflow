@@ -200,14 +200,17 @@ module DotHelper
         node['data-agent-id'] = agent_id
 
         count = agent.messages_count
-        next unless count && count > 0
 
         overlay << Nokogiri::XML::Node.new('a', doc) { |badge|
           badge['id'] = id = 'b%d' % agent_id
           badge['class'] = 'badge'
           badge['href'] = agent_path(agent, params: { tab: 'messages', workflow_id: workflow })
           badge['title'] = "#{count} messages created"
-          badge.content = count.to_s
+
+          badge << Nokogiri::XML::Node.new('span', doc) { |lbl|
+            lbl.content = count.to_s
+            lbl['class'] = 'count'
+          }
 
           node['data-badge-id'] = id
 
@@ -216,11 +219,11 @@ module DotHelper
             label['class'] = [
               'badge',
               if agent.unavailable?
-                'badge badge-warning'
+                'badge-warning'
               elsif agent.working?
-                'badge badge-success'
+                'badge-success'
               else
-                'badge badge-danger'
+                'badge-danger'
               end
             ].join(' ')
             label['style'] = 'display: none';
