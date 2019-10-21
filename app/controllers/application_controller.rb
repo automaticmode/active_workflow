@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
   rescue_from 'ActiveRecord::SubclassNotFound' do
     @undefined_agent_types = current_user.undefined_agent_types
 
-    render template: 'application/undefined_agents'
+    respond_to do |format|
+      format.html { render template: 'application/undefined_agents' }
+      format.json { render json: [] }
+    end
   end
 
   protected

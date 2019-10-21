@@ -5,9 +5,12 @@ class AgentsController < ApplicationController
   before_action :set_workflow
 
   def index
-    @agents = current_user.agents.preload(:workflows, :controllers).includes(:receivers)
+    @agents = current_user.agents.includes(:receivers)
 
     @agents = @agents.where(disabled: false) if show_only_enabled_agents?
+
+    # Trigger undefined agents handling.
+    @agents.map { |agent| agent } if current_user.undefined_agent_types
 
     respond_to do |format|
       format.html
@@ -15,17 +18,44 @@ class AgentsController < ApplicationController
     end
   end
 
-  def status
-    agents = current_user.agents
+  def table
+    agents = if @workflow
+               @workflow.agents.preload(:workflows).includes(:receivers)
+             else
+               current_user.agents.preload(:workflows).includes(:receivers)
+             end
 
-    statuses = agents.pluck(:id, :messages_count).map do |props|
+    rows = agents.map do |agent|
       {
-        id: props[0],
-        messages_count: props[1]
+        id: agent.id,
+        unavailable: agent.unavailable?,
+        name: agent.name,
+        messages_count: agent.messages_count,
+        schedule: agent.schedule&.humanize&.titleize || '',
+        human_type: agent.human_type,
+        workflows: agent.workflows.pluck(:id, :name, :tag_fg_color, :tag_bg_color).map do |row|
+          {
+            id: row[0],
+            name: row[1],
+            fg_color: row[2],
+            bg_color: row[3]
+          }
+        end,
+        last_check_at: agent.last_check_at&.to_time&.to_i,
+        last_receive_at: agent.last_receive_at&.to_time&.to_i,
+        last_message_at: agent.last_message_at&.to_time&.to_i,
+        working: agent.working?,
+        receivers: agent.receivers.map { |receiver| { id: receiver.id } },
+        action_menu: AgentsController.render(template: 'agents/_action_menu.html',
+                                             layout: false,
+                                             locals: {
+                                               right: true, agent: agent,
+                                               workflow_id: @workflow&.id
+                                             })
       }
     end
 
-    render json: statuses
+    render json: rows
   end
 
   def toggle_visibility

@@ -1,10 +1,5 @@
 this.WorkflowShowPage = class WorkflowShowPage {
   constructor() {
-    $("#agents-table").dataTable({
-      order: [[1, 'asc']],
-      paging: false
-    });
-    this.changeModalText();
   }
 
   changeModalText() {

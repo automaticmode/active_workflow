@@ -31,7 +31,7 @@ window.updateDiagram = function(options){
   });
 };
 
-window.setupDiagram = function() {
+window.updateDiagramStatus = function(json) {
   var setBadge = function(agent_id, count) {
     var selector = `#b${agent_id}`;
     if (count > 0) {
@@ -41,18 +41,12 @@ window.setupDiagram = function() {
       $(selector).hide();
     }
   };
-  var fetchStatus = function() {
-    $.getJSON('/agents', function(json) {
-      for(const agent_status of json) {
-        let agent_id = agent_status.id;
-        let messages_count = agent_status.messages_count;
-        setBadge(agent_id, messages_count);
-      }
-    });
-    setTimeout(fetchStatus, 2000);
-  };
-  fetchStatus();
+  for(const agent of json) {
+    setBadge(agent.id, agent.messages_count);
+  }
+}
 
+window.setupDiagram = function() {
   let updateVisibility = (show) => {
     const $toggle = $('#show-diagram-toggle');
     const $diagram = $('.overview-diagram');

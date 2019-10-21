@@ -2,93 +2,21 @@
   <% if @agents.empty? %>
     <p>No Agents</p>
   <% else %>
-    <table id="agents-table" class='table table-striped table-hover table-sm'>
+    <table id="agents-table" class='table table-striped table-hover table-sm'
+           data-workflow_id="<%= workflow&.id %>">
       <thead>
         <tr>
-          <th data-searchable="false" data-orderable="false"></th>
+          <%# !--th data-searchable="false" data-orderable="false"></th--%>
           <th data-searchable="true" data-orderable="true">Name</th>
-          <th data-searchable="false" data-orderable="true">Age</th>
           <th data-searchable="false" data-orderable="false">Schedule</th>
           <th data-searchable="false" data-orderable="true">Last Check</th>
-          <th data-searchable="false" data-orderable="true">Last Message Out</th>
           <th data-searchable="false" data-orderable="true">Last Message In</th>
+          <th data-searchable="false" data-orderable="true">Last Message Out</th>
           <th data-searchable="false" data-orderable="true">Messages Created</th>
           <th data-searchable="false" data-orderable="true">Working?</th>
           <th data-searchable="false" data-orderable="false"></th>
         </tr>
       </thead>
-      <tbody>
-        <% @agents.each do |agent| %>
-          <tr class="has-agents" data-bgcolor="#808080" data-fgcolor="#ffffff" data-agents="[<%= agent.id %>]">
-            <td class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <%= agent_type_icon(agent, @agents) %>
-            </td>
-            <td class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <%= link_to agent.name, agent_path(agent, params: { workflow_id: @workflow }) %>
-              <br/>
-              <span class='text-muted'><%= agent.human_type %></span>
-              <% if agent.workflows.present? %>
-                <span>
-                  <%= workflow_links(agent) %>
-                </span>
-              <% end %>
-            </td>
-            <td data-order='<%= relative_time(agent.created_at, true) %>' class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <%= time_ago_in_words agent.created_at %>
-            </td>
-            <td class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <% if agent.can_be_scheduled? %>
-                <%= agent_schedule(agent, ',<br/>') %>
-              <% else %>
-                <span class='not-applicable'></span>
-              <% end %>
-            </td>
-            <td
-              data-order="<%= relative_time(agent.last_check_at, agent.can_be_scheduled?) %>"
-              class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <% if agent.can_be_scheduled? %>
-                <%= agent.last_check_at ? time_ago_in_words(agent.last_check_at) + " ago" : "never" %>
-              <% else %>
-                <span class='not-applicable'></span>
-              <% end %>
-            </td>
-            <td
-              data-order="<%= relative_time(agent.last_message_at, agent.can_create_messages?) %>"
-              class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <% if agent.can_create_messages? %>
-                <%= agent.last_message_at ? time_ago_in_words(agent.last_message_at) + " ago" : "never" %>
-              <% else %>
-                <span class='not-applicable'></span>
-              <% end %>
-            </td>
-            <td
-              data-order="<%= relative_time(agent.last_receive_at, agent.can_receive_messages?) %>"
-              class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <% if agent.can_receive_messages? %>
-                <%= agent.last_receive_at ? time_ago_in_words(agent.last_receive_at) + " ago" : "never" %>
-              <% else %>
-                <span class='not-applicable'></span>
-              <% end %>
-            </td>
-            <td class='<%= "agent-unavailable" if agent.unavailable? %>'>
-              <% if agent.can_create_messages? %>
-                <%= link_to(agent.messages_count || 0, agent_path(agent, params: { tab: 'messages', workflow_id: @workflow })) %>
-              <% else %>
-                <span class='not-applicable'></span>
-              <% end %>
-            </td>
-            <td><%= working(agent) %></td>
-            <td>
-              <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-primary btn-sm dropdown dropdown-toggle" data-toggle="dropdown">
-                  <%= icon_tag('fa-th-list') %> Actions <span class="caret"></span>
-                </button>
-                <%= render 'agents/action_menu', right: true, agent: agent, workflow: @workflow %>
-              </div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
     </table>
   <% end %>
 </div>

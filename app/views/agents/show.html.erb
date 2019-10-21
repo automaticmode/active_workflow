@@ -28,7 +28,7 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%= icon_tag('fa-th-list') %> Actions <span class="caret"></span></a>
-            <%= render 'agents/action_menu', agent: @agent, workflow: @workflow %>
+            <%= render 'agents/action_menu', agent: @agent, workflow_id: @workflow&.id %>
           </li>
         </ul>
       </div>

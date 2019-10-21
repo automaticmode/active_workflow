@@ -9,7 +9,7 @@ ActiveWorkflow::Application.routes.draw do
     end
 
     collection do
-      get :status
+      get :table
       put :toggle_visibility
       get :type_details
       get :message_descriptions

@@ -25,7 +25,7 @@ class WorkflowsController < ApplicationController
   def show
     @workflow = current_user.workflows.find(params[:id])
 
-    @agents = @workflow.agents.preload(:workflows, :controllers).includes(:receivers)
+    @agents = @workflow.agents.includes(:receivers)
 
     respond_to do |format|
       format.html

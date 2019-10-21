@@ -26,12 +26,12 @@ describe AgentsController do
     end
   end
 
-  describe 'GET status' do
+  describe 'GET table' do
     it 'returns message counts for users agents' do
       sign_in users(:bob)
-      get :status
-      JSON.parse(response.body).each do |status|
-        expect(status['messages_count']).to eq Agent.find(status['id']).messages_count
+      get :table
+      JSON.parse(response.body).each do |row|
+        expect(row['messages_count']).to eq Agent.find(row['id']).messages_count
       end
     end
   end
