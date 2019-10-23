@@ -64,7 +64,10 @@ describe 'Dry running an Agent', js: true do
 
       expect(editor_value('payload_editor')).to include('Line 1\nLine 2\nLine 3')
 
+      sleep(1)
       click_on('Dry Run')
+      sleep(1)
+
       expect(page).to have_text('Dry Run Results')
       expect(page).to have_text('Line 1,Line 2,Line 3')
       expect(page).to have_selector(:css, 'li[role="presentation"].active a[href="#tabMessages"]')
