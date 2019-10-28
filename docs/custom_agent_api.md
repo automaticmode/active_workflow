@@ -26,10 +26,6 @@ It receives a message that has to be processed by an agent.
 
 It's called on schedule and gives the opportunity to an agent to perform its functionality.
 
-### `working?`
-
-Used to indicate an agents' status.
-
 ### The `config` Parameter
 
 The config parameter is a Ruby object that has the following properties:
@@ -61,3 +57,4 @@ CustomAgents.register(MyAgent)
 ```
 
 Where `my_agent` is the gem of your agent and `MyAgent` is the class of your agent.
+

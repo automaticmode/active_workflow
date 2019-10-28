@@ -5,10 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [current]
+## [0.9.6] - 2019-12-09
+### Added
+- Support for remote agents. Custom agents can now be written in any
+  programming language and use any technology stack.
+
+### Changed
+- All agents now use common `working` logic.
+
 ### Fixed
-- Update loofah (CVE-2019-15587)
-- Don't use vendor/cache when building docker image
+- Update loofah (CVE-2019-15587).
+- Don't use vendor/cache when building docker image.
+
+
+## [0.9.5.1] - 2019-10-31
+### Added
+- Add live updates to the table and diagram of agents.
+
+### Fixed
+- (Fix #1 ) ActiveWorkflow can now be started with `docker-compose up`
+  without pre-built image.
+
 
 ## [0.9.5] - 2019-10-16
 ### Added
@@ -18,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Google Calendar Publishing Agent. This removal is temporary (conflicting
   dependencies), the agent will return soon. If you are using this agent please
   skip this version.
+
 
 ## [0.9.4] - 2019-10-09
 ### Added
@@ -43,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed broken docker image dependency.
 - Update nokogiri (CVE-2019-5477).
 
+
 ## [0.9.2] - 2019-08-07
 ### Fixed
 - Docker compose doesn't restart container anymore.
@@ -66,7 +85,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.5...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.6...HEAD
+[0.9.6]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.6
+[0.9.5.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.5.1
 [0.9.5]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.5
 [0.9.4]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.4
 [0.9.3]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.3

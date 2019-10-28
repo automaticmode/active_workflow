@@ -302,12 +302,16 @@ These agents use third party services to provide functionality. They typically r
  </tr>
 </table>
 
+
 ## Custom Agents
 
-You can create your own custom agents using the [custom agent
-API](docs/custom_agent_api.md). Currently agents written in Ruby are supported,
-but we are working on providing support for multiple languages, beginning
-with Python.
+You can create and use your own custom agents with ActiveWorkflow. There are
+two ways to accomplish this:
+- If you prefer to write your agents in Ruby you can do so by using the
+   [custom agent API](docs/custom_agent_api.md).
+- However, the more flexible and recommended way is to use the [remote agent
+  API](docs/remote_agent_api.md), which allows you to write your agents in any
+  programming language you choose.
 
 ## REST API
 

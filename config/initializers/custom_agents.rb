@@ -2,4 +2,3 @@
 #
 #require 'my_agent'
 #CustomAgents.register(MyAgent)
-
