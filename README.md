@@ -466,7 +466,8 @@ Tests can be run with `make test`.
 
 ### Running Locally with Docker
 
-You can test the docker container you just built locally. Run it (with a PostgreSQL database in a separate container):
+You can test ActiveWorkflow using docker locally. Run it (with a PostgreSQL
+database in a separate container):
 
 ```sh
 docker-compose up

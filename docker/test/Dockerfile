@@ -1,6 +1,9 @@
-FROM local/active_workflow
+FROM ruby:2.6.3-slim
 
 USER 0
+
+COPY docker/scripts/prepare /scripts/
+RUN /scripts/prepare
 
 RUN apt-get update && \
     apt-get -y install \
@@ -18,13 +21,18 @@ RUN apt-get update && \
       libfontconfig1-dev curl && \
     apt-get -y clean
 
-RUN LC_ALL=en_US.UTF-8 bundle install --with test development --path vendor/bundle -j 4
+WORKDIR /app
 
-COPY docker/test/scripts/test_env /scripts/
+COPY ./ /app/
 
-# Override upstream script with the local one.
-COPY docker/scripts/setup_env /scripts/
+RUN LC_ALL=en_US.UTF-8 umask 002 && bundle install --with test development --path vendor/bundle -j 4
+
+COPY ["docker/scripts/setup_env", "docker/scripts/init", "docker/test/scripts/test_env", "/scripts/"]
+
+EXPOSE 3000
+
 ENTRYPOINT ["/scripts/test_env"]
 CMD ["rake spec"]
 
 USER 1001
+
