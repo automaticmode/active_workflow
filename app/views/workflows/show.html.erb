@@ -8,7 +8,14 @@
   <div class='row'>
     <div class='col-md-12'>
       <div class="page-header">
-        <h1><%= workflow_label(@workflow, "#{@workflow.name} Workflow") %></h1>
+        <h1>
+          <% if @workflow.icon.blank? %>
+            <%= workflow_label(@workflow, icon('fa', 'cog'))%>
+          <% else %>
+            <%= workflow_label(@workflow, icon('fa', @workflow.icon))%>
+          <% end %>
+          <%= "#{@workflow.name} Workflow" %>
+        </h1>
         <% if @workflow.description.present? %>
           <%= markdown(@workflow.description) %>
         <% end %>
