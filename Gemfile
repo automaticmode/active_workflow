@@ -45,7 +45,7 @@ gem 'omniauth-wunderlist'
 gem 'ace-rails-ap', '~> 4.2'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'execjs', '~> 2.7.0'
-gem 'mini_racer', '~> 0.2.6'
+gem 'mini_racer', '~> 0.2.8'
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-kaminari-views', '~> 0.0.5'
 gem 'daemons', '~> 1.2.6'
@@ -59,7 +59,7 @@ gem 'faraday_middleware', '~> 0.12.2'
 gem 'feedjira', '~> 2.2'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'httparty', '~> 0.16'
-gem 'jquery-rails', '~> 4.3.3'
+gem 'jquery-rails', '~> 4.3.5'
 gem 'json', '~> 2.2.0'
 gem 'jsonpath', '~> 1.0.1'
 gem 'kaminari', '~> 1.1.1'
@@ -67,7 +67,7 @@ gem 'kramdown', '~> 2.1.0'
 gem 'liquid', '~> 4.0.3'
 gem 'loofah', '~> 2.3.1'
 gem 'mini_magick', '~> 4.9.5'
-gem 'nokogiri', '~> 1.10.4'
+gem 'nokogiri', '~> 1.10.5'
 gem 'omniauth', '~> 1.9.0'
 gem 'rack-timeout', '~> 0.5.1'
 gem 'rails', '~> 5.2.3'
@@ -91,21 +91,21 @@ gem 'grape-entity', '~> 0.7.1'
 gem 'jwt', '~> 2.2.1'
 
 group :development do
-  gem 'foreman', '~> 0.85.0'
-  gem 'bullet', '~> 5.9.0'
-  gem 'sqlite3', '~> 1.3'
-  gem 'better_errors', '~> 1.1'
+  gem 'foreman', '~> 0.86.0'
+  gem 'bullet', '~> 6.0.1'
+  gem 'sqlite3', '~> 1.4.1'
+  gem 'better_errors', '~> 2.5.1'
   gem 'binding_of_caller', '~> 0.8.0'
-  gem 'guard', '~> 2.14.1'
-  gem 'guard-livereload', '~> 2.5.1'
+  gem 'guard', '~> 2.16.1'
+  gem 'guard-livereload', '~> 2.5.2'
   gem 'guard-rspec', '~> 4.7.3'
-  gem 'letter_opener_web', '~> 1.3.1'
-  gem 'overcommit', '~> 0.45.0'
-  gem 'rack-livereload', '~> 0.3.16'
-  gem 'rails_best_practices', '~>1.19.3'
-  gem 'reek', '~> 5.0.2'
-  gem 'rubocop', '~> 0.63.1'
-  gem 'web-console', '>= 3.3.0'
+  gem 'letter_opener_web', '~> 1.3.4'
+  gem 'overcommit', '~> 0.51.0'
+  gem 'rack-livereload', '~> 0.3.17'
+  gem 'rails_best_practices', '~> 1.19.4'
+  gem 'reek', '~> 5.4.0'
+  gem 'rubocop', '~> 0.76.0'
+  gem 'web-console', '~> 3.7.0'
 
   if_true(ENV['SPRING']) do
     gem 'spring-commands-rspec', '~> 1.0.4'
@@ -115,29 +115,29 @@ group :development do
 
   group :test do
     gem 'capybara', '~> 3.29.0'
-    gem 'capybara-screenshot', '~> 1.0.22'
+    gem 'capybara-screenshot', '~> 1.0.23'
     gem 'capybara-select2', require: false
-    gem 'codecov', '~> 0.1.14', require: false
+    gem 'codecov', '~> 0.1.16', require: false
     gem 'delorean', '~> 2.1.0'
     gem 'parallel_split_test', '~> 0.7.0'
-    gem 'pry-byebug', '~> 3.6.0'
-    gem 'pry-rails', '~> 0.3.6'
+    gem 'pry-byebug', '~> 3.7.0'
+    gem 'pry-rails', '~> 0.3.9'
     gem 'rails-controller-testing', '~> 1.0.4'
     # TODO: update
     gem 'rr', '~> 1.1.2'
-    gem 'rspec', '~> 3.8.0'
-    gem 'rspec-rails', '~> 3.8.0'
-    gem 'rspec-collection_matchers', '~> 1.1.3'
-    gem 'rspec-html-matchers', '~> 0.9.1'
+    gem 'rspec', '~> 3.9.0'
+    gem 'rspec-rails', '~> 3.9.0'
+    gem 'rspec-collection_matchers', '~> 1.2.0'
+    gem 'rspec-html-matchers', '~> 0.9.2'
     gem 'rspec_junit_formatter', '~> 0.4.1'
-    gem 'selenium-webdriver', '~> 3.142.0'
-    gem 'shoulda-matchers', '~> 4.0.1'
-    gem 'vcr', '~> 4.0.0'
-    gem 'webmock', '~> 3.5'
+    gem 'selenium-webdriver', '~> 3.142.6'
+    gem 'shoulda-matchers', '~> 4.1.2'
+    gem 'vcr', '~> 5.0.0'
+    gem 'webmock', '~> 3.7.6'
   end
 end
 
-gem 'puma', '~> 3.11.4'
+gem 'puma', '~> 4.3.0'
 
 ENV['DATABASE_ADAPTER'] ||=
   if ENV['RAILS_ENV'] == 'production'
@@ -147,7 +147,7 @@ ENV['DATABASE_ADAPTER'] ||=
   end
 
 if_true(ENV['DATABASE_ADAPTER'].strip == 'postgresql') do
-  gem 'pg', '~> 1.1.3'
+  gem 'pg', '~> 1.1.4'
 end
 
 require File.join(File.dirname(__FILE__), 'lib/gemfile_helper.rb')
