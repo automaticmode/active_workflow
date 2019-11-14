@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [current]
 ### Fixed
 - Update loofah (CVE-2019-15587)
+- Don't use vendor/cache when building docker image
 
 ## [0.9.5] - 2019-10-16
 ### Added
