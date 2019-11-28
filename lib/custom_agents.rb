@@ -36,10 +36,6 @@ class CustomAgents
           end
         end
 
-        def working?
-          impl.working?
-        end
-
         private
 
         def impl

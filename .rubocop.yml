@@ -34,12 +34,6 @@ Lint/AmbiguousBlockAssociation:
   Enabled: false
 Style/MethodCallWithoutArgsParentheses:
   Enabled: false
-Rails/TimeZone:
-  Enabled: false
-Rails/Date:
-  Enabled: false
-Rails/OutputSafety:
-  Enabled: false
 Layout/TrailingWhitespace:
   Enabled: false
 Style/ClassAndModuleChildren:
@@ -50,13 +44,8 @@ Style/FormatStringToken:
   Enabled: false
 Style/RescueModifier:
   Enabled: false
-Rails/Blank:
-  Enabled: false
 Metrics/BlockNesting:
   Enabled: false
-Rails/Present:
-  Enabled: false
-
 
 # Temporary disable method size metrics
 Metrics/AbcSize:

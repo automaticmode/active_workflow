@@ -57,10 +57,6 @@ module Agents
       errors.add(:base, 'you need to specify the basecamp project id of which you want to receive messages') unless options['project_id'].present?
     end
 
-    def working?
-      (messages_count.present? && messages_count > 0)
-    end
-
     def check
       service.prepare_request
       response = HTTParty.get messages_url, request_options.merge(query_parameters)

@@ -83,10 +83,6 @@ module Agents
                    })
     end
 
-    def working?
-      true
-    end
-
     def validate_options
       if (spec = options['schedule']).present?
         begin

@@ -36,10 +36,6 @@ module Agents
       errors.add(:base, 'data_key needs to be present') if options['data_key'].blank?
     end
 
-    def working?
-      received_message_without_error?
-    end
-
     def receive(incoming_messages)
       incoming_messages.each do |message|
         mo = interpolated(message)

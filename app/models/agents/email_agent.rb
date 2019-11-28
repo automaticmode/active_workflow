@@ -40,10 +40,6 @@ module Agents
       }
     end
 
-    def working?
-      received_message_without_error?
-    end
-
     def receive(incoming_messages)
       incoming_messages.each do |message|
         recipients(message.payload).each do |recipient|

@@ -87,15 +87,6 @@ module Agents
       }
     end
 
-    def working?
-      return false if recent_error_logs?
-
-      if interpolated['expected_receive_period_in_days'].present?
-        return false unless last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago
-      end
-      true
-    end
-
     def method
       (interpolated['method'].presence || 'post').to_s.downcase
     end

@@ -40,10 +40,6 @@ module Agents
       errors.add(:base, 'you need to specify the title of the task to create') unless options['title'].present?
     end
 
-    def working?
-      !recent_error_logs?
-    end
-
     def receive(incoming_messages)
       incoming_messages.each do |message|
         mo = interpolated(message)

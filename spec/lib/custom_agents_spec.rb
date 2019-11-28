@@ -79,13 +79,6 @@ RSpec.describe CustomAgents, mock: :rspec do
           subject.new.receive(['message1', 'message2'])
         end
       end
-
-      describe 'working?' do
-        it 'calls agents working? method' do
-          mock(agent).working?
-          subject.new.working?
-        end
-      end
     end
   end
 end

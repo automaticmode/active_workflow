@@ -28,10 +28,6 @@ module Agents
       Select Agents that you want to control from this CommanderAgent.
     MD
 
-    def working?
-      true
-    end
-
     def check
       control!
     end

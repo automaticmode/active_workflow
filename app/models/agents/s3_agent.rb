@@ -119,10 +119,6 @@ module Agents
       (buckets || []).collect { |room| { text: room.name, id: room.name } }
     end
 
-    def working?
-      checked_without_error?
-    end
-
     def check
       return if interpolated['mode'] != 'read'
       contents = safely do

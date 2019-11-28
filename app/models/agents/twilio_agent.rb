@@ -61,10 +61,6 @@ module Agents
       end
     end
 
-    def working?
-      last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago && !recent_error_logs?
-    end
-
     def send_message(message)
       client.account.messages.create from: interpolated['sender_cell'],
                                      to: interpolated['receiver_cell'],

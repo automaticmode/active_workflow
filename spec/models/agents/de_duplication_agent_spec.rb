@@ -53,27 +53,6 @@ describe Agents::DeDuplicationAgent do
     end
   end
 
-  describe '#working?' do
-    before :each do
-      # Need to create an message otherwise message_created_within? returns nil
-      message = create_message
-      @checker.receive([message])
-    end
-
-    it 'is when message created within :expected_update_period_in_days' do
-      @checker.options[:expected_update_period_in_days] = 2
-      expect(@checker).to be_working
-    end
-
-    it 'isnt when message created outside :expected_update_period_in_days' do
-      @checker.options[:expected_update_period_in_days] = 2
-
-      time_travel_to 2.days.from_now do
-        expect(@checker).not_to be_working
-      end
-    end
-  end
-
   describe '#receive' do
     before :each do
       @message = create_message('2014-07-01')

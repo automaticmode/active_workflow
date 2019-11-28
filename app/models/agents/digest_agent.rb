@@ -43,10 +43,6 @@ module Agents
       errors.add(:base, 'retained_messages must be 0 to 999') unless options['retained_messages'].to_i >= 0 && options['retained_messages'].to_i < 1000
     end
 
-    def working?
-      last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago && !recent_error_logs?
-    end
-
     def receive(incoming_messages)
       memory['queue'] ||= []
       incoming_messages.each do |message|

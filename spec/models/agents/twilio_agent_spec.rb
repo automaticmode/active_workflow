@@ -55,17 +55,6 @@ describe Agents::TwilioAgent do
     end
   end
 
-  describe '#working?' do
-    it 'checks if messages have been received within the expected receive period' do
-      expect(@checker).not_to be_working # No messages received
-      Agents::TwilioAgent.async_receive @checker.id, [@message.id]
-      expect(@checker.reload).to be_working # Just received messages
-      two_days_from_now = 2.days.from_now
-      stub(Time).now { two_days_from_now }
-      expect(@checker.reload).not_to be_working # More time has passed than the expected receive period without any new messages
-    end
-  end
-
   describe 'validation' do
     before do
       expect(@checker).to be_valid

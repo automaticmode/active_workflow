@@ -24,34 +24,6 @@ describe Agents::JavaScriptAgent do
     end
   end
 
-  describe '#working?' do
-    describe 'when expected_update_period_in_days is set' do
-      it 'returns false when more than expected_update_period_in_days have passed since the last message creation' do
-        @agent.options['expected_update_period_in_days'] = 1
-        @agent.save!
-        expect(@agent).not_to be_working
-        @agent.check
-        expect(@agent.reload).to be_working
-        three_days_from_now = 3.days.from_now
-        stub(Time).now { three_days_from_now }
-        expect(@agent).not_to be_working
-      end
-    end
-
-    describe 'when expected_receive_period_in_days is set' do
-      it 'returns false when more than expected_receive_period_in_days have passed since the last message was received' do
-        @agent.options['expected_receive_period_in_days'] = 1
-        @agent.save!
-        expect(@agent).not_to be_working
-        Agents::JavaScriptAgent.async_receive @agent.id, [messages(:bob_website_agent_message).id]
-        expect(@agent.reload).to be_working
-        two_days_from_now = 2.days.from_now
-        stub(Time).now { two_days_from_now }
-        expect(@agent.reload).not_to be_working
-      end
-    end
-  end
-
   describe 'executing code' do
     it 'works by default' do
       @agent.options = @agent.default_options

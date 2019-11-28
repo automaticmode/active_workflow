@@ -43,20 +43,6 @@ module Agents
       errors.add(:base, "The 'code' option is required") unless options['code'].present?
     end
 
-    def working?
-      return false if recent_error_logs?
-
-      if interpolated['expected_update_period_in_days'].present?
-        return false unless message_created_within?(interpolated['expected_update_period_in_days'])
-      end
-
-      if interpolated['expected_receive_period_in_days'].present?
-        return false unless last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago
-      end
-
-      true
-    end
-
     def check
       log_errors do
         execute_js('check')

@@ -613,28 +613,6 @@ describe Agents::WebsiteAgent do
       end
     end
 
-    describe '#working?' do
-      it 'checks if messages have been received within the expected receive period' do
-        stubbed_time = Time.now
-        stub(Time).now { stubbed_time }
-
-        expect(@checker).not_to be_working # No messages created
-        @checker.check
-        expect(@checker.reload).to be_working # Just created messages
-
-        @checker.error 'oh no!'
-        expect(@checker.reload).not_to be_working # There is a recent error
-
-        stubbed_time = 20.minutes.from_now
-        @checker.messages.delete_all
-        @checker.check
-        expect(@checker.reload).to be_working # There is a newer message now
-
-        stubbed_time = 2.days.from_now
-        expect(@checker.reload).not_to be_working # Two days have passed without a new message having been created
-      end
-    end
-
     describe 'parsing' do
       it 'parses CSS' do
         @checker.check

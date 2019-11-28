@@ -42,11 +42,7 @@ describe Agents::CsvAgent do
   end
 
   context '#working' do
-    it 'is not working without having received an message' do
-      expect(@checker).not_to be_working
-    end
-
-    it 'is working after receiving an message without error' do
+    it 'is working after receiving a message without error' do
       @checker.last_receive_at = Time.now
       expect(@checker).to be_working
     end

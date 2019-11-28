@@ -58,17 +58,4 @@ describe Agents::WunderlistAgent do
       expect(WebMock).to have_requested(:post, 'https://a.wunderlist.com/api/v1/tasks')
     end
   end
-
-  describe '#working?' do
-    it 'should be working with no entry in the error log' do
-      expect(@checker).to be_working
-    end
-
-    it 'should not be working with a recent entry in the error log' do
-      @checker.error('test')
-      @checker.reload
-      @checker.last_message_at = Time.now
-      expect(@checker).to_not be_working
-    end
-  end
 end

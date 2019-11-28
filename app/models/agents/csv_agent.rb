@@ -86,10 +86,6 @@ module Agents
       end
     end
 
-    def working?
-      received_message_without_error?
-    end
-
     def receive(incoming_messages)
       case options['mode']
       when 'parse'

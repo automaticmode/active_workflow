@@ -46,10 +46,6 @@ module Agents
       errors.add(:base, 'channel is required') unless options['channel'].present?
     end
 
-    def working?
-      received_message_without_error?
-    end
-
     def webhook_url
       if (url = interpolated[:webhook_url].presence)
         url

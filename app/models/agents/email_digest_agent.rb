@@ -34,10 +34,6 @@ module Agents
       }
     end
 
-    def working?
-      received_message_without_error?
-    end
-
     def receive(incoming_messages)
       memory['messages'] ||= []
       incoming_messages.each do |message|

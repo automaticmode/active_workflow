@@ -49,10 +49,6 @@ module Agents
       end
     end
 
-    def working?
-      message_created_within?(interpolated['expected_update_period_in_days']) && !recent_error_logs?
-    end
-
     def receive(incoming_messages)
       incoming_messages.each do |message|
         handle(interpolated(message), message)

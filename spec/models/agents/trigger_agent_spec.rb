@@ -89,19 +89,6 @@ describe Agents::TriggerAgent do
     end
   end
 
-  describe '#working?' do
-    it "checks to see if the Agent has received any messages in the last 'expected_receive_period_in_days' days" do
-      @message.save!
-
-      expect(@checker).not_to be_working # no messages have ever been received
-      Agents::TriggerAgent.async_receive(@checker.id, [@message.id])
-      expect(@checker.reload).to be_working # Messages received
-      three_days_from_now = 3.days.from_now
-      stub(Time).now { three_days_from_now }
-      expect(@checker.reload).not_to be_working # too much time has passed
-    end
-  end
-
   describe '#receive' do
     it 'handles regex' do
       @message.payload['foo']['bar']['baz'] = 'a222b'

@@ -36,10 +36,6 @@ module Agents
       }
     end
 
-    def working?
-      true
-    end
-
     def receive(incoming_messages)
       incoming_messages.sort_by(&:created_at).each do |message|
         memory['newest_message_created_at'] ||= 0

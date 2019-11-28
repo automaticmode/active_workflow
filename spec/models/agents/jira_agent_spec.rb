@@ -98,12 +98,4 @@ describe Agents::JiraAgent do
       expect { @checker.check }.to change { Message.count }.by(50)
     end
   end
-
-  describe '#working?' do
-    it 'it is working when at least one message was emited' do
-      expect(@checker).not_to be_working
-      @checker.check
-      expect(@checker.reload).to be_working
-    end
-  end
 end

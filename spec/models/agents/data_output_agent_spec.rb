@@ -14,17 +14,6 @@ describe Agents::DataOutputAgent do
     _agent
   end
 
-  describe '#working?' do
-    it 'checks if messages have been received within expected receive period' do
-      expect(agent).not_to be_working
-      Agents::DataOutputAgent.async_receive agent.id, [messages(:bob_website_agent_message).id]
-      expect(agent.reload).to be_working
-      two_days_from_now = 2.days.from_now
-      stub(Time).now { two_days_from_now }
-      expect(agent.reload).not_to be_working
-    end
-  end
-
   describe 'validation' do
     before do
       expect(agent).to be_valid

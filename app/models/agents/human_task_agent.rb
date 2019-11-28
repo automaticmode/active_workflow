@@ -210,10 +210,6 @@ module Agents
       }
     end
 
-    def working?
-      last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago && !recent_error_logs?
-    end
-
     def check
       review_hits
 

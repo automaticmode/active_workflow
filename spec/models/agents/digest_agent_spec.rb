@@ -7,29 +7,12 @@ describe Agents::DigestAgent do
     @checker.save!
   end
 
-  describe '#working?' do
-    it "checks to see if the Agent has received any messages in the last 'expected_receive_period_in_days' days" do
-      message = Message.new
-      message.agent = agents(:bob_notifier_agent)
-      message.payload = { data: 'message' }
-      message.save!
 
-      expect(@checker).not_to be_working # no messages have ever been received
-      @checker.options[:expected_receive_period_in_days] = 2
-      @checker.save!
-      Agents::DigestAgent.async_receive @checker.id, [message.id]
-      expect(@checker.reload).to be_working # Messages received
-      three_days_from_now = 3.days.from_now
-      stub(Time).now { three_days_from_now }
-      expect(@checker).not_to be_working # too much time has passed
-    end
-  end
-  
   describe 'validation' do
     before do
       expect(@checker).to be_valid
     end
-    
+
     it 'should validate retained_messages' do
       @checker.options[:retained_messages] = ''
       expect(@checker).to be_valid

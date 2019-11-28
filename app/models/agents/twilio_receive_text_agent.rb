@@ -51,10 +51,6 @@ module Agents
       end
     end
 
-    def working?
-      message_created_within?(interpolated['expected_receive_period_in_days']) && !recent_error_logs?
-    end
-
     def post_url
       if interpolated['server_url'].present?
         "#{interpolated['server_url']}/users/#{user.id}/web_requests/#{id || ':id'}/sms-endpoint"

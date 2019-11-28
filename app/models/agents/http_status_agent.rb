@@ -40,10 +40,6 @@ module Agents
           }
     MD
 
-    def working?
-      memory['last_status'].to_i > 0
-    end
-
     def default_options
       {
         'url' => 'http://google.com',

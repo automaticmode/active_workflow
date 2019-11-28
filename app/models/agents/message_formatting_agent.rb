@@ -116,10 +116,6 @@ module Agents
       }
     end
 
-    def working?
-      !recent_error_logs?
-    end
-
     def receive(incoming_messages)
       matchers = compiled_matchers
 

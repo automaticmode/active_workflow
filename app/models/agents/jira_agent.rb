@@ -58,10 +58,6 @@ module Agents
       errors.add(:base, 'you need to specify request timeout') unless options['timeout'].present?
     end
 
-    def working?
-      message_created_within?(interpolated['expected_update_period_in_days']) && !recent_error_logs?
-    end
-
     def check
       last_run = nil
 

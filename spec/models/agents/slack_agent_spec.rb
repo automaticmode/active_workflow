@@ -70,11 +70,4 @@ describe Agents::SlackAgent do
       expect { @checker.receive([@message]) }.not_to raise_error
     end
   end
-
-  describe '#working?' do
-    it 'should call received_message_without_error?' do
-      mock(@checker).received_message_without_error?
-      @checker.working?
-    end
-  end
 end

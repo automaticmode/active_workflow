@@ -153,7 +153,7 @@ describe Agent do
       cannot_be_scheduled!
 
       def receive(messages)
-        messages.each do |message|
+        messages.each do |_|
           create_message payload: { messages_received: 1 }
         end
       end
@@ -331,7 +331,7 @@ describe Agent do
         Delayed::Worker.new.work_off
       end
 
-      it 'should log exceptions' , delayed_job: true do
+      it 'should log exceptions', delayed_job: true do
         mock.any_instance_of(Agents::TriggerAgent).receive(anything).once {
           raise 'foo'
         }
@@ -1002,8 +1002,8 @@ describe AgentDrop do
 
   it 'should have .url' do
     t = '{{ agent.url }}'
-    expect(interpolate(t, @wsa1)).to match(/http:\/\/localhost(?::\d+)?\/agents\/#{@wsa1.id}/)
-    expect(interpolate(t, @wsa2)).to match(/http:\/\/localhost(?::\d+)?\/agents\/#{@wsa2.id}/)
-    expect(interpolate(t, @efa)).to  match(/http:\/\/localhost(?::\d+)?\/agents\/#{@efa.id}/)
+    expect(interpolate(t, @wsa1)).to match(%r{http:\/\/localhost(?::\d+)?\/agents\/#{@wsa1.id}})
+    expect(interpolate(t, @wsa2)).to match(%r{http:\/\/localhost(?::\d+)?\/agents\/#{@wsa2.id}})
+    expect(interpolate(t, @efa)).to  match(%r{http:\/\/localhost(?::\d+)?\/agents\/#{@efa.id}})
   end
 end

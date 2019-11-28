@@ -47,10 +47,6 @@ module Agents
       }
     end
 
-    def working?
-      last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago && !recent_error_logs?
-    end
-
     def receive(incoming_messages)
       incoming_messages.sort_by(&:created_at).each do |message|
         group = group_for(message)

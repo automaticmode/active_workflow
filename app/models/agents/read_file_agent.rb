@@ -35,10 +35,6 @@ module Agents
       errors.add(:base, "The 'data_key' options is required.")
     end
 
-    def working?
-      received_message_without_error?
-    end
-
     def receive(incoming_messages)
       incoming_messages.each do |message|
         next unless (io = get_io(message))

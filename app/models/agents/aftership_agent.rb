@@ -90,10 +90,6 @@ module Agents
         'path' => 'trackings' }
     end
 
-    def working?
-      !recent_error_logs?
-    end
-
     def validate_options
       errors.add(:base, 'You need to specify a api key') unless options['api_key'].present?
       errors.add(:base, 'You need to specify a path request') unless options['path'].present?

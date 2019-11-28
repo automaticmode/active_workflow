@@ -28,30 +28,6 @@ describe 'HttpStatusAgent' do
   end
 
   describe 'working' do
-    it 'should be working when the last status is 200' do
-      agent.memory['last_status'] = '200'
-      expect(agent.working?).to eq(true)
-    end
-
-    it 'should be working when the last status is 304' do
-      agent.memory['last_status'] = '304'
-      expect(agent.working?).to eq(true)
-    end
-
-    it 'should not be working if the status is 0' do
-      agent.memory['last_status'] = '0'
-      expect(agent.working?).to eq(false)
-    end
-
-    it 'should not be working if the status is missing' do
-      agent.memory['last_status'] = nil
-      expect(agent.working?).to eq(false)
-    end
-
-    it 'should not be working if the status is -1' do
-      agent.memory['last_status'] = '-1'
-      expect(agent.working?).to eq(false)
-    end
   end
 
   describe 'check' do

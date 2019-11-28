@@ -21,17 +21,6 @@ describe Agents::BufferAgent do
   let(:second_message) { create_message }
   let(:third_message) { create_message }
 
-  describe '#working?' do
-    it 'checks if messages have been received within expected receive period' do
-      expect(agent).not_to be_working
-      Agents::BufferAgent.async_receive agent.id, [messages(:bob_website_agent_message).id]
-      expect(agent.reload).to be_working
-      the_future = (agent.options[:expected_receive_period_in_days].to_i + 1).days.from_now
-      stub(Time).now { the_future }
-      expect(agent.reload).not_to be_working
-    end
-  end
-
   describe 'validation' do
     before do
       expect(agent).to be_valid

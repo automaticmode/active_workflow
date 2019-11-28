@@ -52,14 +52,6 @@ module Agents
           }
     MD
 
-    def working?
-      if interpolated['mode'] == 'read'
-        message_created_within?(interpolated['expected_update_period_in_days']) && !recent_error_logs?
-      else
-        received_message_without_error?
-      end
-    end
-
     def default_options
       {
         'mode' => 'read',

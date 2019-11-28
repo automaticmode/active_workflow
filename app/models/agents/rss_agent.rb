@@ -125,10 +125,6 @@ module Agents
       - Timestamps are converted to the ISO 8601 format.
     MD
 
-    def working?
-      message_created_within?((interpolated['expected_update_period_in_days'].presence || 10).to_i) && !recent_error_logs?
-    end
-
     def validate_options
       errors.add(:base, 'url is required') unless options['url'].present?
 

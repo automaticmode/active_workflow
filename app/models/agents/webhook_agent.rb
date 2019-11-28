@@ -101,10 +101,6 @@ module Agents
     # rubocop:enable Metrics/PerceivedComplexity
     # rubocop:enable Metrics/CyclomaticComplexity
 
-    def working?
-      message_created_within?(interpolated['expected_receive_period_in_days']) && !recent_error_logs?
-    end
-
     def validate_options
       unless options['secret'].present?
         errors.add(:base, "Must specify a secret for 'Authenticating' requests")

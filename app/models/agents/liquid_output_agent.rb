@@ -109,10 +109,6 @@ module Agents
     form_configurable :mode, type: :array, values: ['Last message in', 'Merge messages', 'Last X messages']
     form_configurable :message_limit
 
-    def working?
-      last_receive_at && last_receive_at > options['expected_receive_period_in_days'].to_i.days.ago && !recent_error_logs?
-    end
-
     def validate_options
       if options['secret'].present?
         case options['secret']

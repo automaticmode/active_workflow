@@ -112,9 +112,21 @@ class Agent < ApplicationRecord
   # def receive_web_request(request=ActionDispatch::Request.new( ... ))
   # end
 
-  # Implement me in your subclass to decide if your Agent is working.
   def working?
-    raise 'Implement me in your subclass'
+    return false if recent_error_logs?
+
+    return false unless received_message_without_error? || checked_without_error? || last_error_log_at.nil?
+
+    # Timeouts
+    if interpolated['expected_update_period_in_days'].present?
+      return false unless message_created_within?(interpolated['expected_update_period_in_days'])
+    end
+
+    if interpolated['expected_receive_period_in_days'].present?
+      return false unless last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago
+    end
+
+    true
   end
 
   def build_message(message)

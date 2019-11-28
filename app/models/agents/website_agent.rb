@@ -222,10 +222,6 @@ module Agents
       } | (options['template'].presence.try!(:keys) || [])
     end
 
-    def working?
-      message_created_within?(options['expected_update_period_in_days']) && !recent_error_logs?
-    end
-
     def default_options
       {
         'expected_update_period_in_days' => '2',
