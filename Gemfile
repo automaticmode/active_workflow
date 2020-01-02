@@ -137,7 +137,7 @@ group :development do
   end
 end
 
-gem 'puma', '~> 4.3.0'
+gem 'puma', '~> 4.3.1'
 
 ENV['DATABASE_ADAPTER'] ||=
   if ENV['RAILS_ENV'] == 'production'
