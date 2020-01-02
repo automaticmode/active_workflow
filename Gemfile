@@ -149,9 +149,3 @@ ENV['DATABASE_ADAPTER'] ||=
 if_true(ENV['DATABASE_ADAPTER'].strip == 'postgresql') do
   gem 'pg', '~> 1.1.4'
 end
-
-require File.join(File.dirname(__FILE__), 'lib/gemfile_helper.rb')
-
-GemfileHelper.parse_each_agent_gem(ENV['ADDITIONAL_GEMS']) do |args|
-  gem *args
-end
