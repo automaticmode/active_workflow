@@ -35,6 +35,12 @@
         color: white !important;
         z-index: 2;
       }
+      .badge-danger {
+        background-color: $danger;
+      };
+      .badge-success {
+        background-color: $success;
+      };
     }
   }
 }

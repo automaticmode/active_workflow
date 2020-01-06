@@ -25,24 +25,32 @@ window.updateDiagram = function(options){
       const badge = $(this);
       badge.css({
         left: tl.x - (badge.outerWidth()  * (2/3)),
-        top:  tl.y - (badge.outerHeight() * (1/3)),
-        'background-color': badge.find('.badge').css('background-color')});
+        top:  tl.y - (badge.outerHeight() * (1/3))
+      });
     });
   });
 };
 
 window.updateDiagramStatus = function(json) {
-  var setBadge = function(agent_id, count) {
+  var setBadge = function(agent_id, count, working) {
     var selector = `#b${agent_id}`;
     if (count > 0) {
       $(selector).show();
-      $(`${selector} span.count`).text(count);
+      $(`${selector}`).text(count);
+      $(`${selector}`).attr('title', `${count} messages created`);
+      if (working) {
+        $(`${selector}`).removeClass('badge-danger');
+        $(`${selector}`).addClass('badge-success');
+      } else {
+        $(`${selector}`).removeClass('badge-success');
+        $(`${selector}`).addClass('badge-danger');
+      };
     } else {
       $(selector).hide();
     }
   };
   for(const agent of json) {
-    setBadge(agent.id, agent.messages_count);
+    setBadge(agent.id, agent.messages_count, agent.working);
   }
 }
 

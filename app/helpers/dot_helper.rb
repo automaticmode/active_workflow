@@ -204,30 +204,11 @@ module DotHelper
         overlay << Nokogiri::XML::Node.new('a', doc) { |badge|
           badge['id'] = id = 'b%d' % agent_id
           badge['class'] = 'badge'
+          badge['style'] = 'display: none'
           badge['href'] = agent_path(agent, params: { tab: 'messages', workflow_id: workflow })
-          badge['title'] = "#{count} messages created"
-
-          badge << Nokogiri::XML::Node.new('span', doc) { |lbl|
-            lbl.content = count.to_s
-            lbl['class'] = 'count'
-          }
+          badge.content = count.to_s
 
           node['data-badge-id'] = id
-
-          badge << Nokogiri::XML::Node.new('span', doc) { |label|
-            # a dummy label only to obtain the background color
-            label['class'] = [
-              'badge',
-              if agent.unavailable?
-                'badge-warning'
-              elsif agent.working?
-                'badge-success'
-              else
-                'badge-danger'
-              end
-            ].join(' ')
-            label['style'] = 'display: none';
-          }
         }
       }
       # See also: app/assets/diagram.js
