@@ -123,9 +123,11 @@ class AgentsController < ApplicationController
     @agent.messages.delete_all
 
     respond_to do |format|
-      format.json do
-        head :no_content
+      format.html do
+        redirect_back(fallback_location: agent_path(@agent),
+                      notice: "Messages deleted for '#{@agent.name}'")
       end
+      format.json { head :ok }
     end
   end
 
