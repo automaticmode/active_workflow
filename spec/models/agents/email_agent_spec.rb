@@ -58,11 +58,12 @@ describe Agents::EmailAgent do
     it 'can receive complex messages and send them on' do
       stub_request(:any, /example.com/).to_return(body: '', status: 200)
       stub.any_instance_of(Agents::HttpStatusAgent).is_tomorrow?(anything) { true }
-      @checker.sources << agents(:bob_status_agent)
+      sender = agents(:bob_status_agent)
+      @checker.sources << sender
 
-      Agent.async_check(agents(:bob_status_agent).id)
+      sender.check
 
-      Agent.receive!
+      Agent.async_receive(@checker.id, sender.messages.last.id)
 
       plain_email_text = get_message_part(ActionMailer::Base.deliveries.last, /plain/).strip
       html_email_text = get_message_part(ActionMailer::Base.deliveries.last, /html/).strip

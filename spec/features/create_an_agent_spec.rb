@@ -18,13 +18,13 @@ describe 'Creating a new agent', js: true do
   end
 
   context 'with associated agents' do
-    let!(:bob_scheduler_agent) {
-      Agents::SchedulerAgent.create!(
+    let!(:bob_commander_agent) {
+      Agents::CommanderAgent.create!(
         user: users(:bob),
-        name: 'Example Scheduler',
+        name: 'Example Commander',
+        schedule: 'never',
         options: {
-          'action' => 'run',
-          'schedule' => '0 * * * *'
+          'action' => 'run'
         }
       )
     }
@@ -67,16 +67,16 @@ describe 'Creating a new agent', js: true do
       page.find('a', text: 'Agents').click
       click_on('New Agent', match: :first)
 
-      select_agent_type('Scheduler Agent')
-      fill_in(:agent_name, with: 'Test Scheduler Agent')
+      select_agent_type('Commander Agent')
+      fill_in(:agent_name, with: 'Test Commander Agent')
 
       select2('Site status', from: 'Control targets')
 
       click_on 'Save'
 
-      expect(page).to have_text('Test Scheduler Agent')
+      expect(page).to have_text('Test Commander Agent')
 
-      agent = Agent.find_by(name: 'Test Scheduler Agent')
+      agent = Agent.find_by(name: 'Test Commander Agent')
 
       expect(agent.control_targets).to eq([bob_status_agent])
     end
@@ -89,7 +89,7 @@ describe 'Creating a new agent', js: true do
       select_agent_type('HTTP Status Agent')
       fill_in(:agent_name, with: 'Test Agent')
 
-      select2('Example Scheduler', from: 'Controllers')
+      select2('Example Commander', from: 'Controllers')
 
       click_on 'Save'
 
@@ -97,7 +97,7 @@ describe 'Creating a new agent', js: true do
 
       agent = Agent.find_by(name: 'Test Agent')
 
-      expect(agent.controllers).to eq([bob_scheduler_agent])
+      expect(agent.controllers).to eq([bob_commander_agent])
     end
   end
 

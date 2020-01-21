@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_19_161730) do
+ActiveRecord::Schema.define(version: 2020_06_24_160036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agent_locks", force: :cascade do |t|
+    t.integer "agent_id"
+    t.datetime "locked_at"
+    t.index ["agent_id"], name: "index_agent_locks_on_agent_id", unique: true
+  end
 
   create_table "agent_logs", force: :cascade do |t|
     t.integer "agent_id", null: false
@@ -23,6 +29,11 @@ ActiveRecord::Schema.define(version: 2019_01_19_161730) do
     t.integer "outbound_message_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "agent_scheduled", force: :cascade do |t|
+    t.integer "agent_id"
+    t.index ["agent_id"], name: "index_agent_scheduled_on_agent_id", unique: true
   end
 
   create_table "agents", force: :cascade do |t|

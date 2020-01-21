@@ -1,16 +1,17 @@
 class WorkerStatusController < ApplicationController
   def show
     start = Time.now
-    messages = current_user.messages
 
-    if params[:since_id].present?
-      since_id = params[:since_id].to_i
-      messages = messages.where('id > ?', since_id)
-    end
+    since_id = params[:since_id].presence || 0
+
+    messages = current_user.messages.where('id > ?', since_id)
 
     result = messages.select('COUNT(id) AS count', 'MAX(id) AS max_id')
       .reorder(Arel.sql('min(created_at)')).first
     count, max_id = result.count, result.max_id
+
+    # Max aggregate only works if there are any new messages.
+    max_id = since_id if count == 0
 
     render json: {
       pending: Delayed::Job.pending.where('run_at <= ?', start).count,

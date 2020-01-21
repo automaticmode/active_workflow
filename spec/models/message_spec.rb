@@ -81,13 +81,6 @@ describe Message do
     end
   end
 
-  describe 'after create' do
-    it 'schedules message propagation job' do
-      mock(AgentPropagateJob).perform_later.times(1)
-      agents(:bob_status_agent).create_message({})
-    end
-  end
-
   describe 'after destroy' do
     it 'nullifies any dependent AgentLogs' do
       expect(agent_logs(:log_for_jane_website_agent).outbound_message_id).to be_present

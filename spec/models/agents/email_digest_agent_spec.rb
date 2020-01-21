@@ -41,7 +41,8 @@ describe Agents::EmailDigestAgent do
 
   describe '#check' do
     it 'should send an email' do
-      Agents::EmailDigestAgent.async_check(@checker.id)
+      @checker.check
+      @checker.save!
       expect(ActionMailer::Base.deliveries).to eq([])
 
       payloads = [
@@ -65,7 +66,8 @@ describe Agents::EmailDigestAgent do
       @checker.save!
 
       @checker.sources << agents(:bob_status_agent)
-      Agents::DigestAgent.async_check(@checker.id)
+      @checker.check
+      @checker.save!
 
       expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
       expect(ActionMailer::Base.deliveries.last.subject).to eq('something interesting')
@@ -80,7 +82,7 @@ describe Agents::EmailDigestAgent do
       @checker.save!
 
       expect {
-        Agents::EmailDigestAgent.async_check(@checker.id)
+        @checker.check
       }.to raise_error(/Wrong password/)
 
       expect(@checker.reload.memory[:messages]).not_to be_empty
@@ -90,14 +92,17 @@ describe Agents::EmailDigestAgent do
     it 'can receive complex messages and send them on' do
       stub_request(:any, /example.com/).to_return(body: '', status: 200)
       stub.any_instance_of(Agents::HttpStatusAgent).is_tomorrow?(anything) { true }
-      @checker.sources << agents(:bob_status_agent)
+      sender = agents(:bob_status_agent)
+      @checker.sources << sender
 
-      Agent.async_check(agents(:bob_status_agent).id)
+      sender.check
 
-      Agent.receive!
+      Agent.async_receive(@checker.id, sender.messages.last.id)
+
       expect(@checker.reload.memory[:messages]).not_to be_empty
 
-      Agents::EmailDigestAgent.async_check(@checker.id)
+      @checker.check
+      @checker.save!
 
       plain_email_text = get_message_part(ActionMailer::Base.deliveries.last, /plain/).strip
       html_email_text = get_message_part(ActionMailer::Base.deliveries.last, /html/).strip
@@ -109,13 +114,13 @@ describe Agents::EmailDigestAgent do
     end
 
     it 'should send email with correct content type' do
-      Agents::EmailDigestAgent.async_check(@checker1.id)
+      @checker1.check
       expect(ActionMailer::Base.deliveries).to eq([])
 
       @checker1.memory[:messages] = [1, 2, 3, 4]
       @checker1.save!
 
-      Agents::EmailDigestAgent.async_check(@checker1.id)
+      @checker1.check
       expect(ActionMailer::Base.deliveries.last.content_type).to eq('text/plain; charset=UTF-8')
     end
   end

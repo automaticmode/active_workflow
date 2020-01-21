@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 unless defined?(Rails)
   puts
   puts "Please run me with rails runner, for example:"
@@ -12,4 +14,8 @@ Dotenv.load if Rails.env.development?
 
 Rails.configuration.cache_classes = true
 
-require 'agent_runner'
+require 'active_workflow/agent_scheduler'
+
+agent_scheduler = ActiveWorkflow::AgentScheduler.new
+agent_scheduler.run
+

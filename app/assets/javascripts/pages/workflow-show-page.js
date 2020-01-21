@@ -1,15 +1,16 @@
 this.WorkflowShowPage = class WorkflowShowPage {
   constructor() {
+    this.changeModalText();
   }
 
   changeModalText() {
     $('.disable-all-agents').click(function() {
-      $('#enable-disable-agents .modal-body-action').text('Would you like to disable all agents?');
       $('#workflow-disabled-value').val('true');
+      $('#enable-disable-agents .modal-body-action').text('Would you like to disable all agents?');
     });
     $('.enable-all-agents').click(function() {
-      $('#enable-disable-agents .modal-body-action').text('Would you like to enable all agents?');
       $('#workflow-disabled-value').val('false');
+      $('#enable-disable-agents .modal-body-action').text('Would you like to enable all agents?');
     });
   }
 };

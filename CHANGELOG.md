@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Wunderlist agent removed (service has shut down).
 
+### Changed
+- Remove SchedulerAgent (to be implemented as a core functionality).
+- Refactor agent runner and scheduler.
+
 
 ## [0.9.8] - 2020-05-11
 ### Fixed

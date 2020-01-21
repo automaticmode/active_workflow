@@ -69,17 +69,13 @@ describe Agents::DigestAgent do
         expect(@checker.memory['queue']).to eq([message2.id])
       end
     end
-      
   end
 
   describe '#check' do
-    
     describe 'and retained_messages is 0' do
-      
       before { @checker.options['retained_messages'] = 0 }
-      
       it 'should emit a message' do
-        expect { Agents::DigestAgent.async_check(@checker.id) }.not_to change { Message.count }
+        expect { @checker.check }.not_to change { Message.count }
 
         message1 = Message.new
         message1.agent = agents(:bob_notifier_agent)
@@ -108,7 +104,7 @@ describe Agents::DigestAgent do
       before { @checker.options['retained_messages'] = 1 }
 
       it 'should emit a message' do
-        expect { Agents::DigestAgent.async_check(@checker.id) }.not_to change { Message.count }
+        expect { @checker.check }.not_to change { Message.count }
 
         message1 = Message.new
         message1.agent = agents(:bob_notifier_agent)

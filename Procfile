@@ -1,8 +1,7 @@
-web: bundle exec puma -C ./deployment/heroku/puma.rb
-
 # Use configuration bellow to run jobs on a separate dyno.
-#web: bundle exec puma
-#jobs: bundle exec rails runner bin/threaded.rb
+web: bundle exec puma
+scheduler: bundle exec rails runner bin/pro_scheduler.rb
+worker: bundle exec script/delayed_job -n 4 run
 
 ###############################
 # Multiple DelayedJob workers #

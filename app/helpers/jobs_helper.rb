@@ -27,12 +27,8 @@ module JobsHelper
     case data['job_class']
     when 'AgentCheckJob', 'AgentReceiveJob'
       Agent.find_by_id(data['arguments'][0])
-    when 'AgentRunScheduleJob'
-      "Run Agent schedule '#{data['arguments'][0]}'"
     when 'AgentCleanupExpiredJob'
       'Run Message cleanup'
-    when 'AgentPropagateJob'
-      'Run Message propagation'
     else
       false
     end

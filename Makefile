@@ -2,10 +2,6 @@
 start:
 	bundle exec foreman start
 
-.PHONY: setup-heroku
-setup-heroku:
-	bundle exec bin/setup_heroku
-
 .PHONY: build-image
 build-image:
 	docker build -t local/active_workflow .

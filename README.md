@@ -206,10 +206,6 @@ These are agents that control the workflow and perform common and simple data pr
  	<td>Allows you to write JavaScript code that can create and receive messages. If other agents aren’t meeting your needs, try this one!</td>
  </tr>
  <tr>
- 	<td><strong>Scheduler Agent</strong></td>
- 	<td>Periodically takes an action on target agents according to a user-defined schedule.</td>
- </tr>
- <tr>
  	<td><strong>Attribute&nbsp;Difference&nbsp;Agent</strong></td>
  	<td>Receives messages and emits a new message with the difference or change of a specific attribute in comparison to the message received.</td>
  </tr>
@@ -342,19 +338,11 @@ source tree, you could do that using Heroku's command line interface.
 Please install Heroku's command line interface tool from
 [Heroku Toolbelt](https://toolbelt.heroku.com).
 
-For your convenience there is a helper script that guides you through all the
-steps necessary to deploy to Heroku. It helps with Heroku app creation, plugin
-installation, initial configuration and repository synchronisation. Helper
-script is run with:
-
-```sh
-make setup-heroku
-```
-
 For additional configuration options please take a look at the `.env` file.
 Don't forget to set any configuration options you may require using the
 `heroku config` command line tool.
 
+FIXME:
 The default ActiveWorkflow configuration uses the same single dyno to run both
 the web server and workers.
 

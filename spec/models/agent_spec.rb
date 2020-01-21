@@ -31,68 +31,6 @@ describe Agent do
     end
   end
 
-  describe '.bulk_check' do
-    before do
-      @status_agent_count = Agents::HttpStatusAgent.where(schedule: 'midnight', disabled: false).count
-    end
-
-    it 'should run all Agents with the given schedule' do
-      mock(Agents::HttpStatusAgent).async_check(anything).times(@status_agent_count)
-      Agents::HttpStatusAgent.bulk_check('midnight')
-    end
-
-    it 'should skip disabled Agents' do
-      agents(:bob_status_agent).update_attribute :disabled, true
-      mock(Agents::HttpStatusAgent).async_check(anything).times(@status_agent_count - 1)
-      Agents::HttpStatusAgent.bulk_check('midnight')
-    end
-
-    it 'should skip agents of deactivated accounts' do
-      agents(:bob_status_agent).user.deactivate!
-      mock(Agents::HttpStatusAgent).async_check(anything).times(@status_agent_count - 1)
-      Agents::HttpStatusAgent.bulk_check('midnight')
-    end
-  end
-
-  describe '.run_schedule' do
-    before do
-      expect(Agents::HttpStatusAgent.count).to be > 0
-      expect(Agents::WebsiteAgent.count).to be > 0
-    end
-
-    it 'runs agents with the given schedule' do
-      status_agent_ids = [agents(:bob_status_agent), agents(:jane_status_agent)].map(&:id)
-      stub(Agents::HttpStatusAgent).async_check(anything) { |agent_id| status_agent_ids.delete(agent_id) }
-      stub(Agents::WebsiteAgent).async_check(agents(:bob_website_agent).id)
-      Agent.run_schedule('midnight')
-      expect(status_agent_ids).to be_empty
-    end
-
-    it 'groups agents by type' do
-      mock(Agents::HttpStatusAgent).bulk_check('midnight').once
-      mock(Agents::WebsiteAgent).bulk_check('midnight').once
-      Agent.run_schedule('midnight')
-    end
-
-    it 'ignores unknown types' do
-      Agent.where(id: agents(:bob_status_agent).id).update_all type: 'UnknownTypeAgent'
-      mock(Agents::HttpStatusAgent).bulk_check('midnight').once
-      mock(Agents::WebsiteAgent).bulk_check('midnight').once
-      Agent.run_schedule('midnight')
-    end
-
-    it 'only runs agents with the given schedule' do
-      do_not_allow(Agents::WebsiteAgent).async_check
-      Agent.run_schedule('blah')
-    end
-
-    it "will not run the 'never' schedule" do
-      agents(:bob_status_agent).update_attribute 'schedule', 'never'
-      do_not_allow(Agents::WebsiteAgent).async_check
-      Agent.run_schedule('never')
-    end
-  end
-
   describe 'credential' do
     it 'should return the value of the credential when credential is present' do
       expect(agents(:bob_status_agent).credential('aws_secret')).to eq(user_credentials(:bob_aws_secret).credential_value)
@@ -286,165 +224,13 @@ describe Agent do
       end
     end
 
-    describe '.receive!' do
-      before do
-        stub_request(:any, /example.com/).to_return(body: '', status: 200)
-        stub.any_instance_of(Agents::HttpStatusAgent).is_tomorrow?(anything) { true }
-      end
-
-      it 'should use available messages', delayed_job: true do
-        Agent.async_check(agents(:bob_status_agent).id)
-
-        mock(Agent).async_receive(agents(:bob_notifier_agent).id, anything).times(1)
-        Delayed::Worker.new.work_off
-      end
-
-      it 'should not propagate to disabled Agents', delayed_job: true do
-        Agent.async_check(agents(:bob_status_agent).id)
-        agents(:bob_notifier_agent).update_attribute :disabled, true
-        mock(Agent).async_receive(agents(:bob_notifier_agent).id, anything).times(0)
-        Delayed::Worker.new.work_off
-      end
-
-      it 'should not propagate to Agents with unknown types', delayed_job: true do
-        Agent.where(id: agents(:bob_notifier_agent).id).update_all type: 'UnknownTypeAgent'
-        Agent.async_check(agents(:bob_status_agent).id)
-        Agent.async_check(agents(:jane_status_agent).id)
-        mock(Agent).async_receive(agents(:bob_notifier_agent).id, anything).times(0)
-
-        mock(Agent).async_receive(agents(:jane_notifier_agent).id, anything).times(1)
-
-        Delayed::Worker.new.work_off
-      end
-
-      it 'should not propagate from Agents with unknown types', delayed_job: true do
-        mock(Agent).async_receive(agents(:bob_notifier_agent).id, anything).times(0)
-        mock(Agent).async_receive(agents(:jane_notifier_agent).id, anything).times(1)
-
-        Agent.async_check(agents(:jane_status_agent).id)
-        Agent.async_check(agents(:bob_status_agent).id)
-
-        Agent.where(id: agents(:bob_status_agent).id).update_all type: 'UnknownTypeAgent'
-
-        Delayed::Worker.new.work_off
-      end
-
-      it 'should log exceptions', delayed_job: true do
-        mock.any_instance_of(Agents::TriggerAgent).receive(anything).once {
-          raise 'foo'
-        }
-
-        Agent.async_check(agents(:bob_status_agent).id)
-        Delayed::Worker.new.run(Delayed::Job.last)
-        Agent.async_receive(agents(:bob_notifier_agent).id, agents(:bob_status_agent).messages.last.id)
-        Delayed::Worker.new.run(Delayed::Job.last)
-
-        log = agents(:bob_notifier_agent).logs.first
-        expect(log.message).to match(/Exception/)
-        expect(log.level).to eq(4)
-      end
-
-      it 'should track when messages have been seen and not received them again', delayed_job: true do
-        mock.any_instance_of(Agents::TriggerAgent).receive(anything).once
-        Agent.async_check(agents(:bob_status_agent).id)
-        expect {
-          Agent.receive!
-          Delayed::Worker.new.work_off
-        }.to change { agents(:bob_notifier_agent).reload.last_checked_message_id }
-
-        expect {
-          Agent.receive!
-          Delayed::Worker.new.work_off
-        }.not_to change { agents(:bob_notifier_agent).reload.last_checked_message_id }
-      end
-
-      it 'should not run consumers that have nothing to do' do
-        do_not_allow.any_instance_of(Agents::TriggerAgent).receive(anything)
-        Agent.receive!
-      end
-
-      it 'should call receive for each message' do
-        mock.any_instance_of(Agents::TriggerAgent).receive(anything).twice
-        Agent.async_check(agents(:bob_status_agent).id)
-        Agent.async_check(agents(:bob_status_agent).id)
-        Agent.receive!
-      end
-
-      it 'should ignore messages that were created before a particular Link', delayed_job: true do
-        agent2 = Agents::SomethingSource.new(name: 'something')
-        agent2.user = users(:bob)
-        agent2.save!
-        agent2.check
-
-        mock.any_instance_of(Agents::TriggerAgent).receive(anything).twice
-        agents(:bob_status_agent).check # bob_status_agent makes a message
-
-        expect {
-          Agent.receive! # message gets propagated
-          Delayed::Worker.new.work_off
-        }.to change { agents(:bob_notifier_agent).reload.last_checked_message_id }
-
-        # This agent creates a few messages before we link to it, but after our last check.
-        agent2.check
-        agent2.check
-
-        # Now we link to it.
-        agents(:bob_notifier_agent).sources << agent2
-        expect(agent2.links_as_source.first.message_id_at_creation).to eq(agent2.messages.reorder('messages.id desc').first.id)
-
-        expect {
-          Agent.receive! # but we don't receive those messages because they're too old
-          Delayed::Worker.new.work_off
-        }.not_to change { agents(:bob_notifier_agent).reload.last_checked_message_id }
-
-        # Now a new message is created by agent2
-        agent2.check
-
-        expect {
-          Agent.receive! # and we receive it
-          Delayed::Worker.new.work_off
-        }.to change { agents(:bob_notifier_agent).reload.last_checked_message_id }
-      end
-
-      it 'should not run agents of deactivated accounts' do
-        agents(:bob_status_agent).user.deactivate!
-        Agent.async_check(agents(:bob_status_agent).id)
-        mock(Agent).async_receive(agents(:bob_notifier_agent).id, anything).times(0)
-        Agent.receive!
-      end
-    end
-
     describe '.async_receive' do
       it 'should not run disabled Agents' do
         mock(Agent).find(agents(:bob_notifier_agent).id) { agents(:bob_notifier_agent) }
         do_not_allow(agents(:bob_notifier_agent)).receive
         agents(:bob_notifier_agent).update_attribute :disabled, true
-        # FIXME?
+
         Agent.async_receive(agents(:bob_notifier_agent).id, 1)
-      end
-    end
-
-    describe 'creating a new agent and then calling .receive!' do
-      it 'should not backfill messages for a newly created agent' do
-        Message.delete_all
-        sender = Agents::SomethingSource.new(name: 'Sending Agent')
-        sender.user = users(:bob)
-        sender.save!
-        sender.create_message payload: {}
-        sender.create_message payload: {}
-        expect(sender.messages.count).to eq(2)
-
-        receiver = Agents::CannotBeScheduled.new(name: 'Receiving Agent')
-        receiver.user = users(:bob)
-        receiver.sources << sender
-        receiver.save!
-
-        expect(receiver.messages.count).to eq(0)
-        Agent.receive!
-        expect(receiver.messages.count).to eq(0)
-        sender.create_message payload: {}
-        Agent.receive!
-        expect(receiver.messages.count).to eq(1)
       end
     end
 
@@ -831,43 +617,6 @@ describe Agent do
       agent = agents(:bob_notifier_agent)
       agent.update!(drop_pending_messages: true)
       expect(agent.reload.drop_pending_messages).to eq(false)
-    end
-  end
-
-  describe '.drop_pending_messages' do
-    before do
-      stub_request(:any, /example.com/).to_return(body: '', status: 200)
-      stub.any_instance_of(Agents::HttpStatusAgent).is_tomorrow?(anything) { true }
-    end
-
-    it 'should drop pending messages while the agent was disabled when set to true' do
-      agent1 = agents(:bob_status_agent)
-      agent2 = agents(:bob_notifier_agent)
-
-      expect {
-        expect {
-          Agent.async_check(agent1.id)
-          Agent.receive!
-        }.to change { agent1.messages.count }.by(1)
-      }.to change { agent2.messages.count }.by(1)
-
-      agent2.disabled = true
-      agent2.save!
-
-      expect {
-        expect {
-          Agent.async_check(agent1.id)
-          Agent.receive!
-        }.to change { agent1.messages.count }.by(1)
-      }.not_to change { agent2.messages.count }
-
-      agent2.disabled = false
-      agent2.drop_pending_messages = true
-      agent2.save!
-
-      expect {
-        Agent.receive!
-      }.not_to change { agent2.messages.count }
     end
   end
 end

@@ -17,7 +17,6 @@ class Message < ApplicationRecord
   }
 
   after_create :update_agent_last_message_at
-  after_create :propagate
 
   scope :expired, lambda {
     where('expires_at IS NOT NULL AND expires_at < ?', Time.now)
@@ -31,7 +30,7 @@ class Message < ApplicationRecord
   end
 
   # Look for Messages whose `expires_at` is present and in the past.  Remove those messages and then update affected Agents'
-  # `messages_counts` cache columns.  This method is called by bin/schedule.rb periodically.
+  # `messages_counts` cache columns.
   # rubocop:disable Rails/SkipsModelValidations
   def self.cleanup_expired!
     transaction do
@@ -47,14 +46,6 @@ class Message < ApplicationRecord
   # rubocop:disable Rails/SkipsModelValidations
   def update_agent_last_message_at
     agent.touch :last_message_at
-  end
-  # rubocop:enable Rails/SkipsModelValidations
-
-  def propagate
-    ActiveRecord::Base.connection_pool.with_connection do
-      return unless AgentPropagateJob.can_enqueue?
-      AgentPropagateJob.perform_later
-    end
   end
 end
 

@@ -1,9 +1,10 @@
 $(function() {
-  let sinceId = null;
   let previousJobs = null;
 
   if ($(".job-indicator").length) {
     var check = function() {
+      let sinceId = $("#message-indicator").data("sinceId");
+
       const query =
         (sinceId != null) ?
           `?since_id=${sinceId}`
@@ -41,7 +42,8 @@ $(function() {
           $("#message-indicator").tooltip('dispose').fadeOut();
         }
 
-        if (sinceId == null) { sinceId = json.max_id; }
+        $("#message-indicator").data("sinceId", json.max_id);
+
         const currentJobs = [json.pending, json.awaiting_retry, json.recent_failures];
         if ((document.location.pathname === '/jobs') && ($(".modal[aria-hidden=false]").length === 0) && (previousJobs != null) && (previousJobs.join(',') !== currentJobs.join(','))) {
           if (!document.location.search || (document.location.search === '?page=1')) {

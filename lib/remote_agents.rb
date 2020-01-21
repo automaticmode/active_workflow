@@ -97,7 +97,7 @@ module RemoteAgents
         req.headers['Content-Type'] = 'application/json'
         req.body = body.to_json
       end
-      result = JSON.parse(response.body)
+      JSON.parse(response.body)
     end
 
     def remote_action(action, message = nil)

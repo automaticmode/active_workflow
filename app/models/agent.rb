@@ -376,86 +376,17 @@ class Agent < ApplicationRecord
       @gem_dependencies_checked && !@gem_dependencies_met
     end
 
-    # Find all Agents that have received Messages since the last execution of this method.  Update those Agents with
-    # their new `last_checked_message_id` and queue each of the Agents to be called with #receive using `async_receive`.
-    # This is called by bin/schedule.rb periodically.
-    def receive!(options = {})
-      Agent.transaction do
-        scope = Agent
-                .select('agents.id AS receiver_agent_id, sources.type AS source_agent_type, agents.type AS receiver_agent_type, messages.id AS message_id')
-                .joins('JOIN links ON (links.receiver_id = agents.id)')
-                .joins('JOIN agents AS sources ON (links.source_id = sources.id)')
-                .joins('JOIN messages ON (messages.agent_id = sources.id AND messages.id > links.message_id_at_creation)')
-                .where('NOT agents.disabled AND NOT agents.deactivated AND (agents.last_checked_message_id IS NULL OR messages.id > agents.last_checked_message_id)')
-        if options[:only_receivers].present?
-          scope = scope.where('agents.id in (?)', options[:only_receivers])
-        end
-
-        sql = scope.to_sql
-
-        agents_to_messages = {}
-        Agent.connection.select_rows(sql).each do |receiver_agent_id, source_agent_type, receiver_agent_type, message_id|
-          begin
-            Object.const_get(source_agent_type)
-            Object.const_get(receiver_agent_type)
-          rescue NameError
-            next
-          end
-
-          agents_to_messages[receiver_agent_id.to_i] ||= []
-          agents_to_messages[receiver_agent_id.to_i] << message_id
-        end
-
-        Agent.where(id: agents_to_messages.keys).find_each do |agent|
-          message_ids = agents_to_messages[agent.id].uniq
-          # rubocop:disable Rails/SkipsModelValidations
-          agent.update_attribute :last_checked_message_id, message_ids.max
-          # rubocop:enable Rails/SkipsModelValidations
-
-          message_ids.each { |message_id| Agent.async_receive(agent.id, message_id) }
-        end
-
-        {
-          agent_count: agents_to_messages.keys.length,
-          message_count: agents_to_messages.values.flatten.uniq.compact.length
-        }
-      end
-    end
-
-    # This method will enqueue an AgentReceiveJob job. It accepts Agent and Message ids instead of a literal ActiveRecord
-    # models because it is preferable to serialize jobs with ids.
-    def async_receive(agent_id, message_id)
-      AgentReceiveJob.perform_later(agent_id, message_id)
-    end
-
-    # Given a schedule name, run `check` via `bulk_check` on all Agents with that schedule.
-    # This is called by bin/schedule.rb for each schedule in `SCHEDULES`.
-    def run_schedule(schedule)
-      return if schedule == 'never'
-      types = where(schedule: schedule).group(:type).pluck(:type)
-      types.each do |type|
-        next unless valid_type?(type)
-        type.constantize.bulk_check(schedule)
-      end
-    end
-
-    # Schedule `async_check`s for every Agent on the given schedule.  This is normally called by `run_schedule` once
-    # per type of agent, so you can override this to define custom bulk check behavior for your custom Agent type.
-    def bulk_check(schedule)
-      raise 'Call #bulk_check on the appropriate subclass of Agent' if self == Agent
-      where('NOT disabled AND NOT deactivated AND schedule = ?', schedule).pluck('agents.id').each do |agent_id|
-        async_check(agent_id)
-      end
-    end
-
-    # This method will enqueue an AgentCheckJob job. It accepts an Agent id instead of a literal Agent because it is
-    # preferable to serialize job with ids, instead of with the full Agents.
     def async_check(agent_id)
       AgentCheckJob.perform_later(agent_id)
+    end
+
+    def async_receive(agent_id, message_id)
+      AgentReceiveJob.perform_later(agent_id, message_id)
     end
   end
 end
 
+# TODO: is this used? If so - do we need it?
 class AgentDrop
   def type
     @object.short_type

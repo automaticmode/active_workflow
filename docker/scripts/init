@@ -46,4 +46,4 @@ if [ "${SEED_DATABASE}" ]; then
 fi
 
 # Start ActiveWorkflow
-exec bundle exec puma -C ./deployment/heroku/puma.rb
+exec bundle exec puma -C ./config/puma.rb
