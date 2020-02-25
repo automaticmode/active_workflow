@@ -31,7 +31,6 @@ module RemoteAgents
           display_name(config['display_name'])
           description(config['description'])
 
-          no_bulk_receive!
           default_schedule 'never'
         end
         @remote_agent_config
@@ -52,8 +51,8 @@ module RemoteAgents
       handle_response(response)
     end
 
-    def receive(messages)
-      response = remote_action(:receive, messages.first)
+    def receive(message)
+      response = remote_action(:receive, message)
       handle_response(response)
     end
 

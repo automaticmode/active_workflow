@@ -42,8 +42,8 @@ describe Agents::DigestAgent do
         message2.payload = { data: 'message2' }
         message2.save!
 
-        @checker.receive([message1])
-        @checker.receive([message2])
+        @checker.receive(message1)
+        @checker.receive(message2)
         expect(@checker.memory['queue']).to eq([message1.id, message2.id])
       end
     end
@@ -62,9 +62,10 @@ describe Agents::DigestAgent do
         message2.agent = agents(:bob_status_agent)
         message2.payload = { data: 'message2' }
         message2.save!  
-    
-        @checker.receive([message1])
-        @checker.receive([message2])
+
+        @checker.receive(message1)
+        @checker.receive(message2)
+
         expect(@checker.memory['queue']).to eq([message2.id])
       end
     end
@@ -90,8 +91,8 @@ describe Agents::DigestAgent do
         message2.payload = { data: 'message' }
         message2.save!
 
-        @checker.receive([message1])
-        @checker.receive([message2])
+        @checker.receive(message1)
+        @checker.receive(message2)
         @checker.sources << agents(:bob_notifier_agent) << agents(:bob_status_agent)
         @checker.save!
 
@@ -119,8 +120,8 @@ describe Agents::DigestAgent do
         message2.payload = { data: 'message' }
         message2.save!
 
-        @checker.receive([message1])
-        @checker.receive([message2])
+        @checker.receive(message1)
+        @checker.receive(message2)
         @checker.sources << agents(:bob_notifier_agent) << agents(:bob_status_agent)
         @checker.save!
 

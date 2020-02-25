@@ -116,16 +116,14 @@ module Agents
       }
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       matchers = compiled_matchers
 
-      incoming_messages.each do |message|
-        interpolate_with(message) do
-          apply_compiled_matchers(matchers, message) do
-            formatted_message = interpolated['mode'].to_s == 'merge' ? message.payload.dup : {}
-            formatted_message.merge! interpolated['instructions']
-            create_message payload: formatted_message
-          end
+      interpolate_with(message) do
+        apply_compiled_matchers(matchers, message) do
+          formatted_message = interpolated['mode'].to_s == 'merge' ? message.payload.dup : {}
+          formatted_message.merge! interpolated['instructions']
+          create_message payload: formatted_message
         end
       end
     end

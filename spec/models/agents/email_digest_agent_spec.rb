@@ -33,7 +33,8 @@ describe Agents::EmailDigestAgent do
       message2.payload = { data: 'Something else you should know about' }
       message2.save!
 
-      Agents::EmailDigestAgent.async_receive(@checker.id, [message1.id, message2.id])
+      Agents::EmailDigestAgent.async_receive(@checker.id, message1.id)
+      Agents::EmailDigestAgent.async_receive(@checker.id, message2.id)
       expect(@checker.reload.memory['messages']).to match([message1.id, message2.id])
     end
   end
@@ -58,7 +59,11 @@ describe Agents::EmailDigestAgent do
         end
       end
 
-      Agents::DigestAgent.async_receive(@checker.id, messages.map(&:id))
+      messages.each do |message|
+        @checker.receive(message)
+      end
+      @checker.save!
+
       @checker.sources << agents(:bob_status_agent)
       Agents::DigestAgent.async_check(@checker.id)
 

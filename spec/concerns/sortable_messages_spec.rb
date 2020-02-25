@@ -201,11 +201,9 @@ describe SortableMessages do
           end
         end
 
-        def receive(messages)
-          messages.each do |message|
-            payloads_to_emit.each do |payload|
-              create_message payload: payload.merge('title' => payload['title'] + message.payload['title_suffix'])
-            end
+        def receive(message)
+          payloads_to_emit.each do |payload|
+            create_message payload: payload.merge('title' => payload['title'] + message.payload['title_suffix'])
           end
         end
       end
@@ -255,8 +253,8 @@ describe SortableMessages do
         agent = new_agent
         agent.save!
         expect {
-          agent.receive([Message.new(payload: { 'title_suffix' => ' [new]' }),
-                         Message.new(payload: { 'title_suffix' => ' [popular]' })])
+          agent.receive(Message.new(payload: { 'title_suffix' => ' [new]' }))
+          agent.receive(Message.new(payload: { 'title_suffix' => ' [popular]' }))
         }.to change { Message.count }.by(8)
         messages = agent.messages.last(8).sort_by(&:id)
         expect(messages.map { |message| message.payload['title'] }).to eq([
@@ -296,8 +294,8 @@ describe SortableMessages do
           agent = new_agent
           agent.save!
           expect {
-            agent.receive([Message.new(payload: { 'title_suffix' => ' [new]' }),
-                           Message.new(payload: { 'title_suffix' => ' [popular]' })])
+            agent.receive(Message.new(payload: { 'title_suffix' => ' [new]' }))
+            agent.receive(Message.new(payload: { 'title_suffix' => ' [popular]' }))
           }.to change { Message.count }.by(8)
           messages = agent.messages.last(8).sort_by(&:id)
           expect(messages.map { |message| message.payload['title'] }).to eq([

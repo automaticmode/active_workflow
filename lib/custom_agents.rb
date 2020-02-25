@@ -20,8 +20,6 @@ class CustomAgents
 
         display_name #{display_name.inspect}
 
-        no_bulk_receive!
-
         def default_options
           #{config.default_options.inspect}
         end
@@ -30,10 +28,8 @@ class CustomAgents
           impl.check
         end
 
-        def receive(messages)
-          messages.each do |message|
-            impl.receive(message)
-          end
+        def receive(message)
+          impl.receive(message)
         end
 
         private

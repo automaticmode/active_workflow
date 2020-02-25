@@ -123,12 +123,10 @@ module Agents
       options[:include_xhtml_content] == 'true'
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       if options[:mode] == 'update'
-        incoming_messages.each do |message|
-          note = note_store.create_or_update_note(note_params(message))
-          create_message payload: note.attr(include_content: include_xhtml_content?)
-        end
+        note = note_store.create_or_update_note(note_params(message))
+        create_message payload: note.attr(include_content: include_xhtml_content?)
       end
     end
 

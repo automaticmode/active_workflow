@@ -45,44 +45,44 @@ describe Agents::GapDetectorAgent do
 
   describe '#receive' do
     it 'records the message if it has a created_at newer than the last seen' do
-      agent.receive([messages(:bob_website_agent_message)])
+      agent.receive(messages(:bob_website_agent_message))
       expect(agent.memory['newest_message_created_at']).to eq messages(:bob_website_agent_message).created_at.to_i
 
       messages(:bob_website_agent_message).created_at = 2.days.ago
 
       expect {
-        agent.receive([messages(:bob_website_agent_message)])
+        agent.receive(messages(:bob_website_agent_message))
       }.to_not change { agent.memory['newest_message_created_at'] }
 
       messages(:bob_website_agent_message).created_at = 2.days.from_now
 
       expect {
-        agent.receive([messages(:bob_website_agent_message)])
+        agent.receive(messages(:bob_website_agent_message))
       }.to change { agent.memory['newest_message_created_at'] }.to(messages(:bob_website_agent_message).created_at.to_i)
     end
 
     it 'ignores the message if value_path is present and the value at the path is blank' do
       agent.options['value_path'] = 'title'
-      agent.receive([messages(:bob_website_agent_message)])
+      agent.receive(messages(:bob_website_agent_message))
       expect(agent.memory['newest_message_created_at']).to eq messages(:bob_website_agent_message).created_at.to_i
 
       messages(:bob_website_agent_message).created_at = 2.days.from_now
       messages(:bob_website_agent_message).payload['title'] = ''
 
       expect {
-        agent.receive([messages(:bob_website_agent_message)])
+        agent.receive(messages(:bob_website_agent_message))
       }.to_not change { agent.memory['newest_message_created_at'] }
 
       messages(:bob_website_agent_message).payload['title'] = 'present!'
 
       expect {
-        agent.receive([messages(:bob_website_agent_message)])
+        agent.receive(messages(:bob_website_agent_message))
       }.to change { agent.memory['newest_message_created_at'] }.to(messages(:bob_website_agent_message).created_at.to_i)
     end
 
     it 'clears any previous alert' do
       agent.memory['alerted_at'] = 2.days.ago.to_i
-      agent.receive([messages(:bob_website_agent_message)])
+      agent.receive(messages(:bob_website_agent_message))
       expect(agent.memory).to_not have_key('alerted_at')
     end
   end

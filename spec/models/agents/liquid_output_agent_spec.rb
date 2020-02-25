@@ -82,7 +82,9 @@ describe Agents::LiquidOutputAgent do
       before { agent.options['mode'] = 'Last message in' }
 
       it 'stores the last message in memory' do
-        agent.receive incoming_messages
+        incoming_messages.each do |message|
+          agent.receive(message)
+        end
         expect(agent.memory['last_message'][key]).to equal(value)
       end
 
@@ -90,7 +92,9 @@ describe Agents::LiquidOutputAgent do
         before { agent.options['mode'] = 'LAST MESSAGE IN' }
 
         it 'stores the last message in memory' do
-          agent.receive incoming_messages
+          incoming_messages.each do |message|
+            agent.receive(message)
+          end
           expect(agent.memory['last_message'][key]).to equal(value)
         end
       end
@@ -109,7 +113,9 @@ describe Agents::LiquidOutputAgent do
       end
 
       it 'should merge all of the messages passed to it' do
-        agent.receive incoming_messages
+        incoming_messages.each do |message|
+          agent.receive(message)
+        end
         expect(agent.memory['last_message'][key]).to equal(value)
         expect(agent.memory['last_message'][second_key]).to equal(second_value)
       end
@@ -118,7 +124,9 @@ describe Agents::LiquidOutputAgent do
         before { agent.options['mode'] = 'MERGE MESSAGES' }
 
         it 'should merge all of the messages passed to it' do
-          agent.receive incoming_messages
+          incoming_messages.each do |message|
+            agent.receive(message)
+          end
           expect(agent.memory['last_message'][key]).to equal(value)
           expect(agent.memory['last_message'][second_key]).to equal(second_value)
         end
@@ -134,7 +142,9 @@ describe Agents::LiquidOutputAgent do
       end
 
       it 'should do nothing' do
-        agent.receive incoming_messages
+        incoming_messages.each do |message|
+          agent.receive(message)
+        end
         expect(agent.memory.keys.count).to equal(0)
       end
     end

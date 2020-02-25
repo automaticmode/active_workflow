@@ -71,53 +71,51 @@ module Agents
 
     # rubocop:disable Metrics/PerceivedComplexity
     # rubocop:disable Metrics/CyclomaticComplexity
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        opts = interpolated(message)
+    def receive(message)
+      opts = interpolated(message)
 
-        match_results = opts['rules'].map do |rule|
-          value_at_path = Utils.value_at(message['payload'], rule['path'])
-          rule_values = rule['value']
-          rule_values = [rule_values] unless rule_values.is_a?(Array)
+      match_results = opts['rules'].map do |rule|
+        value_at_path = Utils.value_at(message['payload'], rule['path'])
+        rule_values = rule['value']
+        rule_values = [rule_values] unless rule_values.is_a?(Array)
 
-          if rule['type'] == 'not in'
-            !rule_values.include?(value_at_path.to_s)
-          elsif rule['type'] == 'field==value'
-            rule_values.include?(value_at_path.to_s)
-          else
-            rule_values.any? do |rule_value|
-              case rule['type']
-              when 'regex'
-                value_at_path.to_s =~ Regexp.new(rule_value, Regexp::IGNORECASE)
-              when '!regex'
-                value_at_path.to_s !~ Regexp.new(rule_value, Regexp::IGNORECASE)
-              when 'field>value'
-                value_at_path.to_f > rule_value.to_f
-              when 'field>=value'
-                value_at_path.to_f >= rule_value.to_f
-              when 'field<value'
-                value_at_path.to_f < rule_value.to_f
-              when 'field<=value'
-                value_at_path.to_f <= rule_value.to_f
-              when 'field!=value'
-                value_at_path.to_s != rule_value.to_s
-              else
-                raise "Invalid type of #{rule['type']} in TriggerAgent##{id}"
-              end
+        if rule['type'] == 'not in'
+          !rule_values.include?(value_at_path.to_s)
+        elsif rule['type'] == 'field==value'
+          rule_values.include?(value_at_path.to_s)
+        else
+          rule_values.any? do |rule_value|
+            case rule['type']
+            when 'regex'
+              value_at_path.to_s =~ Regexp.new(rule_value, Regexp::IGNORECASE)
+            when '!regex'
+              value_at_path.to_s !~ Regexp.new(rule_value, Regexp::IGNORECASE)
+            when 'field>value'
+              value_at_path.to_f > rule_value.to_f
+            when 'field>=value'
+              value_at_path.to_f >= rule_value.to_f
+            when 'field<value'
+              value_at_path.to_f < rule_value.to_f
+            when 'field<=value'
+              value_at_path.to_f <= rule_value.to_f
+            when 'field!=value'
+              value_at_path.to_s != rule_value.to_s
+            else
+              raise "Invalid type of #{rule['type']} in TriggerAgent##{id}"
             end
           end
         end
-
-        next unless matches?(match_results)
-        if keep_message?
-          payload = message.payload.dup
-          payload['message'] = opts['message'] if opts['message'].present?
-        else
-          payload = { 'message' => opts['message'] }
-        end
-
-        create_message payload: payload
       end
+
+      return unless matches?(match_results)
+      if keep_message?
+        payload = message.payload.dup
+        payload['message'] = opts['message'] if opts['message'].present?
+      else
+        payload = { 'message' => opts['message'] }
+      end
+
+      create_message payload: payload
     end
     # rubocop:enable Metrics/PerceivedComplexity
     # rubocop:enable Metrics/CyclomaticComplexity

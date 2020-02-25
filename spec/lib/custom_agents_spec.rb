@@ -76,7 +76,8 @@ RSpec.describe CustomAgents, mock: :rspec do
         it 'calls agents receive method with all message' do
           mock(agent).receive('message1')
           mock(agent).receive('message2')
-          subject.new.receive(['message1', 'message2'])
+          subject.new.receive('message1')
+          subject.new.receive('message2')
         end
       end
     end

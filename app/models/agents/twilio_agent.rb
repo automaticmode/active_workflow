@@ -4,7 +4,6 @@ module Agents
   class TwilioAgent < Agent
     cannot_be_scheduled!
     cannot_create_messages!
-    no_bulk_receive!
 
     gem_dependency_check { defined?(Twilio) }
 
@@ -42,20 +41,20 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       memory['pending_calls'] ||= {}
-      interpolate_with_each(incoming_messages) do |event|
-        message = (event.payload['message'].presence || event.payload['text'].presence || event.payload['sms'].presence).to_s
-        if message.present?
+      interpolate_with(message) do
+        tw_message = (message.payload['message'].presence || message.payload['text'].presence || message.payload['sms'].presence).to_s
+        if tw_message.present?
           if boolify(interpolated['receive_call'])
             secret = SecureRandom.hex 3
-            memory['pending_calls'][secret] = message
+            memory['pending_calls'][secret] = tw_message
             make_call secret
           end
 
           if boolify(interpolated['receive_text'])
-            message = message.slice 0..160
-            send_message message
+            tw_message = tw_message.slice 0..160
+            send_message tw_message
           end
         end
       end

@@ -44,11 +44,11 @@ module Agents
 
         ### Serializing
 
-        If `use_fields` is set to a comma seperated string and the first received message has a object at the specified `data_path` the generated CSV will only include the given fields.
+        If `use_fields` is set to a comma seperated string and the received message has a object at the specified `data_path` the generated CSV will only include the given fields.
 
         Set `with_header` to `true` to include a field header in the CSV.
 
-        Use [JSONPath](http://goessner.net/articles/JsonPath/) in `data_path` to select with part of the received messages should be serialized.
+        Use [JSONPath](http://goessner.net/articles/JsonPath/) in `data_path` to select with part of the received message should be serialized.
       MD
     end
 
@@ -86,20 +86,20 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       case options['mode']
       when 'parse'
-        parse(incoming_messages)
+        parse(message)
       when 'serialize'
-        serialize(incoming_messages)
+        serialize(message)
       end
     end
 
     private
 
-    def serialize(incoming_messages)
-      mo = interpolated(incoming_messages.first)
-      rows = rows_from_messages(incoming_messages, mo)
+    def serialize(message)
+      mo = interpolated(message)
+      rows = rows_from_message(message, mo)
       csv = CSV.generate(col_sep: separator(mo), force_quotes: true) do |csv|
         if boolify(mo['with_header']) && rows.first.is_a?(Hash)
           if mo['use_fields'].present?
@@ -123,30 +123,26 @@ module Agents
       create_message payload: { mo['data_key'] => csv }
     end
 
-    def rows_from_messages(incoming_messages, mo)
+    def rows_from_message(message, mo)
       [].tap do |rows|
-        incoming_messages.each do |message|
-          data = Utils.value_at(message.payload, mo['data_path'])
-          if data.is_a?(Array) && (data[0].is_a?(Array) || data[0].is_a?(Hash))
-            data.each { |row| rows << row }
-          else
-            rows << data
-          end
+        data = Utils.value_at(message.payload, mo['data_path'])
+        if data.is_a?(Array) && (data[0].is_a?(Array) || data[0].is_a?(Hash))
+          data.each { |row| rows << row }
+        else
+          rows << data
         end
       end
     end
 
-    def parse(incoming_messages)
-      incoming_messages.each do |message|
-        mo = interpolated(message)
-        next unless io = local_get_io(message)
-        if mo['output'] == 'message_per_row'
-          parse_csv(io, mo) do |payload|
-            create_message payload: { mo['data_key'] => payload }
-          end
-        else
-          create_message payload: { mo['data_key'] => parse_csv(io, mo, []) }
+    def parse(message)
+      mo = interpolated(message)
+      return unless io = local_get_io(message)
+      if mo['output'] == 'message_per_row'
+        parse_csv(io, mo) do |payload|
+          create_message payload: { mo['data_key'] => payload }
         end
+      else
+        create_message payload: { mo['data_key'] => parse_csv(io, mo, []) }
       end
     end
 

@@ -36,15 +36,13 @@ module Agents
       }
     end
 
-    def receive(incoming_messages)
-      incoming_messages.sort_by(&:created_at).each do |message|
-        memory['newest_message_created_at'] ||= 0
+    def receive(message)
+      memory['newest_message_created_at'] ||= 0
 
-        if !interpolated['value_path'].present? || Utils.value_at(message.payload, interpolated['value_path']).present?
-          if message.created_at.to_i > memory['newest_message_created_at']
-            memory['newest_message_created_at'] = message.created_at.to_i
-            memory.delete('alerted_at')
-          end
+      if !interpolated['value_path'].present? || Utils.value_at(message.payload, interpolated['value_path']).present?
+        if message.created_at.to_i > memory['newest_message_created_at']
+          memory['newest_message_created_at'] = message.created_at.to_i
+          memory.delete('alerted_at')
         end
       end
     end

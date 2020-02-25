@@ -6,8 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+### Changed
+- Semantics of message delivery got different: agents now process a single
+  message at a time, thus matching transactional boundaries.
+- BREAKING: CSV Agent in 'serialize' mode handles only a single message at a
+  time and can't aggregate multiple 'row' messages into a single CSV. Old
+  behaviour wasn't exactly deterministic, suggested way would be to use
+  `Digest Agent` to aggregate messages and then serialize them with
+  `CSV Agent`.
+
 ### Fixed
 - Update nokogiri (CVE-2020-7595)
+
 
 ## [0.9.6] - 2019-12-09
 ### Added

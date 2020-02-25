@@ -43,14 +43,12 @@ module LiquidInterpolatable
   # Take the given object as "self" in the current interpolation
   # context while running a given block.
   #
-  # The most typical use case for this is to evaluate options for each
-  # received message like this:
+  # The most typical use case for this is to evaluate
+  # options for a received message like this:
   #
-  #     def receive(incoming_messages)
-  #       incoming_messages.each do |message|
-  #         interpolate_with(message) do
+  #     def receive(message)
+  #       interpolate_with(message) do
   #           # Handle each message based on "interpolated" options.
-  #         end
   #       end
   #     end
   def interpolate_with(self_object)

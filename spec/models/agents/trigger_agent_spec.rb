@@ -93,12 +93,12 @@ describe Agents::TriggerAgent do
     it 'handles regex' do
       @message.payload['foo']['bar']['baz'] = 'a222b'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @message.payload['foo']['bar']['baz'] = 'a2b'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -110,17 +110,17 @@ describe Agents::TriggerAgent do
         'path' => 'foo.bar.baz'
       }
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @message.payload['foo']['bar']['baz'] = 'a2b'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
 
       @message.payload['foo']['bar']['baz'] = 'a b'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -133,12 +133,12 @@ describe Agents::TriggerAgent do
       }
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @message.payload['foo']['bar']['baz'] = 'a22b'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -151,17 +151,17 @@ describe Agents::TriggerAgent do
       }
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @message.payload['foo']['bar']['baz'] = 'a3b'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
     it 'puts can extract values into the message based on paths' do
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(Message.last.payload['message']).to eq("I saw 'a2b' from Joe")
     end
 
@@ -171,12 +171,12 @@ describe Agents::TriggerAgent do
       @checker.options['rules'].first['type'] = 'field<value'
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
 
       @checker.options['rules'].first['value'] = 3
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
     end
 
@@ -186,12 +186,12 @@ describe Agents::TriggerAgent do
       @checker.options['rules'].first['type'] = 'field<value'
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
 
       @checker.options['rules'].first['value'] = [4, 3]
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
     end
 
@@ -201,12 +201,12 @@ describe Agents::TriggerAgent do
 
       @checker.options['rules'].first['value'] = 'hello there'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = 'hello world'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -216,12 +216,12 @@ describe Agents::TriggerAgent do
 
       @checker.options['rules'].first['value'] = ['hello there', 'hello universe']
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = ['hello world', 'hello universe']
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -231,13 +231,13 @@ describe Agents::TriggerAgent do
       @checker.options['rules'].first['value'] = 'hello world'
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = 'hello there'
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -247,13 +247,13 @@ describe Agents::TriggerAgent do
       @checker.options['rules'].first['value'] = ['hello world', 'hello world']
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = ['hello there', 'hello world']
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -263,19 +263,19 @@ describe Agents::TriggerAgent do
       @checker.options['rules'].first['value'] = ['hello world', 'hello world']
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = ['hello there', 'hello world']
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = ['hello there', 'hello here']
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
     end
 
@@ -285,17 +285,17 @@ describe Agents::TriggerAgent do
       @checker.options['rules'].first['path'] = 'hello'
       @checker.options['rules'].first['value'] = 'world'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change { Message.count }.by(1)
 
       @checker.options['rules'].first['path'] = 'foo'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
 
       @checker.options['rules'].first['value'] = 'hi'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to change { Message.count }
     end
 
@@ -309,7 +309,9 @@ describe Agents::TriggerAgent do
       message3.payload = { 'foo' => { 'bar' => { 'baz' => 'a222b' } } }
 
       expect {
-        @checker.receive([@message, message2, message3])
+        @checker.receive(@message)
+        @checker.receive(message2)
+        @checker.receive(message3)
       }.to change { Message.count }.by(2)
     end
 
@@ -326,13 +328,13 @@ describe Agents::TriggerAgent do
         @message.payload['foo']['bing'] = '5'
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.to change { Message.count }.by(1)
 
         @message.payload['foo']['bing'] = '2'
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.not_to change { Message.count }
       end
 
@@ -342,13 +344,13 @@ describe Agents::TriggerAgent do
         @message.payload['foo']['bing'] = '5' # 5 > 4
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.to change { Message.count }.by(1)
 
         @message.payload['foo']['bing'] = '2' # 2 !> 4
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.to change { Message.count }         # but the first one matches
 
         @checker.options['must_match'] = '2'
@@ -356,13 +358,13 @@ describe Agents::TriggerAgent do
         @message.payload['foo']['bing'] = '5' # 5 > 4
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.to change { Message.count }.by(1)
 
         @message.payload['foo']['bing'] = '2' # 2 !> 4
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.not_to change { Message.count }     # only 1 matches, we needed 2
       end
     end
@@ -380,12 +382,12 @@ describe Agents::TriggerAgent do
         @message.payload['message'] = 'hi there'
 
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.not_to change { Message.count }
 
         @checker.options['rules'].first['value'] = 6
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.to change { Message.count }.by(1)
 
         expect(@checker.most_recent_message.payload).to eq(@message.payload)
@@ -394,7 +396,7 @@ describe Agents::TriggerAgent do
       it "merges 'message' into the original message when present" do
         @checker.options['rules'].first['value'] = 6
 
-        @checker.receive([@message])
+        @checker.receive(@message)
 
         expect(@checker.most_recent_message.payload).to eq(@message.payload.merge(message: "I saw '5' from Joe"))
       end

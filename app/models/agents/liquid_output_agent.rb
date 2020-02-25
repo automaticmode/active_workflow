@@ -136,16 +136,14 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       return unless ['merge messages', 'last message in'].include?(mode)
       memory['last_message'] ||= {}
-      incoming_messages.each do |message|
-        case mode
-        when 'merge messages'
-          memory['last_message'] = memory['last_message'].merge(message.payload)
-        else
-          memory['last_message'] = message.payload
-        end
+      case mode
+      when 'merge messages'
+        memory['last_message'] = memory['last_message'].merge(message.payload)
+      else
+        memory['last_message'] = message.payload
       end
     end
 

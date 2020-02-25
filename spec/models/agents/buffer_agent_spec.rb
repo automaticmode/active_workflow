@@ -63,28 +63,34 @@ describe Agents::BufferAgent do
   describe '#receive' do
     it 'records Messages' do
       expect(agent.memory).to be_empty
-      agent.receive([first_message])
+      agent.receive(first_message)
       expect(agent.memory).not_to be_empty
-      agent.receive([second_message])
+      agent.receive(second_message)
       expect(agent.memory['message_ids']).to eq [first_message.id, second_message.id]
     end
 
     it "keeps the newest when 'keep' is set to 'newest'" do
       expect(agent.options['keep']).to eq 'newest'
-      agent.receive([first_message, second_message, third_message])
+      agent.receive(first_message)
+      agent.receive(second_message)
+      agent.receive(third_message)
       expect(agent.memory['message_ids']).to eq [second_message.id, third_message.id]
     end
 
     it "keeps the oldest when 'keep' is set to 'oldest'" do
       agent.options['keep'] = 'oldest'
-      agent.receive([first_message, second_message, third_message])
+      agent.receive(first_message)
+      agent.receive(second_message)
+      agent.receive(third_message)
       expect(agent.memory['message_ids']).to eq [first_message.id, second_message.id]
     end
   end
 
   describe '#check' do
     it 're-emits Messages and clears the memory' do
-      agent.receive([first_message, second_message, third_message])
+      agent.receive(first_message)
+      agent.receive(second_message)
+      agent.receive(third_message)
       expect(agent.memory['message_ids']).to eq [second_message.id, third_message.id]
 
       expect {
@@ -100,7 +106,9 @@ describe Agents::BufferAgent do
 
     it 're-emits max_emitted_messages and clears just them from the memory' do
       agent.options['max_emitted_messages'] = 1
-      agent.receive([first_message, second_message, third_message])
+      agent.receive(first_message)
+      agent.receive(second_message)
+      agent.receive(third_message)
       expect(agent.memory['message_ids']).to eq [second_message.id, third_message.id]
 
       expect {

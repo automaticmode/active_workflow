@@ -47,12 +47,10 @@ module Agents
       }
     end
 
-    def receive(incoming_messages)
-      incoming_messages.sort_by(&:created_at).each do |message|
-        group = group_for(message)
-        remember group, message
-        check_for_peak group, message
-      end
+    def receive(message)
+      group = group_for(message)
+      remember group, message
+      check_for_peak group, message
     end
 
     private

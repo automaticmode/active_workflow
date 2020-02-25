@@ -32,11 +32,9 @@ module Agents
       control!
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        interpolate_with(message) do
-          control!
-        end
+    def receive(message)
+      interpolate_with(message) do
+        control!
       end
     end
   end

@@ -35,11 +35,9 @@ module Agents
       errors.add(:base, "The 'data_key' options is required.")
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        next unless (io = get_io(message))
-        create_message payload: { interpolated['data_key'] => io.read }
-      end
+    def receive(message)
+      return unless (io = get_io(message))
+      create_message payload: { interpolated['data_key'] => io.read }
     end
   end
 end

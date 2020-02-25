@@ -1080,7 +1080,7 @@ describe Agents::WebsiteAgent do
           @checker.options = @valid_options.merge(
             'url_from_message' => 'http://example.org/?url={{url | uri_escape}}'
           )
-          @checker.receive([@message])
+          @checker.receive(@message)
 
           expect(stub).to have_been_requested
         end
@@ -1088,7 +1088,7 @@ describe Agents::WebsiteAgent do
         it "should use the Agent's `url` option if url_from_message is not set" do
           expect {
             @checker.options = @valid_options
-            @checker.receive([@message])
+            @checker.receive(@message)
           }.to change { Message.count }.by(1)
         end
 
@@ -1099,7 +1099,7 @@ describe Agents::WebsiteAgent do
           @checker.options = @valid_options.merge(
             'url_from_message' => ['http://example.org/?url={{url | uri_escape}}', 'http://google.org/?url={{url | uri_escape}}']
           )
-          @checker.receive([@message])
+          @checker.receive(@message)
 
           expect(stub1).to have_been_requested
           expect(stub2).to have_been_requested
@@ -1121,7 +1121,7 @@ describe Agents::WebsiteAgent do
               }
             }
             @checker.options = @valid_options
-            @checker.receive([@message])
+            @checker.receive(@message)
           }.to change { Message.count }.by(1)
 
           expect(Message.last.payload).to eq({
@@ -1134,7 +1134,7 @@ describe Agents::WebsiteAgent do
           @checker.options['mode'] = 'merge'
           @message.payload.delete('url')
           expect {
-            @checker.receive([@message])
+            @checker.receive(@message)
           }.to change { Message.count }.by(1)
           expect(Message.last.payload['title']).to eq('Evolving')
           expect(Message.last.payload['link']).to eq('Random')
@@ -1150,7 +1150,7 @@ describe Agents::WebsiteAgent do
               )
             }
             @checker.options = @valid_options
-            @checker.receive([@message])
+            @checker.receive(@message)
           }.to change { Message.count }.by(1)
 
           expect(Message.last.payload['response_info']).to eq('The reponse from XKCD was 200 OK.')
@@ -1160,7 +1160,7 @@ describe Agents::WebsiteAgent do
           expect {
             @checker.options = @valid_options
             @checker.options[:mode] = 'merge'
-            @checker.receive([@message])
+            @checker.receive(@message)
           }.to change { Message.count }.by(1)
           last_payload = Message.last.payload
           expect(last_payload['link']).to eq('Random')
@@ -1171,7 +1171,7 @@ describe Agents::WebsiteAgent do
 
           @checker.options['extract']['nav_links'] = { 'css' => '#topLeft li', 'value' => 'normalize-space(.)', 'array' => 'true' }
           expect {
-            @checker.receive([@message])
+            @checker.receive(@message)
           }.to change { Message.count }.by(1)
           expect(Message.last.payload['nav_links']).to eq(['Archive', 'What If?', 'Blag', 'Store', 'About'])
         end
@@ -1213,7 +1213,7 @@ describe Agents::WebsiteAgent do
 
           it 'should extract from the message data in the incoming message payload' do
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to change { Message.count }.by(1)
             expect(@checker.messages.last.payload).to eq({ 'value' => 'world', 'url' => 'http://example.com/world', 'type' => 'application/json', 'status' => 200 })
           end
@@ -1222,7 +1222,7 @@ describe Agents::WebsiteAgent do
             @checker.options['mode'] = 'merge'
 
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to change { Message.count }.by(1)
             expect(@checker.messages.last.payload).to eq(@message.payload.merge('value' => 'world', 'url' => 'http://example.com/world', 'type' => 'application/json', 'status' => 200))
           end
@@ -1231,7 +1231,7 @@ describe Agents::WebsiteAgent do
             @message.payload[:status] = '201'
             @message.payload[:headers] = [['Content-Type', 'application/rss+xml']]
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to change { Message.count }.by(1)
             expect(@checker.messages.last.payload).to eq({ 'value' => 'world', 'url' => 'http://example.com/world', 'type' => 'application/rss+xml', 'status' => 201 })
           end
@@ -1240,7 +1240,7 @@ describe Agents::WebsiteAgent do
             @message.payload[:status] = 'ok'
             @message.payload[:headers] = ['Content-Type', 'Content-Length']
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to change { Message.count }.by(1)
             expect(@checker.messages.last.payload).to eq({ 'value' => 'world', 'url' => 'http://example.com/world', 'type' => '', 'status' => nil })
           end
@@ -1251,7 +1251,7 @@ describe Agents::WebsiteAgent do
             )
 
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to_not change { Message.count }
 
             expect(@checker.logs.last.message).to match(/No data was found in the Message payload using the template {{ some_object\.mistake }}/)
@@ -1261,7 +1261,7 @@ describe Agents::WebsiteAgent do
             @message.update_attribute :payload, @message.payload.merge('some_object' => { 'some_data' => '{invalid json' })
 
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to_not change { Message.count }
 
             expect(@checker.logs.last.message).to match(/Error when handling message data:/)
@@ -1292,7 +1292,7 @@ describe Agents::WebsiteAgent do
 
           it 'should extract from the message data in the incoming message payload' do
             expect {
-              @checker.receive([@message])
+              @checker.receive(@message)
             }.to change { Message.count }.by(1)
             expect(@checker.messages.last.payload).to eq({ 'title' => 'Title!', 'body' => 'Body!' })
           end

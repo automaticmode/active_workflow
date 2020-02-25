@@ -5,7 +5,6 @@ module Agents
 
     cannot_be_scheduled!
     cannot_create_messages!
-    no_bulk_receive!
 
     gem_dependency_check { defined?(Slack) }
 
@@ -68,19 +67,17 @@ module Agents
       opts.select { |key, _value| ALLOWED_PARAMS.include? key }.symbolize_keys
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        opts = interpolated(message)
-        slack_opts = filter_options(opts)
-        if opts[:icon].present?
-          if /^:/.match?(opts[:icon])
-            slack_opts[:icon_emoji] = opts[:icon]
-          else
-            slack_opts[:icon_url] = opts[:icon]
-          end
+    def receive(message)
+      opts = interpolated(message)
+      slack_opts = filter_options(opts)
+      if opts[:icon].present?
+        if /^:/.match?(opts[:icon])
+          slack_opts[:icon_emoji] = opts[:icon]
+        else
+          slack_opts[:icon_url] = opts[:icon]
         end
-        slack_notifier.ping opts[:message], slack_opts
       end
+      slack_notifier.ping opts[:message], slack_opts
     end
   end
 end

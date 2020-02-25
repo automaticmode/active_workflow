@@ -41,10 +41,8 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        handle(interpolated(message), message)
-      end
+    def receive(message)
+      handle(interpolated(message), message)
     end
 
     private

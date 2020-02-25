@@ -201,7 +201,7 @@ describe Agents::HumanTaskAgent do
 
     it 'should create HITs based on messages' do
       mock(@checker).create_basic_hit(messages(:bob_website_agent_message)).times(1)
-      @checker.receive([messages(:bob_website_agent_message)])
+      @checker.receive(messages(:bob_website_agent_message))
     end
   end
 

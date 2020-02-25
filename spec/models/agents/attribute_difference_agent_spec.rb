@@ -58,39 +58,39 @@ describe Agents::AttributeDifferenceAgent do
 
     it 'creates messages when memory is empty' do
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:rate_diff]).to eq(0)
     end
 
     it 'creates message with extra attribute for integer_difference' do
-      @checker.receive([@message])
+      @checker.receive(@message)
       message = create_message('6.5')
 
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:rate_diff]).to eq(1)
     end
 
     it 'creates message with extra attribute for decimal_difference' do
       @checker.options[:method] = 'decimal_difference'
-      @checker.receive([@message])
+      @checker.receive(@message)
       message = create_message('6.4')
 
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:rate_diff]).to eq(0.9)
     end
 
     it 'creates message with extra attribute for percentage_change' do
       @checker.options[:method] = 'percentage_change'
-      @checker.receive([@message])
+      @checker.receive(@message)
       message = create_message('9')
 
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:rate_diff]).to eq(63.636)
     end
@@ -98,11 +98,11 @@ describe Agents::AttributeDifferenceAgent do
     it 'creates message with extra attribute for percentage_change with the correct rounding' do
       @checker.options[:method] = 'percentage_change'
       @checker.options[:decimal_precision] = 5
-      @checker.receive([@message])
+      @checker.receive(@message)
       message = create_message('9')
 
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:rate_diff]).to eq(63.63636)
     end

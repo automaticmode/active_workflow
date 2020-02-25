@@ -36,7 +36,7 @@ describe Agents::ReadFileAgent do
       message = Message.new(payload: { file_pointer: { agent_id: 111, file: 'test' } })
       io_mock = mock()
       mock(@checker).get_io(message) { StringIO.new('testdata') }
-      expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+      expect { @checker.receive(message) }.to change(Message, :count).by(1)
       expect(Message.last.payload).to eq('data' => 'testdata')
     end
   end

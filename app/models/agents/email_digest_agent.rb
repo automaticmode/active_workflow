@@ -34,11 +34,9 @@ module Agents
       }
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       memory['messages'] ||= []
-      incoming_messages.each do |message|
-        memory['messages'] << message.id
-      end
+      memory['messages'] << message.id
     end
 
     def check

@@ -91,7 +91,7 @@ describe Agents::EvernoteAgent do
 
       it 'adds a note for any payload it receives' do
         stub(en_note_store).findNotesMetadata { OpenStruct.new(notes: []) }
-        Agents::EvernoteAgent.async_receive(@agent.id, [@message.id])
+        Agents::EvernoteAgent.async_receive(@agent.id, @message.id)
 
         expect(en_note_store.notes.size).to eq(1)
         expect(en_note_store.notes.first.title).to eq('xkcd Survey')
@@ -121,7 +121,7 @@ describe Agents::EvernoteAgent do
         end
 
         it 'updates the existing note' do
-          Agents::EvernoteAgent.async_receive(@agent.id, [@message.id])
+          Agents::EvernoteAgent.async_receive(@agent.id, @message.id)
 
           expect(en_note_store.notes.size).to eq(2)
           expect(en_note_store.getNote(1).tagNames).to eq(%w[funny data])
@@ -137,7 +137,7 @@ describe Agents::EvernoteAgent do
 
         it 'creates an message with note content wrapped in ENML' do
           stub(en_note_store).findNotesMetadata { OpenStruct.new(notes: []) }
-          Agents::EvernoteAgent.async_receive(@agent.id, [@message.id])
+          Agents::EvernoteAgent.async_receive(@agent.id, @message.id)
 
           payload = @agent.messages.first.payload
 

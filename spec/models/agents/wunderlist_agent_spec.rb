@@ -54,7 +54,7 @@ describe Agents::WunderlistAgent do
   describe '#receive' do
     it 'send a message to the hipchat' do
       stub_request(:post, 'https://a.wunderlist.com/api/v1/tasks')
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(WebMock).to have_requested(:post, 'https://a.wunderlist.com/api/v1/tasks')
     end
   end

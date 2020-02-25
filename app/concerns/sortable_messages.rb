@@ -95,13 +95,11 @@ module SortableMessages
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       return super unless messages_order || include_sort_info?
-      # incoming messages should be processed sequentially
-      incoming_messages.each do |message|
-        sorting_messages do
-          super([message])
-        end
+
+      sorting_messages do
+        super(message)
       end
     end
 

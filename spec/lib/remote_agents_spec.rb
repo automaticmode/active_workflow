@@ -170,7 +170,7 @@ RSpec.describe RemoteAgents do
         describe 'receive' do
           let(:payload) { { 'text' => 'Payload' } }
           let(:message) { Message.create(payload: payload) }
-          let(:subject) { agent.receive([message]) }
+          let(:subject) { agent.receive(message) }
 
           let!(:remote) do
             stub_request(:post, url).with do |req|

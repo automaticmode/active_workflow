@@ -95,7 +95,7 @@ class Agent < ApplicationRecord
     {}
   end
 
-  def receive(messages)
+  def receive(message)
     # Implement me in your subclass of Agent.
   end
 
@@ -238,10 +238,6 @@ class Agent < ApplicationRecord
     self.class.can_dry_run?
   end
 
-  def no_bulk_receive?
-    self.class.no_bulk_receive?
-  end
-
   def log(message, options = {})
     AgentLog.log_for_agent(self, message, options)
   end
@@ -371,14 +367,6 @@ class Agent < ApplicationRecord
       !!@can_dry_run
     end
 
-    def no_bulk_receive!
-      @no_bulk_receive = true
-    end
-
-    def no_bulk_receive?
-      !!@no_bulk_receive
-    end
-
     def gem_dependency_check
       @gem_dependencies_checked = true
       @gem_dependencies_met = yield
@@ -424,11 +412,7 @@ class Agent < ApplicationRecord
           agent.update_attribute :last_checked_message_id, message_ids.max
           # rubocop:enable Rails/SkipsModelValidations
 
-          if agent.no_bulk_receive?
-            message_ids.each { |message_id| Agent.async_receive(agent.id, [message_id]) }
-          else
-            Agent.async_receive(agent.id, message_ids)
-          end
+          message_ids.each { |message_id| Agent.async_receive(agent.id, message_id) }
         end
 
         {
@@ -440,8 +424,8 @@ class Agent < ApplicationRecord
 
     # This method will enqueue an AgentReceiveJob job. It accepts Agent and Message ids instead of a literal ActiveRecord
     # models because it is preferable to serialize jobs with ids.
-    def async_receive(agent_id, message_ids)
-      AgentReceiveJob.perform_later(agent_id, message_ids)
+    def async_receive(agent_id, message_id)
+      AgentReceiveJob.perform_later(agent_id, message_id)
     end
 
     # Given a schedule name, run `check` via `bulk_check` on all Agents with that schedule.

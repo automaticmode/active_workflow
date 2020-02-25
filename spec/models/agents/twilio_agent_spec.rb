@@ -36,7 +36,9 @@ describe Agents::TwilioAgent do
       message2.payload = { message: 'Some other message', to: 987_654 }
       message2.save!
 
-      @checker.receive([@message, message1, message2])
+      @checker.receive(@message)
+      @checker.receive(message1)
+      @checker.receive(message2)
       expect(@message_calls).to eq([{ from: 'x', to: '54321', body: 'Looks like its going to rain' },
                                     { from: 'x', to: '12345', body: 'Some message' },
                                     { from: 'x', to: '987654', body: 'Some other message' }])
@@ -44,13 +46,13 @@ describe Agents::TwilioAgent do
 
     it 'should check if receive_text is working fine' do
       @checker.options[:receive_text] = 'false'
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(@message_calls).to be_empty
     end
 
     it 'should check if receive_call is working fine' do
       @checker.options[:receive_call] = 'true'
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(@checker.memory[:pending_calls]).not_to eq({})
     end
   end

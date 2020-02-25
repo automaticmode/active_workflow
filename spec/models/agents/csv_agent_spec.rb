@@ -60,13 +60,13 @@ describe Agents::CsvAgent do
       context 'output' do
         it 'creates one message per row' do
           @checker.options['output'] = 'message_per_row'
-          expect { @checker.receive([with_headers]) }.to change(Message, :count).by(2)
+          expect { @checker.receive(with_headers) }.to change(Message, :count).by(2)
           expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '2', 'two' => '3' })
         end
 
         it 'creates one message per file' do
           @checker.options['output'] = 'message_per_file'
-          expect { @checker.receive([with_headers]) }.to change(Message, :count).by(1)
+          expect { @checker.receive(with_headers) }.to change(Message, :count).by(1)
           expect(Message.last.payload).to eq(@checker.options['data_key'] => [{ 'one' => '1', 'two' => '2' }, { 'one' => '2', 'two' => '3' }])
         end
       end
@@ -74,14 +74,14 @@ describe Agents::CsvAgent do
       context 'with_header' do
         it 'works without headers' do
           @checker.options['with_header'] = 'false'
-          expect { @checker.receive([without_headers]) }.to change(Message, :count).by(2)
+          expect { @checker.receive(without_headers) }.to change(Message, :count).by(2)
           expect(Message.last.payload).to eq({ @checker.options['data_key'] => %w[2 3] })
         end
 
         it 'works without headers and message_per_file' do
           @checker.options['with_header'] = 'false'
           @checker.options['output'] = 'message_per_file'
-          expect { @checker.receive([without_headers]) }.to change(Message, :count).by(1)
+          expect { @checker.receive(without_headers) }.to change(Message, :count).by(1)
           expect(Message.last.payload).to eq({ @checker.options['data_key'] => [%w[1 2], %w[2 3]] })
         end
       end
@@ -89,7 +89,7 @@ describe Agents::CsvAgent do
       context 'use_fields' do
         it 'extracts the specified columns' do
           @checker.options['use_fields'] = 'one'
-          expect { @checker.receive([with_headers]) }.to change(Message, :count).by(2)
+          expect { @checker.receive(with_headers) }.to change(Message, :count).by(2)
           expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '2' })
         end
       end
@@ -98,7 +98,7 @@ describe Agents::CsvAgent do
         it 'can receive the CSV via a regular message' do
           @checker.options['data_path'] = '$.data'
           message = Message.new(payload: { 'data' => "one,two\r\n1,2\r\n2,3" })
-          expect { @checker.receive([message]) }.to change(Message, :count).by(2)
+          expect { @checker.receive(message) }.to change(Message, :count).by(2)
           expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '2', 'two' => '3' })
         end
       end
@@ -107,26 +107,26 @@ describe Agents::CsvAgent do
     context 'handling different CSV formats' do
       it 'works with windows line endings' do
         message = message_with_contents("one,two\r\n1,2\r\n2,3")
-        expect { @checker.receive([message]) }.to change(Message, :count).by(2)
+        expect { @checker.receive(message) }.to change(Message, :count).by(2)
         expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '2', 'two' => '3' })
       end
 
       it 'works with OSX line endings' do
         message = message_with_contents("one,two\r1,2\r2,3")
-        expect { @checker.receive([message]) }.to change(Message, :count).by(2)
+        expect { @checker.receive(message) }.to change(Message, :count).by(2)
         expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '2', 'two' => '3' })
       end
 
       it 'handles quotes correctly' do
         message = message_with_contents("\"one\",\"two\"\n1,2\n\"\"\"2, two\",3")
-        expect { @checker.receive([message]) }.to change(Message, :count).by(2)
+        expect { @checker.receive(message) }.to change(Message, :count).by(2)
         expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '"2, two', 'two' => '3' })
       end
 
       it 'works with tab seperated csv' do
         message = message_with_contents("one\ttwo\r\n1\t2\r\n2\t3")
         @checker.options['separator'] = '\\t'
-        expect { @checker.receive([message]) }.to change(Message, :count).by(2)
+        expect { @checker.receive(message) }.to change(Message, :count).by(2)
         expect(Message.last.payload).to eq(@checker.options['data_key'] => { 'one' => '2', 'two' => '3' })
       end
     end
@@ -140,41 +140,34 @@ describe Agents::CsvAgent do
 
       it 'writes headers when with_header is true' do
         message = Message.new(payload: { 'data' => { 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' } })
-        expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+        expect { @checker.receive(message) }.to change(Message, :count).by(1)
         expect(Message.last.payload).to eq('data' => "\"key\",\"key2\",\"key3\"\n\"value\",\"value2\",\"value3\"\n")
-      end
-
-      it 'writes one row per received message' do
-        message = Message.new(payload: { 'data' => { 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' } })
-        message2 = Message.new(payload: { 'data' => { 'key' => '2value', 'key2' => '2value2', 'key3' => '2value3' } })
-        expect { @checker.receive([message, message2]) }.to change(Message, :count).by(1)
-        expect(Message.last.payload).to eq('data' => "\"key\",\"key2\",\"key3\"\n\"value\",\"value2\",\"value3\"\n\"2value\",\"2value2\",\"2value3\"\n")
       end
 
       it 'accepts multiple rows per message' do
         message = Message.new(payload: { 'data' => [{ 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' }, { 'key' => '2value', 'key2' => '2value2', 'key3' => '2value3' }] })
-        expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+        expect { @checker.receive(message) }.to change(Message, :count).by(1)
         expect(Message.last.payload).to eq('data' => "\"key\",\"key2\",\"key3\"\n\"value\",\"value2\",\"value3\"\n\"2value\",\"2value2\",\"2value3\"\n")
       end
 
       it 'does not write the headers when with_header is false' do
         @checker.options['with_header'] = 'false'
         message = Message.new(payload: { 'data' => { 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' } })
-        expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+        expect { @checker.receive(message) }.to change(Message, :count).by(1)
         expect(Message.last.payload).to eq('data' => "\"value\",\"value2\",\"value3\"\n")
       end
 
       it 'only serialize the keys specified in use_fields' do
         @checker.options['use_fields'] = 'key2, key3'
         message = Message.new(payload: { 'data' => { 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' } })
-        expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+        expect { @checker.receive(message) }.to change(Message, :count).by(1)
         expect(Message.last.payload).to eq('data' => "\"key2\",\"key3\"\n\"value2\",\"value3\"\n")
       end
 
       it 'respects the order of use_fields' do
         @checker.options['use_fields'] = 'key3, key'
         message = Message.new(payload: { 'data' => { 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' } })
-        expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+        expect { @checker.receive(message) }.to change(Message, :count).by(1)
         expect(Message.last.payload).to eq('data' => "\"key3\",\"key\"\n\"value3\",\"value\"\n")
       end
 
@@ -182,22 +175,14 @@ describe Agents::CsvAgent do
         @checker.options['with_header'] = 'false'
         @checker.options['use_fields'] = 'key2, key3'
         message = Message.new(payload: { 'data' => { 'key' => 'value', 'key2' => 'value2', 'key3' => 'value3' } })
-        expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+        expect { @checker.receive(message) }.to change(Message, :count).by(1)
         expect(Message.last.payload).to eq('data' => "\"value2\",\"value3\"\n")
       end
 
       context 'arrays' do
-        it 'does not write a header' do
-          @checker.options['with_header'] = 'false'
-          message = Message.new(payload: { 'data' => %w[value1 value2] })
-          message2 = Message.new(payload: { 'data' => %w[value3 value4] })
-          expect { @checker.receive([message, message2]) }.to change(Message, :count).by(1)
-          expect(Message.last.payload).to eq('data' => "\"value1\",\"value2\"\n\"value3\",\"value4\"\n")
-        end
-
         it 'handles nested arrays' do
           message = Message.new(payload: { 'data' => [%w[value1 value2], %w[value3 value4]] })
-          expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+          expect { @checker.receive(message) }.to change(Message, :count).by(1)
           expect(Message.last.payload).to eq('data' => "\"value1\",\"value2\"\n\"value3\",\"value4\"\n")
         end
       end

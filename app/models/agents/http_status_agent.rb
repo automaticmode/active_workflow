@@ -59,12 +59,10 @@ module Agents
       check_this_url interpolated[:url], header_array(interpolated[:headers_to_save])
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        interpolate_with(message) do
-          check_this_url interpolated[:url],
-                         header_array(interpolated[:headers_to_save])
-        end
+    def receive(message)
+      interpolate_with(message) do
+        check_this_url interpolated[:url],
+                       header_array(interpolated[:headers_to_save])
       end
     end
 

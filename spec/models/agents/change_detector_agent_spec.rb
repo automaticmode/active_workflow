@@ -48,7 +48,7 @@ describe Agents::ChangeDetectorAgent do
     it 'creates messages when memory is empty' do
       @message.payload[:output] = '2014-07-01'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:command]).to eq(@message.payload[:command])
       expect(Message.last.payload[:output]).to eq(@message.payload[:output])
@@ -56,21 +56,21 @@ describe Agents::ChangeDetectorAgent do
 
     it 'creates messages when new message changed' do
       @message.payload[:output] = '2014-07-01'
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       message = create_message('2014-08-01')
 
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
     end
 
     it 'does not create message when no change' do
       @message.payload[:output] = '2014-07-01'
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(0)
     end
   end
@@ -86,48 +86,48 @@ describe Agents::ChangeDetectorAgent do
     end
 
     it 'creates messages when the value drops' do
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       message = create_message('90')
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
       expect(@checker.memory['last_property']).to eq '90'
     end
 
     it 'does not create message when the value does not change' do
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       message = create_message('100')
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.not_to change(Message, :count)
       expect(@checker.memory['last_property']).to eq '100'
     end
 
     it 'does not create message when the value rises' do
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       message = create_message('110')
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.not_to change(Message, :count)
       expect(@checker.memory['last_property']).to eq '100'
     end
 
     it 'does not create message when the value is blank' do
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       message = create_message('')
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.not_to change(Message, :count)
       expect(@checker.memory['last_property']).to eq '100'
     end
 
     it 'creates messages when memory is empty' do
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(@checker.memory['last_property']).to eq '100'
     end

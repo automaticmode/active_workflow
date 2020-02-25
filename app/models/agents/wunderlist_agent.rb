@@ -6,7 +6,6 @@ module Agents
     valid_oauth_providers :wunderlist
 
     cannot_be_scheduled!
-    no_bulk_receive!
 
     gem_dependency_check { Devise.omniauth_providers.include?(:wunderlist) }
 
@@ -40,14 +39,12 @@ module Agents
       errors.add(:base, 'you need to specify the title of the task to create') unless options['title'].present?
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        mo = interpolated(message)
-        title = mo[:title][0..244]
-        log("Creating new task '#{title}' on list #{mo[:list_id]}", inbound_message: message)
-        request_guard do
-          HTTParty.post tasks_url, request_options.merge(body: { title: title, list_id: mo[:list_id].to_i }.to_json)
-        end
+    def receive(message)
+      mo = interpolated(message)
+      title = mo[:title][0..244]
+      log("Creating new task '#{title}' on list #{mo[:list_id]}", inbound_message: message)
+      request_guard do
+        HTTParty.post tasks_url, request_options.merge(body: { title: title, list_id: mo[:list_id].to_i }.to_json)
       end
     end
 

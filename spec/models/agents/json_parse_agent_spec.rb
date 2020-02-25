@@ -37,12 +37,12 @@ describe Agents::JsonParseAgent do
   describe '#receive' do
     it 'parses valid JSON' do
       message = Message.new(payload: { data: '{"test": "data"}' })
-      expect { @checker.receive([message]) }.to change(Message, :count).by(1)
+      expect { @checker.receive(message) }.to change(Message, :count).by(1)
     end
 
     it 'writes to the error log when the JSON could not be parsed' do
       message = Message.new(payload: { data: '{"test": "data}' })
-      expect { @checker.receive([message]) }.to change(AgentLog, :count).by(1)
+      expect { @checker.receive(message) }.to change(AgentLog, :count).by(1)
     end
   end
 end

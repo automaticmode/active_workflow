@@ -43,11 +43,9 @@ module Agents
       errors.add(:base, 'retained_messages must be 0 to 999') unless options['retained_messages'].to_i >= 0 && options['retained_messages'].to_i < 1000
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       memory['queue'] ||= []
-      incoming_messages.each do |message|
-        memory['queue'] << message.id
-      end
+      memory['queue'] << message.id
       if interpolated['retained_messages'].to_i > 0 &&
          memory['queue'].length > interpolated['retained_messages'].to_i
         memory['queue'].shift(memory['queue'].length - interpolated['retained_messages'].to_i)

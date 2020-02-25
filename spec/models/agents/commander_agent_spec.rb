@@ -91,7 +91,7 @@ describe Agents::CommanderAgent do
             'price' => '198.0',
             'agent_id' => real_target.id
           }
-          agent.receive([message])
+          agent.receive(message)
         }.to change {
           real_target.options['rules'][0]['value']
         }.from('200.0').to('198.0') & not_change {

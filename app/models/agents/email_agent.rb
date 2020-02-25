@@ -4,7 +4,6 @@ module Agents
 
     cannot_be_scheduled!
     cannot_create_messages!
-    no_bulk_receive!
 
     description <<-MD
       The Email Agent sends any messages it receives via email immediately.
@@ -40,24 +39,22 @@ module Agents
       }
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        recipients(message.payload).each do |recipient|
-          begin
-            SystemMailer.send_message(
-              to: recipient,
-              from: interpolated(message)['from'],
-              subject: interpolated(message)['subject'],
-              headline: interpolated(message)['headline'],
-              body: interpolated(message)['body'],
-              content_type: interpolated(message)['content_type'],
-              groups: [present(message.payload)]
-            ).deliver_now
-            log "Sent mail to #{recipient} with message #{message.id}"
-          rescue => e
-            error("Error sending mail to #{recipient} with message #{message.id}: #{e.message}")
-            raise
-          end
+    def receive(message)
+      recipients(message.payload).each do |recipient|
+        begin
+          SystemMailer.send_message(
+            to: recipient,
+            from: interpolated(message)['from'],
+            subject: interpolated(message)['subject'],
+            headline: interpolated(message)['headline'],
+            body: interpolated(message)['body'],
+            content_type: interpolated(message)['content_type'],
+            groups: [present(message.payload)]
+          ).deliver_now
+          log "Sent mail to #{recipient} with message #{message.id}"
+        rescue => e
+          error("Error sending mail to #{recipient} with message #{message.id}: #{e.message}")
+          raise
         end
       end
     end

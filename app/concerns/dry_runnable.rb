@@ -26,7 +26,7 @@ module DryRunnable
       @dry_run_logger.info('Dry Run started')
       if message
         raise 'This agent cannot receive an message!' unless can_receive_messages?
-        receive([message])
+        receive(message)
       else
         check
       end

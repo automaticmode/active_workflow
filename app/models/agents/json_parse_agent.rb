@@ -36,13 +36,11 @@ module Agents
       errors.add(:base, 'data_key needs to be present') if options['data_key'].blank?
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        mo = interpolated(message)
-        create_message payload: { mo['data_key'] => JSON.parse(mo['data']) }
-      rescue JSON::JSONError => e
-        error("Could not parse JSON: #{e.class} '#{e.message}'")
-      end
+    def receive(message)
+      mo = interpolated(message)
+      create_message payload: { mo['data_key'] => JSON.parse(mo['data']) }
+    rescue JSON::JSONError => e
+      error("Could not parse JSON: #{e.class} '#{e.message}'")
     end
   end
 end

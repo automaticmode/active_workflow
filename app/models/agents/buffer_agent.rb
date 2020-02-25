@@ -55,16 +55,14 @@ module Agents
     end
     # rubocop:enable Metrics/CyclomaticComplexity
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        memory['message_ids'] ||= []
-        memory['message_ids'] << message.id
-        if memory['message_ids'].length > interpolated['max_messages'].to_i
-          if options['keep'] == 'newest'
-            memory['message_ids'].shift
-          else
-            memory['message_ids'].pop
-          end
+    def receive(message)
+      memory['message_ids'] ||= []
+      memory['message_ids'] << message.id
+      if memory['message_ids'].length > interpolated['max_messages'].to_i
+        if options['keep'] == 'newest'
+          memory['message_ids'].shift
+        else
+          memory['message_ids'].pop
         end
       end
     end

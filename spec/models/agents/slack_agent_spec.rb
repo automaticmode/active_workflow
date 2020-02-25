@@ -67,7 +67,7 @@ describe Agents::SlackAgent do
                        username: @message.payload[:username])
       end
 
-      expect { @checker.receive([@message]) }.not_to raise_error
+      expect { @checker.receive(@message) }.not_to raise_error
     end
   end
 end

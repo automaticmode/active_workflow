@@ -87,7 +87,8 @@ describe Agents::PostAgent do
 
       expect {
         expect {
-          @checker.receive([@message, message1])
+          @checker.receive(@message)
+          @checker.receive(message1)
         }.to change { @sent_requests[:post].length }.by(2)
       }.not_to change { @sent_requests[:get].length }
 
@@ -100,7 +101,7 @@ describe Agents::PostAgent do
 
       expect {
         expect {
-          @checker.receive([@message])
+          @checker.receive(@message)
         }.to change { @sent_requests[:get].length }.by(1)
       }.not_to change { @sent_requests[:post].length }
 
@@ -114,7 +115,7 @@ describe Agents::PostAgent do
         'some_param' => 'some_value',
         'another_param' => 'another_value'
       }
-      @checker.receive([@message])
+      @checker.receive(@message)
       uri = @sent_requests[:get].first.uri
       # parameters are alphabetically sorted by Faraday
       expect(uri.request_uri).to eq('/a/path?another_param=another_value&default=value&existing_param=existing_value&some_param=some_value')
@@ -125,7 +126,7 @@ describe Agents::PostAgent do
       @checker.options['payload'] = {
         'key' => 'it said: {{ someotherkey.somekey }}'
       }
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(@sent_requests[:post].first.data).to eq({ 'key' => 'it said: value' }.to_query)
     end
 
@@ -135,7 +136,7 @@ describe Agents::PostAgent do
         'domain' => 'google.com',
         'variable' => 'a_variable'
       }
-      @checker.receive([@message])
+      @checker.receive(@message)
       uri = @sent_requests[:post].first.uri
       expect(uri.scheme).to eq('https')
       expect(uri.host).to eq('google.com')
@@ -150,7 +151,7 @@ describe Agents::PostAgent do
       @message.payload = {
         'variable' => 'a_variable'
       }
-      @checker.receive([@message])
+      @checker.receive(@message)
       headers = @sent_requests[:post].first.headers
       expect(headers['Foo']).to eq('a_variable')
     end
@@ -170,7 +171,7 @@ describe Agents::PostAgent do
       io_mock = mock()
       mock(@checker).get_io(message) { StringIO.new('testdata') }
       @checker.options['no_merge'] = true
-      @checker.receive([message])
+      @checker.receive(message)
     end
   end
 
@@ -300,7 +301,7 @@ describe Agents::PostAgent do
           end
 
           it 'emits the received message' do
-            @checker.receive([@message])
+            @checker.receive(@message)
             @checker.check
             expect(@checker.messages.last.payload['somekey']).to eq('somevalue')
             expect(@checker.messages.last.payload['someotherkey']).to eq({ 'somekey' => 'value' })

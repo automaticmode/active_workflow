@@ -49,9 +49,9 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       log_errors do
-        execute_js('receive', incoming_messages)
+        execute_js('receive', message)
       end
     end
 
@@ -66,10 +66,8 @@ module Agents
         };
 
         Agent.receive = function() {
-          var messages = this.incomingMessages();
-          for(var i = 0; i < messages.length; i++) {
-            this.createMessage({ 'message': 'I got an message!', 'message_was': messages[i].payload });
-          }
+          var message = this.incomingMessage();
+          this.createMessage({ 'message': 'I got a message!', 'message_was': message.payload });
         }
       JS
 
@@ -82,13 +80,13 @@ module Agents
 
     private
 
-    def execute_js(js_function, incoming_messages = [])
+    def execute_js(js_function, incoming_message = [])
       js_function = js_function == 'check' ? 'check' : 'receive'
       context = MiniRacer::Context.new
       context.eval(setup_javascript)
 
       context.attach('doCreateMessage', ->(y) { create_message(payload: clean_nans(JSON.parse(y))).payload.to_json })
-      context.attach('getIncomingMessages', ->() { incoming_messages.to_json })
+      context.attach('getIncomingMessage', ->() { incoming_message.to_json })
       context.attach('getOptions', ->() { interpolated.to_json })
       context.attach('doLog', ->(x) { log x })
       context.attach('doError', ->(x) { error x })
@@ -127,8 +125,8 @@ module Agents
           return JSON.parse(doCreateMessage(JSON.stringify(opts)));
         }
 
-        Agent.incomingMessages = function() {
-          return JSON.parse(getIncomingMessages());
+        Agent.incomingMessage = function() {
+          return JSON.parse(getIncomingMessage());
         }
 
         Agent.memory = function(key, value) {

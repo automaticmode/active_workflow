@@ -46,7 +46,7 @@ describe 'Using remote agent' do
   end
 
   it "performs remote agent's receive" do
-    AgentReceiveJob.perform_now(agent.id, [message.id])
+    AgentReceiveJob.perform_now(agent.id, message.id)
     agent.reload
     expect(agent.logs.pluck(:message)).to include('Received message hello world')
   end

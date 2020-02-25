@@ -244,7 +244,7 @@ describe Agents::FtpsiteAgent do
         mock(StringIO).new('hello world🔥') { @stringio }
         mock(@ftp_mock).storbinary('STOR file.txt', @stringio, Net::FTP::DEFAULT_BLOCKSIZE)
         message = Message.new(payload: { 'data' => 'hello world🔥' })
-        @checker.receive([message])
+        @checker.receive(message)
       end
 
       it 'converts the string encoding when force_encoding is specified' do
@@ -252,7 +252,7 @@ describe Agents::FtpsiteAgent do
         mock(StringIO).new('hello world?') { @stringio }
         mock(@ftp_mock).storbinary('STOR file.txt', @stringio, Net::FTP::DEFAULT_BLOCKSIZE)
         message = Message.new(payload: { 'data' => 'hello world🔥' })
-        @checker.receive([message])
+        @checker.receive(message)
       end
     end
   end

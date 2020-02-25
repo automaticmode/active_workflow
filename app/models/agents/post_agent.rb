@@ -8,7 +8,6 @@ module Agents
     MIME_RE = /\A\w+\/.+\z/
 
     can_dry_run!
-    no_bulk_receive!
     default_schedule 'never'
 
     description do
@@ -143,15 +142,13 @@ module Agents
       validate_web_request_options!
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        interpolate_with(message) do
-          outgoing = interpolated['payload'].presence || {}
-          if boolify(interpolated['no_merge'])
-            handle outgoing, message, headers(interpolated[:headers])
-          else
-            handle outgoing.merge(message.payload), message, headers(interpolated[:headers])
-          end
+    def receive(message)
+      interpolate_with(message) do
+        outgoing = interpolated['payload'].presence || {}
+        if boolify(interpolated['no_merge'])
+          handle outgoing, message, headers(interpolated[:headers])
+        else
+          handle outgoing.merge(message.payload), message, headers(interpolated[:headers])
         end
       end
     end

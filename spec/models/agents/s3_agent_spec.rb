@@ -208,7 +208,7 @@ describe Agents::S3Agent do
       mock(client_mock).put_object(bucket: @checker.options['bucket'], key: @checker.options['filename'], body: 'hello world!')
       mock(@checker).client { client_mock }
       message = Message.new(payload: { 'data' => 'hello world!' })
-      @checker.receive([message])
+      @checker.receive(message)
     end
 
     it "does nothing when mode is set to 'read'" do

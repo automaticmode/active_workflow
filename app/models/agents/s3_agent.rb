@@ -4,7 +4,6 @@ module Agents
     include FileHandling
 
     emits_file_pointer!
-    no_bulk_receive!
 
     default_schedule 'every_1h'
 
@@ -137,13 +136,11 @@ module Agents
       client.get_object(bucket: interpolated['bucket'], key: file).body
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       return if interpolated['mode'] != 'write'
-      incoming_messages.each do |message|
-        safely do
-          mo = interpolated(message)
-          client.put_object(bucket: mo['bucket'], key: mo['filename'], body: mo['data'])
-        end
+      safely do
+        mo = interpolated(message)
+        client.put_object(bucket: mo['bucket'], key: mo['filename'], body: mo['data'])
       end
     end
 

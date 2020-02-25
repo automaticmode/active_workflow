@@ -64,24 +64,24 @@ describe Agents::MessageFormattingAgent do
 
   describe '#receive' do
     it 'should accept clean mode' do
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(Message.last.payload[:content]).to eq(nil)
     end
 
     it 'should accept merge mode' do
       @checker.options[:mode] = 'merge'
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(Message.last.payload[:content]).not_to eq(nil)
     end
 
     it 'should handle Liquid templating in mode' do
       @checker.options[:mode] = "{{'merge'}}"
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(Message.last.payload[:content]).not_to eq(nil)
     end
 
     it 'should handle Liquid templating in instructions' do
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(Message.last.payload[:message]).to eq('Received Some Lorem Ipsum from somevalue .')
       expect(Message.last.payload[:created_at]).to eq(@message.created_at.to_s)
       expect(Message.last.payload[:created_at_iso]).to eq(@message.created_at.iso8601)
@@ -89,7 +89,8 @@ describe Agents::MessageFormattingAgent do
 
     it 'should handle matchers and Liquid templating in instructions' do
       expect {
-        @checker.receive([@message, @message2])
+        @checker.receive(@message)
+        @checker.receive(@message2)
       }.to change { Message.count }.by(2)
 
       formatted_message1, formatted_message2 = Message.last(2)
@@ -104,7 +105,8 @@ describe Agents::MessageFormattingAgent do
       @checker.options.delete(:matchers)
 
       expect {
-        @checker.receive([@message, @message2])
+        @checker.receive(@message)
+        @checker.receive(@message2)
       }.to change { Message.count }.by(2)
 
       formatted_message1, formatted_message2 = Message.last(2)
@@ -120,7 +122,7 @@ describe Agents::MessageFormattingAgent do
       @message.save!
       @checker.options[:instructions][:message] = "Escaped: {{content.name | uri_escape}}\nNot escaped: {{content.name}}"
       @checker.save!
-      @checker.receive([@message])
+      @checker.receive(@message)
       expect(Message.last.payload[:message]).to eq("Escaped: escape+this%21%3F\nNot escaped: escape this!?")
     end
 
@@ -146,7 +148,8 @@ describe Agents::MessageFormattingAgent do
       }
 
       expect {
-        @checker.receive([message2, message1])
+        @checker.receive(message2)
+        @checker.receive(message1)
       }.to change { Message.count }.by(2)
     end
   end

@@ -30,8 +30,8 @@ describe Agents::EmailAgent do
       message2.payload = { data: 'Something else you should know about' }
       message2.save!
 
-      Agents::EmailAgent.async_receive(@checker.id, [message1.id])
-      Agents::EmailAgent.async_receive(@checker.id, [message2.id])
+      Agents::EmailAgent.async_receive(@checker.id, message1.id)
+      Agents::EmailAgent.async_receive(@checker.id, message2.id)
 
       expect(ActionMailer::Base.deliveries.count).to eq(2)
       expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
@@ -49,7 +49,7 @@ describe Agents::EmailAgent do
       mock(SystemMailer).send_message(anything) { raise Net::SMTPAuthenticationError.new('Wrong password') }
 
       expect {
-        Agents::EmailAgent.async_receive(@checker.id, [message1.id])
+        Agents::EmailAgent.async_receive(@checker.id, message1.id)
       }.to raise_error(/Wrong password/)
 
       expect(@checker.logs.last.message).to match(/Error sending mail .* Wrong password/)
@@ -82,7 +82,7 @@ describe Agents::EmailAgent do
       message.payload = { foo: { subject: 'Something you should know about' }, some_html: '<strong>rain!</strong>' }
       message.save!
 
-      Agents::EmailAgent.async_receive(@checker.id, [message.id])
+      Agents::EmailAgent.async_receive(@checker.id, message.id)
 
       expect(ActionMailer::Base.deliveries.count).to eq(1)
       expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
@@ -101,7 +101,7 @@ describe Agents::EmailAgent do
       message2.payload = { foo: { subject: 'Something you should know about' }, some_html: '<strong>rain!</strong>' }
       message2.save!
 
-      Agents::EmailAgent.async_receive(@checker.id, [message2.id])
+      Agents::EmailAgent.async_receive(@checker.id, message2.id)
 
       expect(ActionMailer::Base.deliveries.last.content_type).to eq('text/plain; charset=UTF-8')
     end

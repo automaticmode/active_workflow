@@ -10,10 +10,8 @@ describe DryRunnable do
       perform
     end
 
-    def receive(messages)
-      messages.each do |message|
-        perform(message.payload['prefix'])
-      end
+    def receive(message)
+      perform(message.payload['prefix'])
     end
 
     private

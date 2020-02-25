@@ -7,7 +7,6 @@ module Agents
 
     can_dry_run!
     can_order_created_messages!
-    no_bulk_receive!
 
     default_schedule 'every_12h'
 
@@ -461,27 +460,25 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        interpolate_with(message) do
-          existing_payload = interpolated['mode'].to_s == 'merge' ? message.payload : {}
+    def receive(message)
+      interpolate_with(message) do
+        existing_payload = interpolated['mode'].to_s == 'merge' ? message.payload : {}
 
-          if data_from_message = options['data_from_message'].presence
-            data = interpolate_options(data_from_message)
-            if data.present?
-              handle_message_data(data, message, existing_payload)
-            else
-              error "No data was found in the Message payload using the template #{data_from_message}", inbound_message: message
-            end
+        if data_from_message = options['data_from_message'].presence
+          data = interpolate_options(data_from_message)
+          if data.present?
+            handle_message_data(data, message, existing_payload)
           else
-            url_to_scrape =
-              if url_template = options['url_from_message'].presence
-                interpolate_options(url_template)
-              else
-                interpolated['url']
-              end
-            check_urls(url_to_scrape, existing_payload)
+            error "No data was found in the Message payload using the template #{data_from_message}", inbound_message: message
           end
+        else
+          url_to_scrape =
+            if url_template = options['url_from_message'].presence
+              interpolate_options(url_template)
+            else
+              interpolated['url']
+            end
+          check_urls(url_to_scrape, existing_payload)
         end
       end
     end

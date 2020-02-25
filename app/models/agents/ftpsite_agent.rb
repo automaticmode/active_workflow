@@ -131,14 +131,12 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       return if interpolated['mode'] != 'write'
-      incoming_messages.each do |message|
-        mo = interpolated(message)
-        mo['data'].encode!(interpolated['force_encoding'], invalid: :replace, undef: :replace) if interpolated['force_encoding'].present?
-        open_ftp(base_uri) do |ftp|
-          ftp.storbinary("STOR #{mo['filename']}", StringIO.new(mo['data']), Net::FTP::DEFAULT_BLOCKSIZE)
-        end
+      mo = interpolated(message)
+      mo['data'].encode!(interpolated['force_encoding'], invalid: :replace, undef: :replace) if interpolated['force_encoding'].present?
+      open_ftp(base_uri) do |ftp|
+        ftp.storbinary("STOR #{mo['filename']}", StringIO.new(mo['data']), Net::FTP::DEFAULT_BLOCKSIZE)
       end
     end
 

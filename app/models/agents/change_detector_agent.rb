@@ -37,12 +37,10 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
-      incoming_messages.each do |message|
-        interpolation_context.stack do
-          interpolation_context['last_property'] = last_property
-          handle(interpolated(message), message)
-        end
+    def receive(message)
+      interpolation_context.stack do
+        interpolation_context['last_property'] = last_property
+        handle(interpolated(message), message)
       end
     end
 

@@ -321,7 +321,7 @@ module Agents
     # rubocop:enable Metrics/PerceivedComplexity
     # rubocop:enable Metrics/CyclomaticComplexity
 
-    def receive(_incoming_messages)
+    def receive(_message)
       url = feed_url(secret: interpolated['secrets'].first, format: :xml)
 
       # Reload new messages and update cache

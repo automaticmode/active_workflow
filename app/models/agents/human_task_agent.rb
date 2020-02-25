@@ -219,11 +219,9 @@ module Agents
       end
     end
 
-    def receive(incoming_messages)
+    def receive(message)
       if interpolated['trigger_on'] == 'message'
-        incoming_messages.each do |message|
-          create_basic_hit message
-        end
+        create_basic_hit message
       end
     end
 

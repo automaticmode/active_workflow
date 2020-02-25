@@ -61,7 +61,7 @@ describe Agents::DeDuplicationAgent do
     it 'creates messages when memory is empty' do
       @message.payload[:output] = '2014-07-01'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(Message.last.payload[:command]).to eq(@message.payload[:command])
       expect(Message.last.payload[:output]).to eq(@message.payload[:output])
@@ -69,32 +69,32 @@ describe Agents::DeDuplicationAgent do
 
     it 'creates messages when new message is unique' do
       @message.payload[:output] = '2014-07-01'
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       message = create_message('2014-08-01')
 
       expect {
-        @checker.receive([message])
+        @checker.receive(message)
       }.to change(Message, :count).by(1)
     end
 
     it 'does not create message when message is a duplicate' do
       @message.payload[:output] = '2014-07-01'
-      @checker.receive([@message])
+      @checker.receive(@message)
 
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(0)
     end
 
     it 'should respect the lookback value' do
       3.times do |i|
         @message.payload[:output] = "2014-07-0#{i}"
-        @checker.receive([@message])
+        @checker.receive(@message)
       end
       @message.payload[:output] = '2014-07-05'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(@checker.memory['properties'].length).to eq(3)
       expect(@checker.memory['properties']).to eq(['2014-07-01', '2014-07-02', '2014-07-05'])
@@ -103,7 +103,7 @@ describe Agents::DeDuplicationAgent do
     it 'should hash the value if its longer then 10 chars' do
       @message.payload[:output] = '01234567890'
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(@checker.memory['properties'].last).to eq('2256157795')
     end
@@ -111,7 +111,7 @@ describe Agents::DeDuplicationAgent do
     it 'should use the whole message if :property is blank' do
       @checker.options['property'] = ''
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.to change(Message, :count).by(1)
       expect(@checker.memory['properties'].last).to eq('3023526198')
     end
@@ -121,7 +121,7 @@ describe Agents::DeDuplicationAgent do
       @checker.save
       @checker.reload
       expect {
-        @checker.receive([@message])
+        @checker.receive(@message)
       }.not_to raise_error
     end
   end

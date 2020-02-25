@@ -240,8 +240,8 @@ describe Agents::JavaScriptAgent do
       end
     end
 
-    describe 'getting incoming messages' do
-      it 'can access incoming messages in the JavaScript enviroment via this.incomingMessages' do
+    describe 'getting incoming message' do
+      it 'can access incoming messages in the JavaScript enviroment via this.incomingMessage' do
         message = Message.new
         message.agent = agents(:bob_notifier_agent)
         message.payload = { data: 'Something you should know about' }
@@ -250,17 +250,16 @@ describe Agents::JavaScriptAgent do
 
         @agent.options['code'] = <<-JS
           Agent.receive = function() {
-            var messages = this.incomingMessages();
-            for(var i = 0; i < messages.length; i++) {
-              this.createMessage({ 'message': 'I got an message!', 'message_was': messages[i].payload });
-            }
+            var message = this.incomingMessage();
+            this.createMessage({ 'message': 'I got an message!', 'message_was': message.payload });
           }
         JS
 
         @agent.save!
         expect {
           expect {
-            @agent.receive([messages(:bob_website_agent_message), message])
+            @agent.receive(messages(:bob_website_agent_message))
+            @agent.receive(message)
           }.not_to change { AgentLog.count }
         }.to change { Message.count }.by(2)
         created_message = @agent.messages.first

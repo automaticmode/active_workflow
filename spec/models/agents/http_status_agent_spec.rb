@@ -65,37 +65,37 @@ describe 'HttpStatusAgent' do
         Message.new(payload: { url: successful_url, headers_to_save: '' })
       end
 
-      let(:messages) do
-        [message_with_a_successful_ping]
+      let(:message) do
+        message_with_a_successful_ping
       end
 
       it 'should create one message' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.count).to eq(1)
       end
 
       it 'should note that the successful response succeeded' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['response_received']).to eq(true)
       end
 
       it 'should return the status code' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['status']).to eq('200')
       end
 
       it 'should remember the status' do
-        agent.receive messages
+        agent.receive message
         expect(agent.memory['last_status']).to eq('200')
       end
 
       it 'should record the time spent waiting for the reply' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['elapsed_time']).not_to be_nil
       end
 
       it 'should not return a header' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['headers']).to be_nil
       end
 
@@ -107,7 +107,7 @@ describe 'HttpStatusAgent' do
 
         describe 'and no duplication settings have been set' do
           it 'should create one message' do
-            agent.receive messages
+            agent.receive message
             expect(created_messages.count).to eq(1)
           end
         end
@@ -119,7 +119,7 @@ describe 'HttpStatusAgent' do
           end
 
           it 'should NOT create any messages' do
-            agent.receive messages
+            agent.receive message
             expect(created_messages.count).to eq(0)
           end
 
@@ -128,16 +128,14 @@ describe 'HttpStatusAgent' do
             let(:message_with_a_failing_ping) do
               Message.new(payload: { url: failing_url, headers_to_save: '' })
             end
-            let(:messages) do
-              [message_with_a_successful_ping, message_with_a_failing_ping]
-            end
 
             before do
               stub_request(:get, failing_url).to_return(status: 500)
             end
 
             it 'should create an message' do
-              agent.receive messages
+              agent.receive message_with_a_successful_ping
+              agent.receive message_with_a_failing_ping
               expect(created_messages.count).to eq(1)
             end
           end
@@ -150,7 +148,7 @@ describe 'HttpStatusAgent' do
           end
 
           it 'should create one message' do
-            agent.receive messages
+            agent.receive message
             expect(created_messages.count).to eq(1)
           end
         end
@@ -160,28 +158,28 @@ describe 'HttpStatusAgent' do
         let(:status_code) { 500 }
 
         it 'should return the status code' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['status']).to eq('500')
         end
 
         it 'should remember the status' do
-          agent.receive messages
+          agent.receive message
           expect(agent.memory['last_status']).to eq('500')
         end
       end
 
       it 'should return the original url' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['url']).to eq(successful_url)
       end
 
       it 'should return the final url' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['final_url']).to eq(successful_url)
       end
 
       it 'should return whether the url redirected' do
-        agent.receive messages
+        agent.receive message
         expect(created_messages.last[:payload]['redirected']).to eq(false)
       end
 
@@ -195,23 +193,23 @@ describe 'HttpStatusAgent' do
         end
 
         it 'should create one message' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.count).to eq(1)
         end
 
         it 'should note that no response was received' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['response_received']).to eq(false)
         end
 
         it 'should return the original url' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['url']).to eq(successful_url)
         end
 
         it 'should remember no status' do
           agent.memory['last_status'] = '200'
-          agent.receive messages
+          agent.receive message
           expect(agent.memory['last_status']).to be_nil
         end
       end
@@ -226,17 +224,17 @@ describe 'HttpStatusAgent' do
         end
 
         it 'should create one message' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.count).to eq(1)
         end
 
         it 'should note that no response was received' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['response_received']).to eq(false)
         end
 
         it 'should return the original url' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['url']).to eq(successful_url)
         end
       end
@@ -246,37 +244,39 @@ describe 'HttpStatusAgent' do
         let(:message_with_a_failing_ping) do
           Message.new(payload: { url: failing_url, headers_to_save: '' })
         end
-        let(:messages) do
-          [message_with_a_successful_ping, message_with_a_failing_ping]
-        end
 
         before do
           stub_request(:get, failing_url).to_raise(RuntimeError) # to_return(status: 500)
         end
 
         it 'should create two messages' do
-          agent.receive messages
+          agent.receive message_with_a_successful_ping
+          agent.receive message_with_a_failing_ping
           expect(created_messages.count).to eq(2)
         end
 
         it 'should note that the failed response failed' do
-          agent.receive messages
+          agent.receive message_with_a_successful_ping
+          agent.receive message_with_a_failing_ping
           expect(created_messages[1][:payload]['response_received']).to eq(false)
         end
 
         it 'should note that the successful response succeeded' do
-          agent.receive messages
+          agent.receive message_with_a_successful_ping
+          agent.receive message_with_a_failing_ping
           expect(created_messages[0][:payload]['response_received']).to eq(true)
         end
 
         it 'should return the original url on both messages' do
-          agent.receive messages
+          agent.receive message_with_a_successful_ping
+          agent.receive message_with_a_failing_ping
           expect(created_messages[0][:payload]['url']).to eq(successful_url)
           expect(created_messages[1][:payload]['url']).to eq(failing_url)
         end
 
         it 'should record the time spent waiting for the reply' do
-          agent.receive messages
+          agent.receive message_with_a_successful_ping
+          agent.receive message_with_a_failing_ping
           expect(created_messages[0][:payload]['elapsed_time']).not_to be_nil
           expect(created_messages[1][:payload]['elapsed_time']).not_to be_nil
         end
@@ -295,7 +295,7 @@ describe 'HttpStatusAgent' do
         end
 
         it 'should save the header value according to headers_to_save' do
-          agent.receive messages
+          agent.receive message
           message = created_messages.last
           expect(message[:payload]['headers']).not_to be_nil
           expect(message[:payload]['headers'][header]).to eq(header_value)
@@ -309,7 +309,7 @@ describe 'HttpStatusAgent' do
           end
 
           it 'should save the header value according to headers_to_save' do
-            agent.receive messages
+            agent.receive message
             message = created_messages.last
             expect(message[:payload]['headers']).not_to be_nil
             expect(message[:payload]['headers'][header.swapcase]).to eq(header_value)
@@ -335,12 +335,12 @@ describe 'HttpStatusAgent' do
         end
 
         it "should return the existing header's value" do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['headers'][header]).to eq(header_value)
         end
 
         it 'should return nil for the nonexistant header' do
-          agent.receive messages
+          agent.receive message
           expect(created_messages.last[:payload]['headers'][nonexistant_header]).to be_nil
         end
       end

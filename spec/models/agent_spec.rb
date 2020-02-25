@@ -152,10 +152,8 @@ describe Agent do
     class Agents::CannotBeScheduled < Agent
       cannot_be_scheduled!
 
-      def receive(messages)
-        messages.each do |_|
-          create_message payload: { messages_received: 1 }
-        end
+      def receive(message)
+        create_message payload: { messages_received: 1 }
       end
     end
 
@@ -338,7 +336,7 @@ describe Agent do
 
         Agent.async_check(agents(:bob_status_agent).id)
         Delayed::Worker.new.run(Delayed::Job.last)
-        Agent.async_receive(agents(:bob_notifier_agent).id, [agents(:bob_status_agent).messages.last.id])
+        Agent.async_receive(agents(:bob_notifier_agent).id, agents(:bob_status_agent).messages.last.id)
         Delayed::Worker.new.run(Delayed::Job.last)
 
         log = agents(:bob_notifier_agent).logs.first
@@ -365,18 +363,8 @@ describe Agent do
         Agent.receive!
       end
 
-      it 'should group messages' do
-        mock.any_instance_of(Agents::TriggerAgent).receive(anything).twice { |messages|
-          expect(messages.map(&:user).map(&:username).uniq.length).to eq(1)
-        }
-        Agent.async_check(agents(:bob_status_agent).id)
-        Agent.async_check(agents(:jane_status_agent).id)
-        Agent.receive!
-      end
-
-      it 'should call receive for each message when no_bulk_receive! is used' do
+      it 'should call receive for each message' do
         mock.any_instance_of(Agents::TriggerAgent).receive(anything).twice
-        stub(Agents::TriggerAgent).no_bulk_receive? { true }
         Agent.async_check(agents(:bob_status_agent).id)
         Agent.async_check(agents(:bob_status_agent).id)
         Agent.receive!
@@ -431,7 +419,8 @@ describe Agent do
         mock(Agent).find(agents(:bob_notifier_agent).id) { agents(:bob_notifier_agent) }
         do_not_allow(agents(:bob_notifier_agent)).receive
         agents(:bob_notifier_agent).update_attribute :disabled, true
-        Agent.async_receive(agents(:bob_notifier_agent).id, [1, 2, 3])
+        # FIXME?
+        Agent.async_receive(agents(:bob_notifier_agent).id, 1)
       end
     end
 
