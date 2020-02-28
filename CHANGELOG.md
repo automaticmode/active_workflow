@@ -6,17 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+
+
+## [0.9.7] - 2020-02-28
 ### Changed
-- Semantics of message delivery got different: agents now process a single
+- The semantics of message delivery got improved: agents now process a single
   message at a time, thus matching transactional boundaries.
 - BREAKING: CSV Agent in 'serialize' mode handles only a single message at a
   time and can't aggregate multiple 'row' messages into a single CSV. Old
-  behaviour wasn't exactly deterministic, suggested way would be to use
+  behavior wasn't exactly deterministic, a suggested way would be to use
   `Digest Agent` to aggregate messages and then serialize them with
   `CSV Agent`.
 
 ### Fixed
-- Update nokogiri (CVE-2020-7595)
+- Update nokogiri (CVE-2020-7595).
+- Update rack (CVE-2019-16782).
+- Update puma (CVE-2019-16770).
+- Fix regression for 'Delete Messages' button.
 
 
 ## [0.9.6] - 2019-12-09
@@ -99,7 +105,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.6...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.7...HEAD
+[0.9.7]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.7
 [0.9.6]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.6
 [0.9.5.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.5.1
 [0.9.5]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.5
