@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+### Fixed
+- Update puma (CVE-2020-5249)
 
 
 ## [0.9.7] - 2020-02-28
