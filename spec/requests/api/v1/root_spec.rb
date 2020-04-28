@@ -7,13 +7,13 @@ describe API::V1::Root do
   context 'Authorization' do
     it 'permits access with the right token' do
       get '/api/v1/agents',
-        headers: { 'HTTP_AUTHORIZATION' => "Bearer #{auth_token}" }
+          headers: { 'HTTP_AUTHORIZATION' => "Bearer #{auth_token}" }
       expect(response).to have_http_status 200
     end
 
     it 'responds with unauthorized when token is invalid' do
       get '/api/v1/agents',
-        headers: { 'HTTP_AUTHORIZATION' => 'Bearer invalid_token' }
+          headers: { 'HTTP_AUTHORIZATION' => 'Bearer invalid_token' }
       expect(response).to have_http_status 401
     end
   end
@@ -23,7 +23,7 @@ describe API::V1::Root do
       get '/api/v1/agents', headers: headers
       result = JSON.parse(response.body)
       expect(result.size).to eq 9
-      expect(result).to include(include('name' => "bob basecamp agent",
+      expect(result).to include(include('name' => 'bob basecamp agent',
                                         'disabled' => false,
                                         'messages_count' => 0,
                                         'id' => a_kind_of(Integer),
@@ -33,7 +33,7 @@ describe API::V1::Root do
   end
 
   context '/api/v1/agents/:agent_id' do
-    let (:agent) { agents(:bob_website_agent) }
+    let(:agent) { agents(:bob_website_agent) }
 
     it 'returns agent info' do
       get "/api/v1/agents/#{agent.id}", headers: headers
@@ -47,8 +47,8 @@ describe API::V1::Root do
     end
   end
 
-  context '/api/v1/agents/:agent_id/messages' do
-    let (:agent) { agents(:bob_website_agent) }
+  context '/api/v1/agents/:agent_id/messages', delayed_job: true do
+    let(:agent) { agents(:bob_website_agent) }
 
     it 'returns messages emited by the agent' do
       message = agent.messages.first
@@ -70,8 +70,8 @@ describe API::V1::Root do
     end
 
     it 'returns only messages created after the specified date' do
-      time = (agent.messages.first.created_at+1).iso8601(4)
-      new_message = Message.create(created_at: DateTime.new(9999, 01, 01))
+      time = (agent.messages.first.created_at + 1).iso8601(4)
+      new_message = Message.create(created_at: DateTime.new(9999, 1, 1))
       agent.messages << new_message
       get "/api/v1/agents/#{agent.id}/messages?after=#{time}", headers: headers
       result = JSON.parse(response.body)
@@ -81,7 +81,7 @@ describe API::V1::Root do
   end
 
   context '/api/v1/messages/:message_id' do
-    let (:message) { messages(:bob_website_agent_message) }
+    let(:message) { messages(:bob_website_agent_message) }
 
     it 'returns message with the payload' do
       get "/api/v1/messages/#{message.id}", headers: headers
@@ -96,7 +96,7 @@ describe API::V1::Root do
   end
 
   context '/api/v1/workflows' do
-    let (:workflow) { workflows(:bob_status) }
+    let(:workflow) { workflows(:bob_status) }
 
     it 'returns workflows' do
       get '/api/v1/workflows', headers: headers
@@ -109,7 +109,7 @@ describe API::V1::Root do
   end
 
   context '/api/v1/workflows/:workflow_id' do
-    let (:workflow) { workflows(:bob_status) }
+    let(:workflow) { workflows(:bob_status) }
 
     it 'returns workflow with agents' do
       get "/api/v1/workflows/#{workflow.id}", headers: headers
@@ -119,7 +119,8 @@ describe API::V1::Root do
                                 'description' => workflow.description,
                                 'agents' => include(
                                   include('name' => "Bob's Site Watcher"),
-                                  include('name' => 'Site status')))
+                                  include('name' => 'Site status')
+                                ))
     end
   end
 end

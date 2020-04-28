@@ -24,8 +24,6 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Lint/UnderscorePrefixedVariableName:
   Enabled: false
-Style/BracesAroundHashParameters:
-  Enabled: false
 Metrics/BlockLength:
   Enabled: false
 Style/BlockDelimiters:

@@ -8,7 +8,7 @@ if ENV['CI'] == 'true'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'rr'
 require 'webmock/rspec'
@@ -17,7 +17,7 @@ WebMock.disable_net_connect!(allow_localhost: true)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -72,6 +72,7 @@ RSpec.configure do |config|
   config.include SpecHelpers
   config.include Delorean
   config.around(:each, :delayed_job) do |example|
+    (ActiveJob::Base.descendants << ActiveJob::Base).each(&:disable_test_adapter)
     old_value = Delayed::Worker.delay_jobs
     Delayed::Worker.delay_jobs = true
     Delayed::Job.destroy_all
@@ -82,6 +83,4 @@ RSpec.configure do |config|
   end
 end
 
-if ENV['RSPEC_TASK'] != 'spec:nofeatures'
-  require 'capybara_helper'
-end
+require 'capybara_helper' if ENV['RSPEC_TASK'] != 'spec:nofeatures'

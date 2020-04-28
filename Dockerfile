@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-slim
+FROM ruby:2.6.6-slim
 
 COPY docker/scripts/prepare /scripts/
 RUN /scripts/prepare

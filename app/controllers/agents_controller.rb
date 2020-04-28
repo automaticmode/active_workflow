@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/ClassLength
 class AgentsController < ApplicationController
   include DotHelper
   include ActionView::Helpers::TextHelper
@@ -202,7 +201,7 @@ class AgentsController < ApplicationController
     @agent = current_user.agents.find(params[:id])
 
     respond_to do |format|
-      if @agent.update_attributes(agent_params)
+      if @agent.update(agent_params)
         format.html do
           redirect_back(fallback_location: agent_path(@agent),
                         notice: "'#{@agent.name}' was successfully updated.")
@@ -280,6 +279,7 @@ class AgentsController < ApplicationController
 
   def initialize_presenter
     return unless @agent.present? && @agent.form_configurable?
+
     @agent = FormConfigurableAgentPresenter.new(@agent, view_context)
   end
 
@@ -302,7 +302,7 @@ class AgentsController < ApplicationController
 
   def set_workflow
     return unless params[:workflow_id]
+
     @workflow = current_user.workflows.find_by(id: params[:workflow_id])
   end
 end
-# rubocop:enable Metrics/ClassLength

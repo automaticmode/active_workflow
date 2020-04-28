@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 ### Fixed
-- Update puma (CVE-2020-5249)
-- Update rails, grape (CVE-2020-5267)
+- Update puma (CVE-2020-5249).
+- Update rails, grape (CVE-2020-5267).
+
+### Changed
+- Upgrade to Rails 6.
 
 
 ## [0.9.7] - 2020-02-28

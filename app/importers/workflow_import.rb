@@ -7,8 +7,8 @@ class WorkflowImport
   include ActiveModel::Callbacks
   include ActiveModel::Validations::Callbacks
 
-  DANGEROUS_AGENT_TYPES = %w[Agents::ShellCommandAgent]
-  URL_REGEX = /\Ahttps?:\/\//i
+  DANGEROUS_AGENT_TYPES = %w[Agents::ShellCommandAgent].freeze
+  URL_REGEX = %r{/\Ahttps?:\/\//i}.freeze
 
   attr_accessor :file, :data, :do_import, :merges
 
@@ -63,10 +63,10 @@ class WorkflowImport
     tag_bg_color = parsed_data['tag_bg_color']
     icon = parsed_data['icon']
     @workflow = user.workflows.where(guid: guid).first_or_initialize
-    @workflow.update_attributes!(name: name, description: description,
-                                 tag_fg_color: tag_fg_color,
-                                 tag_bg_color: tag_bg_color,
-                                 icon: icon)
+    @workflow.update!(name: name, description: description,
+                      tag_fg_color: tag_fg_color,
+                      tag_bg_color: tag_bg_color,
+                      icon: icon)
 
     unless options[:skip_agents]
       created_agents = agent_diffs.map do |agent_diff|
@@ -111,15 +111,15 @@ class WorkflowImport
   protected
 
   def parse_file
-    if data.blank? && file.present?
-      self.data = file.read.force_encoding(Encoding::UTF_8)
-    end
+    return unless data.blank? && file.present?
+
+    self.data = file.read.force_encoding(Encoding::UTF_8)
   end
 
   def validate_data
     if data.present?
       @parsed_data = JSON.parse(data) rescue {}
-      if (%w[name guid agents] - @parsed_data.keys).length > 0
+      unless (%w[name guid agents] - @parsed_data.keys).empty?
         errors.add(:base, 'The provided data does not appear to be a valid Workflow.')
         self.data = nil
       end
@@ -129,9 +129,9 @@ class WorkflowImport
   end
 
   def validate_presence_of_file_or_data
-    unless file.present? || data.present?
-      errors.add(:base, 'Please provide a Workflow JSON File.')
-    end
+    return if file.present? || data.present?
+
+    errors.add(:base, 'Please provide a Workflow JSON File.')
   end
 
   def generate_diff
@@ -150,6 +150,7 @@ class WorkflowImport
           errors.add(:base, "Your updated options for '#{agent_data['name']}' were unparsable.")
         end
       end
+
       if agent_diff.requires_service? && merges.present? && merges[index.to_s].present? && merges[index.to_s]['service_id'].present?
         agent_diff.service_id = AgentDiff::FieldDiff.new(merges[index.to_s]['service_id'].to_i)
       end
@@ -187,7 +188,7 @@ class WorkflowImport
       store! agent_data
     end
 
-    BASE_FIELDS = %w[name schedule keep_messages_for disabled guid]
+    BASE_FIELDS = %w[name schedule keep_messages_for disabled guid].freeze
 
     def agent_exists?
       !!agent
@@ -205,7 +206,7 @@ class WorkflowImport
       self.type = FieldDiff.new(agent_data['type'].split('::').pop)
       self.options = FieldDiff.new(agent_data['options'] || {})
       BASE_FIELDS.each do |option|
-        if agent_data.has_key?(option)
+        if agent_data.key?(option)
           value = agent_data[option]
           self[option] = FieldDiff.new(value)
         end
@@ -229,6 +230,7 @@ class WorkflowImport
 
       BASE_FIELDS.each do |field|
         next unless self[field].present?
+
         self[field].set_current(agent.send(field))
 
         @requires_merge ||= self[field].requires_merge?
@@ -236,13 +238,13 @@ class WorkflowImport
     end
 
     def update_from!(merges)
-      each_field do |field, value, selection_options|
+      each_field do |field, value, _selection_options|
         value.updated = merges[field]
       end
 
-      if options.requires_merge?
-        options.updated = JSON.parse(merges['options'])
-      end
+      return unless options.requires_merge?
+
+      options.updated = JSON.parse(merges['options'])
     end
 
     def each_field

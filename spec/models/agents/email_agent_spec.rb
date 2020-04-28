@@ -46,7 +46,7 @@ describe Agents::EmailAgent do
       message1.payload = { message: 'hi!', data: 'Something you should know about' }
       message1.save!
 
-      mock(SystemMailer).send_message(anything) { raise Net::SMTPAuthenticationError.new('Wrong password') }
+      mock(SystemMailer).send_message(anything) { raise Net::SMTPAuthenticationError, 'Wrong password' }
 
       expect {
         Agents::EmailAgent.async_receive(@checker.id, message1.id)
@@ -72,10 +72,10 @@ describe Agents::EmailAgent do
     end
 
     it "can take body option for selecting the resulting email's body" do
-      @checker.update_attributes options: @checker.options.merge({
-                                                                   'subject' => '{{foo.subject}}',
-                                                                   'body' => '{{some_html}}'
-                                                                 })
+      @checker.update(options: @checker.options.merge({
+                                                        'subject' => '{{foo.subject}}',
+                                                        'body' => '{{some_html}}'
+                                                      }))
 
       message = Message.new
       message.agent = agents(:bob_notifier_agent)
@@ -87,14 +87,12 @@ describe Agents::EmailAgent do
       expect(ActionMailer::Base.deliveries.count).to eq(1)
       expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
       expect(ActionMailer::Base.deliveries.last.subject).to eq('Something you should know about')
-      expect(get_message_part(ActionMailer::Base.deliveries.last, /plain/).strip).to match(/\A\s*<strong>rain\!<\/strong>\s*\z/)
-      expect(get_message_part(ActionMailer::Base.deliveries.last, /html/).strip).to match(/<body>\s*<strong>rain\!<\/strong>\s*<\/body>/)
+      expect(get_message_part(ActionMailer::Base.deliveries.last, /plain/).strip).to match(%r{\A\s*<strong>rain\!<\/strong>\s*\z})
+      expect(get_message_part(ActionMailer::Base.deliveries.last, /html/).strip).to match(%r{<body>\s*<strong>rain\!<\/strong>\s*<\/body>})
     end
 
     it 'can take content type option to set content type of email sent' do
-      @checker.update_attributes options: @checker.options.merge({
-                                                                   'content_type' => 'text/plain'
-                                                                 })
+      @checker.update(options: @checker.options.merge({ 'content_type' => 'text/plain' }))
 
       message2 = Message.new
       message2.agent = agents(:bob_notifier_agent)

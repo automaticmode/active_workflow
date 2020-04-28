@@ -84,7 +84,7 @@ class WorkflowsController < ApplicationController
     @workflow = current_user.workflows.find(params[:id])
 
     respond_to do |format|
-      if @workflow.update_attributes(workflow_params)
+      if @workflow.update(workflow_params)
         format.html { redirect_to @workflow, notice: 'This Workflow was successfully updated.' }
         format.json { head :no_content }
       else

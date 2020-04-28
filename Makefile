@@ -25,7 +25,3 @@ heroku-docker-release:
 .PHONY: test
 test:
 	bundle exec rspec spec
-
-.PHONY: par-test
-par-test:
-	bundle exec parallel_split_test spec
