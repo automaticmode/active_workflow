@@ -1,14 +1,5 @@
 <div class="row">
   <div class="col-md-12">
-    <% if @workflow_import.dangerous? %>
-      <div class="alert alert-danger">
-        <%= icon_tag('fa-exclamation-triangle') %>
-        This Workflow contains one or more potentially dangerous Agents.
-        These may be able to run local commands or execute code.
-        Please be sure that you understand the Agent configurations before importing!
-      </div>
-    <% end %>
-
     <% if @workflow_import.existing_workflow.present? %>
       <div class="alert alert-warning">
         <%= icon_tag('fa-exclamation-triangle') %>

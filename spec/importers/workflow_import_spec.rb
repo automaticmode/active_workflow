@@ -137,17 +137,6 @@ describe WorkflowImport do
     end
   end
 
-  describe '#dangerous?' do
-    it 'returns false on most Agents' do
-      expect(WorkflowImport.new(data: valid_data)).not_to be_dangerous
-    end
-
-    it 'returns true if a ShellCommandAgent is present' do
-      valid_parsed_data[:agents][0][:type] = 'Agents::ShellCommandAgent'
-      expect(WorkflowImport.new(data: valid_parsed_data.to_json)).to be_dangerous
-    end
-  end
-
   describe '#import and #generate_diff' do
     let(:workflow_import) do
       _import = WorkflowImport.new(data: valid_data)

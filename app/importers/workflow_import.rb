@@ -7,7 +7,6 @@ class WorkflowImport
   include ActiveModel::Callbacks
   include ActiveModel::Validations::Callbacks
 
-  DANGEROUS_AGENT_TYPES = %w[Agents::ShellCommandAgent].freeze
   URL_REGEX = %r{/\Ahttps?:\/\//i}.freeze
 
   attr_accessor :file, :data, :do_import, :merges
@@ -34,10 +33,6 @@ class WorkflowImport
 
   def existing_workflow
     @existing_workflow ||= user.workflows.find_by(guid: parsed_data['guid'])
-  end
-
-  def dangerous?
-    (parsed_data['agents'] || []).any? { |agent| DANGEROUS_AGENT_TYPES.include?(agent['type']) }
   end
 
   def parsed_data
