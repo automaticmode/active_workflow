@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+
+
+## [0.9.8] - 2020-05-11
 ### Fixed
 - Update puma (CVE-2020-5249).
 - Update rails, grape (CVE-2020-5267).
@@ -111,7 +114,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.7...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.8...HEAD
+[0.9.7]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.8
 [0.9.7]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.7
 [0.9.6]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.6
 [0.9.5.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.5.1
