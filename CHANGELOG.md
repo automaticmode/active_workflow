@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 - Update puma (CVE-2020-11076 and CVE-2020-11077).
 - Update rails (CVE-2020-8165, CVE-2020-8164 and CVE-2020-8162).
+- Update kaminari (CVE-2020-11082)
 
 
 ## [0.9.8] - 2020-05-11
