@@ -5,7 +5,7 @@
     <div class='col-md-4'>
       <div class='page-header'>
         <h1>Change your password</h1>
-      </div
+      </div>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
         <%= render 'devise/shared/error_messages', resource: resource %>
