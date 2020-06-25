@@ -52,7 +52,7 @@ gem 'mini_magick', '~> 4.9.5'
 gem 'nokogiri', '~> 1.10.8'
 gem 'omniauth', '~> 1.9.0'
 gem 'rack-timeout', '~> 0.5.1'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.0.3.2'
 gem 'rails-html-sanitizer', '~> 1.3.0'
 # TODO: Removing coffee-rails breaks deployment on heroku, investigate.
 gem 'coffee-rails', '~> 4.2.2'
