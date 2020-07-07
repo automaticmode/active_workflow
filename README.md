@@ -327,24 +327,13 @@ button bellow and fill in the environment variables for your seed user (admin):
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow)
 
 A free Heroku plan could be used to try out ActiveWorkflow, but it wouldn't be
-enough for real use. That's because the limited run time and automatic turning
-off of unused workers inhibits ActiveWorkflow from running scheduled tasks.
+enough for real use. This is controlled by setting `SINGLE_DYNO` environment
+variable to '1'. In such a case all the processes (web, scheduler, workers) are
+run in a single dyno. This is only recommended for demonstration purposes,
+though. For production use you should unset `SINGLE_DYNO` (or set to an empty
+value) and run web, scheduler and worker dynos separately. Note: you should
+never create more than one scheduler dyno.
 
-### Manual Heroku Deployment
-
-If you would like more control or intend to deploy ActiveWorkflow from a modified
-source tree, you could do that using Heroku's command line interface.
-
-Please install Heroku's command line interface tool from
-[Heroku Toolbelt](https://toolbelt.heroku.com).
-
-For additional configuration options please take a look at the `.env` file.
-Don't forget to set any configuration options you may require using the
-`heroku config` command line tool.
-
-FIXME:
-The default ActiveWorkflow configuration uses the same single dyno to run both
-the web server and workers.
 
 ### Deployment with Docker
 
@@ -377,34 +366,6 @@ make build-image
 This creates an image named `local/active_workflow`.
 
 
-#### Deployment with Docker to Heroku
-
-You may prefer to use Heroku in a container mode (instead of deploying via
-GitHub). Please be sure to login to Heroku docker registry before doing that:
-
-```sh
-heroku container:login
-```
-
-Docker deployment to Heroku happens in two steps. Push:
-
-```sh
-make heroku-docker-push
-```
-
-And release:
-
-```sh
-make heroku-docker-release
-```
-
-If you no longer wish to use image based deployment to Heroku you will need to
-reset Heroku stack to `heroku-18` like this:
-
-```sh
-heroku stack:set heroku-18
-```
-
 ## Development
 
 ### Requirements
@@ -427,11 +388,23 @@ brew install graphviz
 
 ### Running Locally without Docker
 
-If you want to test out ActiveWorkflow locally you can start a demo instance
-using a local sqlite database. First prepare the database with:
+ActiveWorkflow uses Postgres database to store all the data. If you have
+Postgres database set up all you need is set environment variable DATABASE_URL
+for the ActiveWorkflow to use like this:
 
 ```sh
-bundle exec rake db:create
+export DATABASE_URL=postgres://mydbusername:password@localhost:5432/dbname
+```
+
+> You can also reuse postgres docker image preconfigured for use with
+> ActiveWorkflow when running it with docker-compose. You can start it with
+> `docker-compose up postgres` and stop with `Ctrl+C` and `docker-compose down`
+> afterwards.
+
+Before running ActiveWorkflow you have to prepare the database with:
+
+```sh
+#bundle exec rake db:create # Optionally create database if you haven't created it in advance
 bundle exec rake db:migrate
 bundle exec rake db:seed
 ```

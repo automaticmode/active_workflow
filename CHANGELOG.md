@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Remove SchedulerAgent (to be implemented as a core functionality).
 - Refactor agent runner and scheduler.
+- `SEED_DATABASE` and `DO_NOT_CREATE_DATABASE` environment flags where inverted and replaced with 
+  `DO_NOT_SEED` and `CREATE_DATABASE` correspondingly to represent default execution path.
+- You can now use Heroku single button deployment for both demonstration
+  purposes running on free tier and production with scalable dyno formations.
+  This is controlled with a single environment variable `SINGLE_DYNO`.
 
 
 ## [0.9.8] - 2020-05-11

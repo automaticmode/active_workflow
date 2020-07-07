@@ -1,0 +1,20 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: Dockerfile
+run:
+  web:
+    command:
+      - /scripts/init
+    image: web
+  scheduler:
+    command:
+      - bundle exec rails runner bin/scheduler.rb
+    image: web
+  worker:
+    command:
+      - bundle exec script/delayed_job -n 2 run
+    image: web

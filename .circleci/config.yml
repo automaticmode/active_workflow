@@ -7,14 +7,23 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: circleci/ruby:2.6.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+      - image: circleci/postgres:9.6-alpine
+        environment:
+          POSTGRES_USER: aw
+          POSTGRES_DB: aw_test
 
     working_directory: ~/repo
+
+    environment:
+      DATABASE_URL: "postgres://aw@localhost:5432/aw_test"
 
     steps:
       - checkout
@@ -37,8 +46,11 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run:
+          name: create database
+          command: |
+            bundle exec rake db:schema:load
+            bundle exec rake db:migrate
 
       # run tests!
       - run:

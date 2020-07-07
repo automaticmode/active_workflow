@@ -5,12 +5,14 @@ volumes:
 
 services:
   postgres:
-    image: postgres:9.5-alpine
+    image: postgres:9.6-alpine
     volumes:
       - postgresdata:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: myactiveworkflowpassword
       POSTGRES_USER: active_workflow
+    ports:
+      - 5432:5432
 
   active_workflow:
     build:
@@ -19,14 +21,16 @@ services:
     env_file:
       - .env
     environment:
+      RAILS_ENV: 'production'
       DISABLE_SSL: 'true'
-      DATABASE_ADAPTER: postgresql
       DATABASE_HOST: postgres
       DATABASE_NAME: active_workflow
       DATABASE_USERNAME: active_workflow
       DATABASE_PASSWORD: myactiveworkflowpassword
       INTENTIONALLY_SLEEP: 2
+      SINGLE_DYNO: 1
     ports:
       - 3000:3000
     links:
       - postgres
+    command: /scripts/init

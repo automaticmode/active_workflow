@@ -14,20 +14,16 @@ export UID
 
 ## Development Usage
 
-Please build the base ActiveWorkflow image. It should be named
-`local/active_workflow` and is build by running:
-
-```sh
-    make build-image
-```
-
-
 Build a docker image that contains ActiveWorkflow, as well as ActiveWorkflow test dependencies using `docker-compose`:
 
     cd docker/test
     docker-compose build
 
-Run all specs against an sqlite database using `docker-compose`:
+or
+
+    cd docker/test && make rebuild
+
+Run all specs against using `docker-compose`:
 
     cd docker/test
     docker-compose run active_workflow_test
@@ -37,17 +33,7 @@ or
 
     cd docker/test && make test && make down
 
-Run all specs against a Postgres database using `docker-compose`:
-
-    cd docker/test
-    docker-compose run active_workflow_test_postgres
-    docker-compose down
-
-or
-
-    cd docker/test && make test-postgres && make down
-
 Run a specific spec using `docker-compose`:
 
-    docker-compose run active_workflow_test_postgres rspec ./spec/helpers/dot_helper_spec.rb:82
+    docker-compose run active_workflow_test rspec ./spec/helpers/dot_helper_spec.rb:82
     docker-compose down

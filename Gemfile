@@ -38,6 +38,7 @@ gem 'dotenv', '~> 2.5.0'
 gem 'faraday', '~> 0.9'
 gem 'faraday_middleware', '~> 0.12.2'
 gem 'feedjira', '~> 2.2'
+# TODO: use font-awesome-rails?
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'httparty', '~> 0.16'
 gem 'jquery-rails', '~> 4.3.5'
@@ -57,7 +58,6 @@ gem 'rails-html-sanitizer', '~> 1.3.0'
 gem 'coffee-rails', '~> 4.2.2'
 # TODO: update
 gem 'rufus-scheduler', '~> 3.4.2', require: false
-gem 'sass-rails', '~> 5.0'
 gem 'sassc', '~>2.3.0'
 # TODO: update
 gem 'select2-rails', '~> 3.5.4'
@@ -71,9 +71,9 @@ gem 'jquery-datatables', '~> 1.10.19'
 gem 'grape', '~> 1.3.2'
 gem 'grape-entity', '~> 0.8.0'
 gem 'jwt', '~> 2.2.1'
+gem 'foreman', '~> 0.87.1'
 
 group :development do
-  gem 'foreman', '~> 0.87.1'
   gem 'bullet', '~> 6.1.0'
   gem 'sqlite3', '~> 1.4.2'
   gem 'better_errors', '~> 2.7.0'
@@ -113,12 +113,5 @@ group :development do
 end
 
 gem 'puma', '~> 4.3.5'
-
-ENV['DATABASE_ADAPTER'] ||=
-  if ENV['RAILS_ENV'] == 'production'
-    'postgresql'
-  else
-    'sqlite3'
-  end
 
 gem 'pg', '~> 1.2.3'

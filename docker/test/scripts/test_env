@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-/scripts/setup_env
 export HOME=/app
 source /app/.env
 

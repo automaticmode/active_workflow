@@ -19,20 +19,6 @@ services:
       dockerfile: docker/test/Dockerfile
     restart: 'no'
     environment:
-      DATABASE_ADAPTER: sqlite3
-      DATABASE_NAME: db/development.sqlite3
-    volumes:
-      - ../../:/app
-      - /app/vendor/bundle
-
-  active_workflow_test_postgres:
-    user: $UID
-    build:
-      context: ../../
-      dockerfile: docker/test/Dockerfile
-    restart: 'no'
-    environment:
-      DATABASE_ADAPTER: postgresql
       TEST_DATABASE_NAME: active_workflow
       DATABASE_NAME: active_workflow
       DATABASE_USERNAME: active_workflow

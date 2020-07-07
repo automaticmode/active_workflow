@@ -27,7 +27,7 @@ COPY ./ /app/
 
 RUN LC_ALL=en_US.UTF-8 umask 002 && bundle install --with test development --path vendor/bundle -j 4
 
-COPY ["docker/scripts/setup_env", "docker/scripts/init", "docker/test/scripts/test_env", "/scripts/"]
+COPY ["docker/scripts/init", "docker/test/scripts/test_env", "/scripts/"]
 
 EXPOSE 3000
 

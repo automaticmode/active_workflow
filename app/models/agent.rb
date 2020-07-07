@@ -4,7 +4,6 @@ class Agent < ApplicationRecord
   include AssignableTypes
   include MarkdownClassAttributes
   include JSONSerializedField
-  include RDBMSFunctions
   include WorkingHelpers
   include LiquidInterpolatable
   include HasGuid
@@ -172,7 +171,7 @@ class Agent < ApplicationRecord
     if keep_messages_for == 0
       messages.update_all expires_at: nil
     else
-      messages.update_all 'expires_at = ' + rdbms_date_add('created_at', 'SECOND', keep_messages_for.to_i)
+      messages.update_all "expires_at = created_at + INTERVAL '#{keep_messages_for.to_i} SECOND'"
     end
   end
   # rubocop:enable Rails/SkipsModelValidations
