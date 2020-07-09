@@ -365,9 +365,6 @@ GEM
     omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
-    omniauth-wunderlist (0.0.2)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.1)
     orm_adapter (0.5.0)
     overcommit (0.53.0)
       childprocess (>= 0.6.3, < 4)
@@ -648,7 +645,6 @@ DEPENDENCIES
   omniauth (~> 1.9.0)
   omniauth-37signals
   omniauth-evernote
-  omniauth-wunderlist
   overcommit (~> 0.53.0)
   pg (~> 1.2.3)
   pry-byebug (~> 3.9.0)

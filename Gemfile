@@ -23,7 +23,6 @@ gem 'aws-sdk-core', '~> 2.2.15'
 
 # Optional Services.
 gem 'omniauth-37signals' # BasecampAgent
-gem 'omniauth-wunderlist'
 
 gem 'ace-rails-ap', '~> 4.2'
 gem 'bootsnap', '>= 1.4.6', require: false

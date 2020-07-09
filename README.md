@@ -293,10 +293,6 @@ These agents use third party services to provide functionality. They typically r
  	<td>Creates events on your Google Calendar.</td>
  </tr>
  <tr>
- 	<td><strong>Wunderlist Agent</strong></td>
- 	<td>Creates new Wunderlist tasks based on incoming messages.</td>
- </tr>
- <tr>
  	<td><strong>Slack Agent</strong></td>
  	<td>Lets you receive messages and send notifications to Slack.</td>
  </tr>

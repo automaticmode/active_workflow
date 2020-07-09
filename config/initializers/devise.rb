@@ -239,12 +239,6 @@ Devise.setup do |config|
     config.omniauth :'37signals', key, secret
   end
 
-  if defined?(OmniAuth::Strategies::Wunderlist) &&
-     (key = ENV['WUNDERLIST_OAUTH_KEY']).present? &&
-     (secret = ENV['WUNDERLIST_OAUTH_SECRET']).present?
-    config.omniauth :wunderlist, key, secret
-  end
-
   if defined?(OmniAuth::Strategies::Evernote) &&
      (key = ENV['EVERNOTE_OAUTH_KEY']).present? &&
      (secret = ENV['EVERNOTE_OAUTH_SECRET']).present?
