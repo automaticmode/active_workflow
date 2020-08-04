@@ -127,7 +127,7 @@ this.AgentsIndexPage = class AgentsIndexPage {
       }
     });
 
-    // Check if any pop-ups are open.
+    // Check if any pop-ups are open or page is inactive (hidden).
     function canUpdate() {
       if ($('#agents-table .dropdown-menu.show').length > 0) {
         return false;
@@ -135,16 +135,17 @@ this.AgentsIndexPage = class AgentsIndexPage {
       if ($('.confirm-agent.modal.show').length > 0) {
         return false;
       }
-      return true;
+      if (document.hidden === false) {
+        return true;
+      }
+      return false;
     }
 
     function updateTable(json) {
-      if (canUpdate()) {
-        var table = agentsTable.api();
-        table.clear();
-        table.rows.add(json);
-        table.draw();
-      }
+      var table = agentsTable.api();
+      table.clear();
+      table.rows.add(json);
+      table.draw();
     }
 
     function workflowId() {
