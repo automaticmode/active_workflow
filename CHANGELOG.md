@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [current]
+### Fixed
+- Update kramdown (CVE-2020-14001).
 
 
 ## [0.9.9] - 2020-07-19

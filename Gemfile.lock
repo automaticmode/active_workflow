@@ -291,7 +291,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    kramdown (2.1.0)
+    kramdown (2.3.0)
+      rexml
     kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -628,7 +629,7 @@ DEPENDENCIES
   jsonpath (~> 1.0.1)
   jwt (~> 2.2.1)
   kaminari (~> 1.2.1)
-  kramdown (~> 2.1.0)
+  kramdown (~> 2.3.0)
   letter_opener_web (~> 1.4.0)
   liquid (~> 4.0.3)
   loofah (~> 2.5.0)
