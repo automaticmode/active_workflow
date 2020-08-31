@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [current]
+### Changed
+- Start multiple containers (separate ones for web, scheduler and worker) when
+  using default docker-compose configuration.
+
 ### Fixed
 - Update kramdown (CVE-2020-14001).
 

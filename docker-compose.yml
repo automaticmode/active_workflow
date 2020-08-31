@@ -14,23 +14,52 @@ services:
     ports:
       - 5432:5432
 
-  active_workflow:
+  active_workflow_web:
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
       - .env
     environment:
-      RAILS_ENV: 'production'
-      DISABLE_SSL: 'true'
-      DATABASE_HOST: postgres
-      DATABASE_NAME: active_workflow
-      DATABASE_USERNAME: active_workflow
-      DATABASE_PASSWORD: myactiveworkflowpassword
-      INTENTIONALLY_SLEEP: 2
-      SINGLE_DYNO: 1
+      - RAILS_ENV: 'production'
+      - DATABASE_HOST: 'postgres'
+      - DATABASE_NAME: 'active_workflow'
+      - DATABASE_USERNAME: 'active_workflow'
+      - DATABASE_PASSWORD: 'myactiveworkflowpassword'
     ports:
       - 3000:3000
     links:
       - postgres
     command: /scripts/init
+
+  active_workflow_scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - RAILS_ENV: 'production'
+      - DATABASE_HOST: 'postgres'
+      - DATABASE_NAME: 'active_workflow'
+      - DATABASE_USERNAME: 'active_workflow'
+      - DATABASE_PASSWORD: 'myactiveworkflowpassword'
+    links:
+      - postgres
+    command: bundle exec rails runner bin/scheduler.rb
+
+  active_workflow_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - RAILS_ENV: 'production'
+      - DATABASE_HOST: 'postgres'
+      - DATABASE_NAME: 'active_workflow'
+      - DATABASE_USERNAME: 'active_workflow'
+      - DATABASE_PASSWORD: 'myactiveworkflowpassword'
+    links:
+      - postgres
+    command: bundle exec script/delayed_job -n 2 run
