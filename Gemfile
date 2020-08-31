@@ -93,7 +93,7 @@ group :development do
     gem 'capybara', '~> 3.32.1'
     gem 'capybara-screenshot', '~> 1.0.24'
     gem 'capybara-select2', require: false
-    gem 'codecov', '~> 0.1.16', require: false
+    gem 'codecov', '~> 0.2.8', require: false
     gem 'delorean', '~> 2.1.0'
     gem 'pry-byebug', '~> 3.9.0'
     gem 'pry-rails', '~> 0.3.9'
