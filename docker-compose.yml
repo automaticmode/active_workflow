@@ -21,11 +21,11 @@ services:
     env_file:
       - .env
     environment:
-      - RAILS_ENV: 'production'
-      - DATABASE_HOST: 'postgres'
-      - DATABASE_NAME: 'active_workflow'
-      - DATABASE_USERNAME: 'active_workflow'
-      - DATABASE_PASSWORD: 'myactiveworkflowpassword'
+      RAILS_ENV: 'production'
+      DATABASE_HOST: 'postgres'
+      DATABASE_NAME: 'active_workflow'
+      DATABASE_USERNAME: 'active_workflow'
+      DATABASE_PASSWORD: 'myactiveworkflowpassword'
     ports:
       - 3000:3000
     links:
@@ -39,11 +39,11 @@ services:
     env_file:
       - .env
     environment:
-      - RAILS_ENV: 'production'
-      - DATABASE_HOST: 'postgres'
-      - DATABASE_NAME: 'active_workflow'
-      - DATABASE_USERNAME: 'active_workflow'
-      - DATABASE_PASSWORD: 'myactiveworkflowpassword'
+      RAILS_ENV: 'production'
+      DATABASE_HOST: 'postgres'
+      DATABASE_NAME: 'active_workflow'
+      DATABASE_USERNAME: 'active_workflow'
+      DATABASE_PASSWORD: 'myactiveworkflowpassword'
     links:
       - postgres
     command: bundle exec rails runner bin/scheduler.rb
@@ -55,11 +55,11 @@ services:
     env_file:
       - .env
     environment:
-      - RAILS_ENV: 'production'
-      - DATABASE_HOST: 'postgres'
-      - DATABASE_NAME: 'active_workflow'
-      - DATABASE_USERNAME: 'active_workflow'
-      - DATABASE_PASSWORD: 'myactiveworkflowpassword'
+      RAILS_ENV: 'production'
+      DATABASE_HOST: 'postgres'
+      DATABASE_NAME: 'active_workflow'
+      DATABASE_USERNAME: 'active_workflow'
+      DATABASE_PASSWORD: 'myactiveworkflowpassword'
     links:
       - postgres
     command: bundle exec script/delayed_job -n 2 run
