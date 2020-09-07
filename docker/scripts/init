@@ -2,9 +2,6 @@
 set -e
 
 cd /app
-if [ -z "${SINGLE_DYNO}" ]; then
-  exec bundle exec puma
-fi
 
 # Cleanup any leftover pid file
 if [ -f /app/tmp/pids/server.pid ]; then
@@ -43,4 +40,9 @@ if [ -z "${DO_NOT_SEED}" ]; then
 fi
 
 # Start ActiveWorkflow
-exec bundle exec foreman start
+if [ -z "${SINGLE_DYNO}" ]; then
+  # Web only
+  exec bundle exec puma
+else
+  exec bundle exec foreman start
+fi
