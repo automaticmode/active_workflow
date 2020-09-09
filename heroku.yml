@@ -4,7 +4,7 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: Dockerfile
+    web: Dockerfile.heroku
 run:
   web:
     command:
