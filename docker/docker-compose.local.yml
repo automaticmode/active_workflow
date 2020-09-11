@@ -1,0 +1,65 @@
+version: '3'
+
+volumes:
+  postgresdata:
+
+services:
+  postgres:
+    image: docker.io/postgres:9.6-alpine
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: myactiveworkflowpassword
+      POSTGRES_USER: active_workflow
+    ports:
+      - 5432:5432
+
+  active_workflow_web:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    env_file:
+      - ../.env
+    environment:
+      RAILS_ENV: 'production'
+      DATABASE_HOST: 'postgres'
+      DATABASE_NAME: 'active_workflow'
+      DATABASE_USERNAME: 'active_workflow'
+      DATABASE_PASSWORD: 'myactiveworkflowpassword'
+    ports:
+      - 3000:3000
+    links:
+      - postgres
+    command: /scripts/init
+
+  active_workflow_scheduler:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    env_file:
+      - ../.env
+    environment:
+      RAILS_ENV: 'production'
+      DATABASE_HOST: 'postgres'
+      DATABASE_NAME: 'active_workflow'
+      DATABASE_USERNAME: 'active_workflow'
+      DATABASE_PASSWORD: 'myactiveworkflowpassword'
+    links:
+      - postgres
+    command: bundle exec rails runner bin/scheduler.rb
+
+  active_workflow_worker:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    env_file:
+      - ../.env
+    environment:
+      RAILS_ENV: 'production'
+      DATABASE_HOST: 'postgres'
+      DATABASE_NAME: 'active_workflow'
+      DATABASE_USERNAME: 'active_workflow'
+      DATABASE_PASSWORD: 'myactiveworkflowpassword'
+    links:
+      - postgres
+    command: bundle exec script/delayed_job -n 2 run

@@ -5,7 +5,7 @@ volumes:
 
 services:
   postgres:
-    image: postgres:9.5-alpine
+    image: postgres:9.6-alpine
     volumes:
       - postgresdata:/var/lib/postgresql/data
     environment:
