@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 
-ActiveWorkflow helps you automate your business or product workflows with [software agents](https://en.wikipedia.org/wiki/Software_agent); autonomous
+ActiveWorkflow helps you to automate your business or product workflows with [software agents](https://en.wikipedia.org/wiki/Software_agent); autonomous
 entities that act on schedule or react to external triggers. These unsupervised agents -which can be written in any programming language- connect to APIs, process information, perform routine tasks, and generally enable you to automate internal or external workflows.
 
 
