@@ -40,9 +40,20 @@ if [ -z "${DO_NOT_SEED}" ]; then
 fi
 
 # Start ActiveWorkflow
+
+# When SINGLE_DYNO=1 run all the processes in the same container. This should
+# only be used for testing/demonstration purposes. SINGLE_DYNO mode was
+# added specifically to support running ActiveWorkflow on Heroku free plan.
+# Please use multiple container configuration in production.
+
 if [ -z "${SINGLE_DYNO}" ]; then
   # Web only
   exec bundle exec puma
 else
-  exec bundle exec foreman start
+  # Simple "homegrown" process management with somewhat graceful shutdown.
+  (until bundle exec puma; do sleep 1; done) &
+  web_id=$!
+  (until bundle exec rails runner bin/scheduler.rb; do sleep 1; done) &
+  (until bundle exec script/delayed_job -n 2 run; do sleep 1; done) &
+  wait $web_id
 fi
