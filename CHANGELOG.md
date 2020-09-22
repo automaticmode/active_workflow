@@ -7,13 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [current]
-### Fixed
 
+
+## [0.9.10]
+### Fixed
 - Don't use `foreman` to manage multiple processes when running with
   `SINGLE_DYNO=1`. Single-dyno mode was demoted to being used purely for trying
   out ActiveWorkflow on Heroku (including Free plan). Functionality
   previously provided by foreman reimplemented as a simple shell script using
   job control functionality of bash. Fixes #9.
+
+### Changed
+- Both docker-compose and deployment to heroku (via single button deployment)
+  switched to using official docker images of ActiveWorkflow by default instead
+  of building images from source - mostly to save time spent building docker
+  image every single time. Of course, you can still build your own images from
+  source. The *latest versioned* image (eg.
+  automaticmode/active_workflow:0.9.10) is used.
 
 
 ## [0.9.9.2] - 2020-09-09
@@ -158,7 +168,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.9.2...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.10...HEAD
+[0.9.10]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.10
 [0.9.9.2]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.9.2
 [0.9.9.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.9.1
 [0.9.9]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.9
