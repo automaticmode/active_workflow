@@ -4,16 +4,11 @@
     "website": "https://github.com/automaticmode/active_workflow",
     "repository": "https://github.com/automaticmode/active_workflow",
     "stack": "container",
-    "formation": {
-      "web": {
-        "quantity": 1,
-        "size": "free"
-      }
-    },
     "env": {
         "SINGLE_DYNO": {
-          "description": "Set to '1' if you want to run all the processes in a single dyno, leave empty otherwise. Usable only for demonstration purposes. Do not run scheduler and worker dynos if running in SINGLE_DYNO mode.",
-          "value": "1"
+          "description": "Set to '1' if you want to run all the processes in a single dyno, leave '0' otherwise. Single dyno mode is only for demonstration purposes. Do not run scheduler and worker dynos if running in SINGLE_DYNO mode.",
+          "value": "0",
+          "required": false
         },
         "SEED_USERNAME": "admin",
         "SEED_PASSWORD": "password",
@@ -21,7 +16,6 @@
         "SECRET_KEY_BASE": {
             "generator": "secret"
         },
-        "RAILS_ENV": "production",
         "RAILS_LOG_TO_STDOUT": "enabled",
         "RAILS_MAX_THREADS": "2",
         "RAILS_SERVE_STATIC_FILES": "enabled"

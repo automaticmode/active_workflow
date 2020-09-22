@@ -27,7 +27,9 @@ A quick and easy way to check out ActiveWorkflow is by deploying it to
 All you need to do is click the button bellow and fill in the environment variables for your seed user (admin):
 `SEED_USERNAME`, `SEED_PASSWORD` (must be at least 8 characters long) and `SEED_EMAIL`.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow&env[SINGLE_DYNO]=1)
+
+!Note!: The button above deploys ActiveWorkflow on a single dyno so it could be run using Free Heroku plan. This configuration is not recommended for production. See [Getting Started](https://github.com/automaticmode/active_workflow/wiki/Getting-Started#Running-On-Heroku) for more details.
 
 ## Usage
 

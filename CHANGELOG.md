@@ -8,7 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 ### Fixed
-- Don't use `foreman` to manage multiple processes when running with `SINGLE_DYNO=1`.
+
+- Don't use `foreman` to manage multiple processes when running with
+  `SINGLE_DYNO=1`. Single-dyno mode was demoted to being used purely for trying
+  out ActiveWorkflow on Heroku (including Free plan). Functionality
+  previously provided by foreman reimplemented as a simple shell script using
+  job control functionality of bash. Fixes #9.
 
 
 ## [0.9.9.2] - 2020-09-09
