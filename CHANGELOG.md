@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update `mini_racer` and `libv8` - current combination started failing
   to install on MacOS.
+- Update `puma` - MacOS related [issue](https://github.com/puma/puma/issues/2304).
 
 
 ## [0.9.10]
