@@ -27,7 +27,7 @@ gem 'omniauth-37signals' # BasecampAgent
 gem 'ace-rails-ap', '~> 4.2'
 gem 'bootsnap', '>= 1.4.6', require: false
 gem 'execjs', '~> 2.7.0'
-gem 'mini_racer', '~> 0.2.15'
+gem 'mini_racer', '~> 0.3.1'
 gem 'bootstrap', '~> 4.5.0'
 gem 'daemons', '~> 1.2.6'
 gem 'delayed_job', '~> 4.1.8'

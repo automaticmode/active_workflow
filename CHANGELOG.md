@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [current]
+### Changed
+- Update `mini_racer` and `libv8` - current combination started failing
+  to install on MacOS.
 
 
 ## [0.9.10]
