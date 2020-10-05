@@ -128,6 +128,7 @@
           this.buildAce();
 
           window.initializeFormCompletable();
+          $('[data-toggle="tooltip"]').tooltip();
 
           $("#agent-spinner").stop(true, true).fadeOut();
         });

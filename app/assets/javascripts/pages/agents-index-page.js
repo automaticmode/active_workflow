@@ -1,7 +1,7 @@
 this.AgentsIndexPage = class AgentsIndexPage {
   constructor() {
     function updateDiagram(json) {
-      window.updateDiagramStatus(json);
+      window.updateDiagramStatus && window.updateDiagramStatus(json);
     }
 
     function timeAgo(date) {
