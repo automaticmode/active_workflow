@@ -80,25 +80,6 @@ describe 'Creating a new agent', js: true do
 
       expect(agent.control_targets).to eq([bob_status_agent])
     end
-
-    it 'creates an agent with a controller' do
-      visit '/'
-      page.find('a', text: 'Agents').click
-      click_on('New Agent', match: :first)
-
-      select_agent_type('HTTP Status Agent')
-      fill_in(:agent_name, with: 'Test Agent')
-
-      select2('Example Commander', from: 'Controllers')
-
-      click_on 'Save'
-
-      expect(page).to have_text('Test Agent')
-
-      agent = Agent.find_by(name: 'Test Agent')
-
-      expect(agent.controllers).to eq([bob_commander_agent])
-    end
   end
 
   it 'creates an alert if a new agent with invalid json is submitted' do

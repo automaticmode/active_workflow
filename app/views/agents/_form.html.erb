@@ -54,17 +54,6 @@
                 </div>
               </div>
 
-              <div class="controller-region">
-                <div class="form-group">
-                  <%= f.label :controllers %>
-                  <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Other than the system-defined schedule above, this agent may be run or controlled by these user-defined Agents.") %>
-                  <%= f.select(:controller_ids,
-                               options_for_select(current_user.agents.select(&:can_control_other_agents?).pluck(:name, :id),
-                                                  @agent.controller_ids),
-                               {}, { multiple: true, size: 5, class: 'select2-linked-tags form-control', data: {url_prefix: '/agents'}}) %>
-                </div>
-              </div>
-
               <div class="control-link-region" data-can-control-other-agents="<%= @agent.can_control_other_agents? %>">
                 <div class="can-control-other-agents">
                   <div class="form-group">
