@@ -10,7 +10,7 @@ describe 'HttpStatusAgent' do
   let(:agent_options) do
     {
       url: "{{ url | default: '#{default_url}' }}",
-      headers_to_save: '{{ headers_to_save }}'
+      headers_to_include: '{{ headers_to_include }}'
     }
   end
 
@@ -36,7 +36,7 @@ describe 'HttpStatusAgent' do
     let(:default_url) { url }
 
     let(:agent_options) do
-      super().merge(headers_to_save: '')
+      super().merge(headers_to_include: '')
     end
 
     it 'should check the url' do
@@ -62,7 +62,7 @@ describe 'HttpStatusAgent' do
       end
 
       let(:message_with_a_successful_ping) do
-        Message.new(payload: { url: successful_url, headers_to_save: '' })
+        Message.new(payload: { url: successful_url, headers_to_include: '' })
       end
 
       let(:message) do
@@ -126,7 +126,7 @@ describe 'HttpStatusAgent' do
           describe 'but actually, the ping failed' do
             let(:failing_url) { "http://#{SecureRandom.uuid}/" }
             let(:message_with_a_failing_ping) do
-              Message.new(payload: { url: failing_url, headers_to_save: '' })
+              Message.new(payload: { url: failing_url, headers_to_include: '' })
             end
 
             before do
@@ -189,7 +189,7 @@ describe 'HttpStatusAgent' do
         end
 
         let(:message_with_a_successful_ping) do
-          Message.new(payload: { url: successful_url, headers_to_save: '' })
+          Message.new(payload: { url: successful_url, headers_to_include: '' })
         end
 
         it 'should create one message' do
@@ -220,7 +220,7 @@ describe 'HttpStatusAgent' do
         end
 
         let(:message_with_a_successful_ping) do
-          Message.new(payload: { url: successful_url, headers_to_save: '' })
+          Message.new(payload: { url: successful_url, headers_to_include: '' })
         end
 
         it 'should create one message' do
@@ -242,7 +242,7 @@ describe 'HttpStatusAgent' do
       describe 'and with one message with a failing ping' do
         let(:failing_url)    { "http://#{SecureRandom.uuid}/" }
         let(:message_with_a_failing_ping) do
-          Message.new(payload: { url: failing_url, headers_to_save: '' })
+          Message.new(payload: { url: failing_url, headers_to_include: '' })
         end
 
         before do
@@ -291,10 +291,10 @@ describe 'HttpStatusAgent' do
         end
 
         let(:message_with_a_successful_ping) do
-          Message.new(payload: { url: successful_url, headers_to_save: header })
+          Message.new(payload: { url: successful_url, headers_to_include: header })
         end
 
-        it 'should save the header value according to headers_to_save' do
+        it 'should include the header value according to headers_to_include' do
           agent.receive message
           message = created_messages.last
           expect(message[:payload]['headers']).not_to be_nil
@@ -304,11 +304,11 @@ describe 'HttpStatusAgent' do
         context 'regarding case-insensitivity' do
           let(:message_with_a_successful_ping) do
             super().tap { |message|
-              message.payload[:headers_to_save].swapcase!
+              message.payload[:headers_to_include].swapcase!
             }
           end
 
-          it 'should save the header value according to headers_to_save' do
+          it 'should include the header value according to headers_to_include' do
             agent.receive message
             message = created_messages.last
             expect(message[:payload]['headers']).not_to be_nil
@@ -330,7 +330,7 @@ describe 'HttpStatusAgent' do
         let(:message_with_a_successful_ping) do
           Message.new(payload: {
                         url: successful_url,
-                        headers_to_save: header + ',' + nonexistant_header
+                        headers_to_include: header + ',' + nonexistant_header
                       })
         end
 

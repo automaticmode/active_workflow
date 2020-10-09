@@ -15,16 +15,16 @@ module Agents
     form_configurable :url
     form_configurable :disable_redirect_follow, type: :boolean
     form_configurable :changes_only, type: :boolean
-    form_configurable :headers_to_save
+    form_configurable :headers_to_include
 
     description <<-MD
-      The HttpStatusAgent will check a url and emit the resulting HTTP status code with the time that it waited for a reply. Additionally, it will optionally emit the value of one or more specified headers.
+      The HttpStatusAgent will check a URL and emit the resulting HTTP status code with the time that it waited for a reply. Additionally, it will optionally emit the value of one or more specified headers.
 
-      Specify a `Url` and the Http Status Agent will produce an message with the HTTP status code. If you specify one or more `Headers to save` (comma-delimited) as well, that header or headers' value(s) will be included in the message.
+      Specify a `url` and the Http Status Agent will produce a message with the HTTP status code. If you specify one or more `headers_to_include` (comma-delimited), that header or headers' value(s) will be included in the message.
 
-      The `disable redirect follow` option causes the Agent to not follow HTTP redirects. For example, setting this to `true` will cause an agent that receives a 301 redirect to `http://yahoo.com` to return a status of 301 instead of following the redirect and returning 200.
+      The `disable_redirect_follow` option makes the agent not to follow HTTP redirects. For example, setting this to `true` will make an agent that receives a 301 redirect to `https://www.example.com` to return a status of 301 instead of following the redirect and returning 200.
 
-      The `changes only` option causes the Agent to report an message only when the status changes. If set to false, a message will be created for every check.  If set to true, a message will only be created when the status changes (like if your site goes from 200 to 500).
+      The `changes_only` option makes the Agent to report a message only when the status changes. If set to `false`, a message will be created for every check.  If set to `true`, a message will only be created when the status changes (like if your site goes from 200 to 500).
     MD
 
     message_description <<-MD
@@ -48,7 +48,7 @@ module Agents
     end
 
     def validate_options
-      errors.add(:base, 'a url must be specified') unless options['url'].present?
+      errors.add(:base, 'a URL must be specified') unless options['url'].present?
     end
 
     def header_array(str)
@@ -56,13 +56,13 @@ module Agents
     end
 
     def check
-      check_this_url interpolated[:url], header_array(interpolated[:headers_to_save])
+      check_this_url interpolated[:url], header_array(interpolated[:headers_to_include])
     end
 
     def receive(message)
       interpolate_with(message) do
         check_this_url interpolated[:url],
-                       header_array(interpolated[:headers_to_save])
+                       header_array(interpolated[:headers_to_include])
       end
     end
 

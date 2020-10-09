@@ -8,10 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 ### Changed
-- Update `mini_racer` and `libv8` - current combination started failing
+- Updated `mini_racer` and `libv8` - current combination started failing
   to install on MacOS.
-- Update `puma` - MacOS related [issue](https://github.com/puma/puma/issues/2304).
-
+- Updated `puma` - MacOS related [issue](https://github.com/puma/puma/issues/2304).
+- Renamed `headers_to_save` to `headers_to_include` in HTTP Status Agent.
 
 ## [0.9.10]
 ### Fixed
