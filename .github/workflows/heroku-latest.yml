@@ -1,0 +1,29 @@
+name: Deploy latest dev to heroku
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Login to Heroku Container registry
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_DEV_APP: ${{ secrets.HEROKU_DEV_APP }}
+      if: env.HEROKU_DEV_APP != ''
+      run: heroku container:login
+    - name: Build and push
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_DEV_APP: ${{ secrets.HEROKU_DEV_APP }}
+      if: env.HEROKU_DEV_APP != ''
+      run: heroku container:push -a ${{ secrets.HEROKU_DEV_APP }} web
+    - name: Release
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_DEV_APP: ${{ secrets.HEROKU_DEV_APP }}
+      if: env.HEROKU_DEV_APP != ''
+      run: heroku container:release -a ${{ secrets.HEROKU_DEV_APP }} web
