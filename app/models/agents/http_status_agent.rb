@@ -42,7 +42,7 @@ module Agents
 
     def default_options
       {
-        'url' => 'http://google.com',
+        'url' => 'https://www.example.com',
         'disable_redirect_follow' => 'true'
       }
     end

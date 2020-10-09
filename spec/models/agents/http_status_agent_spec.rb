@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'HttpStatusAgent' do
   before do
-    stub_request(:get, 'http://google.com/')
+    stub_request(:get, 'https://www.example.com')
   end
 
-  let(:default_url) { 'http://google.com/' }
+  let(:default_url) { 'https://www.example.com' }
 
   let(:agent_options) do
     {
@@ -355,7 +355,7 @@ describe 'HttpStatusAgent' do
         agent.options['url'] = ''
         expect(agent).not_to be_valid
 
-        agent.options['url'] = 'http://www.google.com'
+        agent.options['url'] = 'https://www.example.com'
         expect(agent).to be_valid
       end
     end
