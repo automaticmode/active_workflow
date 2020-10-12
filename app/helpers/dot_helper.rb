@@ -156,11 +156,11 @@ module DotHelper
                   shape: 'box',
                   style: 'rounded',
                   fontsize: 10,
-                  fontname: 'SourceSansPro'
+                  fontname: 'Inter'
 
         statement 'edge',
                   fontsize: 10,
-                  fontname: 'SourceSansPro'
+                  fontname: 'Inter'
 
         agents.each.with_index { |agent, index|
           agent_node(agent)
