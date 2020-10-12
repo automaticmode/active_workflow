@@ -1,0 +1,51 @@
+
+.navbar {
+
+  a.navbar-brand {
+    border: none;
+    color: #676b70;
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+
+    &:hover {
+      color: #787d82;
+    }
+  }
+
+  #message-indicator,
+  .job-indicator {
+    font-size: 1.22rem;
+    line-height: 55px;
+    padding-right: 1rem;
+
+    a {
+      color: $gray-500;
+
+      .badge {
+        font-weight: 200;
+
+        i {
+          color: $gray-500;
+        }
+      }
+
+      &:hover {
+        color: #787d82;
+        .badge i {
+          color: #787d82;
+        }
+      }
+    }
+
+  }
+
+}
+
+.navbar-expand-lg .navbar-nav {
+  li.nav-item {
+    .nav-link {
+      padding: 1rem 1rem;
+    }
+  }
+}

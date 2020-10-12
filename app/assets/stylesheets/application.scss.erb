@@ -3,14 +3,14 @@
  *= require select2-bootstrap
  *= require rickshaw
  *= require spectrum
- *= require source-sans-pro
  *= require datatables
  *= require_self
  */
 
-$font-family-sans-serif: "SourceSansPro" !default;
+$font-family-sans-serif: "Inter" !default;
 $font-family-base: $font-family-sans-serif !default;
 
+@import "inter/inter";
 @import "variables";
 
 @import "bootstrap";
@@ -23,7 +23,11 @@ $font-family-base: $font-family-sans-serif !default;
 @import "jobs";
 @import "tables";
 @import "workflows";
+@import "agent";
+@import "navbar";
+@import "forms";
 @import "agent_views/peak_detector_agent/show";
+@import "typography";
 
 // Tweaks
 
@@ -38,7 +42,7 @@ $font-family-base: $font-family-sans-serif !default;
     display: none;
 }
 
-// Fix firefox and chrome outlines on focused navs.
+// Fix Firefox and Chrome outlines on focused navs.
 nav .nav-item .nav-link:focus,
 .dropdown-menu .dropdown-item:focus
 {

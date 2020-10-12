@@ -1,11 +1,20 @@
 <% content_for :title, "Create Agent" -%>
 
 <div class='container'>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to icon_tag('fa-chevron-left') + ' All agents'.html_safe, agents_path, class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+
+  <hr>
+
   <div class='row'>
     <div class='col-md-12'>
       <div class="page-header">
         <h1>
-          Create a new Agent
+          Create a new agent
           <i id="agent-spinner" class="fa fa-spinner fa-pulse spinner"></i>
         </h1>
       </div>
@@ -14,13 +23,6 @@
         <%= render 'form' %>
       </div>
 
-      <hr>
-
-      <div class="row">
-        <div class="col-md-12">
-          <%= link_to icon_tag('fa-chevron-left') + ' All Agents'.html_safe, agents_path, class: "btn btn-primary btn-sm" %>
-        </div>
-      </div>
     </div>
   </div>
 </div>

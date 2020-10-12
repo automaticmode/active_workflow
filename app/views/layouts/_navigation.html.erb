@@ -2,7 +2,7 @@
   <span class="navbar-toggler-icon"></span>
 </button>
 <%= link_to(root_path, class: "navbar-brand") do %>
-  <%= image_tag("AW_white.svg", alt: "logo") %>
+  ActiveWorkflow
 <% end %>
 
 <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -50,9 +50,11 @@
             <%= link_to "Configure Services", services_path, tabindex: '-1', class: 'dropdown-item' %>
           <% end %>
           <% if user_signed_in? && current_user.admin %>
+            <div class="dropdown-divider"></div>
             <%= link_to 'Job Management', jobs_path, :tabindex => '-1', class: 'dropdown-item' %>
             <%= link_to 'User Management', admin_users_path, tabindex: '-1', class: 'dropdown-item' %>
           <% end %>
+          <div class="dropdown-divider"></div>
           <% if user_signed_in? %>
             <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :tabindex => "-1", class: 'dropdown-item' %>
           <% else %>

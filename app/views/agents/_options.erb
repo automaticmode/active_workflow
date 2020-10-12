@@ -1,9 +1,10 @@
+<hr>
 <% if agent.form_configurable? %>
   <fieldset>
     <% if agent.persisted? %>
       <%= hidden_field_tag 'agent[type]', @agent.type %>
     <% end %>
-    <legend>Options</legend>
+    <legend>Agent-specific options</legend>
     <% agent.form_configurable_attributes.each do |attribute| %>
       <div class="form-group">
         <%= label_tag attribute %>
@@ -20,8 +21,8 @@
   </div>
 <% end %>
 <div class="form-group">
-  <%= submit_tag "Save", :class => "btn btn-primary btn-sm" %>
+  <%= submit_tag "Save", :class => "btn btn-primary btn-lg" %>
   <% if agent.can_dry_run? %>
-    <%= button_tag class: 'btn btn-primary btn-sm agent-dry-run-button', type: 'button', 'data-action-url' => agent.persisted? ? agent_dry_runs_path(agent) : dry_runs_path(type: agent.type), 'data-with-message-mode' => agent_dry_run_with_message_mode(agent) do %><%= icon_tag('fa-sync-alt') %> Dry Run<% end %>
+    <%= button_tag class: 'btn btn-primary btn-lg agent-dry-run-button', type: 'button', 'data-action-url' => agent.persisted? ? agent_dry_runs_path(agent) : dry_runs_path(type: agent.type), 'data-with-message-mode' => agent_dry_run_with_message_mode(agent) do %><%= icon_tag('fa-sync-alt') %> Dry Run<% end %>
   <% end %>
 </div>

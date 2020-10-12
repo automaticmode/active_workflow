@@ -1,0 +1,9 @@
+
+label[required] {
+  color: #f74;
+
+  &:after {
+      content:" *";
+      color: #f74;
+    }
+}

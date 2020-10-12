@@ -9,43 +9,43 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-9">
       <div class="form-group">
-        <%= f.label :name %>
+        <%= f.label :name, :required => true %>
         <%= f.text_field :name, :class => 'form-control', :placeholder => "Name your Workflow" %>
       </div>
     </div>
-    <div class="col-md-2">
-      <div class="form-group">
-        <%= f.label :tag_bg_color, "Tag Background Color" %>
-        <%= f.color_field :tag_bg_color, :class => 'form-control', :value => @workflow.tag_bg_color || default_workflow_bg_color %>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="form-group">
-        <%= f.label :tag_fg_color, "Tag Foreground Color" %>
-        <%= f.color_field :tag_fg_color, :class => 'form-control', :value => @workflow.tag_fg_color || default_workflow_fg_color %>
-      </div>
-    </div>
   </div>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
       <div class="form-group">
         <%= f.label :description, "Optional Description" %>
-        <%= f.text_area :description, :rows => 10, :class => 'form-control', :placeholder => "Optionally describe what this Workflow will do." %>
+        <%= f.text_area :description, :rows => 7, :class => 'form-control', :placeholder => "Optionally describe what this Workflow will do." %>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="form-group">
         <div>
           <%= f.label :icon %>
           <%= f.select(:icon, options_for_select(Workflow.icons, @workflow.icon), {},
             {:style => "font-family:'FontAwesome', Arial;", :class => 'select2-fountawesome-icon'}) %>
         </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= f.label :tag_bg_color, "Tag Background Color" %>
+        <%= f.color_field :tag_bg_color, :class => 'form-control', :value => @workflow.tag_bg_color || default_workflow_bg_color %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= f.label :tag_fg_color, "Tag Foreground Color" %>
+        <%= f.color_field :tag_fg_color, :class => 'form-control', :value => @workflow.tag_fg_color || default_workflow_fg_color %>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class='form-actions' style='clear: both'>
-        <%= f.submit "Save Workflow", :class => "btn btn-primary btn-sm" %>
+        <%= f.submit "Save Workflow", :class => "btn btn-primary btn-lg" %>
       </div>
     </div>
   </div>

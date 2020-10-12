@@ -1,21 +1,23 @@
 <div class='container'>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to icon_tag('fa-chevron-left') + ' All workflows'.html_safe, workflows_path, class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+
+  <hr>
+
   <div class='row'>
     <div class='col-md-12'>
       <div class="page-header">
         <h1>
-          Create Workflow
+          Create workflow
         </h1>
-      </div>
-
-      <%= render 'form' %>
-
-      <hr>
-
-      <div class="row">
-        <div class="col-md-12">
-          <%= link_to icon_tag('fa-chevron-left') + ' All Workflows'.html_safe, workflows_path, class: "btn btn-primary btn-sm" %>
-        </div>
       </div>
     </div>
   </div>
+
+  <%= render 'form' %>
+
 </div>

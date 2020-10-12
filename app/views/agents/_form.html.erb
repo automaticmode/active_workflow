@@ -1,6 +1,6 @@
 <% if @agent.errors.any? %>
   <div class="alert alert-danger">
-    <h3><%= pluralize(@agent.errors.count, "error") %> prohibited this Agent from being saved:</h3>
+    <h3><%= pluralize(@agent.errors.count, "error") %> prohibited this agent from being saved:</h3>
     <% @agent.errors.full_messages.each do |msg| %>
       <p><%= msg %></p>
     <% end %>
@@ -17,21 +17,16 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-12">
             <% if @agent.new_record? %>
               <div class="form-group">
                 <%= f.label :type %>
                 <%= f.select :type, options_for_select(agent_type_select_options, @agent.type), {}, class: 'form-control', autofocus: true %>
               </div>
             <% end %>
-          </div>
           <div class="agent-settings">
 
-            <div class="col-md-12">
               <div class="form-group">
-                <%= f.label :name %>
+                <%= f.label :name, :required => true %>
                 <%= f.text_field :name, :class => 'form-control' %>
                 <% if @agent.errors[:name] %>
                   <% @agent.errors[:name].each do |msg| %>
@@ -50,7 +45,7 @@
                   <div class="can-be-scheduled">
                     <%= f.select :schedule, options_for_select(Agent::SCHEDULES.map {|s| [builtin_schedule_name(s), s] }, @agent.schedule), {}, :class => 'form-control select2' %>
                   </div>
-                  <span class='cannot-be-scheduled text-info'>This type of Agent cannot be scheduled.</span>
+                  <span class='cannot-be-scheduled text-info'>This type of agent cannot be scheduled.</span>
                 </div>
               </div>
 
@@ -68,57 +63,53 @@
 
               <div class="form-group">
                   <%= f.label :keep_messages_for, "Keep messages" %>
-                  <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "In order to conserve disk space, you can choose to have messages created by this Agent expire after a certain period of time.  Make sure you keep them long enough to allow any subsequent Agents to make use of them.") %>
+                  <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "In order to conserve disk space, you can choose to have messages created by this agent expire after a certain period of time.  Make sure you keep them long enough to allow any subsequent agents to make use of them.") %>
                 <div class='message-related-region' data-can-create-messages="<%= @agent.can_create_messages? %>">
                   <%= f.select :keep_messages_for, options_for_select(Agent::MESSAGE_RETENTION_SCHEDULES, @agent.keep_messages_for), {}, :class => 'form-control select2' %>
-                  <span class='cannot-create-messages text-info'>This type of Agent cannot create messages.</span>
+                  <span class='cannot-create-messages text-info'>This type of agent cannot create messages.</span>
                 </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :sources %>
-                  <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "This Agent will receive messages from the selected Agents.") %>
+                  <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "This agent will receive messages from the selected agents.") %>
                 <div class="link-region" data-can-receive-messages="<%= @agent.can_receive_messages? %>">
                   <% messageSources = (current_user.agents - [@agent]).find_all { |a| a.can_create_messages? } %>
                   <%= f.select(:source_ids,
                                options_for_select(messageSources.map {|s| [s.name, s.id] },
                                                   @agent.source_ids),
                                {}, { :multiple => true, :size => 5, :class => 'select2-linked-tags form-control', data: {url_prefix: '/agents'} }) %>
-                  <span class='cannot-receive-messages text-info'>This type of Agent cannot receive messages.</span>
+                  <span class='cannot-receive-messages text-info'>This type of agent cannot receive messages.</span>
                 </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :receivers %>
-                    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Messages created by this Agent will be sent to the selected Agents.") %>
+                    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Messages created by this agent will be sent to the selected agents.") %>
                 <div class="message-related-region">
                   <% messageTargets = (current_user.agents - [@agent]).find_all { |a| a.can_receive_messages? } %>
                   <%= f.select(:receiver_ids,
                                options_for_select(messageTargets.pluck(:name, :id),
                                                   @agent.receiver_ids),
                                {}, { :multiple => true, :size => 5, :class => 'select2-linked-tags form-control', data: {url_prefix: '/agents'} }) %>
-                  <span class='cannot-create-messages text-info'>This type of Agent cannot create messages.</span>
+                  <span class='cannot-create-messages text-info'>This type of agent cannot create messages.</span>
                 </div>
               </div>
 
               <% if current_user.workflow_count > 0 %>
                 <div class="form-group">
                   <%= f.label :workflows %>
-                    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Use Workflows to group sets of Agents, both for organization, and to make them easy to export and share.") %>
+                    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Use Workflows to group sets of agents, both for organization, and to make them easy to export and share.") %>
                   <%= f.select(:workflow_ids,
                                options_for_select(current_user.workflows.pluck(:name, :id), @agent.workflow_ids),
                                {}, { :multiple => true, :size => 5, :class => 'select2-linked-tags form-control', data: {url_prefix: '/workflows'} }) %>
                 </div>
               <% end %>
 
-            </div>
-
-            <div class="col-md-12 agent-options">
+            <div class="agent-options">
               <%= render 'options', agent: @agent %>
             </div>
           </div>
-        </div>
-      </div>
     </div>
 
     <div class="col-md-6">

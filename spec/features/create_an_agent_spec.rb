@@ -104,12 +104,12 @@ describe 'Creating a new agent', js: true do
 
     it 'shows all options for agents that can be scheduled, create and receive messages' do
       select_agent_type('Website Agent scrapes')
-      expect(page).not_to have_content('This type of Agent cannot create messages.')
+      expect(page).not_to have_content('This type of agent cannot create messages.')
     end
 
     it 'does not show the target select2 field when the agent can not create messages' do
       select_agent_type('Email Agent')
-      expect(page).to have_content('This type of Agent cannot create messages.')
+      expect(page).to have_content('This type of agent cannot create messages.')
     end
   end
 

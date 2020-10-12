@@ -47,5 +47,7 @@ module ActiveWorkflow
     # config.active_record.schema_format = :sql
 
     config.active_job.queue_adapter = :delayed_job
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end
