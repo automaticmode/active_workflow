@@ -14,7 +14,7 @@
             <li class="nav-item active"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
           <% end %>
 
-          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link <%= @agent.recent_error_logs? ? 'recent-errors' : '' %>"><%= icon_tag('fa-list-alt') %> Logs</a></li>
+          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link <%= @agent.issue_recent_errors? ? 'recent-errors' : '' %>"><%= icon_tag('fa-list-alt') %> Logs</a></li>
 
           <% if @agent.can_create_messages? %>
             <li class="nav-item"><a href="#messages" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
@@ -116,6 +116,12 @@
                 <%= @agent.short_type.titleize %>
               </p>
 
+              <p>
+                <b>Status:</b>
+                <%= agent_status(@agent).html_safe %>
+              </p>
+
+
               <% if @agent.can_be_scheduled? %>
                 <p>
                   <b>Schedule:</b>
@@ -195,8 +201,17 @@
               <% end %>
 
               <p>
-                <b>Working:</b>
-                <%= working @agent %>
+                <b>Issues:</b>
+                <% if (issues = agent_issues(@agent)).length > 0 %>
+                <br/>
+                <ul>
+                  <% issues.each do |issue| %>
+                    <li class="issues"><%= issue %></li>
+                  <% end %>
+                </ul>
+                <% else %>
+                  no issues.
+                <% end %>
               </p>
             </div>
             </div>

@@ -80,13 +80,6 @@ describe Agents::S3Agent do
     expect(@checker.complete_bucket).to eq([{ text: 'test', id: 'test' }, { text: 'test2', id: 'test2' }])
   end
 
-  context '#working' do
-    it 'is working with no recent errors' do
-      @checker.last_check_at = Time.now
-      expect(@checker).to be_working
-    end
-  end
-
   context '#check' do
     context 'not watching' do
       it 'emits an message for every file' do

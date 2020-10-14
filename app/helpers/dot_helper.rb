@@ -203,12 +203,22 @@ module DotHelper
 
         overlay << Nokogiri::XML::Node.new('a', doc) { |badge|
           badge['id'] = id = 'b%d' % agent_id
-          badge['class'] = 'badge'
+          badge['class'] = 'badge badge-primary'
           badge['style'] = 'display: none'
           badge['href'] = agent_path(agent, params: { tab: 'messages', workflow_id: workflow })
           badge.content = count.to_s
 
           node['data-badge-id'] = id
+        }
+
+        overlay << Nokogiri::XML::Node.new('a', doc) { |issues|
+          issues['id'] = id = 'i%d' % agent_id
+          issues['class'] = 'issues badge badge-primary'
+          issues['style'] = 'display: none'
+          issues['href'] = agent_path(agent, params: { tab: 'details', workflow_id: workflow })
+          issues.content = '⚠️'
+
+          node['data-issues-id'] = id
         }
       }
       # See also: app/assets/diagram.js

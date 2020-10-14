@@ -27,13 +27,6 @@ describe Agents::JsonParseAgent do
     end
   end
 
-  context '#working' do
-    it 'is working after receiving an message without error' do
-      @checker.last_receive_at = Time.now
-      expect(@checker).to be_working
-    end
-  end
-
   describe '#receive' do
     it 'parses valid JSON' do
       message = Message.new(payload: { data: '{"test": "data"}' })

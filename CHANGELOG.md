@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   to install on MacOS.
 - Updated `puma` - MacOS related [issue](https://github.com/puma/puma/issues/2304).
 - Renamed `headers_to_save` to `headers_to_include` in HTTP Status Agent.
+- Replace `working` with `issues` and add desctiptions.
+
 
 ## [0.9.10]
 ### Fixed

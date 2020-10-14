@@ -111,21 +111,9 @@ class Agent < ApplicationRecord
   # def receive_web_request(request=ActionDispatch::Request.new( ... ))
   # end
 
-  def working?
-    return false if recent_error_logs?
-
-    return false unless received_message_without_error? || checked_without_error? || last_error_log_at.nil?
-
-    # Timeouts
-    if interpolated['expected_update_period_in_days'].present?
-      return false unless message_created_within?(interpolated['expected_update_period_in_days'])
-    end
-
-    if interpolated['expected_receive_period_in_days'].present?
-      return false unless last_receive_at && last_receive_at > interpolated['expected_receive_period_in_days'].to_i.days.ago
-    end
-
-    true
+  def issues?
+    issue_recent_errors? || issue_error_during_last_operation? ||
+      issue_update_timeout? || issue_receive_timeout? || issue_dependencies_missing?
   end
 
   def build_message(message)
@@ -408,10 +396,6 @@ class AgentDrop
 
   METHODS.each do |attr|
     define_method(attr) { @object.__send__(attr) } unless method_defined?(attr)
-  end
-
-  def working
-    @object.working?
   end
 
   def url

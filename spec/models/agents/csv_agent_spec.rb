@@ -41,13 +41,6 @@ describe Agents::CsvAgent do
     end
   end
 
-  context '#working' do
-    it 'is working after receiving a message without error' do
-      @checker.last_receive_at = Time.now
-      expect(@checker).to be_working
-    end
-  end
-
   context '#receive' do
     def message_with_contents(contents)
       Message.new(payload: { data: contents }, user_id: @checker.user_id)

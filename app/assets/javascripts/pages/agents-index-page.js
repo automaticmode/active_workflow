@@ -95,13 +95,19 @@ this.AgentsIndexPage = class AgentsIndexPage {
           }
         },
         {
-          data: 'working',
+          data: 'issues',
           render: function(data, type, row) {
             if (type == 'display') {
-              if (data == true) {
-                return '<span class="badge badge-success">Yes</span>';
+              if (data != true) {
+                return '';
               } else {
-                return '<span class="badge badge-danger">No</span>';
+                var agentUrl = `/agents/${row.id}?tab=details`;
+                var workflow_id = workflowId();
+                if (workflow_id) {
+                  agentUrl = `${agentUrl}&workflow_id=${workflow_id}`;
+                }
+                return `<a href="${agentUrl}" class="issues">` +
+                  '<span title="Issues found with this agent. Click to go to the agent\'s Details tab for more details.">⚠️<span></a>';
               }
             }
             return data;

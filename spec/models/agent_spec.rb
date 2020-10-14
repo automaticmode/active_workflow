@@ -727,17 +727,6 @@ describe AgentDrop do
     expect(interpolate(t, @efa)).to eq('0: ')
   end
 
-  it 'should have .working' do
-    stub(@wsa1).working? { false }
-    stub(@wsa2).working? { true }
-    stub(@efa).working? { false }
-
-    t = '{% if agent.working %}healthy{% else %}unhealthy{% endif %}'
-    expect(interpolate(t, @wsa1)).to eq('unhealthy')
-    expect(interpolate(t, @wsa2)).to eq('healthy')
-    expect(interpolate(t, @efa)).to eq('unhealthy')
-  end
-
   it 'should have .url' do
     t = '{{ agent.url }}'
     expect(interpolate(t, @wsa1)).to match(%r{http:\/\/localhost(?::\d+)?\/agents\/#{@wsa1.id}})

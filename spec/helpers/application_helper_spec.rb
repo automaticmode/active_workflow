@@ -99,37 +99,53 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#working' do
+  describe '#agent_status' do
     before do
       @agent = agents(:jane_website_agent)
     end
 
     it 'returns a label "Disabled" if a given agent is disabled' do
       stub(@agent).disabled? { true }
-      label = working(@agent)
-      expect(label).to be_html_safe
-      expect(Nokogiri(label).text).to eq 'Disabled'
+      label = agent_status(@agent)
+      expect(label).to eq 'Disabled'
     end
 
-    it 'returns a label "Missing Gems" if a given agent has dependencies missing' do
-      stub(@agent).dependencies_missing? { true }
-      label = working(@agent)
-      expect(label).to be_html_safe
-      expect(Nokogiri(label).text).to eq 'Missing Gems'
+    it 'returns a label "Enabled" if a given agent is enabled' do
+      label = agent_status(@agent)
+      expect(label).to eq 'Enabled'
+    end
+  end
+
+  describe '#agent_issues' do
+    before do
+      @agent = agents(:jane_website_agent)
     end
 
-    it 'returns a label "Yes" if a given agent is working' do
-      stub(@agent).working? { true }
-      label = working(@agent)
-      expect(label).to be_html_safe
-      expect(Nokogiri(label).text).to eq 'Yes'
+    it 'returns a text "Recent error (check logs)"' do
+      stub(@agent).issue_recent_errors? { true }
+      expect(agent_issues(@agent)).to include 'Recent error (check logs)'
     end
 
-    it 'returns a label "No" if a given agent is not working' do
-      stub(@agent).working? { false }
-      label = working(@agent)
-      expect(label).to be_html_safe
-      expect(Nokogiri(label).text).to eq 'No'
+    it 'returns a text "Error during check/receive (check logs)"' do
+      stub(@agent).issue_error_during_last_operation? { true }
+      expect(agent_issues(@agent)).to include 'Error during check/receive (check logs)'
+    end
+
+    it 'returns a text "No new messages created within N days"' do
+      @agent.options['expected_update_period_in_days'] = 5
+      stub(@agent).issue_update_timeout? { true }
+      expect(agent_issues(@agent)).to include 'No new messages created within 5 days'
+    end
+
+    it 'returns a text "No messages received within N days"' do
+      @agent.options['expected_receive_period_in_days'] = 5
+      stub(@agent).issue_receive_timeout? { true }
+      expect(agent_issues(@agent)).to include 'No messages received within 5 days'
+    end
+
+    it 'returns a text "Gems missing"' do
+      stub(@agent).issue_dependencies_missing? { true }
+      expect(agent_issues(@agent)).to include 'Gems missing'
     end
   end
 

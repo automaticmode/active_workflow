@@ -19,6 +19,13 @@ window.updateDiagram = function(options){
     point.y = bbox.y;
     return point.matrixTransform(node.getCTM());
   };
+  const getBottomLeft = function(node) {
+    const bbox = node.getBBox();
+    const point = svg.createSVGPoint();
+    point.x = bbox.x + bbox.width;
+    point.y = bbox.y + bbox.height;
+    return point.matrixTransform(node.getCTM());
+  };
   $(svg).find('g.node[data-badge-id]').each(function() {
     const tl = getTopLeft(this);
     $(`#${this.getAttribute('data-badge-id')}`, overlay).each(function() {
@@ -29,28 +36,41 @@ window.updateDiagram = function(options){
       });
     });
   });
+  $(svg).find('g.node[data-issues-id]').each(function() {
+    const bl = getBottomLeft(this);
+    $(`#${this.getAttribute('data-issues-id')}`, overlay).each(function() {
+      const issues = $(this);
+      issues.css({
+        left: bl.x - (issues.outerWidth()  * (2/3)),
+        top:  bl.y - (issues.outerHeight() * (2/3))
+      });
+    });
+  });
 };
 
 window.updateDiagramStatus = function(json) {
-  var setBadge = function(agent_id, count, working) {
+  var setBadge = function(agent_id, count) {
     var selector = `#b${agent_id}`;
     if (count > 0) {
       $(selector).show();
       $(`${selector}`).text(count);
       $(`${selector}`).attr('title', `${count} messages created`);
-      if (working) {
-        $(`${selector}`).removeClass('badge-danger');
-        $(`${selector}`).addClass('badge-success');
-      } else {
-        $(`${selector}`).removeClass('badge-success');
-        $(`${selector}`).addClass('badge-danger');
-      };
     } else {
       $(selector).hide();
     }
   };
+  var setIssues = function(agent_id, issues) {
+    var selector = `#i${agent_id}`;
+    if (issues) {
+      $(selector).show();
+      $(selector).attr('title', `Issues found with this agent. Click to go to the agent's Details tab for more details.`);
+    } else {
+      $(selector).hide();
+    };
+  };
   for(const agent of json) {
-    setBadge(agent.id, agent.messages_count, agent.working);
+    setBadge(agent.id, agent.messages_count);
+    setIssues(agent.id, agent.issues);
   }
 }
 

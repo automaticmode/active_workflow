@@ -66,7 +66,7 @@ gem 'sprockets', '~> 3.7.2'
 # TODO: update
 gem 'typhoeus', '~> 1.3.1'
 gem 'uglifier', '~> 4.1.18'
-gem 'jquery-datatables', '~> 1.10.19'
+gem 'jquery-datatables', '~> 1.10.20'
 gem 'grape', '~> 1.3.2'
 gem 'grape-entity', '~> 0.8.0'
 gem 'jwt', '~> 2.2.1'

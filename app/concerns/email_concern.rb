@@ -32,10 +32,6 @@ module EmailConcern
     end
   end
 
-  def working?
-    last_receive_at && last_receive_at > options['expected_receive_period_in_days'].to_i.days.ago && !recent_error_logs?
-  end
-
   def present(payload)
     if payload.is_a?(Hash)
       payload = ActiveSupport::HashWithIndifferentAccess.new(payload)

@@ -48,16 +48,27 @@ module ApplicationHelper
     content_tag :span, bool ? 'Yes' : 'No', class: "badge #{bool ? 'badge-info' : ''}"
   end
 
-  def working(agent)
+  def agent_status(agent)
     if agent.disabled?
-      link_to 'Disabled', agent_path(agent), class: 'badge badge-warning'
-    elsif agent.dependencies_missing?
-      content_tag :span, 'Missing Gems', class: 'badge badge-danger'
-    elsif agent.working?
-      content_tag :span, 'Yes', class: 'badge badge-success'
+      'Disabled'
     else
-      link_to 'No', agent_path(agent, tab: (agent.recent_error_logs? ? 'logs' : 'details')), class: 'badge badge-danger'
+      'Enabled'
     end
+  end
+
+  def agent_issues(agent)
+    result = []
+    result << 'Recent error (check logs)' if agent.issue_recent_errors?
+    result << 'Error during check/receive (check logs)' if agent.issue_error_during_last_operation?
+    if agent.issue_update_timeout?
+      result << "No new messages created within #{agent.interpolated['expected_update_period_in_days']} days"
+    end
+    if agent.issue_receive_timeout?
+      result << "No messages received within #{agent.interpolated['expected_receive_period_in_days']} days"
+    end
+    result << "Gems missing" if agent.issue_dependencies_missing?
+
+    result
   end
 
   def omniauth_provider_icon(provider)

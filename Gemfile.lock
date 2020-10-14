@@ -619,7 +619,7 @@ DEPENDENCIES
   guard-livereload (~> 2.5.2)
   guard-rspec (~> 4.7.3)
   httparty (~> 0.16)
-  jquery-datatables (~> 1.10.19)
+  jquery-datatables (~> 1.10.20)
   jquery-rails (~> 4.3.5)
   json (~> 2.3.0)
   jsonpath (~> 1.0.1)

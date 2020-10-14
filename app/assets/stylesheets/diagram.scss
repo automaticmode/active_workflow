@@ -41,6 +41,9 @@
       .badge-success {
         background-color: $success;
       };
+      .badge.issues {
+        color: orange !important;
+      }
     }
   }
 }
