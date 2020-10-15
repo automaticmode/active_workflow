@@ -20,7 +20,7 @@ module Agents
                 Options:
 
                   * `secret` - A token that the requestor must provide for light-weight authentication.
-                  * `expected_receive_period_in_days` - How often you expect data to be received by this Agent from other Agents.
+                  * `expected_receive_period_in_days` - How often you expect data to be received by this agent from other Agents.
                   * `content` - The content to display when someone requests this page.
                   * `mime_type` - The mime type to use when someone requests this page.
                   * `response_headers` - An object with any custom response headers. (example: `{"Access-Control-Allow-Origin": "*"}`)
@@ -123,14 +123,14 @@ module Agents
       end
 
       unless options['expected_receive_period_in_days'].present? && options['expected_receive_period_in_days'].to_i > 0
-        errors.add(:base, "Please provide 'expected_receive_period_in_days' to indicate how many days can pass before this Agent is considered to be not working")
+        errors.add(:base, "Please provide 'expected_receive_period_in_days' to indicate how many days can pass before this agent is considered to be not working")
       end
 
       if options['message_limit'].present?
         if ((Integer(options['message_limit']) rescue false) == false)
           errors.add(:base, 'Message limit must be an integer that is less than 1001.')
         elsif (options['message_limit'].to_i > 1000)
-          errors.add(:base, 'For performance reasons, you cannot have an message limit greater than 1000.')
+          errors.add(:base, 'For performance reasons, you cannot have a message limit greater than 1000.')
         end
       else
       end

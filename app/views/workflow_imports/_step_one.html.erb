@@ -1,22 +1,24 @@
 <div class="row">
-  <div class="page-header">
+  <div class="col-md-12 page-header">
     <h1>Import Workflow</h1>
   </div>
 </div>
 
-<div class='row'>
-  <blockquote>You can import Workflow from a <code>.json</code> file.</blockquote>
+<div class="row">
+  <div class="col-md-12">
+    <blockquote>You can import workflow from a <code>.json</code> file.</blockquote>
+  </div>
 </div>
 
-<div class='row'>
-  <div class="col-md-4">
+<div class="row">
+  <div class="col-md-12">
     <div class="form-group">
-      <%= f.label :file, 'Upload a Workflow JSON File' %>
+      <%= f.label :file, 'Upload a workflow JSON File' %>
       <%= f.file_field :file, :class => 'form-control-file' %>
     </div>
 
-    <div class='form-actions'>
-      <%= f.submit "Start Import", :class => "btn btn-primary btn-sm" %>
+    <div class="form-actions">
+      <%= f.submit "Start Import", :class => "btn btn-primary btn-md" %>
     </div>
   </div>
 </div>

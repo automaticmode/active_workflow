@@ -20,7 +20,7 @@ module Agents
 
       `decimal_precision` defaults to `3`, but you can override this if you want.
 
-      `expected_update_period_in_days` is used to determine if the Agent is working.
+      `expected_update_period_in_days` is used to determine if the agent is working.
 
       The resulting message will be a copy of the received message with the difference
       or change added as an extra attribute. If you use the `percentage_change` the

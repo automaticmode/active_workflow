@@ -1,6 +1,6 @@
 <div class="container">
-  <div class='row'>
-    <div class='col-md-12'>
+  <div class="row">
+    <div class="col-md-12">
       <div class="page-header">
         <h3>
           <div class="alert alert-danger" role="alert">
@@ -10,7 +10,7 @@
       </div>
       <blockquote>
         <p>
-          You have one or more Agents registered in the database for which no corresponding definition is available in the source code:
+          You have one or more agents registered in the database for which no corresponding definition is available in the source code:
         </p>
         <ul>
           <% @undefined_agent_types.each do |type| %>
@@ -22,14 +22,14 @@
           This issue probably occurred for one or more of the following reasons:
         </p>
         <ul>
-          <li>If the respective Agent is distributed as part of the ActiveWorkflow application codebase, it may have been removed or moved to an Agent gem.</li>
+          <li>If the respective agent is distributed as part of the ActiveWorkflow application codebase, it may have been removed or moved to an agent gem.</li>
         </ul>
         <br/>
         <p>
           You can fix this issue by:
         </p>
         <ul>
-          <li>deleting the respective Agent(s) from the database using the button below.</li>
+          <li>deleting the respective agent(s) from the database using the button below.</li>
         </ul>
         <br/>
         <div>

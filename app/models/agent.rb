@@ -142,7 +142,7 @@ class Agent < ApplicationRecord
       message.save!
       message
     else
-      error 'This Agent cannot create messages!'
+      error 'This agent cannot create messages!'
     end
   end
 

@@ -10,7 +10,7 @@ module Agents
     description <<-MD
       The Twilio Agent receives and collects messages and sends them via text message (up to 160 characters) or gives you a call when scheduled.
 
-      #{'## Include `twilio-ruby` in your Gemfile to use this Agent!' if dependencies_missing?}
+      #{'## Include `twilio-ruby` in your Gemfile to use this agent!' if dependencies_missing?}
 
       It is assumed that messages have a `message`, `text`, or `sms` key, the value of which is sent as the content of the text message/call. You can use the MessageFormattingAgent if your message does not provide these keys.
 

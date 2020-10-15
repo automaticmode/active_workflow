@@ -30,7 +30,7 @@ module Agents
             "created_at": "{{created_at}}"
           }
 
-      Names here like `conditions`, `high` and `data` refer to the corresponding values in the Message hash.
+      Names here like `conditions`, `high` and `data` refer to the corresponding values in the message hash.
 
       The special key `created_at` refers to the timestamp of the Message, which can be reformatted by the `date` filter, like `{{created_at | date:"at %I:%M %p" }}`.
 

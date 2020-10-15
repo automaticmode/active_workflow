@@ -1,11 +1,20 @@
 <% content_for :title, "Import Workflow" -%>
 
-<div class='container workflow-import'>
+<div class="container workflow-import">
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to icon_tag('fa-chevron-left') + ' All Workflows'.html_safe, workflows_path, class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+
+  <hr>
+
   <div class="row">
     <div class="col-md-12">
       <% if @workflow_import.errors.any? %>
         <div class="alert alert-danger">
-          <h3><%= pluralize(@workflow_import.errors.count, "error") %> prohibited this Workflow from being imported:</h3>
+          <h3><%= pluralize(@workflow_import.errors.count, "error") %> prohibited this workflow from being imported:</h3>
           <% @workflow_import.errors.full_messages.each do |msg| %>
             <p><%= msg %></p>
           <% end %>
@@ -24,11 +33,4 @@
     <% end %>
   <% end %>
 
-  <hr />
-
-  <div class="row">
-    <div class="col-md-12">
-      <%= link_to icon_tag('fa-chevron-left') + ' All Workflows'.html_safe, workflows_path, class: "btn btn-primary btn-sm" %>
-    </div>
-  </div>
 </div>

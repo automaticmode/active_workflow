@@ -1,7 +1,7 @@
 <%= form_for(@user_credential, :method => @user_credential.new_record? ? "POST" : "PUT") do |f| %>
   <% if @user_credential.errors.any? %>
     <div class="alert alert-danger">
-      <h3><%= pluralize(@user_credential.errors.count, "error") %> prohibited this Credential from being saved:</h3>
+      <h3><%= pluralize(@user_credential.errors.count, "error") %> prohibited this credential from being saved:</h3>
       <% @user_credential.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>
@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
-        <%= f.label :credential_name %>
+        <%= f.label :credential_name, "Credential Name" %>
         <%= f.text_field :credential_name, :class => 'form-control' %>
       </div>
     </div>
@@ -20,7 +20,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <%= f.label :credential_value %>
+        <%= f.label :credential_value, "Credential Vame" %>
         <%= f.text_area :credential_value, :class => 'form-control', :rows => 10 %>
         <div id="ace-credential-value"></div>
       </div>
@@ -29,8 +29,8 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class='form-actions' style='clear: both'>
-        <%= f.submit "Save Credential", :class => "btn btn-primary btn-sm" %>
+      <div class="form-actions" style="clear: both">
+        <%= f.submit "Save Credential", :class => "btn btn-primary btn-md" %>
       </div>
     </div>
   </div>

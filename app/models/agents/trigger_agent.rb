@@ -8,7 +8,7 @@ module Agents
                                 field>value not\ in].freeze
 
     description <<-MD
-      The Trigger Agent will watch for a specific value in an Message payload.
+      The Trigger Agent will watch for a specific value in a message payload.
 
       The `rules` array contains hashes of `path`, `value`, and `type`.  The `path` value is a dotted path through a hash in [JSONPaths](http://goessner.net/articles/JsonPath/) syntax. For simple messages, this is usually just the name of the field you want, like 'text' for the text key of the message.
 
@@ -16,10 +16,10 @@ module Agents
 
       The `value` can be a single value or an array of values. In the case of an array, all items must be strings, and if one or more values match, then the rule matches. Note: avoid using `field!=value` with arrays, you should use `not in` instead.
 
-      By default, all rules must match for the Agent to trigger. You can switch this so that only one rule must match by
+      By default, all rules must match for the agent to trigger. You can switch this so that only one rule must match by
       setting `must_match` to `1`.
 
-      The resulting Message will have a payload message of `message`.  You can use liquid templating in the `message.
+      The resulting message will have a payload message of `message`.  You can use liquid templating in the `message.
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 

@@ -1,8 +1,8 @@
 <div>
   <% if @messages.empty? %>
-    <p>No Messages emitted</p>
+    <p>No messages emitted.</p>
   <% else %>
-    <table id="messages-table" class='table table-striped table-hover table-sm messages table-responsive'>
+    <table id="messages-table" class="table table-striped table-hover table-sm messages table-responsive">
       <thead>
         <tr>
           <th>Created</th>
@@ -15,7 +15,7 @@
       <% @messages.each do |message| %>
         <% next unless message.agent %>
         <%= content_tag :tr, class: (highlighted?(message.id) ? 'hl' : nil) do %>
-          <td data-order='<%= relative_time(message.created_at, true) %>' title='<%= message.created_at %>'><%= time_ago_in_words message.created_at %> ago</td>
+          <td data-order="<%= relative_time(message.created_at, true) %>" title="<%= message.created_at %>"><%= time_ago_in_words message.created_at %> ago</td>
           <td><div class="message-payload truncated"><%= truncate message.payload.to_json, :length => 200, :omission => "" %></div></td>
           <td>
             <div class="btn-group btn-group-sm">

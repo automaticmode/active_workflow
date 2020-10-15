@@ -12,9 +12,9 @@ module Agents
 
     description do
       <<-MD
-        The Ftp Site Agent checks an FTP site and creates Messages based on newly uploaded files in a directory. When receiving messages it creates files on the configured FTP server.
+        The FTP Site Agent checks an FTP site and creates Messages based on newly uploaded files in a directory. When receiving messages it creates files on the configured FTP server.
 
-        #{'## Include `net-ftp-list` in your Gemfile to use this Agent!' if dependencies_missing?}
+        #{'## Include `net-ftp-list` in your Gemfile to use this agent!' if dependencies_missing?}
 
         `mode` must be present and either `read` or `write`, in `read` mode the agent checks the FTP site for changed files, with `write` it writes received messages to a file on the server.
 

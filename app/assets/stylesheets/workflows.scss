@@ -13,3 +13,21 @@
     }
   }
 }
+
+.confirm-workflow-deletion {
+  h4 {
+    margin: 5px 0 3px 0;
+
+    &.modal-title {
+      font-weight: 200;
+      font-style: italic;
+    }
+  }
+
+  em {
+    font-size: 0.9rem;
+    color: $gray-200;
+    display: block;
+    margin-bottom: 10px;
+  }
+}

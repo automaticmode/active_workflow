@@ -6,8 +6,8 @@ module Agents
     description <<-MD
       The Manual Message Agent is used to manually create Messages for testing or other purposes.
 
-      Do not set options for this Agent.  Instead, connect it to other Agents and create Messages
-      using the UI provided on this Agent's Summary page.
+      Do not set options for this agent.  Instead, connect it to other agents and create Messages
+      using the UI provided on this agent's Summary page.
     MD
 
     message_description 'User determined'

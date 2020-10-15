@@ -1,13 +1,13 @@
-<div id="confirm-workflow-deletion-<%= workflow.id %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="confirm-workflow-deletion-<%= workflow.id %>" class="modal fade confirm-workflow-deletion" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_for(workflow, url: workflow_path(workflow), method: :delete) do |f| %>
         <div class="modal-header">
           <h4 class="modal-title">
             <% if @workflow && @workflow == workflow %>
-              How do you want to delete this Workflow?
+              How do you want to delete this workflow?
             <% else %>
-              How do you want to delete the Workflow '<%= workflow.name %>'?
+              How do you want to delete the workflow '<%= workflow.name %>'?
             <% end %>
           </h4>
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -15,29 +15,29 @@
         <div class="modal-body">
           <div class="radio">
             <%= label_tag do %>
-              <%= radio_button_tag :mode, '', true %>
-              <h4><span class="label label-success">Workflow only</span></h4>
-              Only delete the Workflow, keep the Agents.
+              <h4><%= radio_button_tag :mode, '', true %>
+              <span class="label label-success">Workflow only</span></h4>
+              <em>Only delete the workflow, keep the agents.</em>
             <% end %>
           </div>
           <div class="radio">
             <%= label_tag do %>
-              <%= radio_button_tag :mode, :unique_agents %>
-              <h4><span class="label label-warning">Workflow and unique Agents</span></h4>
-              Also deletes Agents that are used in this Workflow only.
+              <h4><%= radio_button_tag :mode, :unique_agents %>
+              <span class="label label-warning">Workflow and unique agents</span></h4>
+              <em>Also deletes agents that are used in this workflow only.</em>
             <% end %>
           </div>
           <div class="radio">
             <%= label_tag do %>
-              <%= radio_button_tag :mode, :all_agents %>
-              <h4><span class="label label-danger">Workflow and all included Agents</span></h4>
-              Deletes Workflow and all included Agents, even if they are used in different Workflows.
+              <h4><%= radio_button_tag :mode, :all_agents %>
+              <span class="label label-danger">Workflow and all included agents</span></h4>
+              <em>Deletes workflow and all included agents, even if they are used in different workflows.</em>
             <% end %>
           </div>
         </div>
         <div class="modal-footer">
-          <%= f.button 'Cancel', class: 'btn btn-primary btn-sm', 'data-dismiss' => 'modal' %>
-          <%= f.submit 'Delete', class: 'btn btn-danger btn-sm' %>
+          <%= f.button 'Cancel', class: 'btn btn-primary btn-md', 'data-dismiss' => 'modal' %>
+          <%= f.submit 'Delete', class: 'btn btn-danger btn-md' %>
         </div>
       <% end %>
     </div>

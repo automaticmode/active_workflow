@@ -1,6 +1,6 @@
 require 'ostruct'
 
-# This is a helper class for managing Workflow imports, used by the WorkflowImportsController.  This class behaves much
+# This is a helper class for managing workflow imports, used by the WorkflowImportsController.  This class behaves much
 # like a normal ActiveRecord object, with validations and callbacks.  However, it is never persisted to the database.
 class WorkflowImport
   include ActiveModel::Model
@@ -126,7 +126,7 @@ class WorkflowImport
   def validate_presence_of_file_or_data
     return if file.present? || data.present?
 
-    errors.add(:base, 'Please provide a Workflow JSON File.')
+    errors.add(:base, 'Please provide a workflow JSON File.')
   end
 
   def generate_diff

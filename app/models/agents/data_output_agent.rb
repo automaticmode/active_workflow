@@ -9,7 +9,7 @@ module Agents
       <<-MD
         The Data Output Agent outputs received messages as either RSS or JSON.  Use it to output a public or private stream of ActiveWorkflow data.
 
-        This Agent will output data at:
+        This agent will output data at:
 
         `https://#{ENV['DOMAIN']}#{Rails.application.routes.url_helpers.web_requests_path(agent_id: ':id', user_id: user_id, secret: ':secret', format: :xml)}`
 
@@ -21,7 +21,7 @@ module Agents
         Options:
 
           * `secrets` - An array of tokens that the requestor must provide for light-weight authentication.
-          * `expected_receive_period_in_days` - How often you expect data to be received by this Agent from other Agents.
+          * `expected_receive_period_in_days` - How often you expect data to be received by this agent from other Agents.
           * `template` - A JSON object representing a mapping between item output keys and incoming message values.  Use Liquid to format the values.  Values of the `link`, `title`, `description` and `icon` keys will be put into the \\<channel\\> section of RSS output.  Value of the `self` key will be used as URL for this feed itself, which is useful when you serve it via reverse proxy.  The `item` key will be repeated for every Message.  The `pubDate` key for each item will have the creation time of the Message unless given.
           * `messages_to_show` - The number of messages to output in RSS or JSON. (default: `40`)
           * `ttl` - A value for the \\<ttl\\> element in RSS output. (default: `60`)
@@ -29,7 +29,7 @@ module Agents
           * `ns_itunes` - Add [itunes compatible namespace](http://lists.apple.com/archives/syndication-dev/2005/Nov/msg00002.html) in output xml
           * `rss_content_type` - Content-Type for RSS output (default: `application/rss+xml`)
           * `response_headers` - An object with any custom response headers. (example: `{"Access-Control-Allow-Origin": "*"}`)
-          * `push_hubs` - Set to a list of PubSubHubbub endpoints you want to publish an update to every time this agent receives an message. (default: none)  Popular hubs include [Superfeedr](https://pubsubhubbub.superfeedr.com/) and [Google](https://pubsubhubbub.appspot.com/).  Note that publishing updates will make your feed URL known to the public, so if you want to keep it secret, set up a reverse proxy to serve your feed via a safe URL and specify it in `template.self`.
+          * `push_hubs` - Set to a list of PubSubHubbub endpoints you want to publish an update to every time this agent receives a message. (default: none)  Popular hubs include [Superfeedr](https://pubsubhubbub.superfeedr.com/) and [Google](https://pubsubhubbub.appspot.com/).  Note that publishing updates will make your feed URL known to the public, so if you want to keep it secret, set up a reverse proxy to serve your feed via a safe URL and specify it in `template.self`.
 
         If you'd like to output RSS tags with attributes, such as `enclosure`, use something like the following in your `template`:
 
@@ -103,7 +103,7 @@ module Agents
       end
 
       unless options['expected_receive_period_in_days'].present? && options['expected_receive_period_in_days'].to_i > 0
-        errors.add(:base, "Please provide 'expected_receive_period_in_days' to indicate how many days can pass before this Agent is considered to be not working")
+        errors.add(:base, "Please provide 'expected_receive_period_in_days' to indicate how many days can pass before this agent is considered to be not working")
       end
 
       unless options['template'].present? && options['template']['item'].present? && options['template']['item'].is_a?(Hash)

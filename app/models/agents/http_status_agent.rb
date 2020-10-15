@@ -24,7 +24,7 @@ module Agents
 
       The `disable_redirect_follow` option makes the agent not to follow HTTP redirects. For example, setting this to `true` will make an agent that receives a 301 redirect to `https://www.example.com` to return a status of 301 instead of following the redirect and returning 200.
 
-      The `changes_only` option makes the Agent to report a message only when the status changes. If set to `false`, a message will be created for every check.  If set to `true`, a message will only be created when the status changes (like if your site goes from 200 to 500).
+      The `changes_only` option makes the agent to report a message only when the status changes. If set to `false`, a message will be created for every check.  If set to `true`, a message will only be created when the status changes (like if your site goes from 200 to 500).
     MD
 
     message_description <<-MD

@@ -7,7 +7,7 @@ module Agents
 
       `property` specifies a Liquid template that expands to the property to be watched, where you can use a variable `last_property` for the last property value.  If you want to detect a new lowest price, try this: `{% assign drop = last_property | minus: price %}{% if last_property == blank or drop > 0 %}{{ price | default: last_property }}{% else %}{{ last_property }}{% endif %}`
 
-      `expected_update_period_in_days` is used to determine if the Agent is working.
+      `expected_update_period_in_days` is used to determine if the agent is working.
 
       The resulting message will be a copy of the received message.
     MD

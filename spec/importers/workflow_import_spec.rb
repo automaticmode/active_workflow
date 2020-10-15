@@ -96,7 +96,7 @@ describe WorkflowImport do
     it 'is not valid when none of file or data are present' do
       expect(subject).not_to be_valid
       expect(subject).to have(1).error_on(:base)
-      expect(subject.errors[:base]).to include('Please provide a Workflow JSON File.')
+      expect(subject.errors[:base]).to include('Please provide a workflow JSON File.')
     end
 
     describe 'data' do

@@ -29,11 +29,11 @@ module Agents
 
         When `content_type` contains a [MIME](https://en.wikipedia.org/wiki/Media_type) type, and `payload` is a string, its interpolated value will be sent as a string in the HTTP request's body and the request's `Content-Type` HTTP header will be set to `content_type`. When `payload` is a string `no_merge` has to be set to `true`.
 
-        If `emit_messages` is set to `true`, the server response will be emitted as a Message and can be fed to a WebsiteAgent for parsing (using its `data_from_message` and `type` options). No data processing
+        If `emit_messages` is set to `true`, the server response will be emitted as a message and can be fed to a WebsiteAgent for parsing (using its `data_from_message` and `type` options). No data processing
         will be attempted by this Agent, so the Message's "body" value will always be raw text.
         The Message will also have a "headers" hash and a "status" integer value.
 
-        If `output_mode` is set to `merge`, the emitted Message will be merged into the original contents of the received Message.
+        If `output_mode` is set to `merge`, the emitted message will be merged into the original contents of the received Message.
 
         Set `message_headers_style` to one of the following values to normalize the keys of "headers" for downstream agents' convenience:
 

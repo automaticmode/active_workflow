@@ -10,7 +10,7 @@ module Agents
 
       `lookback` amount of past Messages to compare the value to (0 for unlimited)
 
-      `expected_update_period_in_days` is used to determine if the Agent is working.
+      `expected_update_period_in_days` is used to determine if the agent is working.
     MD
 
     message_description <<-MD

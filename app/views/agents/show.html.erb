@@ -1,25 +1,25 @@
 <% content_for :title, @agent.name -%>
 
-<div class='container agent-show'>
-  <div class='row'>
-    <div class='col-md-2'>
+<div class="container agent-show">
+  <div class="row">
+    <div class="col-md-2">
         <ul class="nav nav-pills flex-column" id="show-tabs">
           <li class="nav-item"><%= link_to icon_tag('fa-chevron-left') + ' All Agents'.html_safe, agents_path, class: 'nav-link' %></li>
 
           <% if agent_show_view(@agent).present? %>
-            <li class='nav-item active'><a href="#summary" class="nav-link" data-toggle="tab"><%= icon_tag('fa-image') %> Summary</a></li>
+            <li class="nav-item active"><a href="#summary" class="nav-link" data-toggle="tab"><%= icon_tag('fa-image') %> Summary</a></li>
             <li class="nav-item"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
           <% else %>
-            <li class='nav-item disabled'><a class="nav-link"><%= icon_tag('fa-image') %> Summary</a></li>
-            <li class='nav-item active'><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
+            <li class="nav-item disabled"><a class="nav-link"><%= icon_tag('fa-image') %> Summary</a></li>
+            <li class="nav-item active"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
           <% end %>
 
-          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class='nav-link <%= @agent.recent_error_logs? ? 'recent-errors' : '' %>'><%= icon_tag('fa-list-alt') %> Logs</a></li>
+          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link <%= @agent.recent_error_logs? ? 'recent-errors' : '' %>"><%= icon_tag('fa-list-alt') %> Logs</a></li>
 
           <% if @agent.can_create_messages? %>
-            <li class="nav-item"><a href="#messages" data-toggle="tab" data-agent-id="<%= @agent.id %>" class='nav-link'><%= icon_tag('fa-random') %> Messages</a></li>
+            <li class="nav-item"><a href="#messages" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
           <% else %>
-            <li class='nav-item disabled'><a class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
+            <li class="nav-item disabled"><a class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
           <% end %>
 
           <li class="nav-item">
@@ -33,7 +33,7 @@
         </ul>
       </div>
 
-      <div class='col-md-10'>
+      <div class="col-md-10">
         <div class="tab-content">
           <div class="tab-pane <%= agent_show_view(@agent).present? ? "active" : "disabled" %>" id="summary">
             <h2><%= @agent.name %> Summary</h2>
@@ -46,8 +46,8 @@
           </div>
 
           <div class="tab-pane" id="logs" data-agent-id="<%= @agent.id %>">
-            <div class='row'>
-              <div class='col-md-12'>
+            <div class="row">
+              <div class="col-md-12">
                 <h2>
                   <%= @agent.name %> Logs
                   <small>
@@ -58,9 +58,9 @@
                 </h2>
               </div>
             </div>
-            <div class='row'>
-              <div class='col-md-12'>
-                <div class='logs'>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="logs">
                   Just a moment...
                 </div>
               </div>
@@ -68,8 +68,8 @@
           </div>
 
           <div class="tab-pane" id="messages" data-agent-id="<%= @agent.id %>">
-            <div class='row'>
-              <div class='col-md-12'>
+            <div class="row">
+              <div class="col-md-12">
                 <h2>
                   <%= @agent.name %> Messages
                   <small>
@@ -80,9 +80,9 @@
                 </h2>
               </div>
             </div>
-            <div class='row'>
-              <div class='col-md-12'>
-                <div class='messages'>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="messages">
                   Just a moment...
                 </div>
               </div>

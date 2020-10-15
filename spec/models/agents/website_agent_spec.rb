@@ -1254,7 +1254,7 @@ describe Agents::WebsiteAgent do
               @checker.receive(@message)
             }.to_not change { Message.count }
 
-            expect(@checker.logs.last.message).to match(/No data was found in the Message payload using the template {{ some_object\.mistake }}/)
+            expect(@checker.logs.last.message).to match(/No data was found in the message payload using the template {{ some_object\.mistake }}/)
           end
 
           it 'should output an error when the data cannot be parsed' do

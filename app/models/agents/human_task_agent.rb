@@ -7,7 +7,7 @@ module Agents
     description <<-MD
       The Human Task Agent is used to create Human Intelligence Tasks (HITs) on Mechanical Turk.
 
-      #{'## Include `rturk` in your Gemfile to use this Agent!' if dependencies_missing?}
+      #{'## Include `rturk` in your Gemfile to use this agent!' if dependencies_missing?}
 
       Note: To use Human Task Agent please set AWS_ACCESS_KEY_ID and AWS_ACCESS_KEY environment variables.
 
@@ -15,16 +15,16 @@ module Agents
 
       # Schedule
 
-      The schedule of this Agent is how often it should check for completed HITs, __NOT__ how often to submit one.  To configure how often a new HIT
+      The schedule of this agent is how often it should check for completed HITs, __NOT__ how often to submit one.  To configure how often a new HIT
       should be submitted when in `schedule` mode, set `submission_period` to a number of hours.
 
       # Example
 
-      If created with an message, all HIT fields can contain interpolated values via Liquid templating.
+      If created with a message, all HIT fields can contain interpolated values via Liquid templating.
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 
-      For example, if the incoming message was a Twitter message, you could make a HITT to rate its sentiment like this:
+      For example, if the incoming message was a Twitter message, you could make a HIT to rate its sentiment like this:
 
           {
             "expected_receive_period_in_days": 2,
@@ -78,10 +78,10 @@ module Agents
       ## Taking the majority
 
       Option 1: if all of your `questions` are of `type` _selection_, you can set `combination_mode` to `take_majority`.
-      This will cause the Agent to automatically select the majority vote for each question across all `assignments` and return it as `majority_answer`.
+      This will cause the agent to automatically select the majority vote for each question across all `assignments` and return it as `majority_answer`.
       If all selections are numeric, an `average_answer` will also be generated.
 
-      Option 2: you can have the Agent ask additional human workers to rank the `assignments` and return the most highly ranked answer.
+      Option 2: you can have the agent ask additional human workers to rank the `assignments` and return the most highly ranked answer.
       To do this, set `combination_mode` to `poll` and provide a `poll_options` object.  Here is an example:
 
           {

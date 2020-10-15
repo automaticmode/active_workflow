@@ -16,7 +16,7 @@ module Agents
 
       You can put code in the `code` option.
 
-      You can implement `Agent.check` and `Agent.receive` as you see fit.  The following methods will be available on Agent in the JavaScript environment:
+      You can implement `Agent.check` and `Agent.receive` as you see fit.  The following methods will be available on agent in the JavaScript environment:
 
       * `this.createMessage(payload)`
       * `this.incomingMessages()` (the returned message objects will each have a `payload` property)
@@ -59,7 +59,7 @@ module Agents
       js_code = <<-JS
         Agent.check = function() {
           if (this.options('make_message')) {
-            this.createMessage({ 'message': 'I made an message!' });
+            this.createMessage({ 'message': 'I made a message!' });
             var callCount = this.memory('callCount') || 0;
             this.memory('callCount', callCount + 1);
           }

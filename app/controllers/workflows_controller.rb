@@ -71,7 +71,7 @@ class WorkflowsController < ApplicationController
 
     respond_to do |format|
       if @workflow.save
-        format.html { redirect_to @workflow, notice: 'This Workflow was successfully created.' }
+        format.html { redirect_to @workflow, notice: 'This workflow was successfully created.' }
         format.json { render json: @workflow, status: :created, location: @workflow }
       else
         format.html { render action: 'new' }
@@ -85,7 +85,7 @@ class WorkflowsController < ApplicationController
 
     respond_to do |format|
       if @workflow.update(workflow_params)
-        format.html { redirect_to @workflow, notice: 'This Workflow was successfully updated.' }
+        format.html { redirect_to @workflow, notice: 'This workflow was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -15,16 +15,16 @@ describe WorkflowImportsController do
   it 'requires a file upload' do
     visit new_workflow_imports_path
     click_on 'Start Import'
-    expect(page).to have_text('Please provide a Workflow JSON File.')
+    expect(page).to have_text('Please provide a workflow JSON File.')
   end
 
   it 'imports a workflow that does not exist yet' do
     visit new_workflow_imports_path
-    attach_file('Upload a Workflow JSON File', File.join(Rails.root, 'data/default_workflow.json'))
+    attach_file('Upload a workflow JSON File', File.join(Rails.root, 'data/default_workflow.json'))
     click_on 'Start Import'
     expect(page).to have_text('This workflow was created just for demonstration purposes.')
-    expect(page).not_to have_text('This Workflow already exists in your system.')
-    check('I confirm that I want to import these Agents.')
+    expect(page).not_to have_text('This workflow already exists in your system.')
+    check('I confirm that I want to import these agents.')
     click_on 'Finish Import'
     expect(page).to have_text('Import successful!')
   end
@@ -35,11 +35,11 @@ describe WorkflowImportsController do
     agent.options['expected_receive_period_in_days'] = 9001
     agent.save!
     visit new_workflow_imports_path
-    attach_file('Upload a Workflow JSON File', File.join(Rails.root, 'data/default_workflow.json'))
+    attach_file('Upload a workflow JSON File', File.join(Rails.root, 'data/default_workflow.json'))
     click_on 'Start Import'
-    expect(page).to have_text('This Workflow already exists in your system.')
+    expect(page).to have_text('This workflow already exists in your system.')
     expect(page).to have_text('9001')
-    check('I confirm that I want to import these Agents.')
+    check('I confirm that I want to import these agents.')
     click_on 'Finish Import'
     expect(page).to have_text('Import successful!')
   end

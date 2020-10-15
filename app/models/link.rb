@@ -1,4 +1,4 @@
-# A Link connects Agents in a directed Message flow from the `source` to the `receiver`.
+# A Link connects Agents in a directed message flow from the `source` to the `receiver`.
 class Link < ApplicationRecord
   belongs_to :source, class_name: 'Agent', inverse_of: :links_as_source
   belongs_to :receiver, class_name: 'Agent', inverse_of: :links_as_receiver

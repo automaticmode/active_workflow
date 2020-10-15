@@ -35,7 +35,7 @@
                 <% end %>
               </div>
 
-              <div class='oauthable-form'>
+              <div class="oauthable-form">
                 <%= render 'oauth_dropdown', agent: @agent %>
               </div>
 
@@ -45,7 +45,7 @@
                   <div class="can-be-scheduled">
                     <%= f.select :schedule, options_for_select(Agent::SCHEDULES.map {|s| [builtin_schedule_name(s), s] }, @agent.schedule), {}, :class => 'form-control select2' %>
                   </div>
-                  <span class='cannot-be-scheduled text-info'>This type of agent cannot be scheduled.</span>
+                  <span class="cannot-be-scheduled text-info">This type of agent cannot be scheduled.</span>
                 </div>
               </div>
 
@@ -64,9 +64,9 @@
               <div class="form-group">
                   <%= f.label :keep_messages_for, "Keep messages" %>
                   <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "In order to conserve disk space, you can choose to have messages created by this agent expire after a certain period of time.  Make sure you keep them long enough to allow any subsequent agents to make use of them.") %>
-                <div class='message-related-region' data-can-create-messages="<%= @agent.can_create_messages? %>">
+                <div class="message-related-region" data-can-create-messages="<%= @agent.can_create_messages? %>">
                   <%= f.select :keep_messages_for, options_for_select(Agent::MESSAGE_RETENTION_SCHEDULES, @agent.keep_messages_for), {}, :class => 'form-control select2' %>
-                  <span class='cannot-create-messages text-info'>This type of agent cannot create messages.</span>
+                  <span class="cannot-create-messages text-info">This type of agent cannot create messages.</span>
                 </div>
               </div>
 
@@ -79,7 +79,7 @@
                                options_for_select(messageSources.map {|s| [s.name, s.id] },
                                                   @agent.source_ids),
                                {}, { :multiple => true, :size => 5, :class => 'select2-linked-tags form-control', data: {url_prefix: '/agents'} }) %>
-                  <span class='cannot-receive-messages text-info'>This type of agent cannot receive messages.</span>
+                  <span class="cannot-receive-messages text-info">This type of agent cannot receive messages.</span>
                 </div>
               </div>
 
@@ -92,14 +92,14 @@
                                options_for_select(messageTargets.pluck(:name, :id),
                                                   @agent.receiver_ids),
                                {}, { :multiple => true, :size => 5, :class => 'select2-linked-tags form-control', data: {url_prefix: '/agents'} }) %>
-                  <span class='cannot-create-messages text-info'>This type of agent cannot create messages.</span>
+                  <span class="cannot-create-messages text-info">This type of agent cannot create messages.</span>
                 </div>
               </div>
 
               <% if current_user.workflow_count > 0 %>
                 <div class="form-group">
                   <%= f.label :workflows %>
-                    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Use Workflows to group sets of agents, both for organization, and to make them easy to export and share.") %>
+                    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' => "Use workflows to group sets of agents, both for organization, and to make them easy to export and share.") %>
                   <%= f.select(:workflow_ids,
                                options_for_select(current_user.workflows.pluck(:name, :id), @agent.workflow_ids),
                                {}, { :multiple => true, :size => 5, :class => 'select2-linked-tags form-control', data: {url_prefix: '/workflows'} }) %>
@@ -115,7 +115,7 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
-          <div class='well description'>
+          <div class="well description">
             <%= @agent.html_description unless @agent.new_record? %>
           </div>
         </div>
@@ -123,7 +123,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class='well message-descriptions' style='display: none'></div>
+          <div class="well message-descriptions" style="display: none"></div>
         </div>
       </div>
     </div>

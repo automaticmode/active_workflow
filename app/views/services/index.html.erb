@@ -1,17 +1,17 @@
 <% content_for :title, "Services" -%>
 
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-12'>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
       <div class="page-header">
         <h1>Services</h1>
       </div>
-      <p>If you want to control ActiveWorkflow via REST API programmatically, the token for your user is: <b><%= JsonWebToken.encode(user_id: current_user.id) %></b></p>
+      <p>If you want to control ActiveWorkflow via REST API programmatically, the token for your user is: <code class="text-info"><%= JsonWebToken.encode(user_id: current_user.id) %></code></p>
       <p>
       Before you can authenticate with a service, you need to set it up. Consult respective services documentation on obtaining OAUTH keys and secrets. Once you have OAUTH keys and secrets, please set them as environment variables:
       <ul>
-        <li>Basecamp (37signals) - <b>THIRTY_SEVEN_SIGNALS_OAUTH_KEY</b> and <b>THIRTY_SEVEN_SIGNALS_OAUTH_SECRET</b></li>
-        <li>Evernote - <b>EVERNOTE_OAUTH_KEY</b> and <b>EVERNOTE_OAUTH_SECRET</b></li>
+        <li>Basecamp (37signals): <code>THIRTY_SEVEN_SIGNALS_OAUTH_KEY</code> and <code>THIRTY_SEVEN_SIGNALS_OAUTH_SECRET</code></li>
+        <li>Evernote: <code>EVERNOTE_OAUTH_KEY</code> and <code>EVERNOTE_OAUTH_SECRET</code></li>
       </ul>
       </p>
       <%- Devise.omniauth_providers.each { |provider| -%>
@@ -20,9 +20,9 @@
 
       <div>
         <% if @services.empty? %>
-          <p>No Services Configured</p>
+          <p class="text-info">No services configured.</p>
         <% else %>
-          <table id="services-table" class='table table-striped messages'>
+          <table id="services-table" class="table table-striped messages">
             <thead>
               <tr>
                 <th>Provider</th>

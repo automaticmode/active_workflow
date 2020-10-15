@@ -25,7 +25,7 @@ module DryRunnable
       @dry_run_started_at = Time.zone.now
       @dry_run_logger.info('Dry Run started')
       if message
-        raise 'This agent cannot receive an message!' unless can_receive_messages?
+        raise 'This agent cannot receive a message!' unless can_receive_messages?
         receive(message)
       else
         check
@@ -91,7 +91,7 @@ module DryRunnable
         @dry_run_results[:messages] << message.payload
         message
       else
-        error 'This Agent cannot create messages!'
+        error 'This agent cannot create messages!'
       end
     end
   end

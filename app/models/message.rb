@@ -1,5 +1,5 @@
 # Messages are how ActiveWorkflow Agents communicate and log information about the world.  Messages can be emitted and received by
-# Agents.  They contain a serialized `payload` of arbitrary JSON data, as well as `expires_at` fields.
+# agents.  They contain a serialized `payload` of arbitrary JSON data, as well as `expires_at` fields.
 class Message < ApplicationRecord
   include JSONSerializedField
   include LiquidDroppable

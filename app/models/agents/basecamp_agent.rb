@@ -10,7 +10,7 @@ module Agents
     description <<-MD
       The Basecamp Agent checks a Basecamp project for new Messages
 
-      To be able to use this Agent you need to authenticate with 37signals in the [Services](/services) section first.
+      To be able to use this agent you need to authenticate with 37signals in the [Services](/services) section first.
     MD
 
     message_description <<-MD

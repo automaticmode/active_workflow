@@ -1,7 +1,7 @@
 <%= form_for(@workflow, :method => @workflow.new_record? ? "POST" : "PUT") do |f| %>
   <% if @workflow.errors.any? %>
     <div class="alert alert-danger">
-      <h3><%= pluralize(@workflow.errors.count, "error") %> prohibited this Workflow from being saved:</h3>
+      <h3><%= pluralize(@workflow.errors.count, "error") %> prohibited this workflow from being saved:</h3>
       <% @workflow.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>
@@ -12,7 +12,7 @@
     <div class="col-md-9">
       <div class="form-group">
         <%= f.label :name, :required => true %>
-        <%= f.text_field :name, :class => 'form-control', :placeholder => "Name your Workflow" %>
+        <%= f.text_field :name, :class => 'form-control', :placeholder => "Name your workflow" %>
       </div>
     </div>
   </div>
@@ -21,21 +21,12 @@
     <div class="col-md-9">
       <div class="form-group">
         <%= f.label :description, "Optional Description" %>
-        <%= f.text_area :description, :rows => 7, :class => 'form-control', :placeholder => "Optionally describe what this Workflow will do." %>
+        <%= f.text_area :description, :rows => 7, :class => 'form-control', :placeholder => "Optionally describe what this workflow will do." %>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <div>
-          <%= f.label :icon %>
-          <%= f.select(:icon, options_for_select(Workflow.icons, @workflow.icon), {},
-            {:style => "font-family:'FontAwesome', Arial;", :class => 'select2-fountawesome-icon'}) %>
-        </div>
-      </div>
-    </div>
     <div class="col-md-3">
       <div class="form-group">
         <%= f.label :tag_bg_color, "Tag Background Color" %>
@@ -46,6 +37,15 @@
       <div class="form-group">
         <%= f.label :tag_fg_color, "Tag Foreground Color" %>
         <%= f.color_field :tag_fg_color, :class => 'form-control', :value => @workflow.tag_fg_color || default_workflow_fg_color %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div>
+          <%= f.label :icon %>
+          <%= f.select(:icon, options_for_select(Workflow.icons, @workflow.icon), {},
+            {:style => "font-family:'FontAwesome', Arial;", :class => 'select2-fountawesome-icon'}) %>
+        </div>
       </div>
     </div>
   </div>

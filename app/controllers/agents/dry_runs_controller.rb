@@ -43,7 +43,7 @@ module Agents
       else
         @results = { messages: [], memory: [],
                      log:  [
-                       "#{pluralize(agent.errors.count, 'error')} prohibited this Agent from being saved:",
+                       "#{pluralize(agent.errors.count, 'error')} prohibited this agent from being saved:",
                        *agent.errors.full_messages
                      ].join("\n- ") }
       end

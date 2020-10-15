@@ -11,7 +11,7 @@ module Agents
     description <<-MD
       The Slack Agent lets you receive messages and send notifications to [Slack](https://slack.com/).
 
-      #{'## Include `slack-notifier` in your Gemfile to use this Agent!' if dependencies_missing?}
+      #{'## Include `slack-notifier` in your Gemfile to use this agent!' if dependencies_missing?}
 
       To get started, you will first need to configure an incoming webhook.
 

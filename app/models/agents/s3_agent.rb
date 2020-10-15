@@ -11,9 +11,9 @@ module Agents
 
     description do
       <<-MD
-        The S3Agent can watch a bucket for changes or emit an message for every file in that bucket. When receiving messages, it writes the data into a file on S3.
+        The S3Agent can watch a bucket for changes or emit a message for every file in that bucket. When receiving messages, it writes the data into a file on S3.
 
-        #{'## Include `aws-sdk-core` in your Gemfile to use this Agent!' if dependencies_missing?}
+        #{'## Include `aws-sdk-core` in your Gemfile to use this agent!' if dependencies_missing?}
 
         `mode` must be present and either `read` or `write`, in `read` mode the agent checks the S3 bucket for changed files, with `write` it writes received messages to a file in the bucket.
 
@@ -25,9 +25,9 @@ module Agents
 
         ### Reading
 
-        When `watch` is set to `true` the S3Agent will watch the specified `bucket` for changes. An message will be emitted for every detected change.
+        When `watch` is set to `true` the S3Agent will watch the specified `bucket` for changes. A message will be emitted for every detected change.
 
-        When `watch` is set to `false` the agent will emit an message for every file in the bucket on each sheduled run.
+        When `watch` is set to `false` the agent will emit a message for every file in the bucket on each scheduled run.
 
         #{emitting_file_handling_agent_description}
 

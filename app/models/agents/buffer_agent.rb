@@ -11,8 +11,8 @@ module Agents
       reached, new messages will either be ignored, or will displace the oldest message already in the buffer, depending on
       whether you set `keep` to `newest` or `oldest`.
 
-      `expected_receive_period_in_days` is used to determine if the Agent is working. Set it to the maximum number of days
-      that you anticipate passing without this Agent receiving an incoming Message.
+      `expected_receive_period_in_days` is used to determine if the agent is working. Set it to the maximum number of days
+      that you anticipate passing without this agent receiving an incoming Message.
 
       `max_emitted_messages` is used to limit the number of the maximum messages which should be created. If you omit this BufferAgent will create messages for every message stored in the memory.
     MD

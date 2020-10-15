@@ -1,8 +1,8 @@
 <div>
   <% if @logs.empty? %>
-    <p>No Log entries stored</p>
+    <p>No log entries stored.</p>
   <% else %>
-    <table id="logs-table" class='table table-striped table-hover table-sm logs'>
+    <table id="logs-table" class="table table-striped table-hover table-sm logs">
       <thead>
         <tr>
           <th>Message</th>
@@ -15,7 +15,7 @@
         <% @logs.each do |log| %>
           <tr>
             <td><%= truncate log.message, :length => 200, :omission => "..." %></td>
-            <td data-order='<%= relative_time(log.created_at, true) %>'><%= time_ago_in_words log.created_at %> ago</td>
+            <td data-order="<%= relative_time(log.created_at, true) %>"><%= time_ago_in_words log.created_at %> ago</td>
 
             <td>
               <div class="btn-group btn-group-sm">

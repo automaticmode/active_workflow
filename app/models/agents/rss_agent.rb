@@ -129,7 +129,7 @@ module Agents
       errors.add(:base, 'url is required') unless options['url'].present?
 
       unless options['expected_update_period_in_days'].present? && options['expected_update_period_in_days'].to_i > 0
-        errors.add(:base, "Please provide 'expected_update_period_in_days' to indicate how many days can pass without an update before this Agent is considered to not be working")
+        errors.add(:base, "Please provide 'expected_update_period_in_days' to indicate how many days can pass without an update before this agent is considered to not be working")
       end
 
       if options['remembered_id_count'].present? && options['remembered_id_count'].to_i < 1

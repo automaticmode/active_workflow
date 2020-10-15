@@ -5,7 +5,7 @@ module Agents
     cannot_be_scheduled!
 
     description <<-MD
-      The Peak Detector Agent will watch for peaks in an message stream.  When a peak is detected, the resulting Message will have a payload message of `message`.  You can include extractions in the message, for example: `I saw a bar of: {{foo.bar}}`.
+      The Peak Detector Agent will watch for peaks in a message stream.  When a peak is detected, the resulting message will have a payload message of `message`.  You can include extractions in the message, for example: `I saw a bar of: {{foo.bar}}`.
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 

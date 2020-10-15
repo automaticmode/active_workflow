@@ -16,7 +16,7 @@ module Agents
     description <<-MD
       The Website Agent scrapes a website, XML document, or JSON feed and creates Messages based on the results.
 
-      Specify a `url` and select a `mode` for when to create Messages based on the scraped data, either `all`, `on_change`, or `merge` (if fetching based on an Message, see below).
+      Specify a `url` and select a `mode` for when to create Messages based on the scraped data, either `all`, `on_change`, or `merge` (if fetching based on a message, see below).
 
       The `url` option can be a single url, or an array of urls (for example, for multiple pages with the exact same structure but different content to scrape).
 
@@ -32,7 +32,7 @@ module Agents
 
       The `type` value can be `xml`, `html`, `json`, or `text`.
 
-      To tell the Agent how to parse the content, specify `extract` as a hash with keys naming the extractions and values of hashes.
+      To tell the agent how to parse the content, specify `extract` as a hash with keys naming the extractions and values of hashes.
 
       Note that for all of the formats, whatever you extract MUST have the same number of matches for each extractor except when it has `repeat` set to true.  E.g., if you're extracting rows, all extractors must match all rows.  For generating CSS selectors, something like [SelectorGadget](http://selectorgadget.com) may be helpful.
 
@@ -42,7 +42,7 @@ module Agents
 
       # Scraping HTML and XML
 
-      When parsing HTML or XML, these sub-hashes specify how each extraction should be done.  The Agent first selects a node set from the document for each extraction key by evaluating either a CSS selector in `css` or an XPath expression in `xpath`.  It then evaluates an XPath expression in `value` (default: `.`) on each node in the node set, converting the result into a string.  Here's an example:
+      When parsing HTML or XML, these sub-hashes specify how each extraction should be done.  The agent first selects a node set from the document for each extraction key by evaluating either a CSS selector in `css` or an XPath expression in `xpath`.  It then evaluates an XPath expression in `value` (default: `.`) on each node in the node set, converting the result into a string.  Here's an example:
 
           "extract": {
             "url": { "css": "#comic img", "value": "@src" },
@@ -149,7 +149,7 @@ module Agents
 
       Can be configured to use HTTP basic auth by including the `basic_auth` parameter with `"username:password"`, or `["username", "password"]`.
 
-      Set `expected_update_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being created by this Agent.  This is only used to set the "working" status.
+      Set `expected_update_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being created by this agent.  This is only used to set the "working" status.
 
       Set `uniqueness_look_back` to limit the number of messages checked for uniqueness (typically for performance).  This defaults to the larger of #{UNIQUENESS_LOOK_BACK} or #{UNIQUENESS_FACTOR}x the number of detected received results.
 
@@ -469,7 +469,7 @@ module Agents
           if data.present?
             handle_message_data(data, message, existing_payload)
           else
-            error "No data was found in the Message payload using the template #{data_from_message}", inbound_message: message
+            error "No data was found in the message payload using the template #{data_from_message}", inbound_message: message
           end
         else
           url_to_scrape =
