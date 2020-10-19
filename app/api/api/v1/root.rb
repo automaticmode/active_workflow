@@ -23,7 +23,7 @@ module API
 
         get ':agent_id' do
           agent = current_user.agents.find(params[:agent_id])
-          present Agent.find(params[:agent_id]), with: API::V1::Entities::Agent
+          present agent, with: API::V1::Entities::Agent
         end
 
         params do
