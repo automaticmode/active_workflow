@@ -52,7 +52,7 @@ this.AgentsIndexPage = class AgentsIndexPage {
               if (workflow_id) {
                 agentUrl = `${agentUrl}?workflow_id=${workflow_id}`;
               }
-              return `<a href="${agentUrl}">${data}</a><br/><span class='text-muted'>${row.human_type}</span><span>${workflow_links}</span>`;
+              return `<a href="${agentUrl}">${data}</a><br/><span class='text-muted'>${row.human_type}</span><span>${workflow_links.join('')}</span>`;
             }
             return data;
           }
