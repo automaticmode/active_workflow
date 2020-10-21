@@ -33,26 +33,51 @@ table.messages {
 
 // General
 
-table {
-  th {
+table.table {
+  font-size: 0.85rem;
+
+  thead th {
     font-weight: 100;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    vertical-align: top !important;
+    border-bottom: 1px solid $gray-700;
+  }
+
+  tbody td {
+    vertical-align: middle;
+    line-height: 1.2 !important;
+  }
+
+  .badge {
+    font-size: 0.9rem;
+    margin-right: 8px;
   }
 }
 
 // DataTables overrides
 
+table.dataTable thead > tr > th.sorting,
+table.dataTable thead > tr > th.sorting_asc,
+table.dataTable thead > tr > th.sorting_desc, {
+    padding-left: 36px !important;
+    padding-right: initial !important;
+}
+
 table.dataTable thead .sorting::after,
 table.dataTable thead .sorting_asc::after,
 table.dataTable thead .sorting_desc::after,
 table.dataTable thead .sorting_asc_disabled::after,
-table.dataTable thead .sorting_desc_disabled::after,
+table.dataTable thead .sorting_desc_disabled::after {
+  left: 9px !important;
+  right: auto !important;
+}
+
 table.dataTable thead .sorting::before,
 table.dataTable thead .sorting_asc::before,
 table.dataTable thead .sorting_desc::before,
 table.dataTable thead .sorting_asc_disabled::before,
 table.dataTable thead .sorting_desc_disabled::before {
-  right: 0;
+  left: 20px !important;
 }
 
 table.dataTable {
@@ -60,6 +85,6 @@ table.dataTable {
 }
 
 .dataTables_info {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  color: #7f7f7f;
 }
-

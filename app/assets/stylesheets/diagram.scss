@@ -1,7 +1,14 @@
+
+.overview-diagram {
+  background-color: #494f56;
+  padding: 15px;
+  overflow-x: auto;
+}
+
 .agent-diagram {
   position: relative;
+  padding: 0;
   z-index: auto;
-  overflow-x: auto;
 
   svg.diagram {
     position: absolute;

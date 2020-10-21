@@ -1,4 +1,57 @@
 
+// Index
+
+#agents-table {
+
+  @include media-breakpoint-up(lg) {
+    tbody td:first-child {
+      min-width: 200px;
+    }
+  }
+
+  .agent-name {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 200;
+    line-height: 1.1;
+    margin: 2px 0 5px;
+  }
+
+  .agent-type {
+    font-size: 0.82rem;
+    display: block;
+    margin-bottom: 9px;
+  }
+
+  .agent-workflows {
+    .badge {
+      font-size: 0.85rem;
+      margin: 0 0 3px 0;
+    }
+  }
+}
+
+#resultTabs {
+  li {
+    margin-right: 20px;
+    margin-bottom: 10px;
+
+    a {
+      color: #6d6d6d;
+
+      &.active {
+        color: #ffffff;
+      }
+
+      &:hover {
+        color: #8d8d8d;
+      }
+    }
+  }
+}
+
+// New – Edit
+
 #agent-form {
   .description {
     padding-top: 1.6rem;
@@ -9,11 +62,78 @@
     }
   }
 
+  .cannot-be-scheduled,
+  .cannot-create-messages {
+    display: block;
+    position: relative;
+    margin-top: -7px;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+
   .agent-options {
     margin-top: 50px;
   }
+
 }
 
-a.issues, a.badge.issues, li.issues {
+a.issues,
+a.badge.issues,
+li.issues {
   color: $warning;
+}
+
+// Show
+
+.agent-show {
+
+  .nav-item {
+    font-size: 0.9rem;
+  }
+
+  .nav-item.disabled {
+    display: none;
+
+    opacity: 0.3;
+
+    a:not([href]):hover {
+      color: #ffffff;
+    }
+
+    .nav-link {
+      background-image: linear-gradient(#484e55, #3A3F44 60%, #313539);
+      cursor: default;
+
+      &:hover {
+        background-image: linear-gradient(#484e55, #3A3F44 60%, #313539);
+      }
+    }
+  }
+
+  .tab-content {
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    b {
+      font-weight: 400;
+      color: $gray-700;
+      color: #62686d;
+    }
+  }
+}
+
+
+// Imports
+
+.agent-import-list {
+  background-color: #494f56;
+  padding: 20px;
+  padding-bottom: 1px;
+  margin-bottom: 30px;
+
+  h3 {
+    font-size: 1rem;
+  }
+
 }

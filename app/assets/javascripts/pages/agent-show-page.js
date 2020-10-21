@@ -22,7 +22,7 @@ this.AgentShowPage = class AgentShowPage {
     const page = this;
     const agentId = this.agentId;
     e.preventDefault();
-    if (confirm('Are you sure you want to delete all messages emited by this agent?')) {
+    if (confirm('Are you sure you want to delete all messages emitted by this agent?')) {
       $("#messages .spinner").show();
       $("#message .refresh, #messages .clear").hide();
       // TODO: json/pagination.
@@ -145,7 +145,7 @@ this.AgentShowPage = class AgentShowPage {
   }
 
   clearLogs(e) {
-    if (confirm("Are you sure you want to clear all logs for this Agent?")) {
+    if (confirm("Are you sure you want to clear all logs for this agent?")) {
       const agentId = $(e.target).closest("[data-agent-id]").data("agent-id");
       e.preventDefault();
       $("#logs .spinner").show();
@@ -170,7 +170,7 @@ this.AgentShowPage = class AgentShowPage {
   }
 
   clearMemory(e) {
-    if (confirm("Are you sure you want to completely clear the memory of this Agent?")) {
+    if (confirm("Are you sure you want to completely clear the memory of this agent?")) {
       const agentId = $(e.target).closest("[data-agent-id]").data("agent-id");
       e.preventDefault();
       $("#memory .spinner").css({display: 'inline-block'});

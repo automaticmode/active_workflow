@@ -7,6 +7,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <%= link_to icon_tag('fa-chevron-left') + ' All Workflows', workflows_path, class: "btn btn-primary btn-sm" %>
+
+      <hr>
+
       <div class="page-header">
         <h1>
           <% if @workflow.icon.blank? %>
@@ -21,14 +25,28 @@
         <% end %>
       </div>
 
+      <% if @agents.size > 0 %>
+        <%= render 'diagrams/diagram' %>
 
-      <%= render 'diagrams/diagram' %>
-
-      <%= render 'workflows/buttons' %>
-      <br/>
-      <%= render 'agents/table' , workflow: @workflow%>
-      <br/>
-      <%= render 'workflows/buttons' %>
+        <%= render 'workflows/buttons' %>
+        <br/>
+        <%= render 'agents/table' , workflow: @workflow %>
+        <br/>
+        <% if @agents.size > 10 %>
+          <%= link_to icon_tag('fa-chevron-left') + ' All Workflows', workflows_path, class: "btn btn-primary btn-sm" %>
+          <%= render 'workflows/buttons' %>
+        <% end %>
+      <% else %>
+        <p class="text-info"><em>This workflow does not have any associated agents yet. Choose an option:</em></p>
+        <div>
+          <%= link_to icon_tag('fa-plus') + ' Add a New Agent', new_agent_path(workflow_id: @workflow.id), class: "btn btn-primary btn-md" %>
+          <%= link_to icon_tag('fa-edit') + ' Edit Workflow to Add Existing Agent', edit_workflow_path(@workflow), class: "btn btn-primary btn-md" %>
+          <br><br><br><br>
+          <p><em>Other actions:</em></p>
+          <%= link_to icon_tag('fa-cloud-download-alt') + ' Export Workflow', share_workflow_path(@workflow), class: "btn btn-primary btn-sm" %>
+          <%= link_to icon_tag('fa-trash-alt') + ' Delete Workflow', '#', data: { toggle: 'modal', target: "#confirm-workflow-deletion-#{@workflow.id}"}, class: "btn btn-primary btn-sm" %>
+        </div>
+      <% end %>
 
     </div>
   </div>

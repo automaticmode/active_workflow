@@ -52,7 +52,7 @@ this.AgentsIndexPage = class AgentsIndexPage {
               if (workflow_id) {
                 agentUrl = `${agentUrl}?workflow_id=${workflow_id}`;
               }
-              return `<a href="${agentUrl}">${data}</a><br/><span class='text-muted'>${row.human_type}</span><span>${workflow_links.join('')}</span>`;
+              return `<a href="${agentUrl}" class="agent-name">${data}</a><span class='agent-type text-muted'>${row.human_type}</span><span class="agent-workflows">${workflow_links.join(' ')}</span>`;
             }
             return data;
           }
@@ -107,7 +107,7 @@ this.AgentsIndexPage = class AgentsIndexPage {
                   agentUrl = `${agentUrl}&workflow_id=${workflow_id}`;
                 }
                 return `<a href="${agentUrl}" class="issues">` +
-                  '<span title="Issues found with this agent. Click to go to the agent\'s Details tab for more details.">⚠️<span></a>';
+                  '<span title="Issues found with this agent. Click to go to the agent\'s Details tab for more details.">⚠️</span></a>';
               }
             }
             return data;

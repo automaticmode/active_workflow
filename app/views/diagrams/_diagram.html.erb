@@ -1,6 +1,4 @@
-<%= link_to icon_tag('fa-project-diagram') + ' <span class="show hidden">Show</span><span class="hide">Hide</span> Diagram'.html_safe, '#', class: "btn btn-primary btn-sm mb-2", id: 'show-diagram-toggle' %>
+<%= link_to icon_tag('fa-project-diagram') + ' <span class="show hidden">Show</span><span class="hide">Hide</span> Diagram'.html_safe, '#', class: "btn btn-primary btn-sm", id: 'show-diagram-toggle' %>
 <div class="overview-diagram pb-4 hidden">
-  <div class='digraph mt-4'>
-    <%= render_agents_diagram(@agents, @workflow) %>
-  </div>
+  <%= render_agents_diagram(@agents, @workflow) %>
 </div>

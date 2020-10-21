@@ -1,5 +1,4 @@
 <div class="d-flex justify-content-end">
-  <%= link_to icon_tag('fa-chevron-left') + ' All Workflows', workflows_path, class: "btn btn-primary btn-sm" %>
   <%= link_to icon_tag('fa-plus') + ' New Agent', new_agent_path(workflow_id: @workflow.id), class: "btn btn-primary btn-sm" %>
   <%= link_to icon_tag('fa-edit') + ' Edit', edit_workflow_path(@workflow), class: "btn btn-primary btn-sm" %>
   <%= link_to icon_tag('fa-cloud-download-alt') + ' Export', share_workflow_path(@workflow), class: "btn btn-primary btn-sm" %>

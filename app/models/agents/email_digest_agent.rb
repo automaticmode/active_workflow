@@ -8,7 +8,7 @@ module Agents
 
     description <<-MD
       The Email Digest Agent collects any Messages sent to it and sends them all via email when scheduled. The number of
-      used messages also relies on the `Keep messages` option of the emitting Agent, meaning that if messages expire before
+      used messages also relies on the `Message Expiration` option of the emitting Agent, meaning that if messages expire before
       this agent is scheduled to run, they will not appear in the email.
 
       By default, the will have a `subject` and an optional `headline` before listing the Messages.  If the Messages'

@@ -21,7 +21,7 @@ class Agent < ApplicationRecord
                  13h 14h 15h 16h 17h 18h 19h 20h 21h 22h 23h never].freeze
 
   MESSAGE_RETENTION_SCHEDULES = [
-    ['Forever', 0], ['1 hour', 1.hour], ['6 hours', 6.hours], ['1 day', 1.day],
+    ['Never', 0], ['1 hour', 1.hour], ['6 hours', 6.hours], ['1 day', 1.day],
     *([2, 3, 4, 5, 7, 14, 21, 30, 45, 90, 180, 365]
       .map { |n| ["#{n} days", n.days] })
   ].freeze

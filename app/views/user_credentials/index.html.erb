@@ -11,40 +11,45 @@
         </p>
       </div>
 
-      <%= render 'user_credentials/buttons' %>
-      <br/>
+      <% if @user_credentials.empty? %>
+        <p class="text-info"><em>There are no stored credentials. Create your first one, or upload from a file:</em></p>
 
-      <div>
-        <% if @user_credentials.empty? %>
-          <p>No Credentials Entered</p>
-        <% else %>
-          <table id="usercredentials-table" class="table table-striped table-hover table-sm">
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Value</th>
-            </tr>
-            </thead>
-            <tbody>
-              <% @user_credentials.each do |user_credential| %>
-                <tr>
-                  <td><%= user_credential.credential_name %></td>
-                  <td>
-                    <%= truncate user_credential.credential_value %>
-                    <div class="btn-group btn-group-sm" style="float: right">
-                      <%= link_to 'Edit', edit_user_credential_path(user_credential), class: "btn btn-primary" %>
-                      <%= link_to 'Delete', user_credential_path(user_credential), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <% end %>
-      </div>
+        <div class="d-flex justify-content-start">
+          <%= link_to new_user_credential_path, class: "btn btn-primary btn-md" do %><%= icon_tag('fa-plus') %> New Credential<% end %>
+          <%= link_to '#', data: { toggle: 'modal', target: '#credentials-upload' }, class: "btn btn-primary btn-md credentials-upload-button" do %><%= icon_tag('fa-cloud-upload-alt') %> Upload Credentials<% end %>
+        </div>
+
+      <% else %>
+        <%= render 'user_credentials/buttons' %>
+        <br/>
+        <table id="usercredentials-table" class="table table-striped table-hover table-sm">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @user_credentials.each do |user_credential| %>
+              <tr>
+                <td><%= user_credential.credential_name %></td>
+                <td>
+                  <%= truncate user_credential.credential_value %>
+                  <div class="btn-group btn-group-sm" style="float: right">
+                    <%= link_to 'Edit', edit_user_credential_path(user_credential), class: "btn btn-primary" %>
+                    <%= link_to 'Delete', user_credential_path(user_credential), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
 
       <br/>
-      <%= render 'user_credentials/buttons' %>
+      <% if @user_credentials.size > 10 %>
+        <%= render 'user_credentials/buttons' %>
+      <% end %>
 
       <div id="credentials-upload" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -55,7 +60,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
               </div>
               <div class="modal-body">
-                <p>Upload a credentials file that you have previously exported from a ActiveWorkflow instance.</p>
+                <p><em>Upload a credentials file that you have previously exported from an ActiveWorkflow instance.</em></p>
                 <%= file_field_tag :file, class: 'form-control' %>
               </div>
               <div class="modal-footer">

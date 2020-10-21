@@ -6,15 +6,14 @@
         <ul class="nav nav-pills flex-column" id="show-tabs">
           <li class="nav-item"><%= link_to icon_tag('fa-chevron-left') + ' All Agents'.html_safe, agents_path, class: 'nav-link' %></li>
 
+          <br>
           <% if agent_show_view(@agent).present? %>
-            <li class="nav-item active"><a href="#summary" class="nav-link" data-toggle="tab"><%= icon_tag('fa-image') %> Summary</a></li>
+            <li class="nav-item"><a href="#summary" class="nav-link active" data-toggle="tab"><%= icon_tag('fa-image') %> Summary</a></li>
             <li class="nav-item"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
           <% else %>
             <li class="nav-item disabled"><a class="nav-link"><%= icon_tag('fa-image') %> Summary</a></li>
-            <li class="nav-item active"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
+            <li class="nav-item"><a href="#details" class="nav-link active" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>
           <% end %>
-
-          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link <%= @agent.issue_recent_errors? ? 'recent-errors' : '' %>"><%= icon_tag('fa-list-alt') %> Logs</a></li>
 
           <% if @agent.can_create_messages? %>
             <li class="nav-item"><a href="#messages" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
@@ -22,10 +21,13 @@
             <li class="nav-item disabled"><a class="nav-link"><%= icon_tag('fa-random') %> Messages</a></li>
           <% end %>
 
+          <li class="nav-item"><a href="#logs" data-toggle="tab" data-agent-id="<%= @agent.id %>" class="nav-link <%= @agent.issue_recent_errors? ? 'recent-errors' : '' %>"><%= icon_tag('fa-list-alt') %> Logs</a></li>
+
           <li class="nav-item">
             <%= link_to icon_tag('fa-edit') + ' Edit'.html_safe, edit_agent_path(@agent, params: { workflow_id: @workflow }), class: 'nav-link' %>
           </li>
 
+          <br>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%= icon_tag('fa-th-list') %> Actions <span class="caret"></span></a>
             <%= render 'agents/action_menu', agent: @agent, workflow_id: @workflow&.id %>
@@ -61,7 +63,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="logs">
-                  Just a moment...
+                  <em class="text-warning">Just a moment...</em>
                 </div>
               </div>
             </div>
@@ -83,7 +85,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="messages">
-                  Just a moment...
+                  <em class="text-warning">Just a moment...</em>
                 </div>
               </div>
             </div>
@@ -94,7 +96,7 @@
 
 
             <div class="row">
-            <div class="col-md-12 col-lg-6">
+            <div class="col-md-12 col-lg-7">
               <p>
                 <b>Options:</b>
                 <pre><%= Utils.pretty_jsonify @agent.options || {} %></pre>
@@ -110,7 +112,7 @@
                 </p>
               <% end %>
             </div>
-            <div class="col-md-12 col-lg-6">
+            <div class="col-md-12 col-lg-5">
               <p>
                 <b>Type:</b>
                 <%= @agent.short_type.titleize %>
@@ -136,7 +138,7 @@
 
               <% if @agent.can_create_messages? %>
                 <p>
-                  <b>Keep messages:</b>
+                  <b>Message Expiration:</b>
                   <%= (Agent::MESSAGE_RETENTION_SCHEDULES.detect {|s| s.last == @agent.keep_messages_for } || [@agent.keep_messages_for]).first %>
                 </p>
 

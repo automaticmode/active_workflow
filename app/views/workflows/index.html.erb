@@ -12,13 +12,23 @@
         <p>Workflows are named groups of agents that allow you to organize your agents, and to import/export sets of agents to share.</p>
       </div>
 
-      <%= render 'diagrams/diagram' %>
+      <% if @workflows.empty? %>
+        <p class="text-info"><em>You currently have no workflows. Create your first workflow or import one from a file:</em></p>
+        <div>
+          <%= link_to icon_tag('fa-plus') + ' New Workflow'.html_safe, new_workflow_path, class: "ml-auto btn btn-primary btn-md" %>
+          <%= link_to icon_tag('fa-cloud-upload-alt') + ' Import Workflow'.html_safe, new_workflow_imports_path, class: "btn btn-primary btn-md" %>
+        </div>
+      <% else %>
+        <%= render 'diagrams/diagram' %>
+        <%= render 'workflows/index-buttons' %>
+        <br/>
+        <%= render 'workflows/index-table' %>
+        <br/>
 
-      <%= render 'workflows/index-buttons' %>
-      <br/>
-      <%= render 'workflows/index-table' %>
-      <br/>
-      <%= render 'workflows/index-buttons' %>
+        <% if @workflows.size > 10 %>
+          <%= render 'workflows/index-buttons' %>
+        <% end %>
+      <% end %>
 
     </div>
   </div>
