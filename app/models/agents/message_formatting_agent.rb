@@ -4,9 +4,9 @@ module Agents
     can_dry_run!
 
     description <<-MD
-      The Message Formatting Agent allows you to format incoming Messages, adding new fields as needed.
+      The Message Formatting Agent allows you to format incoming messages, adding new fields as needed.
 
-      For example, here is a possible Message:
+      For example, here is a possible message:
 
           {
             "high": {
@@ -21,7 +21,7 @@ module Agents
             "data": "This is some data"
           }
 
-      You may want to send this message to another Agent, for example a Twilio Agent, which expects a `message` key.
+      You may want to send this message to another agent, for example a Twilio Agent, which expects a `message` key.
       You can use an Message Formatting Agent's `instructions` setting to do this in the following way:
 
           "instructions": {
@@ -32,7 +32,7 @@ module Agents
 
       Names here like `conditions`, `high` and `data` refer to the corresponding values in the message hash.
 
-      The special key `created_at` refers to the timestamp of the Message, which can be reformatted by the `date` filter, like `{{created_at | date:"at %I:%M %p" }}`.
+      The special key `created_at` refers to the timestamp of the message, which can be reformatted by the `date` filter, like `{{created_at | date:"at %I:%M %p" }}`.
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 

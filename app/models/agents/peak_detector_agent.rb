@@ -11,7 +11,7 @@ module Agents
 
       The `value_path` value is a [JSONPath](http://goessner.net/articles/JsonPath/) to the value of interest.  `group_by_path` is a JSONPath that will be used to group values, if present.
 
-      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being received by this Agent.
+      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between messages being received by this agent.
 
       You may set `window_duration_in_days` to change the default memory window length of `14` days, `min_peak_spacing_in_days` to change the default minimum peak spacing of `2` days (peaks closer together will be ignored), and `std_multiple` to change the default standard deviation threshold multiple of `3`.
 

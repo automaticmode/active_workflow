@@ -1,5 +1,5 @@
 # Agent is the core class in ActiveWorkflow, representing a configurable, schedulable, reactive system with memory that can
-# be sub-classed for many different purposes.  Agents can emit Messages, as well as receive them and react in many different ways.
+# be sub-classed for many different purposes.  Agents can emit messages, as well as receive them and react in many different ways.
 class Agent < ApplicationRecord
   include AssignableTypes
   include MarkdownClassAttributes

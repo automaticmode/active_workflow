@@ -23,7 +23,7 @@ module Agents
       * `this.memory()`
       * `this.memory(key)`
       * `this.memory(keyToSet, valueToSet)`
-      * `this.setMemory(object)` (replaces the Agent's memory with the provided object)
+      * `this.setMemory(object)` (replaces the agent's memory with the provided object)
       * `this.deleteKey(key)` (deletes a key from memory and returns the value)
       * `this.credential(name)`
       * `this.credential(name, valueToSet)`

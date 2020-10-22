@@ -1,15 +1,15 @@
-# This controller is designed to allow your Agents to receive cross-site Webhooks (POSTs), or to output data streams.
+# This controller is designed to allow your agents to receive cross-site webhooks (POSTs), or to output data streams.
 # When a POST or GET is received, your agent will have #receive_web_request called on itself with the incoming params,
 # method, and requested content-type.
 #
 # Requests are routed as follows:
 #   http://yourserver.com/users/:user_id/web_requests/:agent_id/:secret
-# where :user_id is a User's id, :agent_id is an Agent's id, and :secret is a token that should be user-specifiable in
-# an agent that implements #receive_web_request. It is highly recommended that every Agent verify this token whenever
-# #receive_web_request is called. For example, one of your Agent's options could be :secret and you could compare this
-# value to params[:secret] whenever #receive_web_request is called on your Agent, rejecting invalid requests.
+# where :user_id is a User's id, :agent_id is an agent's id, and :secret is a token that should be user-specifiable in
+# an agent that implements #receive_web_request. It is highly recommended that every agent verify this token whenever
+# #receive_web_request is called. For example, one of your agent's options could be :secret and you could compare this
+# value to params[:secret] whenever #receive_web_request is called on your agent, rejecting invalid requests.
 #
-# Your Agent's #receive_web_request method should return an Array of json_or_string_response, status_code,
+# Your agent's #receive_web_request method should return an array of json_or_string_response, status_code,
 # optional mime type, and optional hash of custom response headers.  For example:
 #   [{status: "success"}, 200]
 # or

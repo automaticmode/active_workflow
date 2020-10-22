@@ -11,12 +11,12 @@ module Agents
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 
       You can specify the email's subject line by providing a `subject` option, which can contain Liquid formatting.  E.g.,
-      you could provide `"ActiveWorkflow email"` to set a simple subject, or `{{subject}}` to use the `subject` key from the incoming Message.
+      you could provide `"ActiveWorkflow email"` to set a simple subject, or `{{subject}}` to use the `subject` key from the incoming message.
 
-      By default, the email body will contain an optional `headline`, followed by a listing of the Messages' keys.
+      By default, the email body will contain an optional `headline`, followed by a listing of the message's keys.
 
       You can customize the email body by including the optional `body` param.  Like the `subject`, the `body` can be a simple message
-      or a Liquid template.  You could send only the Message's `some_text` field with a `body` set to `{{ some_text }}`.
+      or a Liquid template.  You could send only the message's `some_text` field with a `body` set to `{{ some_text }}`.
       The body can contain simple HTML and will be sanitized. Note that when using `body`, it will be wrapped with `<html>` and `<body>` tags,
       so you do not need to add these yourself.
 
@@ -28,7 +28,7 @@ module Agents
       You can provide a `content_type` for the email and specify `text/plain` or `text/html` to be sent.
       If you do not specify `content_type`, then the recipient email server will determine the correct rendering.
 
-      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being received by this Agent.
+      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between messages being received by this agent.
     MD
 
     def default_options

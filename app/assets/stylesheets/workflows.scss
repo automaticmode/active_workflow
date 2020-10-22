@@ -5,12 +5,44 @@
 
 #workflows-table {
   td:first-child { // Name
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 100;
+    padding-top: 12px;
 
     a {
       color: #ddd;
     }
+
+    .badge {
+      font-size: inherit;
+    }
+  }
+
+  td:nth-child(2) { // Agents
+    min-width: 5rem;
+    padding-top: 16px;
+  }
+
+  a.show-description {
+    margin-left: 1rem;
+
+    i.fa-info {
+      background: #444;
+      padding: 5px 9px;
+      border-radius: 35px;
+
+      &:hover {
+        background: #6f6f6f;
+      }
+    }
+  }
+
+  p.description {
+    color: #787878;
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin-top: 9px;
+    margin-bottom: 5px;
   }
 }
 

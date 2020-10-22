@@ -1,6 +1,6 @@
 # TODO: move into runner?
 class AgentCheckJob < ActiveJob::Base
-  # Given an Agent id, load the Agent, call #check on it, and then save it with an updated `last_check_at` timestamp.
+  # Given an agent id, load the agent, call #check on it, and then save it with an updated `last_check_at` timestamp.
   # rubocop:disable Style/RescueStandardError
   def perform(agent_id)
     agent = Agent.find(agent_id)

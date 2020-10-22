@@ -24,12 +24,12 @@ class Message < ApplicationRecord
 
   scope :to_expire, -> { expired }
 
-  # Emit this message again, as a new Message.
+  # Emit this message again, as a new message.
   def reemit!
     agent.create_message payload: payload
   end
 
-  # Look for Messages whose `expires_at` is present and in the past.  Remove those messages and then update affected Agents'
+  # Look for Messages whose `expires_at` is present and in the past.  Remove those messages and then update affected agents'
   # `messages_counts` cache columns.
   # rubocop:disable Rails/SkipsModelValidations
   def self.cleanup_expired!

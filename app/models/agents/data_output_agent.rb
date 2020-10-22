@@ -21,8 +21,8 @@ module Agents
         Options:
 
           * `secrets` - An array of tokens that the requestor must provide for light-weight authentication.
-          * `expected_receive_period_in_days` - How often you expect data to be received by this agent from other Agents.
-          * `template` - A JSON object representing a mapping between item output keys and incoming message values.  Use Liquid to format the values.  Values of the `link`, `title`, `description` and `icon` keys will be put into the \\<channel\\> section of RSS output.  Value of the `self` key will be used as URL for this feed itself, which is useful when you serve it via reverse proxy.  The `item` key will be repeated for every Message.  The `pubDate` key for each item will have the creation time of the Message unless given.
+          * `expected_receive_period_in_days` - How often you expect data to be received by this agent from other agents.
+          * `template` - A JSON object representing a mapping between item output keys and incoming message values.  Use Liquid to format the values.  Values of the `link`, `title`, `description` and `icon` keys will be put into the \\<channel\\> section of RSS output.  Value of the `self` key will be used as URL for this feed itself, which is useful when you serve it via reverse proxy.  The `item` key will be repeated for every message.  The `pubDate` key for each item will have the creation time of the Message unless given.
           * `messages_to_show` - The number of messages to output in RSS or JSON. (default: `40`)
           * `ttl` - A value for the \\<ttl\\> element in RSS output. (default: `60`)
           * `ns_media` - Add [yahoo media namespace](https://en.wikipedia.org/wiki/Media_RSS) in output xml

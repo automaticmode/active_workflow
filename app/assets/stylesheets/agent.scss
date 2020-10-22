@@ -9,6 +9,23 @@
     }
   }
 
+  td:first-child { // Name
+    padding-top: 8px;
+    padding-bottom: 2px;
+  }
+
+  td:nth-child(6) { // Messages
+    text-align: right;
+  }
+
+  td:nth-child(7) { // Issues
+    text-align: center;
+  }
+
+  td:nth-child(8) { // Actions dropdown
+    padding-top: 4px;
+  }
+
   .agent-name {
     display: block;
     font-size: 0.95rem;
@@ -25,8 +42,21 @@
 
   .agent-workflows {
     .badge {
-      font-size: 0.85rem;
+      font-size: 0.83rem;
+      font-weight: 600;
       margin: 0 0 3px 0;
+      max-width: 11rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @include media-breakpoint-up(xl) {
+        max-width: 15rem;
+      }
+
+      &:hover {
+        filter: brightness(115%) saturate(115%);
+      }
     }
   }
 }
@@ -115,10 +145,18 @@ li.issues {
       margin-bottom: 1.5rem;
     }
 
-    b {
-      font-weight: 400;
-      color: $gray-700;
-      color: #62686d;
+    .details {
+      padding-top: 2px;
+
+      p {
+        margin-bottom: 0.45rem;
+      }
+
+      b {
+        font-weight: 400;
+        color: $gray-700;
+        color: #62686d;
+      }
     }
   }
 }

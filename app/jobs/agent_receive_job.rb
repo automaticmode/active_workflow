@@ -1,6 +1,6 @@
 # Move into runner?
 class AgentReceiveJob < ActiveJob::Base
-  # Given an Agent id and an array of Message ids, load the Agent, call #receive on it with the Message objects, and then
+  # Given an agent id and an array of message ids, load the agent, call #receive on it with the message objects, and then
   # save it with an updated `last_receive_at` timestamp.
   # rubocop:disable Style/RescueStandardError
   def perform(agent_id, message_id)

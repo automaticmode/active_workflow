@@ -40,12 +40,22 @@ table.table {
     font-weight: 100;
     font-size: 0.82rem;
     vertical-align: top !important;
-    border-bottom: 1px solid $gray-700;
+    border: 1px solid #4449;
+    border-top: none;
   }
 
   tbody td {
-    vertical-align: middle;
-    line-height: 1.2 !important;
+    line-height: 1.2;
+    padding: 8px;
+    padding-top: 10px;
+
+    border: none;
+    border-bottom: 1px solid #222;
+    border-bottom-width: 1px !important;
+  }
+
+  tbody tr:last-child td {
+    border-bottom-width: 0 !important;
   }
 
   .badge {
@@ -56,11 +66,14 @@ table.table {
 
 // DataTables overrides
 
-table.dataTable thead > tr > th.sorting,
-table.dataTable thead > tr > th.sorting_asc,
-table.dataTable thead > tr > th.sorting_desc, {
-    padding-left: 36px !important;
-    padding-right: initial !important;
+div.dataTables_wrapper div.dataTables_filter {
+  label {
+    font-size: 0.78rem;
+    color: #7f7f7f;
+  }
+  input[type=search] {
+    min-width: 218px;
+  }
 }
 
 table.dataTable thead .sorting::after,
@@ -68,8 +81,7 @@ table.dataTable thead .sorting_asc::after,
 table.dataTable thead .sorting_desc::after,
 table.dataTable thead .sorting_asc_disabled::after,
 table.dataTable thead .sorting_desc_disabled::after {
-  left: 9px !important;
-  right: auto !important;
+  right: 15px;
 }
 
 table.dataTable thead .sorting::before,
@@ -77,11 +89,11 @@ table.dataTable thead .sorting_asc::before,
 table.dataTable thead .sorting_desc::before,
 table.dataTable thead .sorting_asc_disabled::before,
 table.dataTable thead .sorting_desc_disabled::before {
-  left: 20px !important;
+  right: 5px !important;
 }
 
 table.dataTable {
-  border-bottom: 1px solid #3a3f44;
+  border: 1px solid #4449;
 }
 
 .dataTables_info {

@@ -24,8 +24,8 @@ module Agents
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 
-      * Set the `url_from_message` option to a Liquid template to generate the url to access based on the Message.  (To fetch the url in the Message's `url` key, for example, set `url_from_message` to `{{ url }}`.)
-      * Alternatively, set `data_from_message` to a Liquid template to use data directly without fetching any URL.  (For example, set it to `{{ html }}` to use HTML contained in the `html` key of the incoming Message.)
+      * Set the `url_from_message` option to a Liquid template to generate the url to access based on the message.  (To fetch the url in the message's `url` key, for example, set `url_from_message` to `{{ url }}`.)
+      * Alternatively, set `data_from_message` to a Liquid template to use data directly without fetching any URL.  (For example, set it to `{{ html }}` to use HTML contained in the `html` key of the incoming message.)
       * If you specify `merge` for the `mode` option, ActiveWorkflow will retain the old payload and update it with new values.
 
       # Supported Document Types
@@ -36,7 +36,7 @@ module Agents
 
       Note that for all of the formats, whatever you extract MUST have the same number of matches for each extractor except when it has `repeat` set to true.  E.g., if you're extracting rows, all extractors must match all rows.  For generating CSS selectors, something like [SelectorGadget](http://selectorgadget.com) may be helpful.
 
-      For extractors with `hidden` set to true, they will be excluded from the payloads of messages created by the Agent, but can be used and interpolated in the `template` option explained below.
+      For extractors with `hidden` set to true, they will be excluded from the payloads of messages created by the agent, but can be used and interpolated in the `template` option explained below.
 
       For extractors with `repeat` set to true, their first matches will be included in all extracts.  This is useful such as when you want to include the title of a page in all messages created from the page.
 
@@ -190,11 +190,11 @@ module Agents
 
       * `_response_`: A response object with the following keys:
 
-          * `status`: HTTP status as integer. (Almost always 200)  When parsing `data_from_message`, this is set to the value of the `status` key in the incoming Message, if it is a number or a string convertible to an integer.
+          * `status`: HTTP status as integer. (Almost always 200)  When parsing `data_from_message`, this is set to the value of the `status` key in the incoming message, if it is a number or a string convertible to an integer.
 
-          * `headers`: Response headers; for example, `{{ _response_.headers.Content-Type }}` expands to the value of the Content-Type header.  Keys are insensitive to cases and -/_.  When parsing `data_from_message`, this is constructed from the value of the `headers` key in the incoming Message, if it is a hash.
+          * `headers`: Response headers; for example, `{{ _response_.headers.Content-Type }}` expands to the value of the Content-Type header.  Keys are insensitive to cases and -/_.  When parsing `data_from_message`, this is constructed from the value of the `headers` key in the incoming message, if it is a hash.
 
-          * `url`: The final URL of the fetched page, following redirects.  When parsing `data_from_message`, this is set to the value of the `url` key in the incoming Message.  Using this in the `template` option, you can resolve relative URLs extracted from a document like `{{ link | to_uri: _response_.url }}` and `{{ content | rebase_hrefs: _response_.url }}`.
+          * `url`: The final URL of the fetched page, following redirects.  When parsing `data_from_message`, this is set to the value of the `url` key in the incoming message.  Using this in the `template` option, you can resolve relative URLs extracted from a document like `{{ link | to_uri: _response_.url }}` and `{{ content | rebase_hrefs: _response_.url }}`.
 
       # Ordering Messages
 

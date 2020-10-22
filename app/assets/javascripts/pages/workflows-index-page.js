@@ -8,6 +8,11 @@ this.WorkflowsIndexPage = class WorkflowsIndexPage {
         { targets: '_all', orderable: false, searchable: false },
       ]
     });
+    $("#workflows-table .show-description").click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $("#workflows-table .description").slideToggle();
+    });
   }
 };
 

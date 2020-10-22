@@ -39,7 +39,7 @@ module Agents
 
         #{description_messages_order}
 
-        In this Agent, the default value for `messages_order` is `#{DEFAULT_MESSAGES_ORDER.to_json}`.
+        In this agent, the default value for `messages_order` is `#{DEFAULT_MESSAGES_ORDER.to_json}`.
       MD
     end
 

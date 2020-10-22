@@ -120,7 +120,7 @@ module Agents
 
       `lifetime_in_seconds` is the number of seconds a HIT is left on Amazon before it's automatically closed.  The default is 1 day.
 
-      As with most Agents, `expected_receive_period_in_days` is required if `trigger_on` is set to `message`.
+      As with most agents, `expected_receive_period_in_days` is required if `trigger_on` is set to `message`.
     MD
 
     message_description <<-MD

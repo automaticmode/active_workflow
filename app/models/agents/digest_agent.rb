@@ -5,13 +5,13 @@ module Agents
     default_schedule '6h'
 
     description <<-MD
-      The Digest Agent collects any Messages sent to it and emits them as a single message.
+      The Digest Agent collects any messages sent to it and emits them as a single message.
 
       The resulting message will have a payload message of `message`. You can use liquid templating in the `message`.
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 
-      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being received by this Agent.
+      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between messages being received by this agent.
 
       If `retained_messages` is set to 0 (the default), all received messages are cleared after a digest is sent. Set `retained_messages` to a value larger than 0 to keep a certain number of messages around on a rolling basis to re-send in future digests.
 

@@ -25,7 +25,7 @@ module Agents
 
       Set `keep_message` to `true` if you'd like to re-emit the incoming message, optionally merged with 'message' when provided.
 
-      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being received by this Agent.
+      Set `expected_receive_period_in_days` to the maximum amount of time that you'd expect to pass between messages being received by this agent.
     MD
 
     message_description <<-MD
