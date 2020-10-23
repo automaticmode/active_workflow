@@ -28,6 +28,11 @@ apt-get purge -y python3* rsyslog rsync manpages
 apt -y autoremove
 apt-get -y clean
 
+gem install bundler
+bundle config set no-cache 'true'
+bundle config set without 'test development'
+bundle config set deployment 'true'
+
 mkdir -p /app
 chmod -R g=u /etc/passwd /app
 
