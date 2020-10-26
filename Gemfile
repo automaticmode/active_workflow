@@ -61,7 +61,6 @@ gem 'rufus-scheduler', '~> 3.4.2', require: false
 gem 'sassc', '~>2.3.0'
 # TODO: update
 gem 'select2-rails', '~> 3.5.4'
-gem 'source-sans-pro-rails', '~> 0.7.0'
 gem 'spectrum-rails', '~> 1.8.0'
 gem 'sprockets', '~> 3.7.2'
 # TODO: update
