@@ -1,11 +1,19 @@
 <% content_for :title, "Resend confirmation" -%>
 
 <div class="container">
-  <div class='row'>
-    <div class='col-md-4'>
-      <div class='page-header'>
-        <h1>Resend confirmation instructions</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="logo">
+        <i>
+          <%= image_tag("AW-Logo.svg", alt: "ActiveWorkflow") %>
+        </i>
       </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-5">
+      <h1>Resend confirmation instructions</h1>
 
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f| %>
         <%= render 'devise/shared/error_messages', resource: resource %>
@@ -19,12 +27,14 @@
 
         <div class="form-group">
           <div>
-            <%= f.submit "Resend confirmation instructions", class: "btn btn-primary btn-sm" %>
+            <%= f.submit "Resend confirmation instructions", class: "btn btn-primary btn-md" %>
           </div>
         </div>
       <% end %>
 
-      <%= render "devise/shared/links" %>
+      <div class="shared-links">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>

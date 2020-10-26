@@ -8,8 +8,14 @@
     font-weight: 700;
     letter-spacing: -0.2px;
 
-    &:hover {
-      color: #787d82;
+    img {
+      height: 32px;
+      position: relative;
+      top: -1px;
+
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(75%) sepia(53%) saturate(6234%) hue-rotate(93deg) brightness(110%) contrast(111%);
+      }
     }
   }
 

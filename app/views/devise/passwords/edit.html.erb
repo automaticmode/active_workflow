@@ -1,11 +1,19 @@
 <% content_for :title, "Change password" -%>
 
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-4'>
-      <div class='page-header'>
-        <h1>Change your password</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="logo">
+        <i>
+          <%= image_tag("AW-Logo.svg", alt: "ActiveWorkflow") %>
+        </i>
       </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-5">
+      <h1>Change your password</h1>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
         <%= render 'devise/shared/error_messages', resource: resource %>
@@ -26,11 +34,13 @@
         </div>
 
         <div class='form-actions'>
-          <%= f.submit "Change my password", class: "btn btn-primary btn-sm" %>
+          <%= f.submit "Change my password", class: "btn btn-primary btn-md" %>
         </div>
       <% end %>
 
-      <%= render "devise/shared/links" %>
+      <div class="shared-links">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>

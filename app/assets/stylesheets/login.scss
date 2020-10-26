@@ -1,0 +1,86 @@
+.sessions,
+.passwords,
+.unlocks {
+
+  .navbar {
+    display: none;
+  }
+}
+
+
+.sessions,
+.passwords,
+.unlocks,
+.registrations {
+
+  .logo {
+    margin: 40px auto;
+    text-align: center;
+    width: auto;
+
+    i {
+      width: auto;
+      display: block;
+    }
+
+    img {
+      max-width: 80%;
+      height: 64px;
+    }
+
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  form {
+    background-color: #3A3F44;
+    border-radius: 10px;
+    border: 4px solid #4f5459;
+    font-weight: 200;
+    margin: 0 auto 35px;
+    padding: 30px;
+    padding-bottom: 18px;
+
+    input[type=submit] {
+      width: 100%;
+      font-size: 1.2rem;
+    }
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .remember_me {
+    font-size: 0.9rem;
+    margin-top: 25px;
+  }
+
+  .shared-links {
+    text-align: center;
+
+    a {
+      font-size: 0.9rem;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .about {
+    margin: 50px auto;
+    text-align: center;
+    opacity: 0.65;
+    font-size: 0.95rem;
+  }
+
+}
