@@ -1,23 +1,22 @@
 
 body {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
 }
-
 
 h1 {
   font-size: 2rem;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 h2 {
   font-size: 1.8rem;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 h3 {
   font-size: 1.6rem;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 hr {
@@ -27,18 +26,19 @@ hr {
 .page-header {
   p {
     color: #999;
-    font-weight: 200;
+    font-weight: 300;
     font-style: italic;
   }
 }
 
 pre {
   background-color: #494f56;
-  padding: 7px;
-}
-
-.help-inline {
-  font-size: 0.8rem;
-  font-style: italic;
-  line-height: 1.1;
+  page-break-inside: avoid;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.2em;
+  display: block;
+  word-wrap: break-word;
 }

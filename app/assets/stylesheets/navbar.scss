@@ -46,12 +46,16 @@
 
   }
 
+  .nav-link {
+    border-right: none;
+  }
+
 }
 
 .navbar-expand-lg .navbar-nav {
   li.nav-item {
     .nav-link {
-      padding: 1rem 1rem;
+      padding: 1rem;
     }
   }
 }

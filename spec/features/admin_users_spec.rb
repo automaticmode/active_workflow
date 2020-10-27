@@ -30,7 +30,7 @@ describe Admin::UsersController do
       it "follow the 'new user' link" do
         visit admin_users_path
         click_on('New User', match: :first)
-        expect(page).to have_text('Create new User')
+        expect(page).to have_text('Create User')
       end
 
       it 'creates a new user' do
@@ -59,7 +59,7 @@ describe Admin::UsersController do
       it 'follows the edit link' do
         visit admin_users_path
         click_on('bob')
-        expect(page).to have_text('Edit User')
+        expect(page).to have_text('Edit bob')
       end
 
       it 'updates an existing user' do

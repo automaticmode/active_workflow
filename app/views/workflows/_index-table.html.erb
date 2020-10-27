@@ -1,15 +1,15 @@
 <table id="workflows-table" class='table table-striped table-bordered table-hover table-md'>
   <thead>
     <tr>
-      <th>Name <a class="show-description" href="#0"><i class="fa fa-info"></i></a></th>
-      <th>Agents</th>
+      <th class="workflow-name">Name <a class="show-description hidden" href="#0"><i class="fa fa-info"></i></a></th>
+      <th class="workflow-agents">Agents</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @workflows.each do |workflow| %>
       <tr class="has-agents" data-bgcolor="<%= workflow.tag_bg_color %>" data-fgcolor="<%= workflow.tag_fg_color %>" data-agents="<%= workflow.agents.pluck(:id).to_json %>">
-        <td>
+        <td class="workflow-info">
           <% if workflow.icon.blank? %>
             <%= workflow_label(workflow, icon('fa', 'cog'))%>
           <% else %>
@@ -20,7 +20,7 @@
             <p class="description hidden"><%= workflow.description.truncate(300) %></p>
           <% end %>
         </td>
-        <td><%= link_to pluralize(workflow.agents.count, "agent"), workflow %></td>
+        <td class="workflow-num-of-agents"><%= link_to pluralize(workflow.agents.count, "agent"), workflow %></td>
         <td>
           <div class="btn-group btn-group-sm float-right">
             <%= link_to 'Show', workflow, class: "btn btn-primary" %>

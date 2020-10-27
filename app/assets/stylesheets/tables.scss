@@ -37,11 +37,13 @@ table.table {
   font-size: 0.85rem;
 
   thead th {
-    font-weight: 100;
-    font-size: 0.82rem;
+    font-weight: 200;
+    font-size: 0.85rem;
     vertical-align: top !important;
     border: 1px solid #4449;
     border-top: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
 
   tbody td {
@@ -81,6 +83,7 @@ table.dataTable thead .sorting_asc::after,
 table.dataTable thead .sorting_desc::after,
 table.dataTable thead .sorting_asc_disabled::after,
 table.dataTable thead .sorting_desc_disabled::after {
+  top: 6px !important;
   right: 15px;
 }
 
@@ -89,6 +92,7 @@ table.dataTable thead .sorting_asc::before,
 table.dataTable thead .sorting_desc::before,
 table.dataTable thead .sorting_asc_disabled::before,
 table.dataTable thead .sorting_desc_disabled::before {
+  top: 6px !important;
   right: 5px !important;
 }
 
@@ -100,3 +104,20 @@ table.dataTable {
   font-size: 0.8rem;
   color: #7f7f7f;
 }
+
+// User Credentials
+
+#usercredentials-table {
+  tbody td {
+    vertical-align: middle;
+  }
+}
+
+// User Management
+
+#users-table {
+  tbody td {
+    vertical-align: middle;
+  }
+}
+

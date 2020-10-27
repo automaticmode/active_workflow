@@ -4,7 +4,8 @@ this.UserCredentialsIndexPage = class UserCredentialsIndexPage {
       paging: false,
       order: [[0, 'asc']],
       columnDefs: [
-        { targets: 1, searchable: false, orderable: false }
+        { targets: 1, searchable: false, orderable: false },
+        { targets: 2, searchable: false, orderable: false }
       ]
     });
   }

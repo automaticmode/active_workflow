@@ -27,14 +27,17 @@
           <tr>
             <th>Name</th>
             <th>Value</th>
+            <th></th>
           </tr>
           </thead>
           <tbody>
             <% @user_credentials.each do |user_credential| %>
               <tr>
                 <td><%= user_credential.credential_name %></td>
+                <td class="text-info">
+                  <%= user_credential.credential_value.truncate(90) %>
+                </td>
                 <td>
-                  <%= truncate user_credential.credential_value %>
                   <div class="btn-group btn-group-sm" style="float: right">
                     <%= link_to 'Edit', edit_user_credential_path(user_credential), class: "btn btn-primary" %>
                     <%= link_to 'Delete', user_credential_path(user_credential), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>

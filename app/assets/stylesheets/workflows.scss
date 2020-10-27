@@ -4,9 +4,18 @@
 }
 
 #workflows-table {
-  td:first-child { // Name
+  thead {
+    th.workflow-name {
+      padding-top: 6px;
+    }
+    th.workflow-agents {
+      padding-top: 6px; // Make up for the icon spacing in column 1.
+    }
+  }
+
+  td.workflow-info { // Badge and Name.
     font-size: 1rem;
-    font-weight: 100;
+    font-weight: 200;
     padding-top: 12px;
 
     a {
@@ -15,10 +24,11 @@
 
     .badge {
       font-size: inherit;
+      width: 32px; // A fixed value so that all appear the same regardless of icon chosen.
     }
   }
 
-  td:nth-child(2) { // Agents
+  td.workflow-num-of-agents { // Agents (number and link).
     min-width: 5rem;
     padding-top: 16px;
   }
@@ -27,6 +37,7 @@
     margin-left: 1rem;
 
     i.fa-info {
+      font-size: 0.76rem;
       background: #444;
       padding: 5px 9px;
       border-radius: 35px;

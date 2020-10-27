@@ -13,6 +13,10 @@ this.WorkflowsIndexPage = class WorkflowsIndexPage {
         e.stopPropagation();
         $("#workflows-table .description").slideToggle();
     });
+    // Show the info icon to expand workflow descriptions only if there are any.
+    if ( $("#workflows-table p.description").length) {
+      $("#workflows-table .show-description").show();
+    }
   }
 };
 

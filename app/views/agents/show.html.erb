@@ -132,7 +132,7 @@
 
                 <p>
                   <b>Last checked:</b>
-                  <%= @agent.last_check_at ? time_ago_in_words(@agent.last_check_at) + " ago" : "never" %>
+                  <%= @agent.last_check_at ? time_ago_in_words(@agent.last_check_at) + " ago" : "Never" %>
                 </p>
               <% end %>
 
@@ -144,14 +144,14 @@
 
                 <p>
                   <b>Last message created:</b>
-                  <%= @agent.last_message_at ? time_ago_in_words(@agent.last_message_at) + " ago" : "never" %>
+                  <%= @agent.last_message_at ? time_ago_in_words(@agent.last_message_at) + " ago" : "Never" %>
                 </p>
               <% end %>
 
               <% if @agent.can_receive_messages? %>
                 <p>
                   <b>Last received message:</b>
-                  <%= @agent.last_receive_at ? time_ago_in_words(@agent.last_receive_at) + " ago" : "never" %>
+                  <%= @agent.last_receive_at ? time_ago_in_words(@agent.last_receive_at) + " ago" : "Never" %>
                 </p>
               <% end %>
 
@@ -212,7 +212,7 @@
                   <% end %>
                 </ul>
                 <% else %>
-                  no issues.
+                  No issues
                 <% end %>
               </p>
             </div>
