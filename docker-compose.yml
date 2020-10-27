@@ -15,7 +15,7 @@ services:
       - 5432:5432
 
   active_workflow_web:
-    image: docker.io/automaticmode/active_workflow:0.9.10
+    image: docker.io/automaticmode/active_workflow:0.9.11
     env_file:
       - .env
     environment:
@@ -31,7 +31,7 @@ services:
     command: /scripts/init
 
   active_workflow_scheduler:
-    image: docker.io/automaticmode/active_workflow:0.9.10
+    image: docker.io/automaticmode/active_workflow:0.9.11
     env_file:
       - .env
     environment:
@@ -45,7 +45,7 @@ services:
     command: bundle exec rails runner bin/scheduler.rb
 
   active_workflow_worker:
-    image: docker.io/automaticmode/active_workflow:0.9.10
+    image: docker.io/automaticmode/active_workflow:0.9.11
     env_file:
       - .env
     environment:

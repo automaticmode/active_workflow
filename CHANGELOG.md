@@ -5,8 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [current]
+
+
+## [0.9.11] - 2020-10-28
 ### Changed
 - Updated `mini_racer` and `libv8` - current combination started failing
   to install on MacOS.
@@ -14,9 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed `headers_to_save` to `headers_to_include` in HTTP Status Agent.
 - Replace `working` with `issues` and add desctiptions.
 - Update `bundler` to 2.1.4.
+- Numerous UI improvements.
 
 
-## [0.9.10]
+## [0.9.10] - 2020-09-22
 ### Fixed
 - Don't use `foreman` to manage multiple processes when running with
   `SINGLE_DYNO=1`. Single-dyno mode was demoted to being used purely for trying
@@ -175,7 +178,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.10...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.11...HEAD
+[0.9.11]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.11
 [0.9.10]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.10
 [0.9.9.2]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.9.2
 [0.9.9.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.9.1

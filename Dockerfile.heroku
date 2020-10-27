@@ -1,1 +1,1 @@
-FROM docker.io/automaticmode/active_workflow:0.9.10
+FROM docker.io/automaticmode/active_workflow:0.9.11
