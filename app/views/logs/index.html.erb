@@ -20,13 +20,13 @@
             <td>
               <div class="btn-group btn-group-sm">
                 <% if log.inbound_message.present? %>
-                  <%= link_to 'Message In', message_path(log.inbound_message), class: "btn btn-primary" %>
+                  <%= link_to 'Message In', '#', class: 'btn btn-primary message-show', data: { url: agent_message_path(@agent, log.inbound_message) } %>
                 <% else %>
                   <%= link_to 'Message In', '#', class: "btn btn-primary disabled" %>
                 <% end %>
 
                 <% if log.outbound_message.present? %>
-                  <%= link_to 'Message Out', message_path(log.outbound_message), class: "btn btn-primary" %>
+                  <%= link_to 'Message Out', '#', class: 'btn btn-primary message-show', data: { url: agent_message_path(@agent, log.outbound_message) } %>
                 <% else %>
                   <%= link_to 'Message Out', '#', class: "btn btn-primary disabled" %>
                 <% end %>

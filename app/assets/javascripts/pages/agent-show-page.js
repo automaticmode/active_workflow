@@ -1,7 +1,7 @@
 this.AgentShowPage = class AgentShowPage {
   constructor() {
     let tab;
-    $(".agent-show #show-tabs a[href='#logs'], #logs .refresh").on("click", this.fetchLogs);
+    $(".agent-show #show-tabs a[href='#logs'], #logs .refresh").on("click", e => { e.preventDefault(); this.fetchLogs(e) });
     $(".agent-show #show-tabs a[href='#messages'], #messages .refresh").on("click", e => { e.preventDefault(); this.fetchMessages() });
     $(".agent-show #logs .clear").on("click", this.clearLogs);
     $(".agent-show #memory .clear").on("click", this.clearMemory);
@@ -38,6 +38,36 @@ this.AgentShowPage = class AgentShowPage {
     }
   }
 
+  messageModal() {
+    const $button = $(this);
+    $button.on('click', function(e) {
+      e.preventDefault();
+      Utils.showDynamicModal('<pre></pre>', {
+        title: 'Message',
+        body(body) {
+          $.get($button.data('url'), html => {
+            $(body).html(html);
+            const $textarea = $("#message_payload").hide();
+            const container = 'message_payload_editor';
+            const $container = $(`#${container}`);
+            const editor = ace.edit(container);
+            editor.setOptions({
+              readOnly: true,
+              minLines: 20,
+              maxLines: 20
+            });
+            $container.data('ace-editor', editor);
+            editor.session.setTabSize(2);
+            editor.session.setUseSoftTabs(true);
+            editor.session.setUseWrapMode(false);
+            editor.session.setMode("ace/mode/json");
+            editor.session.setValue($textarea.val());
+          });
+        }
+      });
+    });
+  }
+
   fetchMessages() {
     const page = this;
     const agentId = this.agentId;
@@ -55,35 +85,7 @@ this.AgentShowPage = class AgentShowPage {
         ]
       });
       $("#messages .spinner").stop(true, true).fadeOut(() => $("#messages .refresh, #messages .clear").show());
-      $("#messages .messages .message-show").each(function() {
-        const $button = $(this);
-        $button.on('click', function(e) {
-          e.preventDefault();
-          Utils.showDynamicModal('<pre></pre>', {
-            title: 'Message',
-            body(body) {
-              $.get($button.data('url'), html => {
-                $(body).html(html);
-                const $textarea = $("#message_payload").hide();
-                const container = 'message_payload_editor';
-                const $container = $(`#${container}`);
-                const editor = ace.edit(container);
-                editor.setOptions({
-                  readOnly: true,
-                  minLines: 20,
-                  maxLines: 20
-                });
-                $container.data('ace-editor', editor);
-                editor.session.setTabSize(2);
-                editor.session.setUseSoftTabs(true);
-                editor.session.setUseWrapMode(false);
-                editor.session.setMode("ace/mode/json");
-                editor.session.setValue($textarea.val());
-              });
-            }
-          });
-        });
-      });
+      $("#messages .messages .message-show").each(this.messageModal);
       $("#messages .messages .message-reemit").each(function() {
         const $button = $(this);
         $button.on('click', function(e) {
@@ -113,7 +115,6 @@ this.AgentShowPage = class AgentShowPage {
 
   fetchLogs(e) {
     const agentId = $(e.target).closest("[data-agent-id]").data("agent-id");
-    e.preventDefault();
     $("#logs .spinner").show();
     $("#logs .refresh, #logs .clear").hide();
     $.get(`/agents/${agentId}/logs`, html => {
@@ -126,6 +127,7 @@ this.AgentShowPage = class AgentShowPage {
           { targets: [0, 2], orderable: false }
         ]
       });
+      $("#logs .logs .message-show").each(this.messageModal);
       $("#logs .logs .show-log-details").each(function() {
         const $button = $(this);
         $button.on('click', function(e) {
