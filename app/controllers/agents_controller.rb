@@ -6,8 +6,6 @@ class AgentsController < ApplicationController
   def index
     @agents = current_user.agents.includes(:receivers)
 
-    @agents = @agents.where(disabled: false) if show_only_enabled_agents?
-
     # Trigger undefined agents handling.
     @agents.map { |agent| agent } if current_user.undefined_agent_types
 
@@ -55,16 +53,6 @@ class AgentsController < ApplicationController
     end
 
     render json: rows
-  end
-
-  def toggle_visibility
-    if show_only_enabled_agents?
-      mark_all_agents_viewable
-    else
-      set_only_enabled_agents_as_viewable
-    end
-
-    redirect_to agents_path
   end
 
   def handle_details_post
@@ -284,21 +272,6 @@ class AgentsController < ApplicationController
   end
 
   private
-
-  def show_only_enabled_agents?
-    !!cookies[:active_workflow_view_only_enabled_agents]
-  end
-
-  def set_only_enabled_agents_as_viewable
-    cookies[:active_workflow_view_only_enabled_agents] = {
-      value: 'true',
-      expires: 1.year.from_now
-    }
-  end
-
-  def mark_all_agents_viewable
-    cookies.delete(:active_workflow_view_only_enabled_agents)
-  end
 
   def set_workflow
     return unless params[:workflow_id]

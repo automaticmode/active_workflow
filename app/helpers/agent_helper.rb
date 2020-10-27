@@ -6,14 +6,6 @@ module AgentHelper
     end
   end
 
-  def toggle_disabled_text
-    if cookies[:active_workflow_view_only_enabled_agents]
-      ' Show Disabled Agents'
-    else
-      ' Hide Disabled Agents'
-    end
-  end
-
   def workflow_links(agent)
     agent.workflows.map { |workflow|
       link_to(workflow.name, workflow, class: 'badge', style: style_colors(workflow))
