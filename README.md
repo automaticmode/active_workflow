@@ -1,4 +1,4 @@
-<a href="https://www.automaticmode.com"><img src="media/AML-logo.svg" width="125" height="125" align="right" /></a>
+<a href="https://www.activeworkflow.org"><img src="media/ActiveWorkflow-logo.svg" width="128" height="128" align="right" /></a>
 
 # ActiveWorkflow
 
@@ -8,7 +8,7 @@
 
 
 ActiveWorkflow helps you to automate your business or product workflows with [software agents](https://en.wikipedia.org/wiki/Software_agent); autonomous
-entities that act on schedule or react to external triggers. These unsupervised agents -which can be written in any programming language- connect to APIs, process information, perform routine tasks, and generally enable you to automate internal or external workflows.
+entities that act on schedule or react to external triggers. These unsupervised agents –which can be written in any programming language– connect to APIs, process information, perform routine tasks, and generally enable you to automate internal or external workflows.
 
 
 <img src="media/workflows_screenshot.png"
@@ -29,11 +29,11 @@ All you need to do is click the button bellow and fill in the environment variab
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow&env[SINGLE_DYNO]=1)
 
-!Note!: The button above deploys ActiveWorkflow on a single dyno so it could be run using Free Heroku plan. This configuration is not recommended for production. See [Getting Started](https://github.com/automaticmode/active_workflow/wiki/Getting-Started#Running-On-Heroku) for more details.
+**!Note!**: The button above deploys ActiveWorkflow on a single dyno so it could be run using the free Heroku plan. This configuration is not recommended for production. Please see [Getting Started](https://github.com/automaticmode/active_workflow/wiki/Getting-Started#Running-On-Heroku) for more details.
 
 ## Usage
 
-Once you have ActiveWorkflow up and running you will want to configure some agents and most probably to arrange them in one or more workflows. You can use ActiveWorkflow via its web interface or its [REST API](https://github.com/automaticmode/active_workflow/wiki/REST-API) as illustrated in the diagram below, where a1-a6 are six agents and w1-w3 are three workflows these agents participate in.
+Once you have ActiveWorkflow up and running you will want to configure some agents and most probably to arrange them in one or more workflows. You can use ActiveWorkflow via its web interface or its [REST API](https://github.com/automaticmode/active_workflow/wiki/REST-API) as illustrated in the diagram below, where a1–a6 are six agents and w1–w3 are three workflows these agents participate in.
 
 <img src="media/AW_usage_diagram.svg" alt="ActiveWorkflow system overview diagram" />
 
@@ -42,8 +42,8 @@ Once you have ActiveWorkflow up and running you will want to configure some agen
 There are currently three ways to create agents, listed below in order of ease:
 
 1. You can create a new instance of a built-in agent and configure it via the web interface following the agent's configuration options and inline documentation. With [30+ built-in agents](https://github.com/automaticmode/active_workflow/wiki/List-of-Built-In-Agents) you have the ability to address many common business workflows.
-2. If the functionality you wish to achieve isn't directly possible with any of the built-in agents then you can use the (built-in) JavaScript agent which let's you write custom JavaScript code that can send and receive messages.
-3. Finally, if none of the above offers you the flexibility or the functionality you wish to achieve you can code and plug-in your own ActiveWorkflow agent. See [How to Create Your Own Custom Agents (with the Remote Agent API)](https://github.com/automaticmode/active_workflow/wiki/Remote-Agent-API) to learn how to do this.
+2. If the functionality you wish to achieve isn't directly possible with any of the built-in agents then you can use the (built-in) JavaScript agent which lets you write custom JavaScript code that can send and receive messages.
+3. Finally, if none of the above offers you the flexibility or the functionality you wish to achieve, you can code and plug-in your own ActiveWorkflow agent. See [How to Create Your Own Custom Agents (with the Remote Agent API)](https://github.com/automaticmode/active_workflow/wiki/Remote-Agent-API) to learn how to do this.
 
 ## Documentation
 

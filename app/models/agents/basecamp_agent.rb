@@ -8,7 +8,7 @@ module Agents
     cannot_receive_messages!
 
     description <<-MD
-      The Basecamp Agent checks a Basecamp project for new Messages
+      The Basecamp Agent checks a Basecamp project for new messages
 
       To be able to use this agent you need to authenticate with 37signals in the [Services](/services) section first.
     MD
