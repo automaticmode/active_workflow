@@ -87,6 +87,7 @@ group :development do
   gem 'reek', '~> 6.0.0'
   gem 'rubocop', '~> 0.82.0'
   gem 'web-console', '~> 3.7.0'
+  gem 'libyear-bundler', '~> 0.5.3'
 
   group :test do
     gem 'capybara', '~> 3.32.1'
