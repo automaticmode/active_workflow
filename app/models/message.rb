@@ -49,6 +49,7 @@ class Message < ApplicationRecord
   end
 end
 
+# TODO: Is this used? Can we remove it with agent drop as well?
 class MessageDrop
   def initialize(object)
     @payload = object.payload

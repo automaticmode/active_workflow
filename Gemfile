@@ -103,6 +103,7 @@ group :development do
     gem 'rspec_junit_formatter', '~> 0.4.1'
     gem 'selenium-webdriver', '~> 3.142.7'
     gem 'shoulda-matchers', '~> 4.3.0'
+    gem 'timecop', '~> 0.9.2'
     gem 'vcr', '~> 5.1.0'
     gem 'webmock', '~> 3.8.3'
   end
