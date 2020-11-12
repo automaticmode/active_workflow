@@ -10,3 +10,4 @@ LC_ALL=en_US.UTF-8 RAILS_ENV=production SECRET_KEY_BASE=secret bundle install --
 LC_ALL=en_US.UTF-8 RAILS_ENV=production SECRET_KEY_BASE=secret bundle exec rake assets:clean assets:precompile
 chmod g=u /app/Gemfile.lock /app/config/ /app/tmp/
 rm -rf /app/tmp/cache/
+rm -rf /app/vendor/bundle/ruby/2.6.0/cache
