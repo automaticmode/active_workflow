@@ -1,15 +1,35 @@
-<a href="https://www.activeworkflow.org"><img src="media/ActiveWorkflow-logo.svg" width="128" height="128" align="right" /></a>
+<h3 align="center">
+    <br>
+    <a href="https://www.activeworkflow.org"><img src="media/ActiveWorkflow-logo.svg" width="243" /></a>
+</h3>
 
-# ActiveWorkflow
+<h3 align="center">
+    Automate your workflows with autonomous agents<br> in any programming language
+</h3>
 
-[![CircleCI](https://circleci.com/gh/automaticmode/active_workflow.svg?style=shield)](https://circleci.com/gh/automaticmode/active_workflow)
-[![Codecov](https://codecov.io/gh/automaticmode/active_workflow/branch/master/graph/badge.svg)](https://codecov.io/gh/automaticmode/active_workflow)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+<br>
+
+<p align="center">
+    <img alt="GitHub" src="https://img.shields.io/circleci/build/github/automaticmode/active_workflow?style=for-the-badge">
+    <img alt="GitHub" src="https://img.shields.io/codecov/c/github/automaticmode/active_workflow?style=for-the-badge">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/automaticmode/active_workflow?style=for-the-badge&color=287fe2">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge&color=27aace">
+</p>
+
+<h4 align="center">
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#documentation">Documentation</a>
+</h4>
 
 
-ActiveWorkflow helps you to automate your business or product workflows with [software agents](https://en.wikipedia.org/wiki/Software_agent); autonomous
-entities that act on schedule or react to external triggers. These unsupervised agents –which can be written in any programming language– connect to APIs, process information, perform routine tasks, and generally enable you to automate internal or external workflows.
 
+## About
+
+ActiveWorkflow helps you to automate your workflows with [software agents](https://en.wikipedia.org/wiki/Software_agent), autonomous
+entities that act on schedule or react to external triggers. These unsupervised agents –which can be written in any programming language– enable you to automate internal or external business, app and product workflows.
+
+<h4 align="center">Connect to APIs • Process Data • Perform Routine Tasks • Send Notifications</h4>
 
 <img src="media/workflows_screenshot.png"
      srcset="media/workflows_screenshot@2x.png 2x"
@@ -17,9 +37,9 @@ entities that act on schedule or react to external triggers. These unsupervised 
 
 ## Getting Started
 
-See the [Getting Started wiki page](https://github.com/automaticmode/active_workflow/wiki/Getting-Started) and follow the simple setup process. 
+See the [Getting Started wiki page](https://github.com/automaticmode/active_workflow/wiki/Getting-Started) and follow the simple setup process.
 
-## Try it on Heroku!
+## Try it on Heroku
 
 A quick and easy way to check out ActiveWorkflow is by deploying it to
 [Heroku](https://www.heroku.com/).
