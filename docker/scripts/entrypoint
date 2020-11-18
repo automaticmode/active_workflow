@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+export RAILS_ENV=production
+
+# Start internal postgres if no database is configured.
+if [ -z "${DATABASE_HOST}" ] && [ -z "${DATABASE_URL}" ]; then
+  /etc/init.d/postgresql start
+  echo -n 'Waiting for postgres to be ready'
+  until runuser -l postgres -c 'pg_isready' 2>/dev/null; do
+    sleep 1; echo -n '.'
+  done
+  echo ' done.'
+  runuser -l postgres -c 'createuser --createdb active_workflow || true'
+  # Use domain socket to connect to postgres.
+  export DATABASE_URL=postgres:///active_workflow
+  export DATABASE_HOST=''
+  export DATABASE_USERNAME=''
+  export DATABASE_PASSWORD=''
+  export CREATE_DATABASE=${CREATE_DATABASE:-true}
+  # Only use one container when running with internal database.
+  export SINGLE_DYNO=1
+fi
+
+if [ -n "$1" ]; then
+  CMD=$1
+  shift
+else
+  CMD=docker/scripts/init
+fi
+
+# Drop root and execute startup script with normal permissions.
+exec setpriv --reuid active_workflow --clear-groups $CMD "$@"

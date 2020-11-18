@@ -13,6 +13,8 @@ coverage
 spec/tmp/*
 .travis.yml
 build_docker_image.sh
+Dockerfile
+docker-compose.yml
 
 # Copied from .gitignore
 *.rbc

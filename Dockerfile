@@ -1,24 +1,18 @@
-FROM ruby:2.6.6-slim
+FROM ruby:2.6.6-slim-buster
 
-COPY docker/scripts/prepare /scripts/
-RUN /scripts/prepare
+COPY docker/scripts/prepare_os /scripts/
+RUN /scripts/prepare_os
+
+VOLUME /var/lib/postgresql/11/main
 
 WORKDIR /app
 
-COPY ./ /app/
+COPY --chown=active_workflow ./ /app/
 
-ENV RAILS_ENV=production
-
-# Get rid of annoying "fatal: Not a git repository (or any of the parent directories): .git" messages
-RUN umask 002 && git init && \
-    LC_ALL=en_US.UTF-8 RAILS_ENV=production SECRET_KEY_BASE=secret bundle install --redownload --no-local -j 4  && \
-    LC_ALL=en_US.UTF-8 RAILS_ENV=production SECRET_KEY_BASE=secret bundle exec rake assets:clean assets:precompile && \
-    chmod g=u /app/Gemfile.lock /app/config/ /app/tmp/
-
+RUN su active_workflow -c 'docker/scripts/prepare_app'
 
 EXPOSE 3000
 
 COPY docker/scripts/init /scripts/
-CMD ["/scripts/init"]
 
-USER 1001
+ENTRYPOINT ["tini", "--", "/app/docker/scripts/entrypoint"]

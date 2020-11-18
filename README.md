@@ -37,7 +37,17 @@ entities that act on schedule or react to external triggers. These unsupervised 
 
 ## Getting Started
 
+
 See the [Getting Started wiki page](https://github.com/automaticmode/active_workflow/wiki/Getting-Started) and follow the simple setup process.
+
+
+## Try it with docker
+
+```sh
+docker run -p 3000:3000 automaticmode/active_workflow
+```
+
+Once it starts you can login at [http://localhost:3000](http://localhost:3000) with `admin`/`password`.
 
 ## Try it on Heroku
 

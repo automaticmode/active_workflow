@@ -22,22 +22,20 @@ $minimal_apt_get_install build-essential git-core \
   zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev \
   libncurses5-dev libffi-dev libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev \
   graphviz libgraphviz-dev \
-  libpq-dev libsqlite3-dev tzdata
+  libpq-dev libsqlite3-dev tzdata \
+  postgresql-11 tini
 
 apt-get purge -y python3* rsyslog rsync manpages
 apt -y autoremove
 apt-get -y clean
-
-gem install bundler
-bundle config set no-cache 'true'
-bundle config set without 'test development'
-bundle config set deployment 'true'
-
-mkdir -p /app
-chmod -R g=u /etc/passwd /app
 
 rm -rf /var/lib/apt/lists/*
 rm -rf /usr/share/doc/
 rm -rf /usr/share/man/
 rm -rf /usr/share/locale/
 rm -rf /var/log/*
+
+useradd --home-dir /app --no-create-home --no-log-init active_workflow
+mkdir -p /app
+chown -R active_workflow /app
+chmod 700 /app

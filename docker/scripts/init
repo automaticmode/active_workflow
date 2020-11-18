@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Environment defaults
+export DISABLE_SSL=${DISABLE_SSL:-true}
+
 cd /app
 
 # Cleanup any leftover pid file
@@ -8,13 +11,16 @@ if [ -f /app/tmp/pids/server.pid ]; then
   rm /app/tmp/pids/server.pid
 fi
 
+if [ -z "${SECRET_KEY_BASE}" ]; then
+  echo 'WARNING: Please set SECRET_KEY_BASE to a random string, using "change me!" for this run.'
+  export SECRET_KEY_BASE='change me!'
+fi
+
 # The database may need to start up for a bit first
 if [ -n "${INTENTIONALLY_SLEEP}" ]; then
   echo "Intentionally sleeping ${INTENTIONALLY_SLEEP}"
   sleep ${INTENTIONALLY_SLEEP}
 fi
-
-
 if [ -n "${DATABASE_INITIAL_CONNECT_MAX_RETRIES}" ]; then
   max=${DATABASE_INITIAL_CONNECT_MAX_RETRIES}
   count=0

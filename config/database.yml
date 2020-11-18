@@ -6,7 +6,6 @@ default: &default
   username: <%= ENV['DATABASE_USERNAME'].presence || "active_workflow" %>
   host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
   port: <%= ENV['DATABASE_PORT'] || 5432 %>
-  socket: <%= ENV['DATABASE_SOCKET'] || "" %>
   password: <%= ENV['DATABASE_PASSWORD'] || "myactiveworkflowpassword" %>
   strict: false
 
