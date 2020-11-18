@@ -13,7 +13,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    ace-rails-ap (4.3)
+    ace-rails-ap (4.4)
     actioncable (6.0.3.2)
       actionpack (= 6.0.3.2)
       nio4r (~> 2.0)
@@ -587,7 +587,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ace-rails-ap (~> 4.2)
+  ace-rails-ap (~> 4.4)
   aws-sdk-core (~> 2.2.15)
   better_errors (~> 2.7.0)
   binding_of_caller (~> 0.8.0)

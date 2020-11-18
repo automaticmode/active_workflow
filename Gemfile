@@ -24,7 +24,7 @@ gem 'aws-sdk-core', '~> 2.2.15'
 # Optional Services.
 gem 'omniauth-37signals' # BasecampAgent
 
-gem 'ace-rails-ap', '~> 4.2'
+gem 'ace-rails-ap', '~> 4.4'
 gem 'bootsnap', '>= 1.4.6', require: false
 gem 'execjs', '~> 2.7.0'
 gem 'mini_racer', '~> 0.3.1'
