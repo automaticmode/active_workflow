@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 
+## [0.9.12] - 2020-11-23
+### Added
+- You can now try ActiveWorkflow without any external dependencies - default
+  (docker) image can be run in as a single container with database included.
 
 ## [0.9.11] - 2020-10-28
 ### Changed
@@ -178,7 +182,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.11...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.12...HEAD
+[0.9.12]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.12
 [0.9.11]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.11
 [0.9.10]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.10
 [0.9.9.2]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.9.2
