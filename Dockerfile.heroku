@@ -1,1 +1,6 @@
 FROM docker.io/automaticmode/active_workflow:0.9.12
+
+COPY docker/scripts/entrypoint-heroku /app/docker/scripts/
+
+# Use custom entrypoint as heroku doesn't run docker with root privileges.
+ENTRYPOINT ["/app/docker/scripts/entrypoint-heroku"]

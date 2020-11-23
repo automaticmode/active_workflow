@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+export RAILS_ENV=production
+
+if [ -n "$1" ]; then
+  CMD=$1
+  shift
+else
+  CMD=docker/scripts/init
+fi
+
+exec $CMD "$@"
