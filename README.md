@@ -10,10 +10,10 @@
 <br>
 
 <p align="center">
-    <img alt="GitHub" src="https://img.shields.io/circleci/build/github/automaticmode/active_workflow?style=for-the-badge">
-    <img alt="GitHub" src="https://img.shields.io/codecov/c/github/automaticmode/active_workflow?style=for-the-badge">
-    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/automaticmode/active_workflow?style=for-the-badge&color=287fe2">
-    <img alt="GitHub release (latest by date)" src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge&color=27aace">
+    <a href="https://circleci.com/gh/automaticmode/active_workflow"><img alt="GitHub" src="https://img.shields.io/circleci/build/github/automaticmode/active_workflow?style=for-the-badge"></a>
+    <a href="https://codecov.io/gh/automaticmode/active_workflow"><img alt="GitHub" src="https://img.shields.io/codecov/c/github/automaticmode/active_workflow?style=for-the-badge"></a>
+    <a href="https://github.com/automaticmode/active_workflow/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/automaticmode/active_workflow?style=for-the-badge&color=287fe2"></a>
+    <a href="https://github.com/automaticmode/active_workflow/blob/master/LICENSE"><img alt="GitHub release (latest by date)" src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge&color=27aace"></a>
 </p>
 
 <h4 align="center">
