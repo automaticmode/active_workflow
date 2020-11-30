@@ -9,3 +9,4 @@ bundle config set deployment 'true'
 LC_ALL=en_US.UTF-8 RAILS_ENV=production SECRET_KEY_BASE=secret bundle install --redownload --no-local -j 4
 LC_ALL=en_US.UTF-8 RAILS_ENV=production SECRET_KEY_BASE=secret bundle exec rake assets:clean assets:precompile
 chmod g=u /app/Gemfile.lock /app/config/ /app/tmp/
+rm -rf /app/tmp/cache/
