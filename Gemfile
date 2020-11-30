@@ -7,9 +7,6 @@ ruby '>=2.6.0'
 # TODO: update
 gem 'twilio-ruby', '~> 3.11.5'    # TwilioAgent
 gem 'net-ftp-list', '~> 3.2.8'    # FtpsiteAgent
-gem 'rturk', '~> 2.12.1'          # HumanTaskAgent
-# Required by rturk, fixes Fixnum bug.
-gem 'erector', git: 'https://github.com/erector/erector', ref: '59754211101b2c50a4c9daa8e64a64e6edc9e976'
 # TODO: update
 gem 'slack-notifier', '~> 1.0.0'  # SlackAgent
 
@@ -54,8 +51,6 @@ gem 'omniauth', '~> 1.9.0'
 gem 'rack-timeout', '~> 0.5.1'
 gem 'rails', '~> 6.0.3.2'
 gem 'rails-html-sanitizer', '~> 1.3.0'
-# TODO: Removing coffee-rails breaks deployment on heroku, investigate.
-gem 'coffee-rails', '~> 4.2.2'
 # TODO: update
 gem 'rufus-scheduler', '~> 3.4.2', require: false
 gem 'sassc', '~>2.3.0'
@@ -70,6 +65,7 @@ gem 'jquery-datatables', '~> 1.10.20'
 gem 'grape', '~> 1.3.2'
 gem 'grape-entity', '~> 0.8.0'
 gem 'jwt', '~> 2.2.1'
+gem 'addressable', '~> 2.7.0'
 
 group :development do
   gem 'bullet', '~> 6.1.0'
