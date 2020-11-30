@@ -8,7 +8,8 @@ class DefaultWorkflowImporter
   def self.seed(user)
     workflow_import = WorkflowImport.new()
     workflow_import.set_user(user)
-    workflow_file = ENV['DEFAULT_WORKFLOW_FILE'].presence || File.join(Rails.root, 'data', 'default_workflow.json')
+    workflow_file = ENV['DEFAULT_WORKFLOW_FILE'].presence
+    return unless workflow_file
     begin
       workflow_import.file = open(workflow_file)
       raise 'Import failed' unless workflow_import.valid? && workflow_import.import

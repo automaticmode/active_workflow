@@ -26,10 +26,6 @@ describe DefaultWorkflowImporter do
   end
 
   describe '.seed' do
-    it 'imports a set of agents to get the user going when they are first created' do
-      expect { DefaultWorkflowImporter.seed(user) }.to change(user.agents, :count).by(4)
-    end
-
     it 'respects an environment variable that specifies a path or URL to a different workflow' do
       stub.proxy(ENV).[](anything)
       stub(ENV).[]('DEFAULT_WORKFLOW_FILE') { File.join(Rails.root, 'spec', 'fixtures', 'test_default_workflow.json') }
@@ -38,8 +34,9 @@ describe DefaultWorkflowImporter do
 
     it 'can not be turned off' do
       stub.proxy(ENV).[](anything)
+      stub(ENV).[]('DEFAULT_WORKFLOW_FILE') { File.join(Rails.root, 'spec', 'fixtures', 'test_default_workflow.json') }
       stub(ENV).[]('IMPORT_DEFAULT_WORKFLOW_FOR_ALL_USERS') { 'true' }
-      expect { DefaultWorkflowImporter.seed(user) }.to change(user.agents, :count).by(4)
+      expect { DefaultWorkflowImporter.seed(user) }.to change(user.agents, :count).by(3)
     end
   end
 end

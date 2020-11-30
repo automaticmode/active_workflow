@@ -7,10 +7,6 @@ describe Seeder do
   end
 
   describe '.seed' do
-    it 'imports a default workflow' do
-      expect { Seeder.seed }.to change(Agent, :count).by(4)
-    end
-
     it 'creates an admin' do
       expect { Seeder.seed }.to change(User, :count).by(1)
       expect(User.last).to be_admin

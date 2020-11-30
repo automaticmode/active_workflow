@@ -12,8 +12,6 @@ class Seeder
     user.admin = true
     user.save!
 
-    unless DefaultWorkflowImporter.seed(user)
-      raise('Unable to import the default workflow')
-    end
+    DefaultWorkflowImporter.seed(user)
   end
 end
