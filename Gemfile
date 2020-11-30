@@ -57,7 +57,7 @@ gem 'sassc', '~>2.3.0'
 # TODO: update
 gem 'select2-rails', '~> 3.5.4'
 gem 'spectrum-rails', '~> 1.8.0'
-gem 'sprockets', '~> 3.7.2'
+gem 'sprockets', '~> 4.0.2'
 # TODO: update
 gem 'typhoeus', '~> 1.3.1'
 gem 'uglifier', '~> 4.1.18'
