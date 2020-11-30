@@ -18,11 +18,10 @@ export DEBIAN_FRONTEND=noninteractive
 minimal_apt_get_install='apt-get install -y --no-install-recommends'
 
 apt-get update
-$minimal_apt_get_install build-essential git-core \
+$minimal_apt_get_install build-essential \
   zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev \
   libncurses5-dev libffi-dev libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev \
-  graphviz libgraphviz-dev \
-  libpq-dev libsqlite3-dev tzdata \
+  graphviz libpq-dev tzdata \
   postgresql-11 tini
 
 apt-get purge -y python3* rsyslog rsync manpages
