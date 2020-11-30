@@ -10,61 +10,61 @@ gem 'net-ftp-list', '~> 3.2.8'    # FtpsiteAgent
 # TODO: update
 gem 'slack-notifier', '~> 1.0.0'  # SlackAgent
 
-# EvernoteAgent
-gem 'omniauth-evernote'
-gem 'evernote_oauth'
+# Evernote agent
+gem 'omniauth-evernote', '~> 1.2.1'
+gem 'evernote_oauth', '~> 0.2.3'
 
 # S3Agent
 # TODO: update
 gem 'aws-sdk-core', '~> 2.2.15'
 
-# Optional Services.
-gem 'omniauth-37signals' # BasecampAgent
+# Basecamp agent
+gem 'omniauth-37signals', '~> 1.0.5'
 
 gem 'ace-rails-ap', '~> 4.4'
-gem 'bootsnap', '>= 1.4.6', require: false
+gem 'bootsnap', '>= 1.5.1', require: false
 gem 'execjs', '~> 2.7.0'
 gem 'mini_racer', '~> 0.3.1'
-gem 'bootstrap', '~> 4.5.0'
-gem 'daemons', '~> 1.2.6'
+gem 'bootstrap', '~> 4.5.3'
+gem 'daemons', '~> 1.3.1'
 gem 'delayed_job', '~> 4.1.8'
 gem 'delayed_job_active_record', '~> 4.1.4'
-gem 'devise', '~> 4.7.1'
-gem 'dotenv', '~> 2.5.0'
+gem 'devise', '~> 4.7.3'
+gem 'dotenv', '~> 2.7.6'
 # TODO: update
 gem 'faraday', '~> 0.9'
 gem 'faraday_middleware', '~> 0.12.2'
+# TODO: update
 gem 'feedjira', '~> 2.2'
 # TODO: use font-awesome-rails?
-gem 'font-awesome-sass', '~> 5.12.0'
-gem 'httparty', '~> 0.16'
-gem 'jquery-rails', '~> 4.3.5'
-gem 'json', '~> 2.3.0'
-gem 'jsonpath', '~> 1.0.1'
+gem 'font-awesome-sass', '~> 5.15.1'
+gem 'httparty', '~> 0.18.1'
+gem 'jquery-rails', '~> 4.4.0'
+gem 'json', '~> 2.3.1'
+gem 'jsonpath', '~> 1.0.6'
 gem 'kaminari', '~> 1.2.1'
 gem 'kramdown', '~> 2.3.0'
 gem 'liquid', '~> 4.0.3'
-gem 'loofah', '~> 2.5.0'
-gem 'mini_magick', '~> 4.9.5'
-gem 'nokogiri', '~> 1.10.8'
-gem 'omniauth', '~> 1.9.0'
-gem 'rack-timeout', '~> 0.5.1'
-gem 'rails', '~> 6.0.3.2'
+gem 'loofah', '~> 2.8.0'
+gem 'mini_magick', '~> 4.11.0'
+gem 'nokogiri', '~> 1.10.10'
+gem 'omniauth', '~> 1.9.1'
+gem 'rack-timeout', '~> 0.6.0'
+gem 'rails', '~> 6.0.3.4'
 gem 'rails-html-sanitizer', '~> 1.3.0'
 # TODO: update
-gem 'rufus-scheduler', '~> 3.4.2', require: false
-gem 'sassc', '~>2.3.0'
+gem 'rufus-scheduler', '~> 3.6.0', require: false
+gem 'sassc', '~>2.4.0'
 # TODO: update
 gem 'select2-rails', '~> 3.5.4'
 gem 'spectrum-rails', '~> 1.8.0'
 gem 'sprockets', '~> 4.0.2'
-# TODO: update
-gem 'typhoeus', '~> 1.3.1'
-gem 'uglifier', '~> 4.1.18'
+gem 'typhoeus', '~> 1.4.0'
+gem 'uglifier', '~> 4.2.0'
 gem 'jquery-datatables', '~> 1.10.20'
-gem 'grape', '~> 1.3.2'
-gem 'grape-entity', '~> 0.8.0'
-gem 'jwt', '~> 2.2.1'
+gem 'grape', '~> 1.5.1'
+gem 'grape-entity', '~> 0.8.2'
+gem 'jwt', '~> 2.2.2'
 gem 'addressable', '~> 2.7.0'
 
 group :development do
