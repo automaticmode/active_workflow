@@ -27,7 +27,7 @@ module Agents
     end
 
     form_configurable :expected_receive_period_in_days, type: :string
-    form_configurable :max_events, type: :string
+    form_configurable :max_messages, type: :string
     form_configurable :keep, type: :array, values: %w[newest oldest]
     form_configurable :max_emitted_messages, type: :string
 
