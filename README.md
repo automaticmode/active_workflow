@@ -4,7 +4,7 @@
 </h3>
 
 <h3 align="center">
-    Automate your workflows with autonomous agents<br> in any programming language
+    Turn complex requirements to workflows<br> without leaving the comfort of your technology stack 
 </h3>
 
 <br>
@@ -18,18 +18,25 @@
 
 <h4 align="center">
   <a href="#getting-started">Getting Started</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#documentation">Documentation</a>
+  <a href="#system-overview">System Overview</a> •
+  <a href="https://github.com/automaticmode/active_workflow/wiki">Documentation</a>
 </h4>
-
-
 
 ## About
 
-ActiveWorkflow helps you to automate your workflows with [software agents](https://en.wikipedia.org/wiki/Software_agent), autonomous
-entities that act on schedule or react to external triggers. These unsupervised agents –which can be written in any programming language– enable you to automate internal or external business, app and product workflows.
+ActiveWorkflow works alongside your existing technology stack to give you an easy and structured way to:
 
-<h4 align="center">Connect to APIs • Process Data • Perform Routine Tasks • Send Notifications</h4>
+- **Group business logic for periodic execution**; e.g., generate and distribute
+  a weekly report.
+- **Poll resources**; e.g, check if a file has become available on S3.
+- **Orchestrate event-driven functionality**; e.g., trigger a customised
+  email campaign in reaction to a pattern of user behaviour.
+
+You can do all of the above by creating, scheduling, and monitoring workflows of agents, which are self-contained services (or microservices) written in any programming language you choose. ActiveWorkflow gives you a simple way to connect agents to form workflows, extensive logging, state management so that you don't have to worry about a database, and a foundation for scalability and reliability.
+
+<p><strong>ActiveWorkflow is <u>not</u> a no-code platform</strong>, but does offer a fully featured UI so that both developers and other stakeholders can manage and monitor workflows.
+
+<h4 align="center">Periodic Execution ◆ Polling ◆ Event-Driven Orchestration</h4>
 
 <img src="media/workflows_screenshot.png"
      srcset="media/workflows_screenshot@2x.png 2x"
@@ -38,20 +45,22 @@ entities that act on schedule or react to external triggers. These unsupervised 
 ## Getting Started
 
 
-See the [Getting Started wiki page](https://github.com/automaticmode/active_workflow/wiki/Getting-Started) and follow the simple setup process.
+See the [Getting Started wiki page](https://github.com/automaticmode/active_workflow/wiki/Getting-Started) for full details.
+
+If you are in a hurry and wish to take a sneak peek, you can try ActiveWorkflow in one of the following ways.
 
 
-## Try it with docker
+### Try with Docker
 
 ```sh
-docker run -p 3000:3000 automaticmode/active_workflow
+docker run -p 3000:3000 --rm automaticmode/active_workflow
 ```
 
 Once it starts you can login at [http://localhost:3000](http://localhost:3000) with `admin`/`password`.
 
-## Try it on Heroku
+### Try on Heroku
 
-A quick and easy way to check out ActiveWorkflow is by deploying it to
+Another quick and easy way to check out ActiveWorkflow is by deploying it on
 [Heroku](https://www.heroku.com/).
 
 All you need to do is click the button bellow and fill in the environment variables for your seed user (admin):
@@ -59,30 +68,22 @@ All you need to do is click the button bellow and fill in the environment variab
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow&env[SINGLE_DYNO]=1)
 
-**!Note!**: The button above deploys ActiveWorkflow on a single dyno so it could be run using the free Heroku plan. This configuration is not recommended for production. Please see [Getting Started](https://github.com/automaticmode/active_workflow/wiki/Getting-Started#Running-On-Heroku) for more details.
+*Note: the button above deploys ActiveWorkflow on a single dyno so that it can use the free Heroku plan. This configuration is not recommended for production, please see [Getting Started](https://github.com/automaticmode/active_workflow/wiki/Getting-Started#Running-On-Heroku) for more details.*
 
-## Usage
+## System Overview
 
-Once you have ActiveWorkflow up and running you will want to configure some agents and most probably to arrange them in one or more workflows. You can use ActiveWorkflow via its web interface or its [REST API](https://github.com/automaticmode/active_workflow/wiki/REST-API) as illustrated in the diagram below, where a1–a6 are six agents and w1–w3 are three workflows these agents participate in.
+You can use ActiveWorkflow via its web interface or its [REST API](https://github.com/automaticmode/active_workflow/wiki/REST-API) as illustrated in the diagram below. In this example a1–a6 are six agents and w1–w3 are three workflows these agents are part of.
 
 <img src="media/AW_usage_diagram.svg" alt="ActiveWorkflow system overview diagram" />
 
-### Creating Agents
-
-There are currently three ways to create agents, listed below in order of ease:
-
-1. You can create a new instance of a built-in agent and configure it via the web interface following the agent's configuration options and inline documentation. With [30+ built-in agents](https://github.com/automaticmode/active_workflow/wiki/List-of-Built-In-Agents) you have the ability to address many common business workflows.
-2. If the functionality you wish to achieve isn't directly possible with any of the built-in agents then you can use the (built-in) JavaScript agent which lets you write custom JavaScript code that can send and receive messages.
-3. Finally, if none of the above offers you the flexibility or the functionality you wish to achieve, you can code and plug-in your own ActiveWorkflow agent. See [How to Create Your Own Custom Agents (with the Remote Agent API)](https://github.com/automaticmode/active_workflow/wiki/Remote-Agent-API) to learn how to do this.
-
 ## Documentation
 
-You can find documentation at the [ActiveWorkflow Wiki](https://github.com/automaticmode/active_workflow/wiki).
+You can find the full documentation at the [ActiveWorkflow Wiki](https://github.com/automaticmode/active_workflow/wiki).
 
 ## Acknowledgements
 
-ActiveWorkflow started as a fork of [Huginn](https://github.com/huginn/huginn) with the
-goal of solely targeting business use. ActiveWorkflow is incompatible with Huginn.
+ActiveWorkflow started as a fork of [Huginn](https://github.com/huginn/huginn) with
+the goal of targeting solely business use, API and polyglot functionality, and a smaller codebase. ActiveWorkflow is incompatible with Huginn.
 
 
 ## License
