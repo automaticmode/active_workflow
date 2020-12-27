@@ -5,6 +5,8 @@ export RAILS_ENV=production
 
 # Start internal postgres if no database is configured.
 if [ -z "${DATABASE_HOST}" ] && [ -z "${DATABASE_URL}" ]; then
+  # Fix directory permissions when running not as root.
+  chown postgres:postgres /var/lib/postgresql/11/main
   /etc/init.d/postgresql start
   echo -n 'Waiting for postgres to be ready'
   until runuser -l postgres -c 'pg_isready' 2>/dev/null; do
