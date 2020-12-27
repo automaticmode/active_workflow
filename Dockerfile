@@ -1,4 +1,4 @@
-FROM ruby:2.6.6-slim-buster
+FROM docker.io/ruby:2.6.6-slim-buster
 
 COPY docker/scripts/prepare_os /scripts/
 RUN /scripts/prepare_os
