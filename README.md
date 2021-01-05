@@ -1,10 +1,10 @@
 <h3 align="center">
     <br>
-    <a href="https://www.activeworkflow.org"><img src="media/ActiveWorkflow-logo.svg" width="243" /></a>
+    <a href="https://www.activeworkflow.org"><img src="media/AW.svg" /></a>
 </h3>
 
 <h3 align="center">
-    Turn complex requirements to workflows<br> without leaving the comfort of your technology stack 
+    Turn complex requirements to workflows<br> without leaving the comfort of your technology stack
 </h3>
 
 <br>
@@ -19,24 +19,22 @@
 <h4 align="center">
   <a href="#getting-started">Getting Started</a> •
   <a href="#system-overview">System Overview</a> •
-  <a href="https://github.com/automaticmode/active_workflow/wiki">Documentation</a>
+  <a href="https://docs.activeworkflow.org/">Documentation</a>
 </h4>
 
 ## About
 
 ActiveWorkflow works alongside your existing technology stack to give you an easy and structured way to:
 
-- **Group business logic for periodic execution**; e.g., generate and distribute
-  a weekly report.
-- **Poll resources**; e.g, check if a file has become available on S3.
-- **Orchestrate event-driven functionality**; e.g., trigger a customised
-  email campaign in reaction to a pattern of user behaviour.
+- **Group business logic for periodic execution**—for example, to generate and distribute a weekly PDF report.
+- **Poll resources**—for example, to check if a file has become available on S3.
+- **Orchestrate event-driven functionality**—for example, to trigger a customised email campaign in reaction to a pattern of user behaviour.
 
-You can do all of the above by creating, scheduling, and monitoring workflows of agents, which are self-contained services (or microservices) written in any programming language you choose. ActiveWorkflow gives you a simple way to connect agents to form workflows, extensive logging, state management so that you don't have to worry about a database, and a foundation for scalability and reliability.
+You can do all of the above by creating, scheduling, and monitoring workflows of agents, which are self-contained services (or microservices) written in any programming language you choose. ActiveWorkflow as a platform gives you a simple way for connecting your agents (services), extensive logging, state management, and a foundation to build a scalable and reliable system without vendor lock-in.
 
 <p><strong>ActiveWorkflow is <u>not</u> a no-code platform</strong>, but does offer a fully featured UI so that both developers and other stakeholders can manage and monitor workflows.
 
-<h4 align="center">Periodic Execution ◆ Polling ◆ Event-Driven Orchestration</h4>
+<h4 align="center">Periodic Execution ◆ Polling ◆ Orchestration</h4>
 
 <img src="media/workflows_screenshot.png"
      srcset="media/workflows_screenshot@2x.png 2x"
@@ -45,7 +43,7 @@ You can do all of the above by creating, scheduling, and monitoring workflows of
 ## Getting Started
 
 
-See the [Getting Started wiki page](https://github.com/automaticmode/active_workflow/wiki/Getting-Started) for full details.
+See the [Getting Started documentation page](https://docs.activeworkflow.org/) for full details.
 
 If you are in a hurry and wish to take a sneak peek, you can try ActiveWorkflow in one of the following ways.
 
@@ -68,17 +66,17 @@ All you need to do is click the button bellow and fill in the environment variab
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow&env[SINGLE_DYNO]=1)
 
-*Note: the button above deploys ActiveWorkflow on a single dyno so that it can use the free Heroku plan. This configuration is not recommended for production, please see [Getting Started](https://github.com/automaticmode/active_workflow/wiki/Getting-Started#Running-On-Heroku) for more details.*
+*Note: this configuration is not recommended for production, please see [Getting Started - Running on Heroku](https://docs.activeworkflow.org/#running-on-heroku) for more details.*
 
 ## System Overview
 
-You can use ActiveWorkflow via its web interface or its [REST API](https://github.com/automaticmode/active_workflow/wiki/REST-API) as illustrated in the diagram below. In this example a1–a6 are six agents and w1–w3 are three workflows these agents are part of.
+You can use ActiveWorkflow via its web interface or its [Client REST API](https://docs.activeworkflow.org/rest-api) as illustrated in the diagram below. In this example a1–a6 are six agents and w1–w3 are three workflows these agents are part of.
 
 <img src="media/AW_usage_diagram.svg" alt="ActiveWorkflow system overview diagram" />
 
 ## Documentation
 
-You can find the full documentation at the [ActiveWorkflow Wiki](https://github.com/automaticmode/active_workflow/wiki).
+You can find the full project documentation at [https://docs.activeworkflow.org](https://docs.activeworkflow.org/).
 
 ## Acknowledgements
 
