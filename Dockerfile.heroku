@@ -1,4 +1,4 @@
-FROM docker.io/automaticmode/active_workflow:0.9.12
+FROM docker.io/automaticmode/active_workflow:0.9.13
 
 # Remove after the release
 COPY docker/scripts/entrypoint-heroku /app/docker/scripts/
