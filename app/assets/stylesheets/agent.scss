@@ -28,22 +28,22 @@
 
   .agent-name {
     display: block;
-    font-size: 0.95rem;
+    font-size: 16px;
     font-weight: 200;
     line-height: 1.1;
     margin: 2px 0 5px;
   }
 
   .agent-type {
-    font-size: 0.82rem;
+    font-size: 12px;
     display: block;
     margin-bottom: 9px;
   }
 
   .agent-workflows {
     .badge {
-      font-size: 0.83rem;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 400;
       margin: 0 0 3px 0;
       max-width: 11rem;
       white-space: nowrap;
@@ -98,7 +98,7 @@
     position: relative;
     margin-top: -7px;
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: 14px;
   }
 
   .agent-options {
@@ -118,7 +118,7 @@ li.issues {
 .agent-show {
 
   .nav-item {
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 
   .nav-item.disabled {

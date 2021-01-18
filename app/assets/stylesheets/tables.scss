@@ -26,7 +26,6 @@ table.messages {
   .payload {
     color: #999;
     font-size: 12px;
-    //text-align: center;
     font-family: monospace;
   }
 }
@@ -34,16 +33,17 @@ table.messages {
 // General
 
 table.table {
-  font-size: 0.85rem;
+  font-size: 14px;
 
   thead th {
     font-weight: 200;
-    font-size: 0.85rem;
+    font-size: 14px;
     vertical-align: top !important;
     border: 1px solid #4449;
     border-top: none;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
   }
 
   tbody td {
@@ -61,8 +61,10 @@ table.table {
   }
 
   .badge {
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 500;
     margin-right: 8px;
+    border-radius: 2px;
   }
 }
 
@@ -70,7 +72,7 @@ table.table {
 
 div.dataTables_wrapper div.dataTables_filter {
   label {
-    font-size: 0.78rem;
+    font-size: 12px;
     color: #7f7f7f;
   }
   input[type=search] {
@@ -83,8 +85,8 @@ table.dataTable thead .sorting_asc::after,
 table.dataTable thead .sorting_desc::after,
 table.dataTable thead .sorting_asc_disabled::after,
 table.dataTable thead .sorting_desc_disabled::after {
-  top: 6px !important;
-  right: 15px;
+  top: 7px !important;
+  right: 15.5px;
 }
 
 table.dataTable thead .sorting::before,
@@ -92,16 +94,30 @@ table.dataTable thead .sorting_asc::before,
 table.dataTable thead .sorting_desc::before,
 table.dataTable thead .sorting_asc_disabled::before,
 table.dataTable thead .sorting_desc_disabled::before {
-  top: 6px !important;
+  top: 7px !important;
   right: 5px !important;
 }
 
 table.dataTable {
   border: 1px solid #4449;
+
+  th {
+    color: #828a93;
+
+    &.sorting_asc,
+    &.sorting_desc {
+      color: white;
+    }
+    &.sorting::after,
+    &.sorting::before {
+      color: #828a93;
+      opacity: 1;
+    }
+  }
 }
 
 .dataTables_info {
-  font-size: 0.8rem;
+  font-size: 12px;
   color: #7f7f7f;
 }
 
@@ -116,6 +132,14 @@ table.dataTable {
 // User Management
 
 #users-table {
+  th.username {
+    min-width: 80px;
+  }
+
+  th.registered {
+    min-width: 120px;
+  }
+
   tbody td {
     vertical-align: middle;
   }

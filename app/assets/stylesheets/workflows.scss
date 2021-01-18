@@ -37,7 +37,7 @@
     margin-left: 1rem;
 
     i.fa-info {
-      font-size: 0.76rem;
+      font-size: 12px;
       background: #444;
       padding: 5px 9px;
       border-radius: 35px;
@@ -50,10 +50,11 @@
 
   p.description {
     color: #787878;
-    font-size: 0.8rem;
+    font-size: 14px;
     font-weight: 300;
     margin-top: 9px;
     margin-bottom: 5px;
+    line-height: 1.3;
   }
 }
 
