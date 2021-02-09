@@ -21,7 +21,7 @@ describe WorkflowImportsController do
 
   it 'imports a workflow that does not exist yet' do
     visit new_workflow_imports_path
-    attach_file('Upload a workflow JSON File', workflow_file)
+    find(:css, '#workflow_import_file').attach_file(workflow_file)
     click_on 'Start Import'
     expect(page).to have_text('This workflow has a few agents to get you started.')
     expect(page).not_to have_text('This workflow already exists in your system.')
@@ -38,7 +38,7 @@ describe WorkflowImportsController do
     agent.options['expected_receive_period_in_days'] = 9001
     agent.save!
     visit new_workflow_imports_path
-    attach_file('Upload a workflow JSON File', workflow_file)
+    find(:css, '#workflow_import_file').attach_file(workflow_file)
     click_on 'Start Import'
     expect(page).to have_text('This workflow already exists in your system.')
     expect(page).to have_text('9001')
