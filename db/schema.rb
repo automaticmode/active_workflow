@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_160036) do
+ActiveRecord::Schema.define(version: 2021_01_17_143211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_160036) do
     t.datetime "last_message_at"
     t.datetime "last_error_log_at"
     t.boolean "disabled", default: false, null: false
-    t.integer "service_id"
     t.string "guid", null: false
     t.boolean "deactivated", default: false
     t.index ["disabled", "deactivated"], name: "index_agents_on_disabled_and_deactivated"
@@ -108,24 +107,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_160036) do
     t.index ["agent_id", "created_at"], name: "index_messages_on_agent_id_and_created_at"
     t.index ["expires_at"], name: "index_messages_on_expires_at"
     t.index ["user_id", "created_at"], name: "index_messages_on_user_id_and_created_at"
-  end
-
-  create_table "services", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "provider", null: false
-    t.string "name", null: false
-    t.text "token", null: false
-    t.text "secret"
-    t.text "refresh_token"
-    t.datetime "expires_at"
-    t.boolean "global", default: false
-    t.text "options"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "uid"
-    t.index ["provider"], name: "index_services_on_provider"
-    t.index ["uid"], name: "index_services_on_uid"
-    t.index ["user_id", "global"], name: "index_services_on_user_id_and_global"
   end
 
   create_table "user_credentials", force: :cascade do |t|

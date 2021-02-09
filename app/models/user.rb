@@ -2,7 +2,7 @@
 class User < ApplicationRecord
   DEVISE_MODULES = [:database_authenticatable, :registerable,
                     :recoverable, :rememberable, :trackable,
-                    :validatable, :lockable, :omniauthable,
+                    :validatable, :lockable,
                     (ENV['REQUIRE_CONFIRMED_EMAIL'] == 'true' ? :confirmable : nil)].compact
   devise(*DEVISE_MODULES)
 
@@ -19,11 +19,6 @@ class User < ApplicationRecord
   has_many :agents, -> { order('agents.created_at desc') }, dependent: :destroy, inverse_of: :user
   has_many :logs, through: :agents, class_name: 'AgentLog'
   has_many :workflows, inverse_of: :user, dependent: :destroy
-  has_many :services, -> { by_name('asc') }, dependent: :destroy, inverse_of: :user
-
-  def available_services
-    Service.available_to_user(self).by_name
-  end
 
   # Allow users to login via either email or username.
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -39,7 +34,6 @@ class User < ApplicationRecord
     !deactivated_at
   end
 
-  # rubocop:disable Rails/SkipsModelValidations
   def deactivate!
     User.transaction do
       agents.update_all(deactivated: true)
@@ -53,7 +47,6 @@ class User < ApplicationRecord
       update_attribute(:deactivated_at, nil)
     end
   end
-  # rubocop:enable Rails/SkipsModelValidations
 
   def active_for_authentication?
     super && active?

@@ -71,38 +71,6 @@ module ApplicationHelper
     result
   end
 
-  def omniauth_provider_icon(provider)
-    case provider.to_sym
-    when :github, :dropbox
-      icon_tag("fa-#{provider}")
-    else
-      icon_tag('fa-lock')
-    end
-  end
-
-  def omniauth_provider_name(provider)
-    t("devise.omniauth_providers.#{provider}")
-  end
-
-  def omniauth_button(provider)
-    link_to [
-      omniauth_provider_icon(provider),
-      content_tag(:span, "Authenticate with #{omniauth_provider_name(provider)}")
-    ].join.html_safe, user_omniauth_authorize_path(provider), class: "btn btn-primary btn-sm btn-service service-#{provider}"
-  end
-
-  def service_label_text(service)
-    "#{omniauth_provider_name(service.provider)} - #{service.name}"
-  end
-
-  def service_label(service)
-    return if service.nil?
-    content_tag :span, [
-      omniauth_provider_icon(service.provider),
-      service_label_text(service)
-    ].join.html_safe, class: "badge bagde-service service-#{service.provider}"
-  end
-
   def highlighted?(id)
     @highlighted_ranges ||=
       case value = params[:hl].presence
@@ -128,11 +96,5 @@ module ApplicationHelper
     return type.display_name if type.respond_to?(:display_name) && type.display_name
     name = type.is_a?(Class) ? type.name : type
     name.gsub(/^.*::/, '').underscore.humanize.titleize
-  end
-
-  private
-
-  def user_omniauth_authorize_path(provider)
-    send "user_#{provider}_omniauth_authorize_path"
   end
 end

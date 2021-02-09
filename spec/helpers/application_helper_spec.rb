@@ -149,22 +149,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe '#omniauth_provider_icon' do
-    it 'returns a correct icon tag for GitHub' do
-      icon = omniauth_provider_icon(:github)
-      expect(icon).to be_html_safe
-      elem = Nokogiri(icon).at('i.fa.fa-github')
-      expect(elem).to be_a Nokogiri::XML::Element
-    end
-
-    it 'returns a correct icon tag for other services' do
-      icon = omniauth_provider_icon(:'37signals')
-      expect(icon).to be_html_safe
-      elem = Nokogiri(icon).at('i.fa.fa-lock')
-      expect(elem).to be_a Nokogiri::XML::Element
-    end
-  end
-
   describe '#highlighted?' do
     it 'understands hl=6-8' do
       stub(params).[](:hl) { '6-8' }

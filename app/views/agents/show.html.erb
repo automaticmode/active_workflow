@@ -162,13 +162,6 @@
                 </p>
               <% end %>
 
-              <% if @agent.try(:oauthable?) %>
-                <p>
-                  <b>Service:</b>
-                  <%= service_label(@agent.service) %>
-                </p>
-              <% end %>
-
               <% if @agent.can_receive_messages? %>
                 <p>
                   <b>Message sources:</b>
@@ -222,4 +215,3 @@
       </div>
   </div>
 </div>
-

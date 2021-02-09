@@ -22,13 +22,13 @@ describe API::V1::Root do
     it 'returns agents' do
       get '/api/v1/agents', headers: headers
       result = JSON.parse(response.body)
-      expect(result.size).to eq 9
-      expect(result).to include(include('name' => 'bob basecamp agent',
+      expect(result.size).to eq 8
+      expect(result).to include(include('name' => 'Site status',
                                         'disabled' => false,
                                         'messages_count' => 0,
                                         'id' => a_kind_of(Integer),
                                         'sources' => [],
-                                        'type' => 'Agents::BasecampAgent'))
+                                        'type' => 'Agents::HttpStatusAgent'))
     end
   end
 

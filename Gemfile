@@ -5,21 +5,7 @@ ruby '>=2.6.0'
 # Optional libraries.  To conserve RAM, comment out any that you don't need,
 # then run `bundle` and commit the updated Gemfile and Gemfile.lock.
 # TODO: update
-gem 'twilio-ruby', '~> 3.11.5'    # TwilioAgent
 gem 'net-ftp-list', '~> 3.2.8'    # FtpsiteAgent
-# TODO: update
-gem 'slack-notifier', '~> 1.0.0'  # SlackAgent
-
-# Evernote agent
-gem 'omniauth-evernote', '~> 1.2.1'
-gem 'evernote_oauth', '~> 0.2.3'
-
-# S3Agent
-# TODO: update
-gem 'aws-sdk-core', '~> 2.2.15'
-
-# Basecamp agent
-gem 'omniauth-37signals', '~> 1.0.5'
 
 gem 'ace-rails-ap', '~> 4.4'
 gem 'bootsnap', '>= 1.5.1', require: false
@@ -48,7 +34,6 @@ gem 'liquid', '~> 4.0.3'
 gem 'loofah', '~> 2.8.0'
 gem 'mini_magick', '~> 4.11.0'
 gem 'nokogiri', '~> 1.11.1'
-gem 'omniauth', '~> 1.9.1'
 gem 'rack-timeout', '~> 0.6.0'
 gem 'rails', '~> 6.0.3.4'
 gem 'rails-html-sanitizer', '~> 1.3.0'

@@ -162,51 +162,8 @@ nav .nav-item .nav-link:focus,
   // TODO
 }
 
-$service-colors: (
-  twitter:      #55acee,
-  37signals:    #8fc857,
-  github:       #444444,
-  dropbox:      #007EE5,
-  evernote:     #00C85A
-);
-
-@mixin services {
-  @each $service, $color in $service-colors {
-    &.service-#{$service} {
-      color: #fff;
-      background-color: $color;
-    }
-  }
-}
-
-.btn-service {
-  position: relative;
-  padding-left: 40px;
-  $border-color: rgba(0,0,0,0.2);
-  border-color: $border-color;
-
-  > i:first-child {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 32px;
-    height: 32px;
-    text-align: center;
-    line-height: 32px;
-    font-size: 24px;
-    border-right: 1px solid $border-color;
-  }
-
-  @include services;
-}
-
 h1 .badge {
   text-shadow: none;
-}
-
-.badge-service {
-  @include services;
 }
 
 .select2-highlighted a {

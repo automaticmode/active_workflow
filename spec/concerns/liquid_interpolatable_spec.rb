@@ -299,9 +299,10 @@ describe LiquidInterpolatable::Filters do
       end
 
       it 'it converts "complex" objects' do
-        agent.interpolation_context['something'] = { 'nested' => Service.new }
+        agent.interpolation_context['something'] = { 'nested' => Message.new }
         agent.options['object'] = '{{something | as_object}}'
-        expect(agent.interpolated['object']).to eq({ 'nested' => ensure_safety(Service.new.as_json) })
+        expect(agent.interpolated['object'])
+          .to eq({ 'nested' => ensure_safety(Message.new.as_json) })
       end
 
       it 'works with AgentDrops' do

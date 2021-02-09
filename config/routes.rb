@@ -59,12 +59,6 @@ ActiveWorkflow::Application.routes.draw do
     end
   end
 
-  resources :services, only: [:index, :destroy] do
-    member do
-      post :toggle_availability
-    end
-  end
-
   resources :jobs, only: [:index, :destroy] do
     member do
       put :run
@@ -95,7 +89,6 @@ ActiveWorkflow::Application.routes.draw do
 
   devise_for :users,
              controllers: {
-               omniauth_callbacks: 'omniauth_callbacks',
                registrations: 'users/registrations'
              },
              sign_out_via: [:post, :delete]

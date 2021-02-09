@@ -48,7 +48,6 @@ class Agent < ApplicationRecord
   after_save :possibly_update_message_expirations
 
   belongs_to :user, inverse_of: :agents
-  belongs_to :service, inverse_of: :agents, optional: true
   has_many :messages, -> { order('messages.id desc') }, dependent: :delete_all, inverse_of: :agent
   has_one  :most_recent_message, -> { order('messages.id desc') }, inverse_of: :agent, class_name: 'Message'
   has_many :logs, -> { order('agent_logs.id desc') }, dependent: :delete_all, inverse_of: :agent, class_name: 'AgentLog'
@@ -154,7 +153,6 @@ class Agent < ApplicationRecord
     keep_messages_for > 0 ? keep_messages_for.seconds.from_now : nil
   end
 
-  # rubocop:disable Rails/SkipsModelValidations
   def update_message_expirations!
     if keep_messages_for == 0
       messages.update_all expires_at: nil
@@ -162,7 +160,6 @@ class Agent < ApplicationRecord
       messages.update_all "expires_at = created_at + INTERVAL '#{keep_messages_for.to_i} SECOND'"
     end
   end
-  # rubocop:enable Rails/SkipsModelValidations
 
   def trigger_web_request(request)
     params = request.params.except(:action, :controller, :agent_id, :user_id, :format)
@@ -233,12 +230,10 @@ class Agent < ApplicationRecord
     log(message, options.merge(level: 4))
   end
 
-  # rubocop:disable Rails/SkipsModelValidations
   def delete_logs!
     logs.delete_all
     update_column :last_error_log_at, nil
   end
-  # rubocop:enable Rails/SkipsModelValidations
 
   def drop_pending_messages
     false
@@ -260,6 +255,7 @@ class Agent < ApplicationRecord
 
   def set_last_checked_message_id
     return unless can_receive_messages? && (newest_message_id = Message.maximum(:id))
+
     self.last_checked_message_id = newest_message_id
   end
 
@@ -273,6 +269,7 @@ class Agent < ApplicationRecord
 
   def validate_schedule
     return if cannot_be_scheduled?
+
     errors.add(:schedule, 'is not a valid schedule') unless SCHEDULES.include?(schedule.to_s)
   end
 
@@ -295,7 +292,7 @@ class Agent < ApplicationRecord
 
   class << self
     def build_clone(original)
-      new(original.slice(:type, :options, :service_id, :schedule, :controller_ids, :control_target_ids,
+      new(original.slice(:type, :options, :schedule, :controller_ids, :control_target_ids,
                          :source_ids, :receiver_ids, :keep_messages_for, :workflow_ids)) do |clone|
         # Give it a unique name
         2.step do |i|

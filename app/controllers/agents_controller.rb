@@ -91,7 +91,6 @@ class AgentsController < ApplicationController
       can_dry_run: @agent.can_dry_run?,
       options: @agent.default_options,
       description_html: @agent.html_description,
-      oauthable: render_to_string(partial: 'oauth_dropdown', locals: { agent: @agent }),
       form_options: render_to_string(partial: 'options', locals: { agent: @agent })
     }
   end

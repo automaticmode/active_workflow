@@ -55,7 +55,6 @@ module Agents
             "url": "...",
             "host": "...",
             "port": "...",
-            "hostname_verify_result": "...",
             "certificate": {
               "valid": "...", // is certificate valid?
               "expired": "..." // has certificate expired?

@@ -46,17 +46,6 @@ describe WorkflowImport do
       options: trigger_agent_options
     }
   end
-  let(:valid_parsed_basecamp_agent_data) do
-    {
-      type: 'Agents::BasecampAgent',
-      name: 'Basecamp test',
-      schedule: 'every_2m',
-      keep_messages_for: 0,
-      disabled: false,
-      guid: 'a-basecamp-agent',
-      options: { project_id: 12_345 }
-    }
-  end
   let(:valid_parsed_data) do
     {
       schema_version: 1,
@@ -234,9 +223,8 @@ describe WorkflowImport do
           trigger_agent_diff = agent_diffs[1]
 
           valid_parsed_status_agent_data.each do |key, value|
-            if key == :type
-              value = value.split('::').last
-            end
+            value = value.split('::').last if key == :type
+
             expect(status_agent_diff).to respond_to(key)
             field = status_agent_diff.send(key)
             expect(field).to be_a(WorkflowImport::AgentDiff::FieldDiff)
@@ -246,9 +234,8 @@ describe WorkflowImport do
           end
 
           valid_parsed_trigger_agent_data.each do |key, value|
-            if key == :type
-              value = value.split('::').last
-            end
+            value = value.split('::').last if key == :type
+
             expect(trigger_agent_diff).to respond_to(key)
             field = trigger_agent_diff.send(key)
             expect(field).to be_a(WorkflowImport::AgentDiff::FieldDiff)
@@ -366,13 +353,14 @@ describe WorkflowImport do
 
           # Already exists
           expect(status_agent_diff.agent).to eq(agents(:bob_status_agent))
-          valid_parsed_status_agent_data.each do |key, value|
+          valid_parsed_status_agent_data.each do |key, _|
             next if key == :type
+
             expect(status_agent_diff.send(key).current).to eq(agents(:bob_status_agent).send(key))
           end
 
           # Doesn't exist yet
-          valid_parsed_trigger_agent_data.each do |key, value|
+          valid_parsed_trigger_agent_data.each do |key, _|
             expect(trigger_agent_diff.send(key).current).to be_nil
           end
         end
@@ -395,7 +383,6 @@ describe WorkflowImport do
 
           agent_diffs = workflow_import.agent_diffs
           status_agent_diff = agent_diffs[0]
-          trigger_agent_diff = agent_diffs[1]
 
           expect(status_agent_diff.name.current).to eq(agents(:bob_status_agent).name)
           expect(status_agent_diff.name.incoming).to eq(valid_parsed_status_agent_data[:name])
@@ -449,49 +436,6 @@ describe WorkflowImport do
             workflow_import.import(skip_agents: true)
           }.not_to change { users(:jane).workflows }
           expect(users(:jane).workflows.find_by(guid: guid)).to eq(existing_workflow)
-        end
-      end
-    end
-
-    context 'agents which require a service' do
-      let(:valid_parsed_services) do
-        data = valid_parsed_data
-        data[:agents] = [valid_parsed_basecamp_agent_data,
-                         valid_parsed_trigger_agent_data]
-        data
-      end
-
-      let(:valid_parsed_services_data) { valid_parsed_services.to_json }
-
-      let(:services_workflow_import) {
-        _import = WorkflowImport.new(data: valid_parsed_services_data)
-        _import.set_user users(:bob)
-        _import
-      }
-
-      describe '#generate_diff' do
-        it 'should check if the agent requires a service' do
-          agent_diffs = services_workflow_import.agent_diffs
-          basecamp_agent_diff = agent_diffs[0]
-          expect(basecamp_agent_diff.requires_service?).to eq(true)
-        end
-
-        it 'should add an error when no service is selected' do
-          expect(services_workflow_import.import).to eq(false)
-          expect(services_workflow_import.errors[:base].length).to eq(1)
-        end
-      end
-
-      describe '#import' do
-        it 'should import' do
-          services_workflow_import.merges = {
-            '0' => {
-              'service_id' => '0'
-            }
-          }
-          expect {
-            expect(services_workflow_import.import).to eq(true)
-          }.to change { users(:bob).agents.count }.by(2)
         end
       end
     end

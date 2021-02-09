@@ -113,32 +113,11 @@ bob_manual_message_agent:
   name: "Bob's message testing agent"
   guid: <%= SecureRandom.hex %>
 
-bob_basecamp_agent:
-  type: Agents::BasecampAgent
-  user: bob
-  name: "bob basecamp agent"
-  service: generic
-  guid: <%= SecureRandom.hex %>
-  options: <%= {
-      :project_id => "12345",
-    }.to_json.inspect %>
-
 bob_csv_agent:
   type: Agents::CsvAgent
   user: bob
   name: "Bob's CsvAgent"
   guid: <%= SecureRandom.hex %>
-
-jane_basecamp_agent:
-  type: Agents::BasecampAgent
-  user: jane
-  name: "jane basecamp agent"
-  service: generic
-  guid: <%= SecureRandom.hex %>
-  options: <%= {
-      :project_id => "12345",
-    }.to_json.inspect %>
-
 
 bob_data_output_agent:
   type: Agents::DataOutputAgent

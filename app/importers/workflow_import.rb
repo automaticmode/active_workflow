@@ -73,7 +73,6 @@ class WorkflowImport
                              workflow_ids: [@workflow.id] }
         agent.schedule = agent_diff.schedule.updated if agent_diff.schedule.present?
         agent.keep_messages_for = agent_diff.keep_messages_for.updated if agent_diff.keep_messages_for.present?
-        agent.service_id = agent_diff.service_id.updated if agent_diff.service_id.present?
         unless agent.save
           success = false
           errors.add(:base, "Errors when saving '#{agent_diff.name.incoming}': #{agent.errors.full_messages.to_sentence}")
@@ -146,9 +145,6 @@ class WorkflowImport
         end
       end
 
-      if agent_diff.requires_service? && merges.present? && merges[index.to_s].present? && merges[index.to_s]['service_id'].present?
-        agent_diff.service_id = AgentDiff::FieldDiff.new(merges[index.to_s]['service_id'].to_i)
-      end
       agent_diff
     end
   end
@@ -191,10 +187,6 @@ class WorkflowImport
 
     def requires_merge?
       @requires_merge
-    end
-
-    def requires_service?
-      !!agent_instance.try(:oauthable?)
     end
 
     def store!(agent_data)

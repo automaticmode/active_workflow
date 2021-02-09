@@ -162,12 +162,7 @@
           }
 
           if (!firstTime) {
-            if (json.oauthable) {
-              $(".oauthable-form").html(json.oauthable);
-            }
-            if (json.form_options) {
-              $(".agent-options").html(json.form_options);
-            }
+            if (json.form_options) { $('.agent-options').html(json.form_options); }
           }
 
           this.enableDryRunButton();

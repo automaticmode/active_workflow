@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replace agent type dropdown with card based selector.
 
+### Removed
+Removed third party agents:
+- Twilio agents.
+- Slack agent.
+- Evernote agent.
+- S3 agent.
+- Aftership agent.
+- Basecamp agent.
+- Jira agent.
+
 
 ## [0.9.13] - 2021-01-15
 ### Added

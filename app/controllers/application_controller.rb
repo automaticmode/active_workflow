@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   def agent_params
     return {} unless params[:agent]
     @agent_params ||= begin
-      params[:agent].permit([:memory, :name, :type, :schedule, :disabled, :keep_messages_for, :drop_pending_messages, :service_id,
+      params[:agent].permit([:memory, :name, :type, :schedule, :disabled, :keep_messages_for, :drop_pending_messages,
                              source_ids: [], receiver_ids: [], workflow_ids: [], controller_ids: [], control_target_ids: []] + agent_params_options)
     end
   end

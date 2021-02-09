@@ -228,28 +228,6 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :get
 
-  # ==> OmniAuth
-  # Add a new OmniAuth provider. Check the wiki for more information on setting
-  # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
-  if defined?(OmniAuth::Strategies::ThirtySevenSignals) &&
-     (key = ENV['THIRTY_SEVEN_SIGNALS_OAUTH_KEY']).present? &&
-     (secret = ENV['THIRTY_SEVEN_SIGNALS_OAUTH_SECRET']).present?
-    config.omniauth :'37signals', key, secret
-  end
-
-  if defined?(OmniAuth::Strategies::Evernote) &&
-     (key = ENV['EVERNOTE_OAUTH_KEY']).present? &&
-     (secret = ENV['EVERNOTE_OAUTH_SECRET']).present?
-
-    if ENV['USE_EVERNOTE_SANDBOX'] == 'true'
-      config.omniauth :evernote, key, secret, client_options: { site: 'https://sandbox.evernote.com' }
-    else
-      config.omniauth :evernote, key, secret
-    end
-  end
-
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -269,8 +247,4 @@ Devise.setup do |config|
   # The router that invoked `devise_for`, in the example above, would be:
   # config.router_name = :my_engine
   #
-  # When using omniauth, Devise cannot automatically set Omniauth path,
-  # so you need to do it manually. For the users scope, it would be:
-  # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth_path_prefix = '/auth'
 end

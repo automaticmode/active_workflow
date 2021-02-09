@@ -73,10 +73,6 @@
                 <% end %>
               </div>
 
-              <div class="oauthable-form">
-                <%= render 'oauth_dropdown', agent: @agent %>
-              </div>
-
               <div class="form-group">
                 <%= f.label :schedule, :class => 'control-label' %>
                 <div class="schedule-region" data-can-be-scheduled="<%= @agent.can_be_scheduled? %>">

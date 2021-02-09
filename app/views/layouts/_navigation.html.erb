@@ -48,7 +48,6 @@
           <% end %>
           <% if user_signed_in? %>
             <%= link_to "Configure Credentials", user_credentials_path, tabindex: '-1', class: 'dropdown-item' %>
-            <%= link_to "Configure 3rd-Party Services", services_path, tabindex: '-1', class: 'dropdown-item' %>
           <% end %>
           <% if user_signed_in? && current_user.admin %>
             <div class="dropdown-divider"></div>

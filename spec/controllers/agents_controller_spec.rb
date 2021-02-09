@@ -65,7 +65,7 @@ describe AgentsController do
       agent_message = messages(:bob_website_agent_message).id
       other_message = messages(:jane_website_agent_message).id
       post :remove_messages, format: 'json',
-        params: { id: agents(:bob_website_agent).to_param }
+                             params: { id: agents(:bob_website_agent).to_param }
       expect(Message.where(id: agent_message).count).to eq(0)
       expect(Message.where(id: other_message).count).to eq(1)
     end
@@ -176,7 +176,7 @@ describe AgentsController do
 
     it 'creates Agents and accepts specifing a target agent' do
       sign_in users(:bob)
-      attributes = valid_attributes(service_id: 1)
+      attributes = valid_attributes
       attributes[:receiver_ids] = attributes[:source_ids]
       expect {
         expect {
