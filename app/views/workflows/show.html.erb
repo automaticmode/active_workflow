@@ -18,7 +18,7 @@
           <% else %>
             <%= workflow_label(@workflow, icon('fa', @workflow.icon))%>
           <% end %>
-          <%= "#{@workflow.name} Workflow" %>
+          <%= "#{@workflow.name} workflow" %>
         </h1>
         <% if @workflow.description.present? %>
           <%= markdown(@workflow.description) %>

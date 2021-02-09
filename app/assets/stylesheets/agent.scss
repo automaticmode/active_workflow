@@ -29,7 +29,7 @@
   .agent-name {
     display: block;
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 1.1;
     margin: 2px 0 5px;
   }
@@ -91,17 +91,13 @@
 }
 
 .filters-search {
-  background-color: #3A3F44;
-  border-radius: 2px 0 0 2px;
-
-  label {
-    margin: 0 9px 0 6px;
-  }
+  border-radius: 2px;
 
   .js-shuffle-search {
     border: none;
-    padding: 4px;
-    border-radius: 0 2px 2px 0;
+    padding: 4px 10px;
+    border-radius: 2px;
+    min-width: 270px;
   }
 }
 
@@ -126,12 +122,26 @@
     width: 100%;
     justify-content: space-between;
 
+    .card-header {
+      font-size: 18px;
+      font-weight: 200;
+      padding: 1rem;
+    }
+
     .card-body {
       padding: 1rem;
 
       p {
         font-size: 14px;
         line-height: 1.36;
+      }
+
+      .btn {
+        background: darken($primary, 4%);
+
+        &:hover {
+          background: darken($primary, 16%);
+        }
       }
     }
   }
@@ -187,11 +197,11 @@ li.issues {
     }
 
     .nav-link {
-      background-image: linear-gradient(#484e55, #3A3F44 60%, #313539);
+      background-image: linear-gradient(#484e55, $primary 60%, #313539);
       cursor: default;
 
       &:hover {
-        background-image: linear-gradient(#484e55, #3A3F44 60%, #313539);
+        background-image: linear-gradient(#484e55, $primary 60%, #313539);
       }
     }
   }
@@ -199,6 +209,11 @@ li.issues {
   .tab-content {
     h2 {
       margin-bottom: 1.5rem;
+
+      span {
+        display: inline-block;
+        margin-left: 20px;
+      }
     }
 
     .details {

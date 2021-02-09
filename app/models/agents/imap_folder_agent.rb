@@ -13,6 +13,8 @@ module Agents
 
     can_dry_run!
 
+    display_name 'IMAP Folder Agent'
+
     default_schedule 'every_30m'
 
     description <<-MD

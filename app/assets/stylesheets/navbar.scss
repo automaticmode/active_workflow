@@ -50,6 +50,14 @@
     border-right: none;
   }
 
+  .highlight {
+    color: $green;
+
+    &.label-warning {
+      color: $yellow;
+    }
+  }
+
 }
 
 .navbar-expand-lg .navbar-nav {

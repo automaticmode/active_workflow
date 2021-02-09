@@ -1,4 +1,11 @@
 
+h1 {
+  .badge.workflow {
+    top: -3px;
+    position: relative;
+  }
+}
+
 .enable-all-agents {
   margin-left: 10px;
 }
@@ -23,8 +30,19 @@
     }
 
     .badge {
-      font-size: inherit;
+      font-size: 1rem;
       width: 32px; // A fixed value so that all appear the same regardless of icon chosen.
+      height: 32px;
+      border-radius: 2px;
+      vertical-align: middle;
+      padding: 5px 0;
+      top: -3px;
+      position: relative;
+
+      i {
+        display: inline-block;
+        margin: 3px auto 0;
+      }
     }
   }
 

@@ -17,12 +17,10 @@
           exported <%= time_ago_in_words Time.parse(@workflow_import.parsed_data["exported_at"]) %> ago)
         </span>
       </h1>
+      <% if @workflow_import.parsed_data["description"].present? %>
+        <p class="text-muted"><%= markdown(@workflow_import.parsed_data["description"]) %></p>
+      <% end %>
     </div>
-
-    <% if @workflow_import.parsed_data["description"].present? %>
-      <blockquote><%= markdown(@workflow_import.parsed_data["description"]) %></blockquote>
-    <% end %>
-
   </div>
 </div>
 

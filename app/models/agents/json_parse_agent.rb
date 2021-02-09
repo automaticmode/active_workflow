@@ -4,6 +4,8 @@ module Agents
 
     cannot_be_scheduled!
 
+    display_name 'JSON Parse Agent'
+
     description <<-MD
       Parses a JSON string and emits the data in a new message.
 

@@ -6,15 +6,16 @@
 
 <div class="row">
   <div class="col-md-12">
-    <blockquote>You can import workflow from a <code>.json</code> file.</blockquote>
+    <p class="text-info">You can import a workflow from a <code>.json</code> file.</p>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <%= f.label :file, 'Upload a workflow JSON File' %>
-      <%= f.file_field :file, :class => 'form-control-file' %>
+      <pre>
+        <%= f.file_field :file, :class => 'form-control-file' %>
+      </pre>
     </div>
 
     <div class="form-actions">

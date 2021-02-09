@@ -35,19 +35,20 @@
       <li class="nav-item dropdown">
         <a data-toggle="dropdown" role="button" class="nav-link dropdown-toggle" href="#">Account
           <% if user_signed_in? && session[:original_admin_user_id].present? %>
-            <span class="label badge label-warning"><%= current_user.username %></span>
+            <span class="label highlight label-warning"><%= current_user.username %></span>
           <% end %>
         </a>
         <div class="dropdown-menu dropdown-menu-right" role="menu">
           <% if user_signed_in? && session[:original_admin_user_id].present? %>
-            <%= link_to 'Switch Back to Admin User', switch_back_admin_users_path, tabindex: '-1', class: 'dropdown-item' %>
+            <%= link_to 'Switch Back to Admin User', switch_back_admin_users_path, tabindex: '-1', class: 'dropdown-item highlight' %>
+            <div class="dropdown-divider"></div>
           <% end %>
           <% if user_signed_in? %>
             <%= link_to 'User Settings', edit_user_registration_path, :tabindex => "-1", class: 'dropdown-item' %>
           <% end %>
           <% if user_signed_in? %>
             <%= link_to "Configure Credentials", user_credentials_path, tabindex: '-1', class: 'dropdown-item' %>
-            <%= link_to "Configure Services", services_path, tabindex: '-1', class: 'dropdown-item' %>
+            <%= link_to "Configure 3rd-Party Services", services_path, tabindex: '-1', class: 'dropdown-item' %>
           <% end %>
           <% if user_signed_in? && current_user.admin %>
             <div class="dropdown-divider"></div>

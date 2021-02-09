@@ -52,11 +52,11 @@
               <div class="col-md-12">
                 <h2>
                   <%= @agent.name %> Logs
-                  <small>
+                  <span>
                     <i class="fa fa-spinner fa-pulse spinner"></i>
                     <%= icon_tag('fa-sync-alt', class: 'refresh btn btn-sm btn-primary') %>
                     <%= icon_tag('fa-trash-alt', class: 'clear btn btn-sm btn-primary') %>
-                  </small>
+                  </span>
                 </h2>
               </div>
             </div>
@@ -74,11 +74,11 @@
               <div class="col-md-12">
                 <h2>
                   <%= @agent.name %> Messages
-                  <small>
+                  <span>
                     <i class="fa fa-spinner fa-pulse spinner"></i>
                     <%= icon_tag('fa-sync-alt', class: 'refresh btn btn-sm btn-primary') %>
                     <%= icon_tag('fa-trash-alt', class: 'clear btn btn-sm btn-primary') %>
-                  </small>
+                  </span>
                 </h2>
               </div>
             </div>
@@ -104,10 +104,10 @@
               <% if @agent.memory.present? %>
                 <p id="memory" data-agent-id="<%= @agent.id %>">
                   <b>Memory:</b>
-                  <small>
+                  <span>
                     <%= icon_tag('fa-trash-alt', class: 'clear btn btn-sm btn-primary') %>
                   <a id="toggle-memory" href="#">Show</a>
-                  </small>
+                  </span>
                   <pre class="memory hidden"><%= Utils.pretty_jsonify @agent.memory || {} %></pre>
                 </p>
               <% end %>

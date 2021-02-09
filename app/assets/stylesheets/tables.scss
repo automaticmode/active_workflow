@@ -36,10 +36,10 @@ table.table {
   font-size: 14px;
 
   thead th {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 14px;
     vertical-align: top !important;
-    border: 1px solid #4449;
+    border: 1px solid $primary;
     border-top: none;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -72,11 +72,10 @@ table.table {
 
 div.dataTables_wrapper div.dataTables_filter {
   label {
-    font-size: 12px;
-    color: #7f7f7f;
+    color: $secondary;
   }
   input[type=search] {
-    min-width: 218px;
+    min-width: 270px;
   }
 }
 
@@ -99,10 +98,11 @@ table.dataTable thead .sorting_desc_disabled::before {
 }
 
 table.dataTable {
-  border: 1px solid #4449;
+  border: 1px solid $primary;
 
   th {
     color: #828a93;
+    color: $secondary;
 
     &.sorting_asc,
     &.sorting_desc {
@@ -110,7 +110,7 @@ table.dataTable {
     }
     &.sorting::after,
     &.sorting::before {
-      color: #828a93;
+      color: $secondary;
       opacity: 1;
     }
   }
@@ -118,7 +118,7 @@ table.dataTable {
 
 .dataTables_info {
   font-size: 12px;
-  color: #7f7f7f;
+  color: $secondary;
 }
 
 // User Credentials

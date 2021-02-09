@@ -6,6 +6,8 @@ module Agents
     cannot_be_scheduled!
     consumes_file_pointer!
 
+    display_name 'CSV Agent'
+
     def default_options
       {
         'mode' => 'parse',

@@ -5,12 +5,12 @@
 // Variables ===================================================================
 
 @mixin btn-shadow($color){
-  @include gradient-y-three-colors(lighten($color, 6%), $color, 60%, darken($color, 4%));
+  background: $color;
   filter: none;
 }
 
 @mixin btn-shadow-inverse($color){
-  @include gradient-y-three-colors(darken($color, 18%), darken($color, 15%), 40%, darken($color, 13%));
+  background: darken($color, 16%);
   filter: none;
 }
 
@@ -106,12 +106,13 @@
 // Buttons =====================================================================
 
 .btn {
-  border-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 0, 0, 0.4);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  padding: 8px 15px;
 
   &:not([disabled]):not(.disabled).active,
   &.disabled {
-    border-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.2);
     box-shadow: none;
   }
 
@@ -120,7 +121,7 @@
   &:not([disabled]):not(.disabled):active,
   &:not([disabled]):not(.disabled):active:hover,
   &:not([disabled]):not(.disabled).active:hover {
-    border-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -208,7 +209,7 @@
 .btn-group-vertical {
 
   .btn.active {
-    border-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.3);
   }
 }
 

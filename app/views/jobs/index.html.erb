@@ -7,11 +7,11 @@
         <h1>
           Background Jobs
         </h1>
+        <% if @jobs.empty? %>
+          <p class="text-info"><em>No background jobs queued.</em></p>
+        <% else %>
       </div>
 
-      <% if @jobs.empty? %>
-        <p class="text-info"><em>No background jobs queued.</em></p>
-      <% else %>
         <%= render 'jobs/buttons' %>
         <br/>
         <table id="jobs-table" class="table table-striped table-hover table-sm messages">

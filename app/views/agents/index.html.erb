@@ -9,7 +9,7 @@
     <div class="col-md-12">
       <div class="page-header">
         <h1><%= session[:original_admin_user_id].present? ? "#{current_user.username}’s Agents" : 'Agents' %></h1>
-        <p>Agents are independent programs that perform work. They communicate by emitting and receiving messages.</p>
+        <p>Agents are services that perform work. They communicate by emitting and receiving messages.</p>
       </div>
 
       <% if @agents.empty? %>

@@ -4,6 +4,9 @@ require 'time'
 module Agents
   class FtpsiteAgent < Agent
     include FileHandling
+
+    display_name 'FTP Site Agent'
+
     default_schedule 'every_12h'
 
     gem_dependency_check { defined?(Net::FTP) && defined?(Net::FTP::List) }

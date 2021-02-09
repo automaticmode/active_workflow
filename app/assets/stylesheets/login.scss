@@ -40,7 +40,7 @@
   }
 
   form {
-    background-color: #3A3F44;
+    background-color: $primary;
     border-radius: 10px;
     border: 4px solid #4f5459;
     font-weight: 200;
@@ -50,7 +50,8 @@
 
     input[type=submit] {
       width: 100%;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
+      background: darken($primary, 4%);
     }
   }
 

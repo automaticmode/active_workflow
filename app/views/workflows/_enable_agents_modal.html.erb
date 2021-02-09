@@ -1,5 +1,5 @@
 <div id="enable-disable-agents" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="enableAgentLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Confirm</h4>
@@ -8,6 +8,7 @@
       <div class="modal-body">
         <div class="modal-body-action">
         </div>
+        <br>
         <% shared_agents = workflow.shared_agents %>
         <% unless shared_agents.empty? %>
           <% shared_agent_count = shared_agents.size.size # group statement %>

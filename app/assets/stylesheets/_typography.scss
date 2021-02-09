@@ -6,6 +6,7 @@ https://spencermortensen.com/articles/typographic-scale/
 
  */
 
+html {font-size: 100%;} /* 16px */
 
 body {
   font-weight: 400;
@@ -17,20 +18,27 @@ h1 {
 }
 
 h2 {
-  font-size: 1.8rem;
-  font-weight: 200;
-}
-
-h3 {
   font-size: 1.6rem;
   font-weight: 200;
 }
 
+h3 {
+  font-size: 1.4rem;
+  font-weight: 200;
+}
+
+small,
+.text_small {
+  font-size: 0.875rem;
+}
+
 hr {
-  background-color: #3a3f44;
+  background-color: $primary;
 }
 
 .page-header {
+  @extend .mb-3;
+
   p {
     color: #AAAAAA;
     font-size: 14px;

@@ -9,7 +9,7 @@ module Agents
 
     default_schedule 'never'
 
-    display_name 'Javascript Agent'
+    display_name 'JavaScript Agent'
 
     description <<-MD
       Allows you to write code in JavaScript that can create and receive messages.  If other agents aren't meeting your needs, try this one!

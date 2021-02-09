@@ -7,11 +7,11 @@
         <h1>
           Users
         </h1>
+        <div class="d-flex justify-content-end">
+          <%= link_to icon_tag('fa-plus') + ' New User', new_admin_user_path, class: "btn btn-primary btn-sm" %>
+        </div>
       </div>
 
-      <div class="d-flex justify-content-end">
-        <%= link_to icon_tag('fa-plus') + ' New User', new_admin_user_path, class: "btn btn-primary btn-sm" %>
-      </div>
       <br/>
       <div>
         <table id="users-table" class="table table-striped table-hover table-sm messages">
