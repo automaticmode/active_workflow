@@ -5,7 +5,7 @@ module Agents
     default_schedule '6h'
 
     description <<-MD
-      The Digest Agent collects any messages sent to it and emits them as a single message.
+      Collects any messages sent to it and emits them as a single message.
 
       The resulting message will have a payload message of `message`. You can use liquid templating in the `message`.
 

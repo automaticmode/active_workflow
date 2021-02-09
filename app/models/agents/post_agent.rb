@@ -12,8 +12,9 @@ module Agents
 
     description do
       <<-MD
-        A Post Agent receives messages from other agents (or runs periodically), merges those messages with the Liquid-interpolated contents of `payload`, and sends the results as POST (or GET) requests to a specified url.  To skip merging in the incoming message, but still send the interpolated payload, set `no_merge` to `true`.
+        Receives messages from other agents (or runs periodically), merges those messages with the Liquid-interpolated contents of `payload`, and sends the results as POST (or GET) requests to a specified url.
 
+        To skip merging in the incoming message, but still send the interpolated payload, set `no_merge` to `true`.
 
         You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 

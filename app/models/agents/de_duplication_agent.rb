@@ -4,11 +4,11 @@ module Agents
     cannot_be_scheduled!
 
     description <<-MD
-      The De-duplication Agent receives a stream of messages and remits the message if it is not a duplicate.
+      Receives a stream of messages and remits the message if it is not a duplicate.
 
-      `property` the value that should be used to determine the uniqueness of the message (empty to use the whole payload)
+      `property` the value that should be used to determine the uniqueness of the message (empty to use the whole payload).
 
-      `lookback` amount of past Messages to compare the value to (0 for unlimited)
+      `lookback` amount of past messages to compare the value to (0 for unlimited).
 
       `expected_update_period_in_days` is used to determine if the agent is working.
     MD

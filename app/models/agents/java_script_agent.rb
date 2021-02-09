@@ -12,7 +12,7 @@ module Agents
     display_name 'Javascript Agent'
 
     description <<-MD
-      The JavaScript Agent allows you to write code in JavaScript that can create and receive messages.  If other Agents aren't meeting your needs, try this one!
+      Allows you to write code in JavaScript that can create and receive messages.  If other agents aren't meeting your needs, try this one!
 
       You can put code in the `code` option.
 

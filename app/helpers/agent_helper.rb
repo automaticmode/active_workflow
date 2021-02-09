@@ -88,6 +88,17 @@ module AgentHelper
     end
   end
 
+  def agent_types
+    Agent.types.map do |type|
+      agent = Agent.build_for_type(type.name, User.new(id: 0), {})
+      {
+        type: type,
+        name: agent_type_to_human(type),
+        description: agent.html_description
+      }
+    end
+  end
+
   def relative_time(at, applicable)
     if applicable
       at ? Time.now - at : 31556995200 # 1000 years

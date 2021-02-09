@@ -18,7 +18,7 @@ module Agents
     form_configurable :headers_to_include
 
     description <<-MD
-      The HttpStatusAgent will check a URL and emit the resulting HTTP status code with the time that it waited for a reply. Additionally, it will optionally emit the value of one or more specified headers.
+      Checks a URL and emit the resulting HTTP status code with the time that it waited for a reply.  Can optionally emit the value of one or more specified headers.
 
       Specify a `url` and the Http Status Agent will produce a message with the HTTP status code. If you specify one or more `headers_to_include` (comma-delimited), that header or headers' value(s) will be included in the message.
 

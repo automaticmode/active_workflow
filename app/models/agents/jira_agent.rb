@@ -11,7 +11,7 @@ module Agents
     cannot_receive_messages!
 
     description <<-MD
-      The Jira Agent subscribes to Jira issue updates.
+      Subscribes to Jira issue updates.
 
       - `jira_url` specifies the full URL of the jira installation, including https://
       - `jql` is an optional Jira Query Language-based filter to limit the flow of messages. See [JQL Docs](https://confluence.atlassian.com/display/JIRA/Advanced+Searching) for details.

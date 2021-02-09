@@ -14,7 +14,7 @@ module Agents
 
     description do
       <<-MD
-        The ReadFileAgent takes messages from `FileHandling` agents, reads the file, and emits the contents as a string.
+        Takes messages from `FileHandling` agents, reads the file, and emits the contents as a string.
 
         `data_key` specifies the key of the emitted message which contains the file contents.
 

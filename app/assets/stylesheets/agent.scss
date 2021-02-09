@@ -82,6 +82,62 @@
 
 // New – Edit
 
+.agent-selection-filters {
+  width: 100%;
+
+  .btn-group.filter-options.hidden {
+    visibility: hidden;
+  }
+}
+
+.filters-search {
+  background-color: #3A3F44;
+  border-radius: 2px 0 0 2px;
+
+  label {
+    margin: 0 9px 0 6px;
+  }
+
+  .js-shuffle-search {
+    border: none;
+    padding: 4px;
+    border-radius: 0 2px 2px 0;
+  }
+}
+
+.agent_selection {
+
+  .card-wrapper {
+    max-width: 100%;
+    min-width: 100%; // If not specified container might be smaller if description is too short.
+
+    @include media-breakpoint-up(sm) {
+      max-width: 50%;
+      min-width: 50%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      max-width: 25%;
+      min-width: 25%;
+    }
+  }
+
+  .card {
+    width: 100%;
+    justify-content: space-between;
+
+    .card-body {
+      padding: 1rem;
+
+      p {
+        font-size: 14px;
+        line-height: 1.36;
+      }
+    }
+  }
+
+}
+
 #agent-form {
   .description {
     padding-top: 1.6rem;

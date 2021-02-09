@@ -5,7 +5,7 @@ module Agents
     cannot_be_scheduled!
 
     description <<-MD
-      The JSON Parse Agent parses a JSON string and emits the data in a new message
+      Parses a JSON string and emits the data in a new message.
 
       `data` is the JSON to parse. Use Liquid templating to specify the JSON string.
 

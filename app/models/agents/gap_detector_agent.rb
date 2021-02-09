@@ -3,7 +3,7 @@ module Agents
     default_schedule 'every_10m'
 
     description <<-MD
-      The Gap Detector Agent will watch for holes or gaps in a stream of incoming messages and generate "no data alerts".
+      Watches for holes or gaps in a stream of incoming messages and generates "no data alerts".
 
       The `value_path` value is a [JSONPath](http://goessner.net/articles/JsonPath/) to a value of interest. If either
       this value is empty, or no messages are received, during `window_duration_in_days`, a message will be created with

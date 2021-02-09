@@ -9,9 +9,9 @@ module Agents
 
     description  do
       <<~MD
-                The Liquid Output Agent outputs messages through a Liquid template you provide.  Use it to create a HTML page, or a json feed, or anything else that can be rendered as a string from your stream of ActiveWorkflow data.
+                Outputs messages through a Liquid template you provide.  Use it to create an HTML page, or a JSON feed, or anything else that can be rendered as a string from your stream of ActiveWorkflow data.
 
-                This Agent will output data at:
+                This agent will output data at:
 
                 `https://#{ENV['DOMAIN']}#{Rails.application.routes.url_helpers.web_requests_path(agent_id: ':id', user_id: user_id, secret: ':secret', format: :any_extension)}`
 
@@ -79,7 +79,7 @@ module Agents
         When you use the "Last message in" or "Merge messages" option, you can use variables from the last message received, like this:
 
         Name: {{name}}
-        Url:  {{url}}
+        URL:  {{url}}
 
         If you use the "Last X Messages" mode, a set of messages will be passed to your Liquid template.  You can use them like this:
 

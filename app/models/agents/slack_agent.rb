@@ -9,7 +9,7 @@ module Agents
     gem_dependency_check { defined?(Slack) }
 
     description <<-MD
-      The Slack Agent lets you receive messages and send notifications to [Slack](https://slack.com/).
+      Lets you receive messages and send notifications to [Slack](https://slack.com/).
 
       #{'## Include `slack-notifier` in your Gemfile to use this agent!' if dependencies_missing?}
 

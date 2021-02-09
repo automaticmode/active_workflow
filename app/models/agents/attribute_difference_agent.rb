@@ -3,9 +3,7 @@ module Agents
     cannot_be_scheduled!
 
     description <<-MD
-      The Attribute Difference Agent receives messages and emits a new message with
-      the difference or change of a specific attribute in comparison to the previous
-      message received.
+      Receives messages and emits a new message with the difference or change of a specific attribute in comparison to the previous message received.
 
       `path` specifies the JSON path of the attribute to be used from the message.
 

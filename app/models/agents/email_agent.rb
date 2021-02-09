@@ -6,7 +6,7 @@ module Agents
     cannot_create_messages!
 
     description <<-MD
-      The Email Agent sends any messages it receives via email immediately.
+      Sends any messages it receives via email immediately.
 
       You can use [Liquid templating](https://shopify.github.io/liquid/) to configure this agent.
 

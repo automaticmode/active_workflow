@@ -7,7 +7,7 @@ module Agents
 
     description do
       <<-MD
-        The Data Output Agent outputs received messages as either RSS or JSON.  Use it to output a public or private stream of ActiveWorkflow data.
+        Outputs received messages as either RSS or JSON.  Use it to output a public or private stream of ActiveWorkflow data.
 
         This agent will output data at:
 
@@ -171,7 +171,7 @@ module Agents
     end
 
     def feed_description
-      interpolated['template']['description'].presence || "A feed of Messages received by the '#{name}' ActiveWorkflow Agent"
+      interpolated['template']['description'].presence || "A feed of messages received by the '#{name}' ActiveWorkflow agent"
     end
 
     def rss_content_type

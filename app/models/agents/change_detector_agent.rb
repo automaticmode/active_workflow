@@ -3,7 +3,7 @@ module Agents
     cannot_be_scheduled!
 
     description <<-MD
-      The Change Detector Agent receives a stream of messages and emits a new message when a property of the received message changes.
+      Receives a stream of messages and emits a new message when a property of the received message changes.
 
       `property` specifies a Liquid template that expands to the property to be watched, where you can use a variable `last_property` for the last property value.  If you want to detect a new lowest price, try this: `{% assign drop = last_property | minus: price %}{% if last_property == blank or drop > 0 %}{{ price | default: last_property }}{% else %}{{ last_property }}{% endif %}`
 

@@ -8,7 +8,7 @@ module Agents
                                 field>value not\ in].freeze
 
     description <<-MD
-      The Trigger Agent will watch for a specific value in a message payload.
+      Watches for a specific value in a message payload.
 
       The `rules` array contains hashes of `path`, `value`, and `type`.  The `path` value is a dotted path through a hash in [JSONPaths](http://goessner.net/articles/JsonPath/) syntax. For simple messages, this is usually just the name of the field you want, like 'text' for the text key of the message.
 

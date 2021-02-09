@@ -7,11 +7,49 @@
   </div>
 <% end %>
 
+<% unless @agent.type %>
+  <div id="agent_grid" class="agent_selection">
+    <div class="cards d-flex flex-wrap">
+
+      <div class="agent-selection-filters d-flex align-items-center mb-3 w-100">
+
+        <div class="filters-group filters-search d-flex align-items-center mr-5 pl-1">
+          <label for="filters-search-input" class="filter-label">Search</label>
+          <input class="textfield filter__search js-shuffle-search" type="search" id="filters-search-input" autofocus>
+        </div>
+
+        <div class="btn-group filter-options hidden d-flex justify-content-end flex-fill pr-1">
+          <button class="btn btn-primary active" data-group="custom-agents">Custom agents</button>
+          <button class="btn btn-primary" data-group="built-in-agents">Built-in agents</button>
+        </div>
+
+      </div>
+
+      <% agent_types.each do |type| %>
+        <div class="d-flex flex-fill card-wrapper pr-1">
+          <div class="card mb-1 text-white bg-primary">
+            <div class="card-header">
+              <%= type[:name] %>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <%= type[:description].lines.first.html_safe %>
+              <button class="btn btn-primary select_agent_type align-self-end mt-auto"
+                      data-type="<%= type[:type] %>"
+                      data-name="<%= type[:name] %>">Create</button>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>
+
 <%= form_for(@agent,
              as: :agent,
              url: @agent.new_record? ? agents_path(params: { workflow_id: @workflow }) : agent_path(@agent, params: { workflow_id: @workflow }),
              method: @agent.new_record? ? "POST" : "PUT",
-             html: { class: 'agent-form' }) do |f| %>
+             html: { class: 'agent-form', style: 'display: none;' }) do |f| %>
 
   <%= hidden_field_tag :return, params[:return] %>
 
@@ -20,14 +58,15 @@
             <% if @agent.new_record? %>
               <div class="form-group">
                 <%= f.label :type %>
-                <%= f.select :type, options_for_select(agent_type_select_options, @agent.type), {}, class: 'form-control', autofocus: true %>
+                <%= f.hidden_field :type %>
+                <input id="agent_type_display" class="form-control" readonly="readonly" type="text">
               </div>
             <% end %>
           <div class="agent-settings">
 
               <div class="form-group">
                 <%= f.label :name, :required => true %>
-                <%= f.text_field :name, :class => 'form-control' %>
+                <%= f.text_field :name, :class => 'form-control', autofocus: true %>
                 <% if @agent.errors[:name] %>
                   <% @agent.errors[:name].each do |msg| %>
                     <p class="invalid-feedback"><%= msg %></p>

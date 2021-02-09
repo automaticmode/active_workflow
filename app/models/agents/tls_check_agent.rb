@@ -15,10 +15,7 @@ module Agents
     end
 
     description <<-MD
-
-      The TLS Check agent will check a URL and emit the certificate information
-      for that URL. Its main intended use is to check certificates for
-      expiration.
+      Checks a URL and emits the certificate information for that URL.  Its main intended use is to check certificates for expiration.
 
       *Note*: certificate signatures are not checked against any certificate
       chain/authority, therefore TLS Check agent should only be used to

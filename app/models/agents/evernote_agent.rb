@@ -3,7 +3,7 @@ module Agents
     include EvernoteConcern
 
     description <<-MD
-      The Evernote Agent connects with a user's Evernote note store.
+      Connects with a user's Evernote note store.
 
       Visit [Evernote](https://dev.evernote.com/doc/) to set up an Evernote app and receive an api key and secret.
       Store these in the Evernote environment variables in the .env file.

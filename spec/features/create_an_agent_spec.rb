@@ -103,7 +103,7 @@ describe 'Creating a new agent', js: true do
     end
 
     it 'shows all options for agents that can be scheduled, create and receive messages' do
-      select_agent_type('Website Agent scrapes')
+      select_agent_type('Website Agent')
       expect(page).not_to have_content('This type of agent cannot create messages.')
     end
 
@@ -115,49 +115,9 @@ describe 'Creating a new agent', js: true do
 
   it 'allows to click on on the agent name in select2 tags' do
     visit new_agent_path
-    select_agent_type('Website Agent scrapes')
+    select_agent_type('Website Agent')
     select2('Site status', from: 'Sources')
     click_on 'Site status'
     expect(page).to have_content 'Editing your HTTP Status Agent'
-  end
-
-  context 'clearing unsupported fields of agents' do
-    before do
-      visit new_agent_path
-    end
-
-    it 'does not send previously configured sources when the current agent does not support them' do
-      select_agent_type('Website Agent scrapes')
-      select2('Site status', from: 'Sources')
-      select_agent_type('Webhook Agent')
-      fill_in(:agent_name, with: 'No sources')
-      click_on 'Save'
-      expect(page).to have_content('No sources')
-      agent = Agent.find_by(name: 'No sources')
-      expect(agent.sources).to eq([])
-    end
-
-    it 'does not send previously configured control targets when the current agent does not support them' do
-      select_agent_type('Commander Agent')
-      select2('Site status', from: 'Control targets')
-      select_agent_type('Webhook Agent')
-      fill_in(:agent_name, with: 'No control targets')
-      click_on 'Save'
-      expect(page).to have_content('No control targets')
-      agent = Agent.find_by(name: 'No control targets')
-      expect(agent.control_targets).to eq([])
-    end
-
-    it 'does not send previously configured receivers when the current agent does not support them' do
-      select_agent_type('Website Agent scrapes')
-      sleep 0.5
-      select2('ZKCD', from: 'Receivers')
-      select_agent_type('Email Agent')
-      fill_in(:agent_name, with: 'No receivers')
-      click_on 'Save'
-      expect(page).to have_content('No receivers')
-      agent = Agent.find_by(name: 'No receivers')
-      expect(agent.receivers).to eq([])
-    end
   end
 end

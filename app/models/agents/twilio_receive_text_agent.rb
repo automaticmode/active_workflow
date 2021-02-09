@@ -7,7 +7,7 @@ module Agents
 
     description do
       <<-MD
-      The Twilio Receive Text Agent receives text messages from Twilio and emits them as messages.
+      Receives text messages from Twilio and emits them as messages.
 
       #{'## Include `twilio-ruby` in your Gemfile to use this agent!' if dependencies_missing?}
 

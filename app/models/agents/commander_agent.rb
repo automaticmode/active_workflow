@@ -5,7 +5,7 @@ module Agents
     cannot_create_messages!
 
     description <<-MD
-      The Commander Agent is triggered by schedule or an incoming message, and commands other agents ("targets") to run, disable, configure, or enable themselves.
+      Triggered by schedule or an incoming message, commands other agents ("targets") to run, disable, configure, or enable themselves.
 
       # Action types
 

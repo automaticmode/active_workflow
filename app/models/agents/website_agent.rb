@@ -14,9 +14,9 @@ module Agents
     UNIQUENESS_FACTOR = 3
 
     description <<-MD
-      The Website Agent scrapes a website, XML document, or JSON feed and creates Messages based on the results.
+      Scrapes a website, XML document, or JSON feed and creates messages based on the results.
 
-      Specify a `url` and select a `mode` for when to create Messages based on the scraped data, either `all`, `on_change`, or `merge` (if fetching based on a message, see below).
+      Specify a `url` and select a `mode` for when to create messages based on the scraped data, either `all`, `on_change`, or `merge` (if fetching based on a message, see below).
 
       The `url` option can be a single url, or an array of urls (for example, for multiple pages with the exact same structure but different content to scrape).
 
@@ -149,7 +149,7 @@ module Agents
 
       Can be configured to use HTTP basic auth by including the `basic_auth` parameter with `"username:password"`, or `["username", "password"]`.
 
-      Set `expected_update_period_in_days` to the maximum amount of time that you'd expect to pass between Messages being created by this agent.  This is only used to set the "working" status.
+      Set `expected_update_period_in_days` to the maximum amount of time that you'd expect to pass between messages being created by this agent.  This is only used to set the "working" status.
 
       Set `uniqueness_look_back` to limit the number of messages checked for uniqueness (typically for performance).  This defaults to the larger of #{UNIQUENESS_LOOK_BACK} or #{UNIQUENESS_FACTOR}x the number of detected received results.
 

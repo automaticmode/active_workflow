@@ -20,7 +20,9 @@ module Agents
 
     description do
       <<-MD
-        The `CsvAgent` parses or serializes CSV data. When parsing, messages can either be emitted for the entire CSV, or one per row.
+        Parses or serializes CSV data.
+
+        When parsing, messages can either be emitted for the entire CSV, or one per row.
 
         Set `mode` to `parse` to parse CSV from incoming message, when set to `serialize` the agent serilizes the data of messages to CSV.
 

@@ -8,7 +8,7 @@ module Agents
     gem_dependency_check { defined?(Twilio) }
 
     description <<-MD
-      The Twilio Agent receives and collects messages and sends them via text message (up to 160 characters) or gives you a call when scheduled.
+      Receives and collects messages and sends them via text message (up to 160 characters) or gives you a call when scheduled.
 
       #{'## Include `twilio-ruby` in your Gemfile to use this agent!' if dependencies_missing?}
 

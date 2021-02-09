@@ -1,6 +1,7 @@
 module FeatureHelpers
   def select_agent_type(type)
-    select2(type, from: 'Type')
+    button = page.find(:css, "button.select_agent_type[data-name='#{type}']")
+    button.click
 
     # Wait for all parts of the Agent form to load:
     expect(page).to have_css('input[type=submit]') # Options editor (Save)

@@ -16,7 +16,9 @@ module Agents
     default_schedule 'every_30m'
 
     description <<-MD
-      The IMAP Folder Agent checks an IMAP server in specified folders and creates Messages based on new mails found since the last run. In the first visit to a folder, this agent only checks for the initial status and does not create messages.
+      Checks an IMAP server in specified folders and creates messages based on new mails found since the last run.
+
+      In the first visit to a folder, this agent only checks for the initial status and does not create messages.
 
       Specify an IMAP server to connect with `host`, and set `ssl` to true if the server supports IMAP over SSL.  Specify `port` if you need to connect to a port other than standard (143 or 993 depending on the `ssl` value).
 

@@ -4,9 +4,9 @@ module Agents
     cannot_receive_messages!
 
     description <<-MD
-      The Manual Message Agent is used to manually create Messages for testing or other purposes.
+      Manually create messages for testing or other purposes.
 
-      Do not set options for this agent.  Instead, connect it to other agents and create Messages
+      Do not set options for this agent.  Instead, connect it to other agents and create messages
       using the UI provided on this agent's Summary page.
     MD
 

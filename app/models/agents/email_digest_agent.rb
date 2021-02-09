@@ -7,9 +7,9 @@ module Agents
     cannot_create_messages!
 
     description <<-MD
-      The Email Digest Agent collects any messages sent to it and sends them all via email when scheduled. The number of
-      used messages also relies on the `Message Expiration` option of the emitting agent, meaning that if messages expire before
-      this agent is scheduled to run, they will not appear in the email.
+      Collects received messages and sends them all via email when scheduled.
+
+      The number of used messages also relies on the `Message Expiration` option of the emitting agent, meaning that if messages expire before this agent is scheduled to run, they will not appear in the email.
 
       By default, the will have a `subject` and an optional `headline` before listing the messages.  If the messages'
       payloads contain a `message`, that will be highlighted, otherwise everything in

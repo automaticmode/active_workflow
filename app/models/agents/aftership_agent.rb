@@ -7,7 +7,7 @@ module Agents
     default_schedule 'every_10m'
 
     description <<-MD
-      The Aftership agent allows you to track your shipment from aftership and emit them into messages.
+      Allows you to track your shipment from Aftership and emit messages.
 
       To be able to use the Aftership API, you need to generate an `API Key`. You need a paying plan to use their tracking feature.
 

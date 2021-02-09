@@ -5,7 +5,7 @@ module Agents
     default_schedule 'every_12h'
 
     description <<-MD
-      The BufferAgent stores received Messages and emits copies of them on a schedule. Use this as a buffer or queue of Messages.
+      Stores received messages and emits copies of them on a schedule. Use this as a buffer or queue of messages.
 
       `max_messages` should be set to the maximum number of messages that you'd like to hold in the buffer. When this number is
       reached, new messages will either be ignored, or will displace the oldest message already in the buffer, depending on
