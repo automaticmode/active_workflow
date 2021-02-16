@@ -123,4 +123,22 @@ describe API::V1::Root do
                                 ))
     end
   end
+
+  context '/api/v1/workflows/:workflow_id/export' do
+    let(:workflow) { workflows(:bob_status) }
+
+    it 'returns full workflow as json' do
+      get "/api/v1/workflows/#{workflow.id}/export", headers: headers
+      result = JSON.parse(response.body)
+      expect(result['name']).to eq workflow.name
+      expect(result['agents'])
+        .to include(include('type' => 'Agents::HttpStatusAgent'))
+    end
+
+    it 'sets content-disposition header (filename)' do
+      get "/api/v1/workflows/#{workflow.id}/export", headers: headers
+      expect(response.headers['Content-Disposition'])
+        .to eq 'attachment; filename="bob-s-status-alert-workflow.json"'
+    end
+  end
 end

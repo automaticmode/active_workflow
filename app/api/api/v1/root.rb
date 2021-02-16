@@ -56,6 +56,19 @@ module API
           workflow = current_user.workflows.find(params[:workflow_id])
           present workflow, with: API::V1::Entities::Workflow, with_agents: true
         end
+
+        get ':workflow_id/export' do
+          workflow = current_user.workflows.find(params[:workflow_id])
+          exporter = AgentsExporter.new(name: workflow.name,
+                                        description: workflow.description,
+                                        guid: workflow.guid,
+                                        tag_fg_color: workflow.tag_fg_color,
+                                        tag_bg_color: workflow.tag_bg_color,
+                                        icon: workflow.icon,
+                                        agents: workflow.agents)
+          header 'Content-Disposition', 'attachment; filename="' + exporter.filename + '"'
+          exporter.as_json
+        end
       end
     end
   end

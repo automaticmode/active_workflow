@@ -2,10 +2,13 @@
 
 <div class="container">
   <div class="row">
+    <p>If you want to access ActiveWorkflow via the REST API the token for your user is:
+      <pre><code class="text-info"><%= JsonWebToken.encode(user_id: current_user.id) %></code></pre>
+    </p>
+
     <div class="col-md-6">
 
         <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
           <%= render 'devise/shared/error_messages', resource: resource %>
 

@@ -6,8 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+### Added
+- Workflow export functionality via the REST API (so workflows can be imported later).
+
 ### Changed
-- Replace agent type dropdown with card based selector.
+- UI: replace agent type dropdown with card-based selector.
 
 ### Removed
 Removed third party agents:
@@ -28,7 +31,7 @@ Removed third party agents:
 - Human task agent (mechanical turk).
 
 ### Fixed
-- Support official image on rootles docker (or podman).
+- Support official image on rootless docker (or podman).
 
 
 ## [0.9.12] - 2020-11-23
@@ -42,7 +45,7 @@ Removed third party agents:
   to install on MacOS.
 - Updated `puma` - MacOS related [issue](https://github.com/puma/puma/issues/2304).
 - Renamed `headers_to_save` to `headers_to_include` in HTTP Status Agent.
-- Replace `working` with `issues` and add desctiptions.
+- Replace `working` with `issues` and add descriptions.
 - Update `bundler` to 2.1.4.
 - Numerous UI improvements.
 
@@ -56,7 +59,7 @@ Removed third party agents:
   job control functionality of bash. Fixes #9.
 
 ### Changed
-- Both docker-compose and deployment to heroku (via single button deployment)
+- Both docker-compose and deployment to Heroku (via single button deployment)
   switched to using official docker images of ActiveWorkflow by default instead
   of building images from source - mostly to save time spent building docker
   image every single time. Of course, you can still build your own images from
@@ -185,7 +188,7 @@ Removed third party agents:
 
 ## [0.9.2] - 2019-08-07
 ### Fixed
-- Docker compose doesn't restart container anymore.
+- Docker compose doesn't restart container any more.
 - Updated dependencies.
 
 
