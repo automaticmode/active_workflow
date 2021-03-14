@@ -181,6 +181,7 @@ li.issues {
 
 // Show
 
+
 .agent-show {
 
   .nav-item {
@@ -230,6 +231,12 @@ li.issues {
       }
     }
   }
+}
+
+// Nav
+
+a.current-workflow {
+  border: 1px white solid;
 }
 
 

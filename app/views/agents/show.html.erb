@@ -1,12 +1,12 @@
 <% content_for :title, @agent.name -%>
 
 <div class="container agent-show">
+  <%= render 'agents/nav', agent: @agent, current_workflow: @workflow %>
+
+  <hr>
   <div class="row">
     <div class="col-md-2">
         <ul class="nav nav-pills flex-column" id="show-tabs">
-          <li class="nav-item"><%= link_to icon_tag('fa-chevron-left') + ' All Agents'.html_safe, agents_path, class: 'nav-link' %></li>
-
-          <br>
           <% if agent_show_view(@agent).present? %>
             <li class="nav-item"><a href="#summary" class="nav-link active" data-toggle="tab"><%= icon_tag('fa-image') %> Summary</a></li>
             <li class="nav-item"><a href="#details" class="nav-link" data-toggle="tab"><%= icon_tag('fa-indent') %> Details</a></li>

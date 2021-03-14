@@ -160,6 +160,7 @@ class AgentsController < ApplicationController
 
   def edit
     @agent = current_user.agents.find(params[:id])
+
     initialize_presenter
   end
 
