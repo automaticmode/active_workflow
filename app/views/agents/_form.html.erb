@@ -31,7 +31,7 @@
               <%= type[:name] %>
             </div>
             <div class="card-body d-flex flex-column">
-              <%= type[:description].lines.first.html_safe %>
+              <p><%= type[:short_description] %></p>
               <button class="btn btn-primary select_agent_type align-self-end mt-auto"
                       data-type="<%= type[:type] %>"
                       data-name="<%= type[:name] %>">Create</button>

@@ -82,20 +82,26 @@ module AgentHelper
     end
   end
 
-  def agent_type_select_options
-    Rails.cache.fetch('agent_type_select_options') do
-      [['Select an Agent Type', 'Agent', { title: '' }]] + Agent.types.map { |type| [agent_type_to_human(type), type, { title: h(Agent.build_for_type(type.name, User.new(id: 0), {}).html_description.lines.first.strip) }] }
-    end
+  def agent_short_description(agent)
+    html = agent.html_description
+    doc = Nokogiri::HTML::Document.parse(html)
+    text = doc.xpath('(//*[self::h1 or self::h2 or self::h3 or self::p])[1]/descendant-or-self::*/text()').to_s
+    return 'No description' if text.blank?
+    text
   end
+  module_function :agent_short_description
 
   def agent_types
-    Agent.types.map do |type|
-      agent = Agent.build_for_type(type.name, User.new(id: 0), {})
-      {
-        type: type,
-        name: agent_type_to_human(type),
-        description: agent.html_description
-      }
+    Rails.cache.fetch('agent_types') do
+      Agent.types.map do |type|
+        agent = Agent.build_for_type(type.name, User.new(id: 0), {})
+        {
+          type: type,
+          name: agent_type_to_human(type),
+          short_description: agent_short_description(agent),
+          description: agent.html_description
+        }
+      end
     end
   end
 
