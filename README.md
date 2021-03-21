@@ -18,7 +18,6 @@
 
 <h4 align="center">
   <a href="#getting-started">Getting Started</a> •
-  <a href="#system-overview">System Overview</a> •
   <a href="https://docs.activeworkflow.org/">Documentation</a>
 </h4>
 
@@ -32,13 +31,13 @@ ActiveWorkflow works alongside your existing technology stack to give you an eas
 
 You can do all of the above by creating, scheduling, and monitoring workflows of agents, which are self-contained services (or microservices) written in any programming language you choose. ActiveWorkflow as a platform gives you a simple way for connecting your agents (services), extensive logging, state management, and a foundation to build a scalable and reliable system without vendor lock-in.
 
-<p><strong>ActiveWorkflow is <u>not</u> a no-code platform</strong>, but does offer a fully featured UI so that both developers and other stakeholders can manage and monitor workflows.
+ActiveWorkflow **is not a no-code platform**, but it does offer a fully featured UI so that both software engineers and other stakeholders can manage and monitor workflows.
 
 <h4 align="center">Periodic Execution ◆ Polling ◆ Orchestration</h4>
 
 <img src="media/workflows_screenshot.png"
      srcset="media/workflows_screenshot@2x.png 2x"
-     alt="Main view">
+     alt="Screenshot of ActiveWorkflow">
 
 ## Getting Started
 
@@ -48,15 +47,15 @@ See the [Getting Started documentation page](https://docs.activeworkflow.org/) f
 If you are in a hurry and wish to take a sneak peek, you can try ActiveWorkflow in one of the following ways.
 
 
-### Try with Docker
+### Try it with Docker
 
 ```sh
 docker run -p 3000:3000 --rm automaticmode/active_workflow
 ```
 
-Once it starts you can login at [http://localhost:3000](http://localhost:3000) with `admin`/`password`.
+Once it starts you can login at `http://localhost:3000` with `admin`/`password`.
 
-### Try on Heroku
+### Try it on Heroku
 
 Another quick and easy way to check out ActiveWorkflow is by deploying it on
 [Heroku](https://www.heroku.com/).
@@ -68,15 +67,14 @@ All you need to do is click the button bellow and fill in the environment variab
 
 *Note: this configuration is not recommended for production, please see [Getting Started - Running on Heroku](https://docs.activeworkflow.org/#running-on-heroku) for more details.*
 
-## System Overview
-
-You can use ActiveWorkflow via its web interface or its [Client REST API](https://docs.activeworkflow.org/rest-api) as illustrated in the diagram below. In this example a1–a6 are six agents and w1–w3 are three workflows these agents are part of.
-
-<img src="media/AW_usage_diagram.svg" alt="ActiveWorkflow system overview diagram" />
-
 ## Documentation
 
-You can find the full project documentation at [https://docs.activeworkflow.org](https://docs.activeworkflow.org/).
+You can find the full project documentation at [docs.activeworkflow.org](https://docs.activeworkflow.org/).
+
+<a href="https://docs.activeworkflow.org/">
+<img src="media/documentation_screenshot.png"
+     srcset="media/documentation_screenshot@2x.png 2x"
+     alt="Screenshot of documentation"></a>
 
 ## Acknowledgements
 
