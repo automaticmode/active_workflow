@@ -41,7 +41,7 @@
 </div>
 
 <div id="confirm-agent<%= agent.id %>" class="confirm-agent modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmAgentLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Confirm</h4>
@@ -56,7 +56,7 @@
             <div class="form-group">
               <%= f.check_box :drop_pending_messages %>
               <%= f.label :drop_pending_messages, 'Drop pending messages' %>
-              <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'title' =>"As soon as you enable this agent, it starts to receive pending messages that have not been processed while it was disabled.  To prevent that from happening, you can check this option.") %>
+              <p class="small">As soon as you enable this agent, it starts to receive pending messages that have not been processed while it was disabled.  To prevent that from happening, you can check this option.</p>
             </div>
           <% end %>
           <%= f.hidden_field :disabled, value: (!agent.disabled).to_s %>
