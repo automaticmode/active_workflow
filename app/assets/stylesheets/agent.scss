@@ -161,6 +161,18 @@
     h1 {
       margin-top: 40px;
     }
+
+    p:first-of-type {
+      color: white;
+    }
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   .cannot-be-scheduled,

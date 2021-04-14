@@ -15,7 +15,19 @@
 <% else %>
   <div class="form-group">
     <%= label_tag :options, "Agent-specific Options" %>
-    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'data-html' => true, 'title' => "In this JSON hash, interpolation is available in almost all values using the Liquid templating language.<p>Available template variables include the following:<dl><dt><code>message</code>, <code>url</code>, etc.</dt><dd>Refers to the corresponding key's value of each incoming message's payload.</dd><dt><code>agent</code></dt><dd>Refers to the agent that created each incoming message.  It has attributes like <code>type</code>, <code>name</code> and <code>options</code>, so <code>{{agent.type}}</code> will expand to <code>WebsiteAgent</code> if an incoming message is created by that agent.</dd></dl></p><p>To access user credentials, use the <code>credential</code> tag like this: <code>{% credential <em>bare_key_name</em> %}</code></p>") %>
+    <%= icon_tag('fa-question-circle', 'data-toggle' => 'tooltip', 'data-html' => true, 'title' => "For more available options look at the documentation on the right.") %>
+    <div class="small">
+      <p>In this JSON hash, interpolation is available in almost all values using the Liquid templating language.</p>
+      <p>Available template variables include the following:
+        <dl>
+          <dt><code>message</code>, <code>url</code>, etc.</dt>
+          <dd>Refers to the corresponding key's value of each incoming message's payload.</dd>
+          <dt><code>agent</code></dt>
+          <dd>Refers to the agent that created each incoming message.  It has attributes like <code>type</code>, <code>name</code> and <code>options</code>, so <code>{{agent.type}}</code> will expand to <code>WebsiteAgent</code> if an incoming message is created by that agent.</dd>
+        </dl>
+      </p>
+      <p>To access user credentials, use the <code>credential</code> tag like this:<br><code>{% credential <em>bare_key_name</em> %}</code></p>
+    </div>
     <textarea rows="15" id="agent_options" name="agent[options]" class="form-control"><%= JSON.pretty_generate((agent.new_record? && agent.options == {}) ? agent.default_options : agent.options) %></textarea>
     <div id="ace-agent-options" class="ace-editor" data-source="#agent_options" data-mode="ace/mode/json"></div>
   </div>
