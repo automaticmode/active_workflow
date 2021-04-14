@@ -95,6 +95,7 @@ nav .nav-item .nav-link:focus,
 
 .pagination li {
   @extend .page-item;
+
   a {
     @extend .page-link;
   }
@@ -110,21 +111,19 @@ nav .nav-item .nav-link:focus,
   @extend .is-invalid;
 }
 // Hack to show feedback for fields with errors, uses sibling selector.
+
 .field_with_errors ~ .invalid-feedback {
   display: block;
 }
-
-
-
 // Select2 fixes
-
 .select2 {
   float: none !important;
   margin-left: 0 !important;
 }
 
-.select2-container .select2-choices .select2-search-field input,
-.select2-container .select2-choice, .select2-container .select2-choices {
+.select2-container .select2-choice,
+.select2-container .select2-choices,
+.select2-container .select2-choices .select2-search-field input {
   font-family: $font-family-base !important;
 }
 
@@ -147,9 +146,7 @@ nav .nav-item .nav-link:focus,
 .schedule-region .cannot-be-scheduled {
   display: none;
 }
-
 // Disabled
-
 .agent-unavailable {
   opacity: 0.5;
 }
@@ -164,6 +161,25 @@ nav .nav-item .nav-link:focus,
 
 h1 .badge {
   text-shadow: none;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 2px;
+  max-width: 11rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: none;
+}
+
+.alert,
+.dropdown-menu {
+  .badge.workflow {
+    display: inline-flex;
+  }
 }
 
 .select2-highlighted a {

@@ -41,7 +41,7 @@
   }
 
   .agent-workflows {
-    .badge {
+    a.badge {
       font-size: 12px;
       font-weight: 400;
       margin: 0 0 3px 0;
@@ -55,7 +55,8 @@
       }
 
       &:hover {
-        filter: brightness(115%) saturate(115%);
+        filter: brightness(115%) saturate(125%);
+        pointer: default;
       }
     }
   }
@@ -235,8 +236,16 @@ li.issues {
 
 // Nav
 
-a.current-workflow {
-  border: 1px white solid;
+.agents-top-nav {
+
+  a.current-workflow {
+    background: #75787D;
+  }
+
+  .badge {
+    display: inline-flex;
+    padding: 4px;
+  }
 }
 
 
