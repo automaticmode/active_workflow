@@ -16,7 +16,11 @@
         <% next unless message.agent %>
         <%= content_tag :tr, class: (highlighted?(message.id) ? 'hl' : nil) do %>
           <td data-order="<%= relative_time(message.created_at, true) %>" title="<%= message.created_at %>"><%= time_ago_in_words message.created_at %> ago</td>
-          <td><div class="message-payload truncated"><%= truncate message.payload.to_json, :length => 200, :omission => "" %></div></td>
+          <td>
+            <div class="message-payload truncated message-show" data-url="<%= agent_message_path(@agent, message) %>">
+                <%= truncate message.payload.to_json, :length => 200, :omission => "" %>
+            </div>
+          </td>
           <td>
             <div class="btn-group btn-group-sm">
               <%= link_to 'Show', '#', class: 'btn btn-primary message-show', data: { url: agent_message_path(@agent, message) }%>

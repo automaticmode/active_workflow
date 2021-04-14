@@ -59,6 +59,12 @@ table.table {
     border-bottom-width: 0 !important;
   }
 
+  a.btn.btn-primary {
+    white-space: nowrap;
+  }
+
+  a:not(.btn) {
+    cursor: pointer;
   }
 }
 

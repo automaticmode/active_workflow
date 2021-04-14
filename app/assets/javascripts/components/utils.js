@@ -55,7 +55,7 @@
       const { title, body, onHide } = param;
       $("body").append(`\
 <div class="modal fade" tabindex="-1" id='dynamic-modal' role="dialog" aria-labelledby="dynamic-modal-label" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="dynamic-modal-label"></h4>

@@ -234,6 +234,40 @@ li.issues {
   }
 }
 
+.message-payload {
+  @extend .text-monospace;
+  padding: 10px;
+  border-radius: 2px;
+  background: #fff;
+  color: #000;
+
+  &.truncated {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    width: 10rem;
+    @include media-breakpoint-up(md) {
+      width: 15rem;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 29rem;
+    }
+    @include media-breakpoint-up(xl) {
+      max-width: 619px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: $gray-300;
+    }
+  }
+}
+
+body.agents .modal pre {
+  white-space:normal;
+}
+
 // Nav
 
 .agents-top-nav {

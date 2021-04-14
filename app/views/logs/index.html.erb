@@ -14,7 +14,10 @@
 
         <% @logs.each do |log| %>
           <tr>
-            <td><%= truncate log.message, :length => 200, :omission => "..." %></td>
+            <td>
+              <a class="show-log-details" data-toggle="modal" data-modal-content="<%= log.message %>" data-modal-title="<%= log.level >= 4 ? 'Error' : 'Info' %>">
+                <%= truncate log.message, :length => 200, :omission => "..." %></td>
+              </a>
             <td data-order="<%= relative_time(log.created_at, true) %>"><%= time_ago_in_words log.created_at %> ago</td>
 
             <td>

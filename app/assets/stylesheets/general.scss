@@ -11,11 +11,9 @@
 .flash.alert:empty {
   display: none;
 }
-
 // Fix Firefox and Chrome outlines on focused navs.
-nav .nav-item .nav-link:focus,
-.dropdown-menu .dropdown-item:focus
-{
+.dropdown-menu .dropdown-item:focus,
+nav .nav-item .nav-link:focus {
   outline: none;
 }
 
@@ -59,33 +57,6 @@ nav .nav-item .nav-link:focus,
   display: none;
 }
 
-.message-payload {
-  @extend .text-monospace;
-  padding: 0em 1em;
-  @extend .rounded;
-  background: #fff;
-  color: #000;
-
-  &.truncated {
-    height: 2rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    word-wrap: normal;
-
-    width: 10rem;
-    @include media-breakpoint-up(md){
-      width: 20rem;
-    }
-    @include media-breakpoint-up(lg){
-      width: 30rem;
-    }
-    @include media-breakpoint-up(xl){
-      width: 40rem;
-    }
-  }
-}
-
 .ace_editor {
   height: 10rem;
   @extend .rounded;
@@ -105,6 +76,11 @@ nav .nav-item .nav-link:focus,
 #error_explanation {
   @extend .alert;
   @extend .alert-danger;
+
+  li {
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
 }
 
 .field_with_errors .form-control {
