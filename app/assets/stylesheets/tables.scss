@@ -53,6 +53,7 @@ table.table {
     border: none;
     border-bottom: 1px solid #222;
     border-bottom-width: 1px !important;
+    vertical-align: middle;
   }
 
   tbody tr:last-child td {
@@ -121,14 +122,6 @@ table.dataTable {
   color: $secondary;
 }
 
-// User Credentials
-
-#usercredentials-table {
-  tbody td {
-    vertical-align: middle;
-  }
-}
-
 // User Management
 
 #users-table {
@@ -139,9 +132,4 @@ table.dataTable {
   th.registered {
     min-width: 120px;
   }
-
-  tbody td {
-    vertical-align: middle;
-  }
 }
-

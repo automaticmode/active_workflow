@@ -9,6 +9,10 @@
     }
   }
 
+  td {
+    vertical-align: top;
+  }
+
   td:first-child { // Name
     padding-top: 8px;
     padding-bottom: 2px;
@@ -181,7 +185,6 @@ li.issues {
 }
 
 // Show
-
 
 .agent-show {
 
