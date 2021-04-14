@@ -28,7 +28,7 @@ $(function() {
             }
           } else {
             if (elem.is(":visible")) {
-              elem.tooltip('dispose').fadeOut();
+              // elem.tooltip('dispose').fadeOut();
             }
           }
         }
@@ -39,7 +39,7 @@ $(function() {
                                 find(".number").
                                 text(json.message_count);
         } else {
-          $("#message-indicator").tooltip('dispose').fadeOut();
+          // $("#message-indicator").tooltip('dispose').fadeOut();
         }
 
         $("#message-indicator").data("sinceId", json.max_id);
@@ -48,7 +48,21 @@ $(function() {
         if ((document.location.pathname === '/jobs') && ($(".modal[aria-hidden=false]").length === 0) && (previousJobs != null) && (previousJobs.join(',') !== currentJobs.join(','))) {
           if (!document.location.search || (document.location.search === '?page=1')) {
             $.get('/jobs', data => {
-              return $("#main-content").html(data);
+              if ($('.modal-backdrop').is(":visible")) {
+                $('.modal-backdrop.fade.show').hide();
+              }
+              $("#main-content").html(data);
+              $("#jobs-table").dataTable({
+                "destroy": true,
+                paging: true,
+                statesave: true,
+                order: [[2, 'asc']],
+                columnDefs: [
+                  { targets: [0, 1], orderable: true, searchable: true },
+                  { targets: [2, 3, 5], orderable: true, searchable: false },
+                  { targets: '_all', orderable: false, searchable: false },
+                ]
+              });
             });
           }
         }

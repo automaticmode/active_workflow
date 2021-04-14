@@ -1,3 +1,25 @@
-.big-modal-dialog {
+.modal-dialog.big-modal-dialog {
   width: 90% !important;
+  max-width: 90%;
+}
+
+#jobs-table {
+	.badge-info {
+		background-color: $green;
+	}
+
+	a:not(.btn) {
+		cursor: pointer;
+		text-decoration: underline;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+body.jobs .modal {
+	pre {
+  	white-space:normal;
+	}
 }

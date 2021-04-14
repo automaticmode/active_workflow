@@ -21,15 +21,16 @@
 
   #message-indicator,
   .job-indicator {
-    font-size: 1.22rem;
     line-height: 55px;
     padding-right: 1rem;
 
     a {
       color: $gray-500;
+      display: inline-flex;
 
       .badge {
         font-weight: 200;
+        font-size: 14px;
 
         i {
           color: $gray-500;
