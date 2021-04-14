@@ -64,7 +64,7 @@
               </div>
               <div class="modal-body">
                 <p><em>Upload a credentials file that you have previously exported from an ActiveWorkflow instance.</em></p>
-                <%= file_field_tag :file, class: 'form-control' %>
+                <%= file_field_tag :file, accept: 'application/json', class: 'form-control' %>
               </div>
               <div class="modal-footer">
                 <%= button_tag 'Cancel', class: 'btn btn-primary btn-sm', 'data-dismiss' => 'modal' %>
