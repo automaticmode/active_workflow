@@ -282,6 +282,11 @@ body.agents .modal pre {
   }
 }
 
+.container.agent-show {
+  .agents-top-nav .btn.show-agent {
+    display: none;
+  }
+}
 
 // Imports
 
