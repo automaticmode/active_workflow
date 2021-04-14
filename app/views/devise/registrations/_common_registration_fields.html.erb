@@ -9,6 +9,7 @@
   <%= f.label :username, class: 'control-label' %>
   <div>
     <%= f.text_field :username, class: 'form-control' %>
+    <span class='help-inline'>3-190 characters: only letters, numbers, underscores, and dashes.</span>
   </div>
 </div>
 
@@ -16,7 +17,7 @@
   <%= f.label :password, class: 'control-label' %>
   <div>
     <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-    <% if @validatable %><span class="help-inline"><%= @minimum_password_length %> characters minimum.</span><% end %>
+    <span class='help-inline'>Minimum 8 characters.</span>
   </div>
 </div>
 

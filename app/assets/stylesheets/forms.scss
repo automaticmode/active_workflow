@@ -11,7 +11,9 @@ label[required] {
 .help-inline {
   font-size: 0.8rem;
   font-style: italic;
-  line-height: 1.1;
+  line-height: 1.3;
+  display: inline-flex;
+  color: $info;
 }
 
 .btn-lg, .btn-group-lg > .btn {

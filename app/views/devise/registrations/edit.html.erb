@@ -1,11 +1,15 @@
 <% content_for :title, "Account" -%>
 
 <div class="container">
-  <div class="row">
-    <p>If you want to access ActiveWorkflow via the REST API the token for your user is:
-      <pre><code class="text-info"><%= JsonWebToken.encode(user_id: current_user.id) %></code></pre>
-    </p>
+  <div class="row mt-3 mb-5">
+    <div class="col-md-12">
+      <p><em>If you want to access ActiveWorkflow via the REST API, the token for your user is:</em>
+        <pre><code class="text-info"><%= JsonWebToken.encode(user_id: current_user.id) %></code></pre>
+      </p>
+    </div>
+  </div>
 
+  <div class="row">
     <div class="col-md-6">
 
         <h2>Edit <%= resource_name.to_s.humanize %></h2>
@@ -16,6 +20,7 @@
             <%= f.label :email, class: 'control-label' %>
             <div>
               <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+              <span class='help-inline'></span>
             </div>
           </div>
 
@@ -27,6 +32,7 @@
             <%= f.label :username, class: 'control-label' %>
             <div>
               <%= f.text_field :username, class: 'form-control' %>
+              <span class='help-inline'>3-190 characters: only letters, numbers, underscores, and dashes.</span>
             </div>
           </div>
 
@@ -64,6 +70,7 @@
             <%= f.label :password, class: 'control-label' %>
             <div>
               <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+              <span class='help-inline'>Minimum 8 characters.</span>
             </div>
           </div>
 
@@ -71,6 +78,7 @@
             <%= f.label :password_confirmation, class: 'control-label' %>
             <div>
               <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+              <span class='help-inline'></span>
             </div>
           </div>
 
