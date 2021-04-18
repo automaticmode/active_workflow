@@ -23,7 +23,7 @@ module ActiveWorkflow
 
     def initialize()
       @mutex = Mutex.new
-      @scheduler = Rufus::Scheduler.new(frequency: ENV['SCHEDULER_FREQUENCY'].presence || 0.3)
+      @scheduler = Rufus::Scheduler.new(frequency: ENV['SCHEDULER_FREQUENCY'].presence || 0.1)
     end
 
     def run
@@ -32,7 +32,7 @@ module ActiveWorkflow
       puts "Starting scheduler" unless Rails.env.test?
 
       # Schedule message propagation.
-      scheduler.every('0.5s', tag: TAG) do
+      scheduler.every('1s', tag: TAG) do
         propagate!
       end
 
