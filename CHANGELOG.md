@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 
+## [0.9.14.2] - 2021-04-18
+### Fixed
+- Mimemagic licensing issue.
+
+### Changed
+- Increased default scheduler frequency (may help with reliability issues).
+- Better navigation from agent to its workflow(s).
+- Various UI improvements.
+
+
 ## [0.9.14.1] - 2021-03-21
 ### Fixed
 - Extract the first paragraph (or heading) from an agent description to be used
@@ -218,7 +228,8 @@ Removed third party agents:
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.14.1...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.14.2...HEAD
+[0.9.14.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.2
 [0.9.14.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.1
 [0.9.14]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14
 [0.9.13]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.13
