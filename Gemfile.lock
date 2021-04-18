@@ -236,7 +236,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
     kwalify (0.7.2)
     launchy (2.5.0)
@@ -372,7 +372,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rr (1.1.2)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -518,7 +518,7 @@ DEPENDENCIES
   jsonpath (~> 1.0.6)
   jwt (~> 2.2.2)
   kaminari (~> 1.2.1)
-  kramdown (~> 2.3.0)
+  kramdown (~> 2.3.1)
   letter_opener_web (~> 1.4.0)
   libyear-bundler (~> 0.5.3)
   liquid (~> 4.0.3)
