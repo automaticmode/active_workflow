@@ -2,6 +2,8 @@
 set -e
 
 export RAILS_ENV=production
+# Silence bundler when running as root.
+export HOME=/app
 
 # Start internal postgres if no database is configured.
 if [ -z "${DATABASE_HOST}" ] && [ -z "${DATABASE_URL}" ]; then

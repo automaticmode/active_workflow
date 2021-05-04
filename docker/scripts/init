@@ -52,7 +52,7 @@ fi
 # added specifically to support running ActiveWorkflow on Heroku free plan.
 # Please use multiple container configuration in production.
 
-if [ "${SINGLE_DYNO}" -eq "1" ]; then
+if [ "${SINGLE_DYNO}" = "1" ]; then
   # Simple "homegrown" process management with somewhat graceful shutdown.
   (until bundle exec puma; do sleep 1; done) &
   web_id=$!
