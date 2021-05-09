@@ -49,6 +49,7 @@ module Agents
           * `basic_auth` - Specify HTTP basic auth parameters: `"username:password"`, or `["username", "password"]`.
           * `disable_ssl_verification` - Set to `true` to disable ssl verification.
           * `user_agent` - A custom User-Agent name (default: "Faraday v#{Faraday::VERSION}").
+          * `force_response_encoding` - Interpret server response in this encoding. Default is UTF-8.
 
         #{receiving_file_handling_agent_description}
 
@@ -112,6 +113,14 @@ module Agents
 
       if options['content_type'] == 'form' && options['payload'].present? && options['payload'].is_a?(Array)
         errors.add(:base, 'when content_type is a form, if provided, payload must be a hash')
+      end
+
+      if options['force_response_encoding'].present?
+        begin
+          encoding = ::Encoding.find(options['force_response_encoding'])
+        rescue ArgumentError
+          errors.add(:base, "force_response_encoding '#{options['force_response_encoding']}' is invalid")
+        end
       end
 
       if options.has_key?('emit_messages') && boolify(options['emit_messages']).nil?
@@ -223,8 +232,12 @@ module Agents
 
       if boolify(interpolated['emit_messages'])
         new_message = interpolated['output_mode'].to_s == 'merge' ? message.payload.dup : {}
+
+        encoding = ::Encoding.find(options['force_response_encoding'] || 'UTF-8')
+        body = response.body.force_encoding(encoding).encode('UTF-8')
+
         create_message payload: new_message.merge(
-          body: response.body,
+          body: body,
           headers: normalize_response_headers(response.headers),
           status: response.status
         )

@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'ostruct'
 
 describe Agents::PostAgent do
+  let(:response_body) { '<html>an über webpage!</html>' }
   before do
     @valid_options = {
       'post_url' => 'http://www.example.com',
@@ -52,7 +53,7 @@ describe Agents::PostAgent do
           raise "unexpected Content-Type: #{content_type}"
         end
       end
-      { status: 200, body: '<html>a webpage!</html>', headers: { 'Content-type' => 'text/html' } }
+      { status: 200, body: response_body, headers: { 'Content-type' => 'text/html' } }
     }
   end
 
@@ -268,7 +269,26 @@ describe Agents::PostAgent do
 
         it 'emits the body' do
           @checker.check
-          expect(@checker.messages.last.payload['body']).to eq '<html>a webpage!</html>'
+          expect(@checker.messages.last.payload['body']).to eq '<html>an über webpage!</html>'
+        end
+
+        context 'when response is has no encoding (binary)' do
+          let!(:response_body) { "an \xC3\xBCber webpage!".force_encoding('binary') }
+
+          it 'emits the body decoded as UTF-8' do
+            @checker.check
+            expect(@checker.messages.last.payload['body']).to eq 'an über webpage!'
+          end
+        end
+
+        context 'when response encoding is given explicitly' do
+          let!(:response_body) { "a\xE8i\xFB!".force_encoding('binary') }
+
+          it 'emits the body decoded according to force_response_encoding' do
+            @checker.options['force_response_encoding'] = 'windows-1257'
+            @checker.check
+            expect(@checker.messages.last.payload['body']).to eq 'ačiū!'
+          end
         end
 
         it 'emits the response headers capitalized by default' do
@@ -432,6 +452,14 @@ describe Agents::PostAgent do
       expect(@checker).to be_valid
 
       @checker.options['emit_messages'] = true
+      expect(@checker).to be_valid
+    end
+
+    it 'requires force_response_encoding to be supported encoding' do
+      @checker.options['force_response_encoding'] = 'utf-19'
+      expect(@checker).not_to be_valid
+
+      @checker.options['force_response_encoding'] = 'windows-1257'
       expect(@checker).to be_valid
     end
 
