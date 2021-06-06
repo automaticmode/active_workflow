@@ -33,7 +33,7 @@ gem 'kramdown', '~> 2.3.1'
 gem 'liquid', '~> 4.0.3'
 gem 'loofah', '~> 2.8.0'
 gem 'mini_magick', '~> 4.11.0'
-gem 'nokogiri', '~> 1.11.1'
+gem 'nokogiri', '~> 1.11.4'
 gem 'rack-timeout', '~> 0.6.0'
 gem 'rails', '~> 6.0.3.7'
 gem 'rails-html-sanitizer', '~> 1.3.0'
@@ -94,6 +94,6 @@ group :development do
   end
 end
 
-gem 'puma', '~> 5.0.0'
+gem 'puma', '~> 5.3.1'
 
 gem 'pg', '~> 1.2.3'
