@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 
+## [0.9.14.4] - 2021-06-07
+### Changed
+- Update nokogiri and puma (several CVEs).
+
 ## [0.9.14.3] - 2021-05-10
 ### Fixed
 - Post agent will now interpret server responses as UTF-8 with an option
@@ -233,7 +237,8 @@ Removed third party agents:
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.14.3...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.14.4...HEAD
+[0.9.14.4]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.4
 [0.9.14.3]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.3
 [0.9.14.2]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.2
 [0.9.14.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.1
