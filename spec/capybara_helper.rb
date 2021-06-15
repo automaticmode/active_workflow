@@ -7,6 +7,7 @@ CAPYBARA_TIMEOUT = ENV['CI'] == 'true' ? 60 : 5
 
 Capybara.register_driver :chromium_headless do |app|
   browser_options = Selenium::WebDriver::Chrome::Options.new()
+  browser_options.binary = ENV['CHROMIUM_PATH'] if ENV.has_key?('CHROMIUM_PATH')
   browser_options.args << '--headless'
   browser_options.args << '--no-sandbox'
   browser_options.args << '--disable-dev-shm-usage'
