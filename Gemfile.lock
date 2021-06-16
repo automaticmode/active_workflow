@@ -280,7 +280,6 @@ GEM
     mustermann-grape (1.0.1)
       mustermann (>= 1.0.0)
     nenv (0.3.0)
-    net-ftp-list (3.2.11)
     nio4r (2.5.7)
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
@@ -525,7 +524,6 @@ DEPENDENCIES
   loofah (~> 2.8.0)
   mini_magick (~> 4.11.0)
   mini_racer (~> 0.3.1)
-  net-ftp-list (~> 3.2.8)
   nokogiri (~> 1.11.4)
   overcommit (~> 0.53.0)
   pg (~> 1.2.3)
@@ -565,4 +563,4 @@ RUBY VERSION
    ruby 2.6.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.19
