@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '>=2.6.0'
 
 gem 'ace-rails-ap', '~> 4.4'
-gem 'addressable', '~> 2.7.0'
+gem 'addressable', '~> 2.8.0'
 gem 'bootsnap', '>= 1.5.1', require: false
 gem 'bootstrap', '~> 4.5.3'
 gem 'daemons', '~> 1.3.1'

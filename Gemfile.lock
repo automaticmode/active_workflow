@@ -57,7 +57,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
     autoprefixer-rails (10.0.3.0)
@@ -305,7 +305,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     psych (3.1.0)
-    public_suffix (4.0.4)
+    public_suffix (4.0.6)
     puma (5.3.2)
       nio4r (~> 2.0)
     raabro (1.4.0)
@@ -483,7 +483,7 @@ PLATFORMS
 
 DEPENDENCIES
   ace-rails-ap (~> 4.4)
-  addressable (~> 2.7.0)
+  addressable (~> 2.8.0)
   better_errors (~> 2.7.0)
   binding_of_caller (~> 0.8.0)
   bootsnap (>= 1.5.1)
