@@ -32,7 +32,7 @@
                 <td><%= status(job) %></td>
                 <td><% case agent = agent_from_job(job)
                        when Agent
-                       %><%= link_to(agent.name, agent_path(agent)) %><%
+                       %><% if current_user.id == agent.user_id %><%= link_to(agent.name, agent_path(agent)) %><% else %><%= agent.name %><% end %><%
                        when String
                        %><%= agent %><%
                        when false
@@ -90,4 +90,3 @@
     </div>
   </div>
 </div>
-
