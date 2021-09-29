@@ -33,11 +33,11 @@ gem 'liquid', '~> 4.0.3'
 gem 'loofah', '~> 2.8.0'
 gem 'mini_magick', '~> 4.11.0'
 gem 'mini_racer', '~> 0.3.1'
-gem 'nokogiri', '~> 1.11.4'
+gem 'nokogiri', '~> 1.12.5'
 gem 'pg', '~> 1.2.3'
-gem 'puma', '~> 5.3.1'
+gem 'puma', '~> 5.5.1'
 gem 'rack-timeout', '~> 0.6.0'
-gem 'rails', '~> 6.0.3.7'
+gem 'rails', '~> 6.0.4.1'
 gem 'rails-html-sanitizer', '~> 1.3.0'
 # TODO: update
 gem 'rufus-scheduler', '~> 3.6.0', require: false
@@ -50,8 +50,6 @@ gem 'typhoeus', '~> 1.4.0'
 gem 'uglifier', '~> 4.2.0'
 
 group :development do
-  gem 'better_errors', '~> 2.7.0'
-  gem 'binding_of_caller', '~> 0.8.0'
   gem 'bullet', '~> 6.1.0'
   gem 'foreman', '~> 0.87.1'
   gem 'guard', '~> 2.16.2'
