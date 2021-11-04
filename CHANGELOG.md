@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 
+## [0.9.15.1] - 2021-11-04
+### Added
+- SECURITY.md
+
 ## [0.9.15] - 2021-08-04
 ## Removed
 - Removed IMAP Folder agent.
@@ -242,7 +246,8 @@ Removed third party agents:
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.15...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.15.1...HEAD
+[0.9.15.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.15.1
 [0.9.15]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.15
 [0.9.14.4]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.4
 [0.9.14.3]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.3
