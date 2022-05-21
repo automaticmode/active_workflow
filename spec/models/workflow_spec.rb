@@ -94,6 +94,67 @@ describe Workflow do
     end
   end
 
+
+  describe '#reset' do
+    it 'deletes all messages' do
+      agent1 = agents(:bob_status_agent)
+      agent2 = agents(:bob_website_agent)
+      agent1.workflows = [new_instance]
+      agent2.workflows = [new_instance]
+      10.times { Message.create(agent_id: agent1.id) }
+      # agent2 already has one message
+
+      new_instance.reload
+
+      expect { new_instance.reset }
+          .to change { new_instance.agents.map { |a| a.messages.count }.sum }
+              .from(11)
+              .to(0)
+    end
+
+    it 'deletes all logs' do
+      agent1 = agents(:bob_status_agent) # has 2 log entries
+      agent2 = agents(:bob_website_agent) # has 1 log entry
+      agent1.workflows = [new_instance]
+      agent2.workflows = [new_instance]
+
+      new_instance.reload
+
+      expect { new_instance.reset }
+          .to change { new_instance.agents.map { |a| a.logs.count }.sum }
+              .from(3)
+              .to(0)
+    end
+
+    it 'preserves agent memory' do
+      agent = agents(:bob_status_agent)
+      agent.memory['last_status'] = '418'
+      agent.workflows = [new_instance]
+      agent.save
+
+      new_instance.reload
+
+      new_instance.reset
+
+      agent.reload
+
+      expect(agent.memory['last_status']).to eq '418'
+    end
+
+    it 'erases agent memory if asked' do
+      agent = agents(:bob_status_agent)
+      agent.memory['last_status'] = '418'
+      agent.workflows = [new_instance]
+      agent.save
+
+      new_instance.reload
+
+      new_instance.reset(erase_memory: true)
+
+      expect(agent.reload.memory['last_status']).to be_nil
+    end
+  end
+
   context '#destroy_with_mode' do
     it 'only destroys the workflow when no mode is passed' do
       expect { workflows(:jane_status).destroy_with_mode('') }.not_to change(Agent, :count)

@@ -134,6 +134,25 @@ describe WorkflowsController do
     end
   end
 
+  describe 'POST reset' do
+    it 'deletes all messages and logs' do
+      @params = { 'commit' => 'Yes', 'id' => workflows(:bob_website).id }
+      put :reset, params: @params
+      aggregate_failures do
+        expect(agents(:bob_website_agent).messages.count).to eq 0
+        expect(agents(:bob_website_agent).logs.count).to eq 0
+      end
+    end
+
+    it 'erases agent memory if asked' do
+      agents(:bob_website_agent).update(memory: { key: 'value' })
+      @params = { 'erase_memory' => '1', 'commit' => 'Yes',
+                  'id' => workflows(:bob_website).id }
+      put :reset, params: @params
+      expect(agents(:bob_website_agent).reload.memory).to be_empty
+    end
+  end
+
   describe 'DELETE destroy' do
     it 'destroys only Workflows owned by the current user' do
       expect {

@@ -48,6 +48,7 @@ ActiveWorkflow::Application.routes.draw do
       get :share
       get :export
       put :enable_or_disable_all_agents
+      post :reset
     end
 
     resource :diagram, only: [:show]

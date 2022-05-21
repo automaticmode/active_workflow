@@ -1,0 +1,40 @@
+<div id="reset-workflow" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <%= form_for(workflow, as: :workflow, url: reset_workflow_path(workflow), method: 'POST') do |f| %>
+        <div class="modal-header">
+          <h4 class="modal-title">Confirm resetting workflow</h4>
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body-action">
+            Continuing will <span class="text-danger">erase all messages and logs</span>
+            emited by the agents of this workflow.
+            <br>
+            <label>
+              <input type="checkbox" name="erase_memory" value="1">
+              also erase agent memory.
+            </label>
+          </div>
+          <br>
+          <% shared_agents = workflow.shared_agents %>
+          <% unless shared_agents.empty? %>
+            <% shared_agent_count = shared_agents.size.size # group statement %>
+            <div class="text-danger">
+              <%= t 'Agent', count: shared_agent_count %>
+              <%= shared_agents.map { |agent| link_to(agent.name, agent_path(agent)) }.to_sentence.html_safe %>
+              <%= t 'is', count: shared_agent_count %>
+              shared with other workflows.
+              Resetting <%= t 'it', count: shared_agent_count %>
+              may disrupt other workflows.
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button 'No', class: 'btn btn-primary btn-sm', 'data-dismiss' => 'modal' %>
+          <%= f.submit 'Yes', class: 'btn btn-primary btn-sm' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

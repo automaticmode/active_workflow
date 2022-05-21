@@ -104,6 +104,19 @@ class WorkflowsController < ApplicationController
     end
   end
 
+  def reset
+    workflow = current_user.workflows.find(params[:id])
+
+    erase_memory = params[:erase_memory]
+
+    workflow.reset(erase_memory: erase_memory)
+
+    respond_to do |format|
+      format.html { redirect_to workflow, notice: 'The workflow has been reset.' }
+      format.json { head :no_content }
+    end
+  end
+
   def destroy
     @workflow = current_user.workflows.find(params[:id])
     @workflow.destroy_with_mode(params[:mode])

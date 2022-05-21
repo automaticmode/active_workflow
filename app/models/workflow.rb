@@ -4,6 +4,9 @@ class Workflow < ApplicationRecord
   belongs_to :user, counter_cache: :workflow_count, inverse_of: :workflows
   has_many :workflow_memberships, dependent: :destroy, inverse_of: :workflow
   has_many :agents, through: :workflow_memberships, inverse_of: :workflows
+  has_many :messages, through: :agents
+  has_many :logs, through: :agents
+
 
   validates :name, presence: true
   validates :user, presence: true
@@ -19,6 +22,17 @@ class Workflow < ApplicationRecord
   validates :tag_bg_color, format: COLOR_FORMAT
 
   validate :agents_are_owned
+
+  def reset(erase_memory: false)
+    # TODO: whould we disable all agents before resetting to prevent race
+    # conditions?
+    agents.each do |agent|
+      agent.delete_logs!
+      agent.messages.delete_all
+
+      agent.update!(memory: {}) if erase_memory
+    end
+  end
 
   def destroy_with_mode(mode)
     case mode
@@ -42,6 +56,19 @@ class Workflow < ApplicationRecord
       YAML.load_file(Rails.root.join('config', 'icons.yml'))
     end
   end
+
+  # Development helpers #
+
+  # Delete all messages in all agents of this workflow
+  def delete_all_messages
+    Message.where(agent: agents).destroy_all
+  end
+
+  # Delete all logs for all agents of this workflow
+  def delete_all_logs
+    AgentLog.where(agent: agents).destroy_all
+  end
+
 
   private
 

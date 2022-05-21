@@ -101,7 +101,7 @@ describe API::V1::Root do
     it 'returns workflows' do
       get '/api/v1/workflows', headers: headers
       result = JSON.parse(response.body)
-      expect(result.size).to eq 1
+      expect(result.size).to eq 2
       expect(result).to include(include('id' => workflow.id,
                                         'name' => workflow.name,
                                         'description' => workflow.description))

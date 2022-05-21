@@ -17,3 +17,7 @@ bob_status_agent_workflow_membership:
 bob_notifier_agent_workflow_membership:
   agent: bob_notifier_agent
   workflow: bob_status
+
+bob_website_agent_workflow_membership:
+  agent: bob_website_agent
+  workflow: bob_website

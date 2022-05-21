@@ -14,3 +14,9 @@ bob_status:
   user: bob
   description: Bob's status alert system
   guid: random-guid-generated-by-jane
+
+bob_website:
+  name: Bob's website Workflow
+  user: bob
+  description: Bob's website check
+  guid: random-guid-generated-by-bob2

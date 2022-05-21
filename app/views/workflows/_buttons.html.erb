@@ -5,4 +5,5 @@
   <%= link_to icon_tag('fa-trash-alt') + ' Delete', '#', data: { toggle: 'modal', target: "#confirm-workflow-deletion-#{@workflow.id}"}, class: "btn btn-primary btn-sm" %>
   <%= link_to icon_tag('fa-play') + ' Enable all Agents', '#', data: { toggle: 'modal', target: "#enable-disable-agents"}, class: "btn btn-primary enable-all-agents btn-sm" %>
   <%= link_to icon_tag('fa-pause') + ' Disable all Agents', '#', data: { toggle: 'modal', target: "#enable-disable-agents"}, class: "btn btn-primary disable-all-agents btn-sm" %>
+  <%= link_to icon_tag('fa-recycle') + ' Reset Workflow' , '#', data: { toggle: 'modal', target: "#reset-workflow"}, class: "btn btn-primary btn-sm" %>
 </div>
