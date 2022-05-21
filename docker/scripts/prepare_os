@@ -22,7 +22,7 @@ $minimal_apt_get_install build-essential \
   zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev \
   libncurses5-dev libffi-dev libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev \
   graphviz libpq-dev tzdata \
-  postgresql-11 tini
+  postgresql-13 tini
 
 apt-get purge -y python3* rsyslog rsync manpages
 apt -y autoremove
