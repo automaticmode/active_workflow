@@ -55,18 +55,6 @@ docker run -p 3000:3000 --rm automaticmode/active_workflow
 
 Once it starts you can login at `http://localhost:3000` with `admin`/`password`.
 
-### Try it on Heroku
-
-Another quick and easy way to check out ActiveWorkflow is by deploying it on
-[Heroku](https://www.heroku.com/).
-
-All you need to do is click the button bellow and fill in the environment variables for your seed user (admin):
-`SEED_USERNAME`, `SEED_PASSWORD` (must be at least 8 characters long) and `SEED_EMAIL`.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/automaticmode/active_workflow&env[SINGLE_DYNO]=1)
-
-*Note: this configuration is not recommended for production, please see [Getting Started - Running on Heroku](https://docs.activeworkflow.org/#running-on-heroku) for more details.*
-
 ## Documentation
 
 You can find the full project documentation at [docs.activeworkflow.org](https://docs.activeworkflow.org/).

@@ -6,13 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+### Removed
+- Heroku-specific support (single button install, custom docker image, etc)
+
+### Fixed
+- Post agent will now interpret server responses as UTF-8 with an option
+  to override.
 
 ## [0.9.15.1] - 2021-11-04
 ### Added
 - SECURITY.md
 
 ## [0.9.15] - 2021-08-04
-## Removed
+### Removed
 - Removed IMAP Folder agent.
 - Removed FTP Site agent.
 
