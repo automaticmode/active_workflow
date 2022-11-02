@@ -6,8 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [current]
+
+## [0.9.16]
 ### Removed
 - Heroku-specific support (single button install, custom docker image, etc)
+
+### Added
+- When developing workflows you may want to get back to 'clean slate' - delete
+  all messages, log entries and wipe agent memory. You can now do that with
+  workflow 'Reset' button.
+
+### Changed
+- Updated default container image to use newer ruby and debian.
+- Updated default docker-compose to use newer postgres version.
 
 ### Fixed
 - Post agent will now interpret server responses as UTF-8 with an option
@@ -252,7 +263,8 @@ Removed third party agents:
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.15.1...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.16...HEAD
+[0.9.16]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.16
 [0.9.15.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.15.1
 [0.9.15]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.15
 [0.9.14.4]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.14.4
