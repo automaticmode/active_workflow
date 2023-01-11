@@ -37,7 +37,7 @@ gem 'nokogiri', '~> 1.13.9'
 gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 5.6.4'
 gem 'rack-timeout', '~> 0.6.0'
-gem 'rails', '~> 6.0.5.1'
+gem 'rails', '~> 6.0.6'
 gem 'rails-html-sanitizer', '~> 1.3.0'
 # TODO: update
 gem 'rufus-scheduler', '~> 3.6.0', require: false
@@ -62,6 +62,7 @@ group :development do
   gem 'rails_best_practices', '~> 1.20.0'
   gem 'reek', '~> 6.0.0'
   gem 'rubocop', '~> 0.82.0'
+  # TODO: drop
   gem 'sqlite3', '~> 1.4.2'
   gem 'web-console', '~> 3.7.0'
 
