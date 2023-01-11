@@ -39,7 +39,7 @@ gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 5.6.4'
 gem 'rack-timeout', '~> 0.6.0'
 gem 'rails', '~> 6.0.6'
-gem 'rails-html-sanitizer', '~> 1.3.0'
+gem 'rails-html-sanitizer', '~> 1.4.4'
 # TODO: update
 gem 'rufus-scheduler', '~> 3.6.0', require: false
 gem 'sassc', '~>2.4.0'
