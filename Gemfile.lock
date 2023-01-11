@@ -277,6 +277,8 @@ GEM
     mustermann-grape (1.0.1)
       mustermann (>= 1.0.0)
     nenv (0.3.0)
+    net-http (0.3.2)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -465,6 +467,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
     uniform_notifier (1.13.0)
+    uri (0.10.0)
     vcr (5.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -528,6 +531,7 @@ DEPENDENCIES
   loofah (~> 2.8.0)
   mini_magick (~> 4.11.0)
   mini_racer (~> 0.3.1)
+  net-http (~> 0.3.2)
   nokogiri (~> 1.13.9)
   overcommit (~> 0.53.0)
   pg (~> 1.2.3)
@@ -558,6 +562,7 @@ DEPENDENCIES
   timecop (~> 0.9.2)
   typhoeus (~> 1.4.0)
   uglifier (~> 4.2.0)
+  uri (= 0.10.0)
   vcr (~> 5.1.0)
   web-console (~> 3.7.0)
   webmock (~> 3.8.3)
