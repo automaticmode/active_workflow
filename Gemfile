@@ -62,8 +62,6 @@ group :development do
   gem 'rails_best_practices', '~> 1.20.0'
   gem 'reek', '~> 6.0.0'
   gem 'rubocop', '~> 0.82.0'
-  # TODO: drop
-  gem 'sqlite3', '~> 1.4.2'
   gem 'web-console', '~> 3.7.0'
 
   group :test do
