@@ -43,7 +43,8 @@ class AgentsController < ApplicationController
         last_message_at: agent.last_message_at&.to_time&.to_i,
         issues: agent.issues?,
         receivers: agent.receivers.map { |receiver| { id: receiver.id } },
-        action_menu: AgentsController.render(template: 'agents/_action_menu.html',
+        action_menu: AgentsController.render(template: 'agents/_action_menu',
+                                             formats: [:html],
                                              layout: false,
                                              locals: {
                                                right: true, agent: agent,
