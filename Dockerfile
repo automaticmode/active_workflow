@@ -1,4 +1,4 @@
-FROM docker.io/ruby:2.7.7-slim-bullseye
+FROM docker.io/ruby:2.7.8-slim-bullseye
 
 COPY docker/scripts/prepare_os /scripts/
 RUN /scripts/prepare_os

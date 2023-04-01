@@ -50,7 +50,7 @@ gem 'spectrum-rails', '~> 1.8.0'
 gem 'sprockets', '~> 4.0.2'
 gem 'typhoeus', '~> 1.4.0'
 gem 'uglifier', '~> 4.2.0'
-gem 'uri', '0.10.0'
+gem 'uri', '0.10.0.2'
 
 group :development do
   gem 'bullet', '~> 6.1.0'
