@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [current]
 
+## [0.6.17]
+### Changed
+- Updated multiple dependencies. Mostly CVE
+  mitigations, not-relevant to ActiveWorkflow security.
+
 ## [0.9.16]
 ### Removed
 - Heroku-specific support (single button install, custom docker image, etc)
@@ -263,7 +268,8 @@ Removed third party agents:
 ### Added
 - Initial public release
 
-[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.16...HEAD
+[current]: https://github.com/automaticmode/active_workflow/compare/v0.9.17...HEAD
+[0.9.17]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.17
 [0.9.16]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.16
 [0.9.15.1]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.15.1
 [0.9.15]: https://github.com/automaticmode/active_workflow/releases/tag/v0.9.15
